@@ -1,0 +1,56 @@
+1) accept two numbers and add them.
+
+int a = 10;
+int b = 20;
+int c = a+b;
+
+System.out.println("a+b"+(a+b));
+
+
+2) accept two numbers and subtract them.
+int a = 10;
+int b = 20;
+int c = a-b;
+
+System.out.println("a-b"+(a-b));
+
+3) accept two numbers and multiply them.
+int a = 10;
+int b = 20;
+int c = ab;
+
+System.out.println("a*b"+(ab));
+
+4) accept two numbers and devide them.
+int a = 10;
+int b = 20;
+int c = a/b;
+
+System.out.println("a/b"+(a/b));
+
+5) accept two numbers and check whether first number is greater or second number is greater or they are equal.
+
+int a = 10;
+int b = 20;
+int c = a+b;
+
+if (a>b)
+{
+	System.out.println("a is greater");
+}
+else if(b>a)
+{
+	System.out.println("b is greater");
+}
+else if(a==b)
+{
+	System.out.println("both are equal");
+}
+
+
+6) accept a number and check whether it is divisible by 3 or not.
+int a = 30;
+if(a%3 == 0)
+{
+	System.out.println(" number is divisible by 3");
+}

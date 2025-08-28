@@ -1,0 +1,290 @@
+1)	display a table of a particular number  
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int number = 5;
+		for (int i =1;i<=10;i++)
+		{
+			System.out.println("5*"+i+"="+(5*i));
+		}
+
+	}
+         
+2)	declare two numbers and one operator as a character. e.g. '+'
+using switch... case check which operator is declared and accordingly perform the action.
+
+
+public class Control_flow_assignment2 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int first = 10;
+		int second = 20;		
+		char operator = '+';
+		
+		switch(operator)
+		{
+			case '+': 
+				System.out.println("first+second="+(first+second));
+				break;
+			case '-': 
+				System.out.println("first-second="+(first-second));
+				break;
+			case '*': 
+				System.out.println("first*second="+(first*second));
+				break;
+			case '/': 
+				System.out.println("first/second="+(first/second));
+				break;
+		}
+	}
+
+}
+
+3)	Display numbers  1 to 10 using loop
+
+
+public class Control_flow_assignment3_display_numbers_from_1_to_10 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		for(int i=1;i<=10;i++) {
+			System.out.println(i);
+		}
+
+	}
+
+}
+
+4)	Display numbers from 3 to 30 except number 24  using loop.
+
+
+public class Control_flow_assignment4_display_3_to_30_except_24 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		for(int i=3;i<=30;i++)
+		{
+			if(i==24)
+				continue;
+			System.out.println(i);
+		}
+
+	}
+
+}
+
+5)	Using if…….else if….  Else,  display whether result is  fail, pass, second class , first class, Distinction etc.  
+
+
+
+public class Control_flow_assignment5_result_displaying_pass_fail_etc {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int result = 0;
+		if (result >= 75)
+		{
+			System.out.println("First Class Distinction");
+		}
+		else if (result >= 65 && result <75)
+		{
+			System.out.println("First Class ");
+		}
+		else if (result >= 55 && result <65)
+		{
+			System.out.println("Second Class ");
+		}
+		else if (result > 45 && result <55)
+		{
+			System.out.println("Third Class ");
+		}
+		else {
+			System.out.println("Fail");
+		}
+
+	}
+
+}
+
+6) display all prime numbers between 3 to 30
+
+
+public class Control_flow_assignment6_prime_3_to_30 {
+
+	public static void main(String[] args) {
+		
+			for(int i=3; i<=30;i++)
+			{
+				
+				if(isprime(i) == true)
+				{
+					System.out.println(i);
+				}
+				
+			}			
+	}
+	static boolean isprime(int k)
+	{ 
+		for(int j=2;j<=(k/2);j++)
+		{
+			if (k%j == 0)
+			{
+				return false;
+			}
+		}
+		return true;
+		
+	}
+
+}
+
+7) using nested for loop display following :
+
+A  a
+A  b
+A  c
+
+B  a
+B  b
+B  c
+
+C  a
+C  b
+C  c
+
+
+
+public class Control_flow_assignment7 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+			
+			
+			
+			for (char capital = 'A'; capital <= 'C'; capital++)
+			{
+				for(char small = 'a'; small <= 'c';small ++)
+				{
+					System.out.println(capital +" "+small);
+				}
+			}
+	}
+
+}
+
+
+8) solve following patten programs:
+
+
+    * 
+   * * 
+  * * * 
+ * * * * 
+* * * * * 
+
+
+
+public class Control_flow_assignment8 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int n=5;
+		for (int i=0;i<=n;i++)
+		{
+			for ( int j = i;j<=n;j++)
+			{
+				System.out.print(" ");
+			}
+			
+			for (int k=1;k<=i;k++)
+			{
+				System.out.print("* ");
+			}
+			System.out.println();
+		}
+	}
+
+}
+
+
+
+       * * * * 
+  	* * * 
+  	 * * 
+          * 
+
+
+public class Control_flow_assignment8_b {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int n=4;
+		for ( int i=n;i>=1;i--)
+		{
+			 for (int j = i; j < n; j++) 
+			 {
+	            System.out.print(" ");
+	         }
+			 
+			 for (int k = 1; k <= i; k++) 
+			 {
+	               System.out.print("* ");
+	         }
+			 System.out.println();
+		}
+	}
+
+}
+
+
+
+    * 
+   * * 
+  * * * 
+ * * * * 
+  * * * 
+   * * 
+    * 
+
+
+public class Control_flow_assignment8_c {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int n = 4; 
+
+        
+        for (int i = 1; i <= n; i++) {
+           
+            for (int j = i; j < n; j++) {
+                System.out.print(" ");
+            }
+            
+            for (int k = 1; k <= i; k++) {
+                System.out.print("* ");
+            }
+            System.out.println();
+        }
+        
+        for (int i = n - 1; i >= 1; i--) {
+
+            for (int j = i; j < n; j++) {
+                System.out.print(" ");
+            }
+      
+            for (int k = 1; k <= i; k++) {
+                System.out.print("* ");
+            }
+            System.out.println();
+        }
+	}
+
+}
+
+
+
+
+
+
+

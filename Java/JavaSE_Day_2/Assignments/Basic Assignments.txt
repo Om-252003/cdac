@@ -1,0 +1,330 @@
+1)create a class "Shape" with 2 attributes, "width" and "height". Make sure one can not access these attributes directly.
+provide accessor methods on these attributes and allow them to call from outside of your class.
+
+class Shape{
+	private int width, height;
+	public void getdata() {
+		System.out.println("Width is: "+ width);
+		System.out.println("Height is: "+height);
+	}
+	public void putdata(int height, int width)
+	{
+		this.height = height;
+		this.width = width;
+	}
+}
+public class Demo {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Shape s1 = new Shape();
+		s1.putdata(101, 202);
+		s1.getdata();
+
+	}
+
+}
+
+
+2) Define a class "MyClass" and make sure clients can instantiate it , 
+a) without any argument
+b) with one int argument
+c) with two int arguments
+
+class MyClass{
+	
+	private int first, second;
+	
+	MyClass(){
+		
+	}
+	MyClass(int a)
+	{
+		this.first = a;
+	}
+	MyClass(int a,int b)
+	{
+		this.first=a;
+		this.second=b;
+	}
+	
+	public void getdata() {
+		System.out.println("first is: "+ first);
+		System.out.println("second is: "+second);
+	}
+	
+}
+public class Demo {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		MyClass m1 = new MyClass(1,2);
+		
+		m1.getdata();
+
+	}
+
+}
+
+
+3) Define a class "Emp" with private static member "int cnt".
+How will u make sure that outsiders can read the value of cnt ?
+class Emp{
+	
+	private static int cnt=40;
+	public int getCount()
+	{
+		return cnt;
+	
+	}
+	
+	
+}
+public class Demo {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Emp e1 = new Emp();
+		System.out.println(e1.getCount());
+
+	}
+
+}
+
+
+4) Define a class "DemoOb". 
+create an instance of it.
+now create a reference and assign the reference created in the above statement.
+	Discuss what happens?
+Now since u have 2 references, take one of the reference and assign a new instance of the class.
+	Discuss what happens?
+(For ur discussion, write necessary comments in the program)
+
+class DemoOb{
+	
+	DemoOb()
+	{
+		System.out.println("Constructor called for: "+this);
+	}
+	
+	
+}
+public class Demo {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		DemoOb dob = new DemoOb();
+		DemoOb dob2 = dob;
+		System.out.println("dob: "+dob);
+		System.out.println("dob2: "+dob2);
+
+		dob = new DemoOb();
+		System.out.println("dob: "+dob);
+		System.out.println("dob2: "+dob2);
+		
+		/* The print lines are added for the specification of the description. As we  can easily see that at first,
+		 * we created a reference for an object of DemoOb called dob, then assigned a new reference called dob2 to the same object. 
+		 * now both the dob and dob2 are referencing to the same object, which we can see after running the program.
+		 * 
+		 * Now, we assign a new object to the existing reference dob, so what happens is the existing reference dob now references to 
+		 * the new object that we have just created and the another reference called dob2 is still referencing to the first object.
+		 * 
+		 */
+
+	}
+
+}
+
+
+5) Define 3 classes A , B and C
+in all these classes create static and nonstatic variables as well as methods.
+	Now Define a class "Demo" ,in which define "main" function. From this main function try to access all the members of A ,B  and C.
+
+class A{
+	private static int A1 = 10;
+	private int A2;
+	
+	public static void getdata()
+	{
+		System.out.println("private static A1 displayed using a static method: "+A1);
+	}
+	public void putdata(int x)
+	{
+		this.A2 = x;
+	}
+	public void display()
+	{
+		System.out.println("private A2 displayed using non static (instance method): "+A2);
+	}
+	
+}
+class B{
+	private static int B1 = 20;
+	private int B2;
+	
+	public static void getdata()
+	{
+		System.out.println("private static B1 displayed using a static method: "+B1);
+	}
+	public void putdata(int x)
+	{
+		this.B2 = x;
+	}
+	public void display()
+	{
+		System.out.println("private B2 displayed using non static (instance method): "+ B2);
+	}
+	
+}
+class C{
+	private static int C1 = 30;
+	private int C2;
+	
+	public static void getdata()
+	{
+		System.out.println("private static C1 displayed using a static method: "+ C1);
+	}
+	public void putdata(int x)
+	{
+		this.C2 = x;
+	}
+	public void display()
+	{
+		System.out.println("private C2 displayed using non static (instance method): "+ C2);
+	}
+	
+}
+public class Demo {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		System.out.println("Static members before creaating obect: ");
+		A.getdata();
+		B.getdata();
+		C.getdata();
+		
+		System.out.println("Non static ( instance members ) after object creation: ");
+		A a = new A();
+		B b = new B();
+		C c = new C();
+		
+		a.putdata(40);
+		b.putdata(50);
+		c.putdata(60);
+		
+		a.display();
+		b.display();
+		c.display();
+		
+		
+	}
+
+}
+
+
+6) define static initializers in the above A,B and C classes and check the order of their execution.
+class A{
+	private static int A1 = 10;
+	private int A2;
+	
+	public static void getdata()
+	{
+		System.out.println("private static A1 displayed using a static method: "+A1);
+	}
+	public void putdata(int x)
+	{
+		this.A2 = x;
+	}
+	public void display()
+	{
+		System.out.println("private A2 displayed using non static (instance method): "+A2);
+	}
+	static {
+		System.out.println("This is a static block in class A");
+	}
+	
+}
+class B{
+	private static int B1 = 20;
+	private int B2;
+	
+	public static void getdata()
+	{
+		System.out.println("private static B1 displayed using a static method: "+B1);
+	}
+	public void putdata(int x)
+	{
+		this.B2 = x;
+	}
+	public void display()
+	{
+		System.out.println("private B2 displayed using non static (instance method): "+ B2);
+	}
+	static {
+		System.out.println("This is a static block in class B");
+	}
+	
+}
+class C{
+	private static int C1 = 30;
+	private int C2;
+	
+	public static void getdata()
+	{
+		System.out.println("private static C1 displayed using a static method: "+ C1);
+	}
+	public void putdata(int x)
+	{
+		this.C2 = x;
+	}
+	public void display()
+	{
+		System.out.println("private C2 displayed using non static (instance method): "+ C2);
+	}
+	static {
+		System.out.println("This is a static block in class C");
+	}
+	
+}
+public class Demo {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		A.getdata();
+		B.getdata();
+		C.getdata();
+		
+		A a = new A();
+		B b = new B();
+		C c = new C();
+		
+		a.putdata(40);
+		b.putdata(50);
+		c.putdata(60);
+		
+		a.display();
+		b.display();
+		c.display();
+
+		/* The order of execution is as follows: 
+		 * Very first, the static initializers get executed, and after those, the static methods are called 
+		 * using classname and dot operator.
+		 * At last the objects are created and instance methods are called using the references of those objects. 
+		 */
+		
+		
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
