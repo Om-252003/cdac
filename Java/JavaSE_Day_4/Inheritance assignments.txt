@@ -1,0 +1,214 @@
+1) Create a multi-level inheritance , instantiate the child class and observe constructor invocation.Also show, if needed how will u invoke parent class constructor from child class ?
+
+class Base{
+	Base(){
+		System.out.println("Base class constructor");
+	}
+}
+class Inter extends Base{
+	Inter(){
+		System.out.println("Inter class constructor");
+		
+	}
+}
+class Child extends Inter{
+	Child(){
+		super();
+		System.out.println("Child class constructor");
+	}
+}
+public class Demo {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		Child c = new Child();
+		
+		// we can use super() to invoke parent class constructor from child class if needed !
+		
+				 
+		
+		
+	}
+
+}
+
+
+2) create a class "Vehicle", define a method "public void start()" in it. From this class derive a class FourWheeler. How will u override "start()" method of parent class ?
+class Vehicle{
+	public void start() {
+		
+	}
+}
+class FourWheeler extends Vehicle{
+	public void start() {
+		System.out.println("In this way start() method gets overrided.");
+	}
+	
+}
+public class Demo {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		FourWheeler fw = new FourWheeler();
+		fw.start();
+		
+		
+		
+	}
+
+}
+
+
+
+3) Go for Hierarchical inheritance, create instances of child class and observe constructor invocation.
+
+class Base{
+	Base(){
+		System.out.println("Base class constructor");
+	}
+}
+
+class Child1 extends Base{
+	Child1(){
+		System.out.println("Child1 constrcutor");
+	}
+}
+class Child2 extends Base{
+	Child2(){
+		System.out.println("Child 2 constructor");
+	}
+}
+public class Demo {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		Child1 c1 = new Child1();
+		Child2 c2 = new Child2();
+		
+		
+		
+	}
+
+}
+
+
+4) Create a class "Top1" with "disp1()" method.
+From this class Derive "Bottom1", "Bottom2" and "Bottom3" classes ,override the "disp1()".
+Now show how will u achieve dynamic polymorphism.
+
+
+class Top1{
+	public void disp1() {
+		
+	}
+}
+class Bottom1 extends Top1{
+	public void disp1() {
+		System.out.println("Bottom 1 class");
+	}
+}
+class Bottom2 extends Top1{
+	public void disp1() {
+		System.out.println("Bottom 2 class");
+	}
+}
+class Bottom3 extends Top1{
+	public void disp1() {
+		System.out.println("Bottom 3 class");
+	}
+}
+
+public class Demo {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		Top1 t1;
+		
+		t1 = new Bottom1();
+		t1.disp1();
+		
+		t1 = new Bottom2();
+		t1.disp1();
+		
+		t1 = new Bottom3();
+		t1.disp1();
+		
+		
+	}
+
+}
+
+5) create abstract class Shape. declare "draw()" function as abstract. From this class define "Triangle","Polygon" and "Circle" .
+create an array of Shape having 3 elements.
+store child objects into this array . and call
+their draw function.
+
+6) Define interface "A" with "disp1()" method.
+Derive from "A", interface "B" with "disp2" method.
+Derive class "C" , from "B".
+Instantiate class "C" and call its members as well as derived from parent interfaces.
+
+7) Define class "Parent1" with some data.
+Define interface "Parent2" with some methods.
+Derive a class "Child" from "Parent1" and "Parent2", instantiate it and call the members.
+
+8) Define a class "base1" with only parameterized constructor.
+Derive a class "sub1" from "base1". This class should have following constructors
+	a) Default
+	b) one parameter
+	c) two parameter
+Now try to instantiate "sub1" , using any of the above mentioned constructors.
+
+class Base1{
+	Base1(int n)
+	{
+		System.out.println("n = "+ n);
+	}
+}
+class sub1 extends Base1{
+	sub1()
+	{
+		super(10);
+		System.out.println("Default constructor");
+	}
+	sub1(int a)
+	{
+		super(20);
+		System.out.println("a = "+a+" its a 1 arg constructor");
+	}
+	sub1(int a,int b)
+	{
+		super(30);
+		System.out.println("a = "+a +"" +" b = "+b+" its a 2 arg constructor");
+	}
+}
+public class Demo {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		sub1 s = new sub1();
+		sub1 s2 = new sub1(100);
+		sub1 s3 = new sub1(200,300);
+		
+		
+	}
+
+}
+
+
+9) create interface "Game" , have an abstract method "play()". from this interface implements classes like "Cricket" , "FootBall" and "Tennis".
+Now Define one more class 
+public class Demo with main function.
+In this class have a static method "perform" which will take interface reference as parameter.inside "perform()" see to it that any child object passed ,its "play()" method should be invoked. Call "perform()" method from main function.
+
+
+
+
+
+
+
+
+
