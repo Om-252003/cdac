@@ -12,7 +12,7 @@ d) developer must share one and only one object created of the class among all t
 
 class Singleton
 {
-	private static Singleton singleton= new Singleton();
+	private static Singleton single= new Singleton();
 
 	private Singleton()
 	{
@@ -25,7 +25,7 @@ class Singleton
 	}
 	public static Singleton getSingleton()
 	{
-		return singleton;
+		return single;
 	}
 }
 public class SingletonDemo

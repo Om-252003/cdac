@@ -15,8 +15,11 @@ class sub extends base
 	{
 		System.out.println("in sub static");
 	}
+	sub(){
+		System.out.println("Sub constructor");
+	}
 }
-public class myclass1
+public class Demo
 {
 	
 	public static void main(String args[])
