@@ -28,7 +28,6 @@ public class ImmutableDemo
 		Immutable i1=new Immutable(10);
 		System.out.println(i1);
 		Immutable i2=i1.add(20);
-		System.out.println(i1);
 		System.out.println(i2);
 	}
 }
