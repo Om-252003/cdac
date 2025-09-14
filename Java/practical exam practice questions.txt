@@ -1,0 +1,106 @@
+						Syllabus
+
+
+create checked exception 
+Method or constructor raising the checked exception
+caller of that method or constructor has to either handle or declare the checked exception.
+
+
+non abstract Parent class or abstract parent class or interface with some methods
+	child classes of parent class or implementation classes of interface.
+
+a) create array of non abstract class or abstract class or interface. Store child class objects 
+traverse the array and call methods of child classes (which are available in the parent class/interface)
+	also call those methods which are not in the parent class ( downcasting )
+
+b) some static function with the argument as non abstract parent class or abstract class or interface
+
+call methods of child classes (which are available in the parent class/interface)
+	also call those methods which are not in the parent class ( downcasting )
+
+[ upcasting, downcasting, instanceof etc. ]
+
+
+
+********************************************************************************************************************
+
+1) Write a program to print the first 10 Fibonacci numbers.
+
+2) create a checked exception "VotingNotAllowedException".
+
+define a class "Person" with a instance member "private String name" and "private int age"
+define parameterized constructor and toString() method also.
+In the parameterized constructor check the age passed while instantiating the class. if the age is less than 18 , constructor should raise "VotingNotAllowedException"
+	[ it should not handle the exception]
+
+	
+Define a class "Demo" with main function.
+From main function create an object of "Person" and display that object.
+
+3) Sample s1=new Sample(20);
+Sample s2=new Sample (20);
+
+make sure following things:
+
+S.o.p( s1+"  " +s2);  20   20
+S.o.p(s1.equals(s2));  true
+S.o.p(s1.hashCode())  20
+S.o.p(s2.hashCode())  20
+
+4) accept a character and display (using if.. else ) whether it is vowel or not.
+
+5) public interface PizzaIngredientFactory
+{
+	public Dough createDough();
+	public Sauce createSauce();
+	public Cheese createCheese();
+	public Pepperoni createPepperoni();
+	public Clams createClams();
+}
+define 2 implementations 
+	USPizzaIngredientFactory and IndianPizzaIngredientFactory
+
+create an array of "PizzaIngredientFactory" , store all the implemenations object inside it, traverse the array and invoke all the methods.
+
+
+6) public class Course
+{
+	public void start()
+	{
+	}
+	public void stop()
+	{
+	}
+}
+now define 3 child classes 
+	DACDBDACourse,MSCit and Basic
+
+inside "DACDBDACourse" class define one more method "public void orientation()"
+
+define one more class "CourseDemo" with main function.
+inside main function
+	create an array of "Course" of 3 elements.
+store all the child classes objects. Traverse the array and invoke "start()" and "stop()" of all the objects. Also invoke "orientation()" method wherever object of "DACDBDACourse" is present.
+
+
+7) same as above
+
+define one more class "CourseDemo" with main function and "public static void show()" method.
+from main function
+	invoke "show()" method by passing object of any implementations and invoke "start()" and "stop()" methods. Also invoke "orientation()" method whenever object of "DACDBDACourse" is passed.
+
+8) write a class "Displayer" with "print" function 
+create a class "Sample" with "toString()" method
+
+from main function call "print" by passing following values
+
+"welcome"  100  new Sample
+
+make sure u get following output:
+	welcome
+	100
+	Sample  [ class name should be printed  hint: getClass().getName()]
+
+9) create 2 threads to display "Hello" 5 times each. Use extends Thread technique.
+
+10) create 2 threads to display "Welcome" 5 times each. Use implements Runnable technique.

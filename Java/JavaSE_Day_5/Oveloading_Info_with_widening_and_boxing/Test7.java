@@ -15,6 +15,6 @@ public class Test7
 
 /*
 
-compiler can do boxing followed by widening operation
+compiler can do boxing of byte -> Byte followed by widening operation of Byte -> Object (Upcasting)
 
 */		

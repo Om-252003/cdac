@@ -1,5 +1,6 @@
 finally block gets executed irrespective of whether exception is raised or not.
-it can be used to release resources such as file,socket,database connection etc. since you can not rely upon "finalized" method for the same task.
+it can be used to release resources such as file,socket,database connection etc.
+ since you can not rely upon "finalized" method for the same task.
 
 finally block can follow after catch (try..catch...finally ) or even after try (try...finally).
  
