@@ -1,0 +1,1652 @@
+Enter password: *****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 9
+Server version: 8.0.42 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2025, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| classicmodels      |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+7 rows in set (0.00 sec)
+
+mysql> use classicmodels
+Database changed
+mysql> show tables;
++-------------------------+
+| Tables_in_classicmodels |
++-------------------------+
+| customers               |
+| employees               |
+| offices                 |
+| orderdetails            |
+| orders                  |
+| payments                |
+| productlines            |
+| products                |
++-------------------------+
+8 rows in set (0.00 sec)
+
+
+
+mysql> select * from employees;
++----------------+-----------+-----------+-----------+---------------------------------+------------+-----------+----------------------+
+| employeeNumber | lastName  | firstName | extension | email                           | officeCode | reportsTo | jobTitle             |
++----------------+-----------+-----------+-----------+---------------------------------+------------+-----------+----------------------+
+|           1002 | Murphy    | Diane     | x5800     | dmurphy@classicmodelcars.com    | 1          |      NULL | President            |
+|           1056 | Patterson | Mary      | x4611     | mpatterso@classicmodelcars.com  | 1          |      1002 | VP Sales             |
+|           1076 | Firrelli  | Jeff      | x9273     | jfirrelli@classicmodelcars.com  | 1          |      1002 | VP Marketing         |
+|           1088 | Patterson | William   | x4871     | wpatterson@classicmodelcars.com | 6          |      1056 | Sales Manager (APAC) |
+|           1102 | Bondur    | Gerard    | x5408     | gbondur@classicmodelcars.com    | 4          |      1056 | Sale Manager (EMEA)  |
+|           1143 | Bow       | Anthony   | x5428     | abow@classicmodelcars.com       | 1          |      1056 | Sales Manager (NA)   |
+|           1165 | Jennings  | Leslie    | x3291     | ljennings@classicmodelcars.com  | 1          |      1143 | Sales Rep            |
+|           1166 | Thompson  | Leslie    | x4065     | lthompson@classicmodelcars.com  | 1          |      1143 | Sales Rep            |
+|           1188 | Firrelli  | Julie     | x2173     | jfirrelli@classicmodelcars.com  | 2          |      1143 | Sales Rep            |
+|           1216 | Patterson | Steve     | x4334     | spatterson@classicmodelcars.com | 2          |      1143 | Sales Rep            |
+|           1286 | Tseng     | Foon Yue  | x2248     | ftseng@classicmodelcars.com     | 3          |      1143 | Sales Rep            |
+|           1323 | Vanauf    | George    | x4102     | gvanauf@classicmodelcars.com    | 3          |      1143 | Sales Rep            |
+|           1337 | Bondur    | Loui      | x6493     | lbondur@classicmodelcars.com    | 4          |      1102 | Sales Rep            |
+|           1370 | Hernandez | Gerard    | x2028     | ghernande@classicmodelcars.com  | 4          |      1102 | Sales Rep            |
+|           1401 | Castillo  | Pamela    | x2759     | pcastillo@classicmodelcars.com  | 4          |      1102 | Sales Rep            |
+|           1501 | Bott      | Larry     | x2311     | lbott@classicmodelcars.com      | 7          |      1102 | Sales Rep            |
+|           1504 | Jones     | Barry     | x102      | bjones@classicmodelcars.com     | 7          |      1102 | Sales Rep            |
+|           1611 | Fixter    | Andy      | x101      | afixter@classicmodelcars.com    | 6          |      1088 | Sales Rep            |
+|           1612 | Marsh     | Peter     | x102      | pmarsh@classicmodelcars.com     | 6          |      1088 | Sales Rep            |
+|           1619 | King      | Tom       | x103      | tking@classicmodelcars.com      | 6          |      1088 | Sales Rep            |
+|           1621 | Nishi     | Mami      | x101      | mnishi@classicmodelcars.com     | 5          |      1056 | Sales Rep            |
+|           1625 | Kato      | Yoshimi   | x102      | ykato@classicmodelcars.com      | 5          |      1621 | Sales Rep            |
+|           1702 | Gerard    | Martin    | x2312     | mgerard@classicmodelcars.com    | 4          |      1102 | Sales Rep            |
++----------------+-----------+-----------+-----------+---------------------------------+------------+-----------+----------------------+
+23 rows in set (0.00 sec)
+
+mysql> select firstName, lastName, jobtitle from employees;
++-----------+-----------+----------------------+
+| firstName | lastName  | jobtitle             |
++-----------+-----------+----------------------+
+| Diane     | Murphy    | President            |
+| Mary      | Patterson | VP Sales             |
+| Jeff      | Firrelli  | VP Marketing         |
+| William   | Patterson | Sales Manager (APAC) |
+| Gerard    | Bondur    | Sale Manager (EMEA)  |
+| Anthony   | Bow       | Sales Manager (NA)   |
+| Leslie    | Jennings  | Sales Rep            |
+| Leslie    | Thompson  | Sales Rep            |
+| Julie     | Firrelli  | Sales Rep            |
+| Steve     | Patterson | Sales Rep            |
+| Foon Yue  | Tseng     | Sales Rep            |
+| George    | Vanauf    | Sales Rep            |
+| Loui      | Bondur    | Sales Rep            |
+| Gerard    | Hernandez | Sales Rep            |
+| Pamela    | Castillo  | Sales Rep            |
+| Larry     | Bott      | Sales Rep            |
+| Barry     | Jones     | Sales Rep            |
+| Andy      | Fixter    | Sales Rep            |
+| Peter     | Marsh     | Sales Rep            |
+| Tom       | King      | Sales Rep            |
+| Mami      | Nishi     | Sales Rep            |
+| Yoshimi   | Kato      | Sales Rep            |
+| Martin    | Gerard    | Sales Rep            |
++-----------+-----------+----------------------+
+23 rows in set (0.00 sec)
+
+mysql> select * from customers limit 5;
++----------------+----------------------------+-----------------+------------------+--------------+------------------------------+--------------+-----------+----------+------------+-----------+------------------------+-------------+
+| customerNumber | customerName               | contactLastName | contactFirstName | phone        | addressLine1                 | addressLine2 | city      | state    | postalCode | country   | salesRepEmployeeNumber | creditLimit |
++----------------+----------------------------+-----------------+------------------+--------------+------------------------------+--------------+-----------+----------+------------+-----------+------------------------+-------------+
+|            103 | Atelier graphique          | Schmitt         | Carine           | 40.32.2555   | 54, rue Royale               | NULL         | Nantes    | NULL     | 44000      | France    |                   1370 |    21000.00 |
+|            112 | Signal Gift Stores         | King            | Jean             | 7025551838   | 8489 Strong St.              | NULL         | Las Vegas | NV       | 83030      | USA       |                   1166 |    71800.00 |
+|            114 | Australian Collectors, Co. | Ferguson        | Peter            | 03 9520 4555 | 636 St Kilda Road            | Level 3      | Melbourne | Victoria | 3004       | Australia |                   1611 |   117300.00 |
+|            119 | La Rochelle Gifts          | Labrune         | Janine           | 40.67.8555   | 67, rue des Cinquante Otages | NULL         | Nantes    | NULL     | 44000      | France    |                   1370 |   118200.00 |
+|            121 | Baane Mini Imports         | Bergulfsen      | Jonas            | 07-98 9555   | Erling Skakkes gate 78       | NULL         | Stavern   | NULL     | 4110       | Norway    |                   1504 |    81700.00 |
++----------------+----------------------------+-----------------+------------------+--------------+------------------------------+--------------+-----------+----------+------------+-----------+------------------------+-------------+
+5 rows in set (0.00 sec)
+
+mysql> select contactFirstName, contactLastName from customers order by contactLastName DESC, contactFirstName;
++------------------+-----------------+
+| contactFirstName | contactLastName |
++------------------+-----------------+
+| Dorothy          | Young           |
+| Jeff             | Young           |
+| Julie            | Young           |
+| Mary             | Young           |
+| Juri             | Yoshido         |
+| Brydey           | Walker          |
+| Wendy            | Victorino       |
+| Braun            | Urs             |
+| Jerry            | Tseng           |
+| Daniel           | Tonini          |
+| Steve            | Thompson        |
+| Valarie          | Thompson        |
+| Leslie           | Taylor          |
+| Sue              | Taylor          |
+| Yoshi            | Tamuri          |
+| Kalle            | Suominen        |
+| Martín           | Sommer          |
+| Tony             | Snowden         |
+| Thomas           | Smith           |
+| Akiko            | Shimamura       |
+| Alexander        | Semenov         |
+| Bradley          | Schuyler        |
+| Carine           | Schmitt         |
+| Mary             | Saveley         |
+| Rosa             | Salazar         |
+| Eduardo          | Saavedra        |
+| Giovanni         | Rovelli         |
+| Annette          | Roulet          |
+| José Pedro       | Roel            |
+| Lino             | Rodriguez       |
+| Franco           | Ricotti         |
+| Martine          | Rancé           |
+| Georg            | Pipps           |
+| Zbyszek          | Piestrzeniewicz |
+| Henriette        | Pfalzheim       |
+| Jytte            | Petersen        |
+| Dominique        | Perrier         |
+| Sven             | Ottlieb         |
+| Veysel           | Oeztan          |
+| Anna             | O'Hara          |
+| Allen            | Nelson          |
+| Susan            | Nelson          |
+| Eric             | Natividad       |
+| Rita             | Müller          |
+| Julie            | Murphy          |
+| Leslie           | Murphy          |
+| Maurizio         | Moroni          |
+| Hanna            | Moos            |
+| Renate           | Messner         |
+| Roland           | Mendel          |
+| Sarah            | McRoy           |
+| Patricia         | McKenna         |
+| Wales            | MacKinlay       |
+| Elizabeth        | Lincoln         |
+| Dan              | Lewis           |
+| Kelvin           | Leong           |
+| Kwai             | Lee             |
+| Laurence         | Lebihan         |
+| Martha           | Larsson         |
+| Janine           | Labrune         |
+| Armand           | Kuger           |
+| Pirkko           | Koskitalo       |
+| Horst            | Kloss           |
+| Jan              | Klaeboe         |
+| Jean             | King            |
+| Julie            | King            |
+| Mory             | Kentary         |
+| Roland           | Keitel          |
+| Matti            | Karttunen       |
+| Karin            | Josephs         |
+| Palle            | Ibsen           |
+| Adrian           | Huxley          |
+| Wing             | Huang           |
+| Mihael           | Holz            |
+| Maria            | Hernandez       |
+| Marta            | Hernandez       |
+| Paul             | Henriot         |
+| Juri             | Hashimoto       |
+| Ed               | Harrison        |
+| Mike             | Graham          |
+| Mike             | Gao             |
+| Michael          | Frick           |
+| Steve            | Frick           |
+| Sue              | Frick           |
+| Diego            | Freyre          |
+| Jean             | Fresnière       |
+| Peter            | Franken         |
+| Keith            | Franco          |
+| Valarie          | Franco          |
+| Alexander        | Feuer           |
+| Jesus            | Fernandez       |
+| Peter            | Ferguson        |
+| Michael          | Donnermeyer     |
+| Catherine        | Dewey           |
+| Elizabeth        | Devon           |
+| Isabel           | de Castro       |
+| Daniel           | Da Silva        |
+| Arnold           | Cruz            |
+| Philip           | Cramer          |
+| Sean             | Clenahan        |
+| Frédérique       | Citeaux         |
+| Yu               | Choi            |
+| Brian            | Chandler        |
+| Francisca        | Cervantes       |
+| Dean             | Cassidy         |
+| Pascale          | Cartrain        |
+| Alejandra        | Camino          |
+| Ben              | Calaghan        |
+| Ann              | Brown           |
+| Julie            | Brown           |
+| William          | Brown           |
+| Marie            | Bertrand        |
+| Jonas            | Bergulfsen      |
+| Christina        | Berglund        |
+| Helen            | Bennett         |
+| Violeta          | Benitez         |
+| Miguel           | Barajas         |
+| Rachel           | Ashworth        |
+| Carmen           | Anton           |
+| Mel              | Andersen        |
+| Raanan           | Altagar,G M     |
+| Paolo            | Accorti         |
++------------------+-----------------+
+122 rows in set (0.00 sec)
+
+mysql> select firstName from employee order by firstName;
+ERROR 1146 (42S02): Table 'classicmodels.employee' doesn't exist
+mysql> select firstName from employees order by firstName;
++-----------+
+| firstName |
++-----------+
+| Andy      |
+| Anthony   |
+| Barry     |
+| Diane     |
+| Foon Yue  |
+| George    |
+| Gerard    |
+| Gerard    |
+| Jeff      |
+| Julie     |
+| Larry     |
+| Leslie    |
+| Leslie    |
+| Loui      |
+| Mami      |
+| Martin    |
+| Mary      |
+| Pamela    |
+| Peter     |
+| Steve     |
+| Tom       |
+| William   |
+| Yoshimi   |
++-----------+
+23 rows in set (0.00 sec)
+
+mysql> select firstName from employees order by firstName DESC;
++-----------+
+| firstName |
++-----------+
+| Yoshimi   |
+| William   |
+| Tom       |
+| Steve     |
+| Peter     |
+| Pamela    |
+| Mary      |
+| Martin    |
+| Mami      |
+| Loui      |
+| Leslie    |
+| Leslie    |
+| Larry     |
+| Julie     |
+| Jeff      |
+| Gerard    |
+| Gerard    |
+| George    |
+| Foon Yue  |
+| Diane     |
+| Barry     |
+| Anthony   |
+| Andy      |
++-----------+
+23 rows in set (0.00 sec)
+
+mysql> select * from orderdetails limit 3;
++-------------+-------------+-----------------+-----------+-----------------+
+| orderNumber | productCode | quantityOrdered | priceEach | orderLineNumber |
++-------------+-------------+-----------------+-----------+-----------------+
+|       10100 | S18_1749    |              30 |    136.00 |               3 |
+|       10100 | S18_2248    |              50 |     55.09 |               2 |
+|       10100 | S18_4409    |              22 |     75.46 |               4 |
++-------------+-------------+-----------------+-----------+-----------------+
+3 rows in set (0.00 sec)
+
+
+mysql> select orderNumber, orderLineNumber,
+    -> quantityOrdered * priceEach AS Total
+    -> from orderdetails
+    -> order by Total DESC;
++-------------+-----------------+----------+
+| orderNumber | orderLineNumber | Total    |
++-------------+-----------------+----------+
+|       10403 |               9 | 11503.14 |
+|       10405 |               5 | 11170.52 |
+|       10407 |               2 | 10723.60 |
+			.
+			.
+			.
+			.
+|       10420 |               3 |   529.35 |
+|       10419 |               7 |   481.50 |
++-------------+-----------------+----------+
+2996 rows in set (0.01 sec)
+
+mysql> select orderNumber, status
+    -> from orders
+    -> order by FIELD(status, 'In process', 'On hold', 'Cancelled', 'Disputed', 'Shipped')
+    -> ;
++-------------+------------+
+| orderNumber | status     |
++-------------+------------+
+|       10164 | Resolved   |
+|       10327 | Resolved   |
+|       10367 | Resolved   |
+|       10386 | Resolved   |
+|       10420 | In Process |
+|       10421 | In Process |
+|       10422 | In Process |
+|       10423 | In Process |
+|       10424 | In Process |
+|       10425 | In Process |
+|       10334 | On Hold    |
+|       10401 | On Hold    |
+|       10407 | On Hold    |
+|       10414 | On Hold    |
+|       10167 | Cancelled  |
+|       10179 | Cancelled  |
+|       10248 | Cancelled  |
+|       10253 | Cancelled  |
+|       10260 | Cancelled  |
+|       10262 | Cancelled  |
+|       10406 | Disputed   |
+|       10415 | Disputed   |
+|       10417 | Disputed   |
+|       10100 | Shipped    |
+|       10101 | Shipped    |
+|       10102 | Shipped    |
+|       10103 | Shipped    |
+|       10104 | Shipped    |
+
++-------------+------------+
+326 rows in set (0.00 sec)
+
+mysql> select UNIQUE status from orders;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'UNIQUE status from orders' at line 1
+mysql> select UNIQUE status from orders;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'UNIQUE status from orders' at line 1
+
+mysql> select status unique from orders;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'unique from orders' at line 1
+mysql> select DISTINCt status from orders;
++------------+
+| status     |
++------------+
+| Shipped    |
+| Resolved   |
+| Cancelled  |
+| On Hold    |
+| Disputed   |
+| In Process |
++------------+
+6 rows in set (0.01 sec)
+
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql> select orderNumber,status
+    -> from orders
+    -> order by status;
++-------------+------------+
+| orderNumber | status     |
++-------------+------------+
+|       10167 | Cancelled  |
+|       10179 | Cancelled  |
+|       10248 | Cancelled  |
+|       10253 | Cancelled  |
+|       10260 | Cancelled  |
+|       10262 | Cancelled  |
+|       10406 | Disputed   |
+|       10415 | Disputed   |
+|       10417 | Disputed   |
+|       10420 | In Process |
+|       10421 | In Process |
+|       10422 | In Process |
+|       10423 | In Process |
+|       10424 | In Process |
+|       10425 | In Process |
+|       10334 | On Hold    |
+|       10401 | On Hold    |
+|       10407 | On Hold    |
+|       10414 | On Hold    |
+|       10164 | Resolved   |
+|       10327 | Resolved   |
+|       10367 | Resolved   |
+|       10386 | Resolved   |
+|       10100 | Shipped    |
+|       10419 | Shipped    |
++-------------+------------+
+326 rows in set (0.00 sec)
+
+mysql> select orderNumber, status
+    -> from orders
+    -> order by field(status, 'In Process', 'On hold', 'calcelled', 'resolved','disputed', 'shipped');
++-------------+------------+
+| orderNumber | status     |
++-------------+------------+
+|       10167 | Cancelled  |
+|       10179 | Cancelled  |
+|       10248 | Cancelled  |
+|       10253 | Cancelled  |
+|       10260 | Cancelled  |
+|       10262 | Cancelled  |
+|       10420 | In Process |
+|       10421 | In Process |
+|       10422 | In Process |
+|       10423 | In Process |
+|       10424 | In Process |
+|       10425 | In Process |
+|       10334 | On Hold    |
+|       10401 | On Hold    |
+|       10407 | On Hold    |
+|       10414 | On Hold    |
+|       10164 | Resolved   |
+|       10327 | Resolved   |
+|       10367 | Resolved   |
+|       10386 | Resolved   |
+|       10406 | Disputed   |
+|       10415 | Disputed   |
+|       10417 | Disputed   |
+|       10100 | Shipped    |
+|       10101 | Shipped    |
+|       10102 | Shipped    |
+|       10103 | Shipped    |
+|       10104 | Shipped    |
+|       10105 | Shipped    |
+|       10106 | Shipped    |
+|       10107 | Shipped    |
+
++-------------+------------+
+326 rows in set (0.00 sec)
+
+mysql> select orderNumber, status
+    -> from orders
+    -> order by field(status, 'In Process', 'On hold', 'calcelled', 'resolve','disputed', 'shipped');
++-------------+------------+
+| orderNumber | status     |
++-------------+------------+
+|       10164 | Resolved   |
+|       10167 | Cancelled  |
+|       10179 | Cancelled  |
+|       10248 | Cancelled  |
+|       10253 | Cancelled  |
+|       10260 | Cancelled  |
+|       10262 | Cancelled  |
+|       10327 | Resolved   |
+|       10367 | Resolved   |
+|       10386 | Resolved   |
+|       10420 | In Process |
+|       10421 | In Process |
+|       10422 | In Process |
+|       10423 | In Process |
+|       10424 | In Process |
+|       10425 | In Process |
+|       10334 | On Hold    |
+|       10401 | On Hold    |
+|       10407 | On Hold    |
+|       10414 | On Hold    |
+|       10406 | Disputed   |
+|       10415 | Disputed   |
+|       10417 | Disputed   |
+|       10100 | Shipped    |
+|       10101 | Shipped    |
+|       10102 | Shipped    |
+|       10103 | Shipped    |
+|       10104 | Shipped    |
+|       10105 | Shipped    |
+|       10106 | Shipped    |
+|       10107 | Shipped    |
+|       10108 | Shipped    |
+|       10109 | Shipped    |
+|       10110 | Shipped    |
+|       10111 | Shipped    |
+|       10112 | Shipped    |
+|       10113 | Shipped    |
+|   
++-------------+------------+
+326 rows in set (0.00 sec)
+
+mysql> select orderNumber, status
+    -> from orders
+    -> order by field(status, 'In Process', 'On hold', 'calcelled', 'resolve','disputed', 'shipped');^C
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql> select lastName, firstName,jobtitle
+    -> from employees
+    -> where jobtitle='Sales Rep';
++-----------+-----------+-----------+
+| lastName  | firstName | jobtitle  |
++-----------+-----------+-----------+
+| Jennings  | Leslie    | Sales Rep |
+| Thompson  | Leslie    | Sales Rep |
+| Firrelli  | Julie     | Sales Rep |
+| Patterson | Steve     | Sales Rep |
+| Tseng     | Foon Yue  | Sales Rep |
+| Vanauf    | George    | Sales Rep |
+| Bondur    | Loui      | Sales Rep |
+| Hernandez | Gerard    | Sales Rep |
+| Castillo  | Pamela    | Sales Rep |
+| Bott      | Larry     | Sales Rep |
+| Jones     | Barry     | Sales Rep |
+| Fixter    | Andy      | Sales Rep |
+| Marsh     | Peter     | Sales Rep |
+| King      | Tom       | Sales Rep |
+| Nishi     | Mami      | Sales Rep |
+| Kato      | Yoshimi   | Sales Rep |
+| Gerard    | Martin    | Sales Rep |
++-----------+-----------+-----------+
+17 rows in set (0.00 sec)
+
+mysql>
+mysql>
+mysql>
+mysql> select lastName, firstName, jobtitle, officeCode
+    -> from employees
+    -> where jobtitle = 'Sales Rep'
+    -> and officeCode =1;
++----------+-----------+-----------+------------+
+| lastName | firstName | jobtitle  | officeCode |
++----------+-----------+-----------+------------+
+| Jennings | Leslie    | Sales Rep | 1          |
+| Thompson | Leslie    | Sales Rep | 1          |
++----------+-----------+-----------+------------+
+2 rows in set (0.01 sec)
+
+mysql> select lastName, firstName, jobtitle, officecode
+    -> from employees
+    -> where jobtitle = 'Sales Rep'
+    -> OR officecode = 1
+    -> order by officecode, jobtitle;
++-----------+-----------+--------------------+------------+
+| lastName  | firstName | jobtitle           | officecode |
++-----------+-----------+--------------------+------------+
+| Murphy    | Diane     | President          | 1          |
+| Bow       | Anthony   | Sales Manager (NA) | 1          |
+| Jennings  | Leslie    | Sales Rep          | 1          |
+| Thompson  | Leslie    | Sales Rep          | 1          |
+| Firrelli  | Jeff      | VP Marketing       | 1          |
+| Patterson | Mary      | VP Sales           | 1          |
+| Firrelli  | Julie     | Sales Rep          | 2          |
+| Patterson | Steve     | Sales Rep          | 2          |
+| Tseng     | Foon Yue  | Sales Rep          | 3          |
+| Vanauf    | George    | Sales Rep          | 3          |
+| Bondur    | Loui      | Sales Rep          | 4          |
+| Hernandez | Gerard    | Sales Rep          | 4          |
+| Castillo  | Pamela    | Sales Rep          | 4          |
+| Gerard    | Martin    | Sales Rep          | 4          |
+| Nishi     | Mami      | Sales Rep          | 5          |
+| Kato      | Yoshimi   | Sales Rep          | 5          |
+| Fixter    | Andy      | Sales Rep          | 6          |
+| Marsh     | Peter     | Sales Rep          | 6          |
+| King      | Tom       | Sales Rep          | 6          |
+| Bott      | Larry     | Sales Rep          | 7          |
+| Jones     | Barry     | Sales Rep          | 7          |
++-----------+-----------+--------------------+------------+
+21 rows in set (0.00 sec)
+
+mysql> select lastName, firstName, jobtitle, officecode
+    -> from employees
+    -> where officecode
+    -> between 1 and 3
+    -> order by officecode;
++-----------+-----------+--------------------+------------+
+| lastName  | firstName | jobtitle           | officecode |
++-----------+-----------+--------------------+------------+
+| Murphy    | Diane     | President          | 1          |
+| Patterson | Mary      | VP Sales           | 1          |
+| Firrelli  | Jeff      | VP Marketing       | 1          |
+| Bow       | Anthony   | Sales Manager (NA) | 1          |
+| Jennings  | Leslie    | Sales Rep          | 1          |
+| Thompson  | Leslie    | Sales Rep          | 1          |
+| Firrelli  | Julie     | Sales Rep          | 2          |
+| Patterson | Steve     | Sales Rep          | 2          |
+| Tseng     | Foon Yue  | Sales Rep          | 3          |
+| Vanauf    | George    | Sales Rep          | 3          |
++-----------+-----------+--------------------+------------+
+10 rows in set (0.00 sec)
+
+mysql> select lastName, firstName, jobtitle, officecode
+    -> ^C
+mysql> select lastName, firstName
+    -> from employees
+    -> where lastName
+    -> like '%son'
+    -> order by firstName;
++-----------+-----------+
+| lastName  | firstName |
++-----------+-----------+
+| Thompson  | Leslie    |
+| Patterson | Mary      |
+| Patterson | Steve     |
+| Patterson | William   |
++-----------+-----------+
+4 rows in set (0.00 sec)
+
+mysql>
+mysql>
+mysql>
+mysql>
+mysql> select firstName, lastName, officecode
+    -> from employees
+    -> where officecode in (1,2,3)
+    -> order by officecode;
++-----------+-----------+------------+
+| firstName | lastName  | officecode |
++-----------+-----------+------------+
+| Diane     | Murphy    | 1          |
+| Mary      | Patterson | 1          |
+| Jeff      | Firrelli  | 1          |
+| Anthony   | Bow       | 1          |
+| Leslie    | Jennings  | 1          |
+| Leslie    | Thompson  | 1          |
+| Julie     | Firrelli  | 2          |
+| Steve     | Patterson | 2          |
+| Foon Yue  | Tseng     | 3          |
+| George    | Vanauf    | 3          |
++-----------+-----------+------------+
+10 rows in set (0.00 sec)
+
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql> select lastName,firstName, jobtitle,reportsTo
+    -> from employees
+    -> where reportsto is NULL;
++----------+-----------+-----------+-----------+
+| lastName | firstName | jobtitle  | reportsTo |
++----------+-----------+-----------+-----------+
+| Murphy   | Diane     | President |      NULL |
++----------+-----------+-----------+-----------+
+1 row in set (0.00 sec)
+
+mysql>
+mysql> select * from employees
+    -> where reportsto is null;
++----------------+----------+-----------+-----------+------------------------------+------------+-----------+-----------+
+| employeeNumber | lastName | firstName | extension | email                        | officeCode | reportsTo | jobTitle  |
++----------------+----------+-----------+-----------+------------------------------+------------+-----------+-----------+
+|           1002 | Murphy   | Diane     | x5800     | dmurphy@classicmodelcars.com | 1          |      NULL | President |
++----------------+----------+-----------+-----------+------------------------------+------------+-----------+-----------+
+1 row in set (0.00 sec)
+mysql>
+mysql>
+mysql>
+mysql>
+mysql> select distinct state from customers;
++---------------+
+| state         |
++---------------+
+| NULL          |
+| NV            |
+| Victoria      |
+| CA            |
+| NY            |
+| PA            |
+| CT            |
+| MA            |
+| Osaka         |
+| BC            |
+| Québec        |
+| Isle of Wight |
+| NSW           |
+| NJ            |
+| Queensland    |
+| Co. Cork      |
+| Pretoria      |
+| NH            |
+| Tokyo         |
++---------------+
+19 rows in set (0.00 sec)
+
+mysql> select distinct state, city
+    -> from customers
+    -> where state is not null
+    -> order by state, city;
++---------------+----------------+
+| state         | city           |
++---------------+----------------+
+| BC            | Tsawassen      |
+| BC            | Vancouver      |
+| CA            | Brisbane       |
+| CA            | Burbank        |
+| CA            | Burlingame     |
+| CA            | Glendale       |
+| CA            | Los Angeles    |
+| CA            | Pasadena       |
+| CA            | San Diego      |
+| CA            | San Francisco  |
+| CA            | San Jose       |
+| CA            | San Rafael     |
+| Co. Cork      | Cork           |
+| CT            | Bridgewater    |
+| CT            | Glendale       |
+| CT            | New Haven      |
+| Isle of Wight | Cowes          |
+| MA            | Boston         |
+| MA            | Brickhaven     |
+| MA            | Cambridge      |
+| MA            | New Bedford    |
+| NH            | Nashua         |
+| NJ            | Newark         |
+| NSW           | Chatswood      |
+| NSW           | North Sydney   |
+| NV            | Las Vegas      |
+| NY            | NYC            |
+| NY            | White Plains   |
+| Osaka         | Kita-ku        |
+| PA            | Allentown      |
+| PA            | Philadelphia   |
+| Pretoria      | Hatfield       |
+| Québec        | Montréal       |
+| Queensland    | South Brisbane |
+| Tokyo         | Minato-ku      |
+| Victoria      | Glen Waverly   |
+| Victoria      | Melbourne      |
++---------------+----------------+
+37 rows in set (0.00 sec)
+
+mysql> select state, city
+    -> from customers
+    -> where state is not null
+    -> order by state,city;
++---------------+----------------+
+| state         | city           |
++---------------+----------------+
+| BC            | Tsawassen      |
+| BC            | Vancouver      |
+| CA            | Brisbane       |
+| CA            | Burbank        |
+| CA            | Burlingame     |
+| CA            | Glendale       |
+| CA            | Los Angeles    |
+| CA            | Pasadena       |
+| CA            | San Diego      |
+| CA            | San Francisco  |
+| CA            | San Francisco  |
+| CA            | San Jose       |
+| CA            | San Rafael     |
+| Co. Cork      | Cork           |
+| CT            | Bridgewater    |
+| CT            | Glendale       |
+| CT            | New Haven      |
+| CT            | New Haven      |
+| Isle of Wight | Cowes          |
+| MA            | Boston         |
+| MA            | Boston         |
+| MA            | Brickhaven     |
+| MA            | Brickhaven     |
+| MA            | Brickhaven     |
+| MA            | Cambridge      |
+| MA            | Cambridge      |
+| MA            | New Bedford    |
+| MA            | New Bedford    |
+| NH            | Nashua         |
+| NJ            | Newark         |
+| NSW           | Chatswood      |
+| NSW           | North Sydney   |
+| NV            | Las Vegas      |
+| NY            | NYC            |
+| NY            | NYC            |
+| NY            | NYC            |
+| NY            | NYC            |
+| NY            | NYC            |
+| NY            | White Plains   |
+| Osaka         | Kita-ku        |
+| PA            | Allentown      |
+| PA            | Philadelphia   |
+| PA            | Philadelphia   |
+| Pretoria      | Hatfield       |
+| Québec        | Montréal       |
+| Queensland    | South Brisbane |
+| Tokyo         | Minato-ku      |
+| Victoria      | Glen Waverly   |
+| Victoria      | Melbourne      |
++---------------+----------------+
+49 rows in set (0.00 sec)
+
+mysql>
+mysql>
+mysql>
+mysql>
+mysql> select state from customers group by state;
++---------------+
+| state         |
++---------------+
+| NULL          |
+| NV            |
+| Victoria      |
+| CA            |
+| NY            |
+| PA            |
+| CT            |
+| MA            |
+| Osaka         |
+| BC            |
+| Québec        |
+| Isle of Wight |
+| NSW           |
+| NJ            |
+| Queensland    |
+| Co. Cork      |
+| Pretoria      |
+| NH            |
+| Tokyo         |
++---------------+
+19 rows in set (0.00 sec)
+
+mysql> select distinct state from customers;
++---------------+
+| state         |
++---------------+
+| NULL          |
+| NV            |
+| Victoria      |
+| CA            |
+| NY            |
+| PA            |
+| CT            |
+| MA            |
+| Osaka         |
+| BC            |
+| Québec        |
+| Isle of Wight |
+| NSW           |
+| NJ            |
+| Queensland    |
+| Co. Cork      |
+| Pretoria      |
+| NH            |
+| Tokyo         |
++---------------+
+19 rows in set (0.00 sec)
+
+mysql> select city, Count(*) from customers group by city;
++-------------------+----------+
+| city              | Count(*) |
++-------------------+----------+
+| Nantes            |        2 |
+| Las Vegas         |        1 |
+| Melbourne         |        1 |
+| Stavern           |        1 |
+| San Rafael        |        1 |
+| Warszawa          |        1 |
+| Frankfurt         |        2 |
+| San Francisco     |        2 |
+| NYC               |        5 |
+| Madrid            |        5 |
+| Luleå             |        1 |
+| Kobenhavn         |        1 |
+| Lyon              |        1 |
+| Singapore         |        3 |
+| Allentown         |        1 |
+| Burlingame        |        1 |
+| Bergen            |        1 |
+| New Haven         |        2 |
+| Lisboa            |        2 |
+| Lille             |        1 |
+| Paris             |        3 |
+| Cambridge         |        2 |
+| Bridgewater       |        1 |
+| Kita-ku           |        1 |
+| Helsinki          |        1 |
+| Manchester        |        1 |
+| Dublin            |        1 |
+| Brickhaven        |        3 |
+| Liverpool         |        1 |
+| Vancouver         |        1 |
+| Pasadena          |        1 |
+| Strasbourg        |        1 |
+| Central Hong Kong |        1 |
+| Barcelona         |        1 |
+| Glendale          |        2 |
+| Cunewalde         |        1 |
+| Århus             |        1 |
+| Montréal          |        1 |
+| San Diego         |        1 |
+| Cowes             |        1 |
+| Toulouse          |        1 |
+| Torino            |        1 |
+| Versailles        |        1 |
+| Köln              |        1 |
+| Tsawassen         |        1 |
+| München           |        1 |
+| North Sydney      |        1 |
+| Bergamo           |        1 |
+| Chatswood         |        1 |
+| Fribourg          |        1 |
+| Genève            |        1 |
+| Oslo              |        1 |
+| Amsterdam         |        1 |
+| Berlin            |        1 |
+| Oulu              |        1 |
+| Bruxelles         |        1 |
+| White Plains      |        1 |
+| New Bedford       |        2 |
+| Auckland          |        3 |
+| London            |        2 |
+| Newark            |        1 |
+| South Brisbane    |        1 |
+| Espoo             |        1 |
+| Brandenburg       |        1 |
+| Philadelphia      |        2 |
+| Los Angeles       |        1 |
+| Cork              |        1 |
+| Marseille         |        1 |
+| Reims             |        1 |
+| Hatfield          |        1 |
+| Münster           |        1 |
+| Boston            |        2 |
+| Nashua            |        1 |
+| Bern              |        1 |
+| Charleroi         |        1 |
+| Salzburg          |        1 |
+| Makati City       |        1 |
+| Reggio Emilia     |        1 |
+| Minato-ku         |        1 |
+| Stuttgart         |        1 |
+| Wellington        |        1 |
+| Munich            |        1 |
+| Leipzig           |        1 |
+| Bräcke            |        1 |
+| San Jose          |        1 |
+| Graz              |        1 |
+| Aachen            |        1 |
+| Glen Waverly      |        1 |
+| Milan             |        1 |
+| Burbank           |        1 |
+| Mannheim          |        1 |
+| Saint Petersburg  |        1 |
+| Herzlia           |        1 |
+| Sevilla           |        1 |
+| Brisbane          |        1 |
++-------------------+----------+
+95 rows in set (0.00 sec)
+
+
+mysql>
+mysql>
+mysql>
+mysql> select count(distinct state) from customers where country = 'USA';
++-----------------------+
+| count(distinct state) |
++-----------------------+
+|                     8 |
++-----------------------+
+1 row in set (0.00 sec)
+
+mysql> select count(state) from customers where country = 'USA';
++--------------+
+| count(state) |
++--------------+
+|           36 |
++--------------+
+1 row in set (0.00 sec)
+
+mysql>desc customers;
++------------------------+---------------+------+-----+---------+-------+
+| Field                  | Type          | Null | Key | Default | Extra |
++------------------------+---------------+------+-----+---------+-------+
+| customerNumber         | int           | NO   | PRI | NULL    |       |
+| customerName           | varchar(50)   | NO   |     | NULL    |       |
+| contactLastName        | varchar(50)   | NO   |     | NULL    |       |
+| contactFirstName       | varchar(50)   | NO   |     | NULL    |       |
+| phone                  | varchar(50)   | NO   |     | NULL    |       |
+| addressLine1           | varchar(50)   | NO   |     | NULL    |       |
+| addressLine2           | varchar(50)   | YES  |     | NULL    |       |
+| city                   | varchar(50)   | NO   |     | NULL    |       |
+| state                  | varchar(50)   | YES  |     | NULL    |       |
+| postalCode             | varchar(15)   | YES  |     | NULL    |       |
+| country                | varchar(50)   | NO   |     | NULL    |       |
+| salesRepEmployeeNumber | int           | YES  | MUL | NULL    |       |
+| creditLimit            | decimal(10,2) | YES  |     | NULL    |       |
++------------------------+---------------+------+-----+---------+-------+
+13 rows in set (0.04 sec)
+
+mysql> select contactFirstName, contactLastName, country,state
+    -> from customers
+    -> where country = 'USA' and state = 'CA';
++------------------+-----------------+---------+-------+
+| contactFirstName | contactLastName | country | state |
++------------------+-----------------+---------+-------+
+| Susan            | Nelson          | USA     | CA    |
+| Julie            | Murphy          | USA     | CA    |
+| Juri             | Hashimoto       | USA     | CA    |
+| Julie            | Young           | USA     | CA    |
+| Mary             | Young           | USA     | CA    |
+| Valarie          | Thompson        | USA     | CA    |
+| Julie            | Brown           | USA     | CA    |
+| Brian            | Chandler        | USA     | CA    |
+| Sue              | Frick           | USA     | CA    |
+| Steve            | Thompson        | USA     | CA    |
+| Sue              | Taylor          | USA     | CA    |
++------------------+-----------------+---------+-------+
+11 rows in set (0.00 sec)
+
+
+
+mysql> select customername, country, state from customers where country = 'USA' and state = 'CA';
++------------------------------+---------+-------+
+| customername                 | country | state |
++------------------------------+---------+-------+
+| Mini Gifts Distributors Ltd. | USA     | CA    |
+| Mini Wheels Co.              | USA     | CA    |
+| Technics Stores Inc.         | USA     | CA    |
+| Toys4GrownUps.com            | USA     | CA    |
+| Boards & Toys Co.            | USA     | CA    |
+| Collectable Mini Designs Co. | USA     | CA    |
+| Corporate Gift Ideas Co.     | USA     | CA    |
+| Men 'R' US Retailers, Ltd.   | USA     | CA    |
+| The Sharp Gifts Warehouse    | USA     | CA    |
+| West Coast Collectables Co.  | USA     | CA    |
+| Signal Collectibles Ltd.     | USA     | CA    |
++------------------------------+---------+-------+
+11 rows in set (0.00 sec)
+
+
+mysql> select customername, country, state from customers where country = 'USA' and state = 'CA' and creditlimit > 100000;
++------------------------------+---------+-------+
+| customername                 | country | state |
++------------------------------+---------+-------+
+| Mini Gifts Distributors Ltd. | USA     | CA    |
+| Collectable Mini Designs Co. | USA     | CA    |
+| Corporate Gift Ideas Co.     | USA     | CA    |
++------------------------------+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql>
+
+mysql> select true or (false and false);
++---------------------------+
+| true or (false and false) |
++---------------------------+
+|                         1 |
++---------------------------+
+1 row in set (0.00 sec)
+
+mysql> select true or false and false;
++-------------------------+
+| true or false and false |
++-------------------------+
+|                       1 |
++-------------------------+
+1 row in set (0.00 sec)
+
+mysql> -- comment
+mysql> # comment
+mysql> /* multiline comment
+	*/
+
+mysql> select (true or false) and false;
++---------------------------+
+| (true or false) and false |
++---------------------------+
+|                         0 |
++---------------------------+
+1 row in set (0.00 sec)
+
+mysql> select customername, country
+    -> from customers
+    -> where country ='USA' or
+    -> country = 'France';
++------------------------------+---------+
+| customername                 | country |
++------------------------------+---------+
+| Atelier graphique            | France  |
+| Signal Gift Stores           | USA     |
+| La Rochelle Gifts            | France  |
+| Mini Gifts Distributors Ltd. | USA     |
+| Mini Wheels Co.              | USA     |
+| Land of Toys Inc.            | USA     |
+| Saveley & Henriot, Co.       | France  |
+| Muscle Machine Inc           | USA     |
+| Diecast Classics Inc.        | USA     |
+| Technics Stores Inc.         | USA     |
+| American Souvenirs Inc       | USA     |
+| Daedalus Designs Imports     | France  |
+| La Corne D'abondance, Co.    | France  |
+| Cambridge Collectables Co.   | USA     |
+| Gift Depot Inc.              | USA     |
+| Vitachrome Inc.              | USA     |
+| Auto-Moto Classics Inc.      | USA     |
+| Online Mini Collectables     | USA     |
+| Toys4GrownUps.com            | USA     |
+| Mini Caravy                  | France  |
+| Boards & Toys Co.            | USA     |
+| Collectable Mini Designs Co. | USA     |
+| Alpha Cognac                 | France  |
+| Lyon Souveniers              | France  |
+| Auto Associés & Cie.         | France  |
+| Marta's Replicas Co.         | USA     |
+| Mini Classics                | USA     |
+| Mini Creations Ltd.          | USA     |
+| Corporate Gift Ideas Co.     | USA     |
+| Tekni Collectables Inc.      | USA     |
+| Classic Gift Ideas, Inc      | USA     |
+| Men 'R' US Retailers, Ltd.   | USA     |
+| Marseille Mini Autos         | France  |
+| Reims Collectables           | France  |
+| Gifts4AllAges.com            | USA     |
+| Online Diecast Creations Co. | USA     |
+| Collectables For Less Inc.   | USA     |
+| Auto Canal+ Petit            | France  |
+| Classic Legends Inc.         | USA     |
+| Gift Ideas Corp.             | USA     |
+| The Sharp Gifts Warehouse    | USA     |
+| Super Scale Inc.             | USA     |
+| Microscale Inc.              | USA     |
+| FunGiftIdeas.com             | USA     |
+| West Coast Collectables Co.  | USA     |
+| Motor Mint Distributors Inc. | USA     |
+| Signal Collectibles Ltd.     | USA     |
+| Diecast Collectables         | USA     |
++------------------------------+---------+
+48 rows in set (0.00 sec)
+
+mysql> select customername, country
+    -> from customers
+    -> where (country = 'USA' or country = 'France')
+    -> and creditlimit > 100000;
++------------------------------+---------+
+| customername                 | country |
++------------------------------+---------+
+| La Rochelle Gifts            | France  |
+| Mini Gifts Distributors Ltd. | USA     |
+| Land of Toys Inc.            | USA     |
+| Saveley & Henriot, Co.       | France  |
+| Muscle Machine Inc           | USA     |
+| Diecast Classics Inc.        | USA     |
+| Collectable Mini Designs Co. | USA     |
+| Marta's Replicas Co.         | USA     |
+| Mini Classics                | USA     |
+| Corporate Gift Ideas Co.     | USA     |
+| Online Diecast Creations Co. | USA     |
++------------------------------+---------+
+11 rows in set (0.00 sec)
+
+mysql>select customername, country
+    -> from customers
+    -> where country
+    -> in ('USA', 'France');
++------------------------------+---------+
+| customername                 | country |
++------------------------------+---------+
+| Atelier graphique            | France  |
+| Signal Gift Stores           | USA     |
+| La Rochelle Gifts            | France  |
+| Mini Gifts Distributors Ltd. | USA     |
+| Mini Wheels Co.              | USA     |
+| Land of Toys Inc.            | USA     |
+| Saveley & Henriot, Co.       | France  |
+| Muscle Machine Inc           | USA     |
+| Diecast Classics Inc.        | USA     |
+| Technics Stores Inc.         | USA     |
+| American Souvenirs Inc       | USA     |
+| Daedalus Designs Imports     | France  |
+| La Corne D'abondance, Co.    | France  |
+| Cambridge Collectables Co.   | USA     |
+| Gift Depot Inc.              | USA     |
+| Vitachrome Inc.              | USA     |
+| Auto-Moto Classics Inc.      | USA     |
+| Online Mini Collectables     | USA     |
+| Toys4GrownUps.com            | USA     |
+| Mini Caravy                  | France  |
+| Boards & Toys Co.            | USA     |
+| Collectable Mini Designs Co. | USA     |
+| Alpha Cognac                 | France  |
+| Lyon Souveniers              | France  |
+| Auto Associés & Cie.         | France  |
+| Marta's Replicas Co.         | USA     |
+| Mini Classics                | USA     |
+| Mini Creations Ltd.          | USA     |
+| Corporate Gift Ideas Co.     | USA     |
+| Tekni Collectables Inc.      | USA     |
+| Classic Gift Ideas, Inc      | USA     |
+| Men 'R' US Retailers, Ltd.   | USA     |
+| Marseille Mini Autos         | France  |
+| Reims Collectables           | France  |
+| Gifts4AllAges.com            | USA     |
+| Online Diecast Creations Co. | USA     |
+| Collectables For Less Inc.   | USA     |
+| Auto Canal+ Petit            | France  |
+| Classic Legends Inc.         | USA     |
+| Gift Ideas Corp.             | USA     |
+| The Sharp Gifts Warehouse    | USA     |
+| Super Scale Inc.             | USA     |
+| Microscale Inc.              | USA     |
+| FunGiftIdeas.com             | USA     |
+| West Coast Collectables Co.  | USA     |
+| Motor Mint Distributors Inc. | USA     |
+| Signal Collectibles Ltd.     | USA     |
+| Diecast Collectables         | USA     |
++------------------------------+---------+
+48 rows in set (0.00 sec)
+
+mysql> select productCode, productName
+    -> from products
+    -> where productCode like '%\_20%';
++-------------+-------------------------------------------+
+| productCode | productName                               |
++-------------+-------------------------------------------+
+| S10_2016    | 1996 Moto Guzzi 1100i                     |
+| S24_2000    | 1960 BSA Gold Star DBD34                  |
+| S24_2011    | 18th century schooner                     |
+| S24_2022    | 1938 Cadillac V-16 Presidential Limousine |
+| S700_2047   | HMS Bounty                                |
++-------------+-------------------------------------------+
+5 rows in set (0.01 sec)
+mysql> select productCode, productName
+    -> from products
+    -> where productCode like '%_20%';
++-------------+-------------------------------------------+
+| productCode | productName                               |
++-------------+-------------------------------------------+
+| S10_2016    | 1996 Moto Guzzi 1100i                     |
+| S18_3320    | 1917 Maxwell Touring Car                  |
+| S24_2000    | 1960 BSA Gold Star DBD34                  |
+| S24_2011    | 18th century schooner                     |
+| S24_2022    | 1938 Cadillac V-16 Presidential Limousine |
+| S24_3420    | 1937 Horch 930V Limousine                 |
+| S24_4620    | 1961 Chevrolet Impala                     |
+| S32_2206    | 1982 Ducati 996 R                         |
+| S32_3207    | 1950's Chicago Surface Lines Streetcar    |
+| S700_2047   | HMS Bounty                                |
++-------------+-------------------------------------------+
+10 rows in set (0.00 sec)
+
+mysql> select productCode, productName
+    -> from products
+    -> where productCode like '%$_20%' ESCAPE '$';
++-------------+-------------------------------------------+
+| productCode | productName                               |
++-------------+-------------------------------------------+
+| S10_2016    | 1996 Moto Guzzi 1100i                     |
+| S24_2000    | 1960 BSA Gold Star DBD34                  |
+| S24_2011    | 18th century schooner                     |
+| S24_2022    | 1938 Cadillac V-16 Presidential Limousine |
+| S700_2047   | HMS Bounty                                |
++-------------+-------------------------------------------+
+5 rows in set (0.00 sec)
+
+mysql>
+mysql> select productCode, productName
+    -> from products limit 5;
++-------------+---------------------------------------+
+| productCode | productName                           |
++-------------+---------------------------------------+
+| S10_1678    | 1969 Harley Davidson Ultimate Chopper |
+| S10_1949    | 1952 Alpine Renault 1300              |
+| S10_2016    | 1996 Moto Guzzi 1100i                 |
+| S10_4698    | 2003 Harley-Davidson Eagle Drag Bike  |
+| S10_4757    | 1972 Alfa Romeo GTA                   |
++-------------+---------------------------------------+
+5 rows in set (0.00 sec)
+
+mysql> select productCode, productName
+    -> from products limit 2,5;
++-------------+--------------------------------------+
+| productCode | productName                          |
++-------------+--------------------------------------+
+| S10_2016    | 1996 Moto Guzzi 1100i                |
+| S10_4698    | 2003 Harley-Davidson Eagle Drag Bike |
+| S10_4757    | 1972 Alfa Romeo GTA                  |
+| S10_4962    | 1962 LanciaA Delta 16V               |
+| S12_1099    | 1968 Ford Mustang                    |
++-------------+--------------------------------------+
+5 rows in set (0.00 sec)
+
+mysql> select productCode, productName
+    -> from products limit 5 offset 2;
++-------------+--------------------------------------+
+| productCode | productName                          |
++-------------+--------------------------------------+
+| S10_2016    | 1996 Moto Guzzi 1100i                |
+| S10_4698    | 2003 Harley-Davidson Eagle Drag Bike |
+| S10_4757    | 1972 Alfa Romeo GTA                  |
+| S10_4962    | 1962 LanciaA Delta 16V               |
+| S12_1099    | 1968 Ford Mustang                    |
++-------------+--------------------------------------+
+5 rows in set (0.00 sec)
+
+mysql> select customerNumber, customerName
+    -> from customers
+    -> order by customerNumber
+    -> limit 0,10;
++----------------+------------------------------+
+| customerNumber | customerName                 |
++----------------+------------------------------+
+|            103 | Atelier graphique            |
+|            112 | Signal Gift Stores           |
+|            114 | Australian Collectors, Co.   |
+|            119 | La Rochelle Gifts            |
+|            121 | Baane Mini Imports           |
+|            124 | Mini Gifts Distributors Ltd. |
+|            125 | Havel & Zbyszek Co           |
+|            128 | Blauer See Auto, Co.         |
+|            129 | Mini Wheels Co.              |
+|            131 | Land of Toys Inc.            |
++----------------+------------------------------+
+10 rows in set (0.00 sec)
+
+mysql> select customerName, creditLimit
+    -> from customers
+    -> order by creditLimit desc;
++------------------------------------+-------------+
+| customerName                       | creditLimit |
++------------------------------------+-------------+
+| Euro+ Shopping Channel             |   227600.00 |
+| Mini Gifts Distributors Ltd.       |   210500.00 |
+| Vida Sport, Ltd                    |   141300.00 |
+| Muscle Machine Inc                 |   138500.00 |
+| AV Stores, Co.                     |   136800.00 |
+| Saveley & Henriot, Co.             |   123900.00 |
+| Marta's Replicas Co.               |   123700.00 |
+| L'ordine Souveniers                |   121400.00 |
+| Heintze Collectables               |   120800.00 |
+| Toms Spezialitäten, Ltd            |   120400.00 |
+| Rovelli Gifts                      |   119600.00 |
+| La Rochelle Gifts                  |   118200.00 |
+| Australian Collectors, Co.         |   117300.00 |
+| Scandinavian Gift Ideas            |   116400.00 |
+| Land of Toys Inc.                  |   114900.00 |
+| Online Diecast Creations Co.       |   114200.00 |
+| Amica Models & Co.                 |   113000.00 |
+| Kelly's Gift Shop                  |   110000.00 |
+| Anna's Decorations, Ltd            |   107800.00 |
+| Collectable Mini Designs Co.       |   105000.00 |
+| Corporate Gift Ideas Co.           |   105000.00 |
+| Corrida Auto Replicas, Ltd         |   104600.00 |
+| Dragon Souveniers, Ltd.            |   103800.00 |
+| Mini Classics                      |   102700.00 |
+| Diecast Classics Inc.              |   100600.00 |
+| Suominen Souveniers                |    98800.00 |
+| Handji Gifts& Co                   |    97900.00 |
+| Herkku Gifts                       |    96800.00 |
+| Toys of Finland, Co.               |    96500.00 |
+| Super Scale Inc.                   |    95400.00 |
+| Norway Gifts By Mail, Co.          |    95100.00 |
+| Auto Canal+ Petit                  |    95000.00 |
+| Mini Creations Ltd.                |    94500.00 |
+| Tokyo Collectables, Ltd            |    94400.00 |
+| giftsbymail.co.uk                  |    93900.00 |
+| Souveniers And Things Co.          |    93300.00 |
+| UK Collectables, Ltd.              |    92700.00 |
+| Toys4GrownUps.com                  |    90700.00 |
+| Oulu Toy Supplies, Inc.            |    90500.00 |
+| Canadian Gift Exchange Network     |    90300.00 |
+| Royal Canadian Collectables, Ltd.  |    89600.00 |
+| Down Under Souveniers, Inc         |    88000.00 |
+| Extreme Desk Decorations, Ltd      |    86800.00 |
+| FunGiftIdeas.com                   |    85800.00 |
+| Diecast Collectables               |    85100.00 |
+| Technics Stores Inc.               |    84600.00 |
+| La Corne D'abondance, Co.          |    84300.00 |
+| Gift Depot Inc.                    |    84300.00 |
+| Danish Wholesale Imports           |    83400.00 |
+| Daedalus Designs Imports           |    82900.00 |
+| Baane Mini Imports                 |    81700.00 |
+| Cruz & Sons Co.                    |    81500.00 |
+| Osaka Souveniers Co.               |    81200.00 |
+| Classic Gift Ideas, Inc            |    81100.00 |
+| Reims Collectables                 |    81100.00 |
+| Petit Auto                         |    79900.00 |
+| Auto Associés & Cie.               |    77900.00 |
+| GiftsForHim.com                    |    77700.00 |
+| The Sharp Gifts Warehouse          |    77600.00 |
+| Stylish Desk Decors, Co.           |    77000.00 |
+| Bavarian Collectables Imports, Co. |    77000.00 |
+| Vitachrome Inc.                    |    76400.00 |
+| Motor Mint Distributors Inc.       |    72600.00 |
+| Signal Gift Stores                 |    71800.00 |
+| Salzburg Collectables              |    71700.00 |
+| Collectables For Less Inc.         |    70700.00 |
+| Clover Collections, Co.            |    69400.00 |
+| Online Mini Collectables           |    68700.00 |
+| Lyon Souveniers                    |    68100.00 |
+| Classic Legends Inc.               |    67500.00 |
+| Iberia Gift Imports, Corp.         |    65700.00 |
+| Marseille Mini Autos               |    65000.00 |
+| Mini Wheels Co.                    |    64600.00 |
+| Alpha Cognac                       |    61100.00 |
+| Enaco Distributors                 |    60300.00 |
+| Australian Collectables, Ltd       |    60300.00 |
+| Signal Collectibles Ltd.           |    60300.00 |
+| Blauer See Auto, Co.               |    59700.00 |
+| CAF Imports                        |    59600.00 |
+| King Kong Collectables, Co.        |    58600.00 |
+| Men 'R' US Retailers, Ltd.         |    57700.00 |
+| West Coast Collectables Co.        |    55400.00 |
+| Mini Caravy                        |    53800.00 |
+| Volvo Model Replicas, Co           |    53100.00 |
+| Australian Gift Network, Co        |    51600.00 |
+| Gift Ideas Corp.                   |    49700.00 |
+| Québec Home Shopping Network       |    48700.00 |
+| Mini Auto Werke                    |    45300.00 |
+| Cambridge Collectables Co.         |    43400.00 |
+| Double Decker Gift Stores, Ltd     |    43300.00 |
+| Tekni Collectables Inc.            |    43000.00 |
+| Gifts4AllAges.com                  |    41900.00 |
+| Microscale Inc.                    |    39800.00 |
+| Frau da Collezione                 |    34800.00 |
+| Royale Belge                       |    23500.00 |
+| Auto-Moto Classics Inc.            |    23000.00 |
+| Atelier graphique                  |    21000.00 |
+| Boards & Toys Co.                  |    11000.00 |
+| Havel & Zbyszek Co                 |        0.00 |
+| American Souvenirs Inc             |        0.00 |
+| Porto Imports Co.                  |        0.00 |
+| Asian Shopping Network, Co         |        0.00 |
+| Natürlich Autos                    |        0.00 |
+| ANG Resellers                      |        0.00 |
+| Messner Shopping Network           |        0.00 |
+| Franken Gifts, Co                  |        0.00 |
+| BG&E Collectables                  |        0.00 |
+| Schuyler Imports                   |        0.00 |
+| Der Hund Imports                   |        0.00 |
+| Cramer Spezialitäten, Ltd          |        0.00 |
+| Asian Treasures, Inc.              |        0.00 |
+| SAR Distributors, Co               |        0.00 |
+| Kommission Auto                    |        0.00 |
+| Lisboa Souveniers, Inc             |        0.00 |
+| Precious Collectables              |        0.00 |
+| Stuttgart Collectable Exchange     |        0.00 |
+| Feuer Online Stores, Inc           |        0.00 |
+| Warburg Exchange                   |        0.00 |
+| Anton Designs, Ltd.                |        0.00 |
+| Mit Vergnügen & Co.                |        0.00 |
+| Kremlin Collectables, Co.          |        0.00 |
+| Raanan Stores, Inc                 |        0.00 |
++------------------------------------+-------------+
+122 rows in set (0.00 sec)
+
+mysql> select customerName, creditLimit
+    -> from customers
+    -> order by creditLimit;
++------------------------------------+-------------+
+| customerName                       | creditLimit |
++------------------------------------+-------------+
+| Havel & Zbyszek Co                 |        0.00 |
+| American Souvenirs Inc             |        0.00 |
+| Porto Imports Co.                  |        0.00 |
+| Asian Shopping Network, Co         |        0.00 |
+| Natürlich Autos                    |        0.00 |
+| ANG Resellers                      |        0.00 |
+| Messner Shopping Network           |        0.00 |
+| Franken Gifts, Co                  |        0.00 |
+| BG&E Collectables                  |        0.00 |
+| Schuyler Imports                   |        0.00 |
+| Der Hund Imports                   |        0.00 |
+| Cramer Spezialitäten, Ltd          |        0.00 |
+| Asian Treasures, Inc.              |        0.00 |
+| SAR Distributors, Co               |        0.00 |
+| Kommission Auto                    |        0.00 |
+| Lisboa Souveniers, Inc             |        0.00 |
+| Precious Collectables              |        0.00 |
+| Stuttgart Collectable Exchange     |        0.00 |
+| Feuer Online Stores, Inc           |        0.00 |
+| Warburg Exchange                   |        0.00 |
+| Anton Designs, Ltd.                |        0.00 |
+| Mit Vergnügen & Co.                |        0.00 |
+| Kremlin Collectables, Co.          |        0.00 |
+| Raanan Stores, Inc                 |        0.00 |
+| Boards & Toys Co.                  |    11000.00 |
+| Atelier graphique                  |    21000.00 |
+| Auto-Moto Classics Inc.            |    23000.00 |
+| Royale Belge                       |    23500.00 |
+| Frau da Collezione                 |    34800.00 |
+| Microscale Inc.                    |    39800.00 |
+| Gifts4AllAges.com                  |    41900.00 |
+| Tekni Collectables Inc.            |    43000.00 |
+| Double Decker Gift Stores, Ltd     |    43300.00 |
+| Cambridge Collectables Co.         |    43400.00 |
+| Mini Auto Werke                    |    45300.00 |
+| Québec Home Shopping Network       |    48700.00 |
+| Gift Ideas Corp.                   |    49700.00 |
+| Australian Gift Network, Co        |    51600.00 |
+| Volvo Model Replicas, Co           |    53100.00 |
+| Mini Caravy                        |    53800.00 |
+| West Coast Collectables Co.        |    55400.00 |
+| Men 'R' US Retailers, Ltd.         |    57700.00 |
+| King Kong Collectables, Co.        |    58600.00 |
+| CAF Imports                        |    59600.00 |
+| Blauer See Auto, Co.               |    59700.00 |
+| Enaco Distributors                 |    60300.00 |
+| Australian Collectables, Ltd       |    60300.00 |
+| Signal Collectibles Ltd.           |    60300.00 |
+| Alpha Cognac                       |    61100.00 |
+| Mini Wheels Co.                    |    64600.00 |
+| Marseille Mini Autos               |    65000.00 |
+| Iberia Gift Imports, Corp.         |    65700.00 |
+| Classic Legends Inc.               |    67500.00 |
+| Lyon Souveniers                    |    68100.00 |
+| Online Mini Collectables           |    68700.00 |
+| Clover Collections, Co.            |    69400.00 |
+| Collectables For Less Inc.         |    70700.00 |
+| Salzburg Collectables              |    71700.00 |
+| Signal Gift Stores                 |    71800.00 |
+| Motor Mint Distributors Inc.       |    72600.00 |
+| Vitachrome Inc.                    |    76400.00 |
+| Stylish Desk Decors, Co.           |    77000.00 |
+| Bavarian Collectables Imports, Co. |    77000.00 |
+| The Sharp Gifts Warehouse          |    77600.00 |
+| GiftsForHim.com                    |    77700.00 |
+| Auto Associés & Cie.               |    77900.00 |
+| Petit Auto                         |    79900.00 |
+| Classic Gift Ideas, Inc            |    81100.00 |
+| Reims Collectables                 |    81100.00 |
+| Osaka Souveniers Co.               |    81200.00 |
+| Cruz & Sons Co.                    |    81500.00 |
+| Baane Mini Imports                 |    81700.00 |
+| Daedalus Designs Imports           |    82900.00 |
+| Danish Wholesale Imports           |    83400.00 |
+| La Corne D'abondance, Co.          |    84300.00 |
+| Gift Depot Inc.                    |    84300.00 |
+| Technics Stores Inc.               |    84600.00 |
+| Diecast Collectables               |    85100.00 |
+| FunGiftIdeas.com                   |    85800.00 |
+| Extreme Desk Decorations, Ltd      |    86800.00 |
+| Down Under Souveniers, Inc         |    88000.00 |
+| Royal Canadian Collectables, Ltd.  |    89600.00 |
+| Canadian Gift Exchange Network     |    90300.00 |
+| Oulu Toy Supplies, Inc.            |    90500.00 |
+| Toys4GrownUps.com                  |    90700.00 |
+| UK Collectables, Ltd.              |    92700.00 |
+| Souveniers And Things Co.          |    93300.00 |
+| giftsbymail.co.uk                  |    93900.00 |
+| Tokyo Collectables, Ltd            |    94400.00 |
+| Mini Creations Ltd.                |    94500.00 |
+| Auto Canal+ Petit                  |    95000.00 |
+| Norway Gifts By Mail, Co.          |    95100.00 |
+| Super Scale Inc.                   |    95400.00 |
+| Toys of Finland, Co.               |    96500.00 |
+| Herkku Gifts                       |    96800.00 |
+| Handji Gifts& Co                   |    97900.00 |
+| Suominen Souveniers                |    98800.00 |
+| Diecast Classics Inc.              |   100600.00 |
+| Mini Classics                      |   102700.00 |
+| Dragon Souveniers, Ltd.            |   103800.00 |
+| Corrida Auto Replicas, Ltd         |   104600.00 |
+| Collectable Mini Designs Co.       |   105000.00 |
+| Corporate Gift Ideas Co.           |   105000.00 |
+| Anna's Decorations, Ltd            |   107800.00 |
+| Kelly's Gift Shop                  |   110000.00 |
+| Amica Models & Co.                 |   113000.00 |
+| Online Diecast Creations Co.       |   114200.00 |
+| Land of Toys Inc.                  |   114900.00 |
+| Scandinavian Gift Ideas            |   116400.00 |
+| Australian Collectors, Co.         |   117300.00 |
+| La Rochelle Gifts                  |   118200.00 |
+| Rovelli Gifts                      |   119600.00 |
+| Toms Spezialitäten, Ltd            |   120400.00 |
+| Heintze Collectables               |   120800.00 |
+| L'ordine Souveniers                |   121400.00 |
+| Marta's Replicas Co.               |   123700.00 |
+| Saveley & Henriot, Co.             |   123900.00 |
+| AV Stores, Co.                     |   136800.00 |
+| Muscle Machine Inc                 |   138500.00 |
+| Vida Sport, Ltd                    |   141300.00 |
+| Mini Gifts Distributors Ltd.       |   210500.00 |
+| Euro+ Shopping Channel             |   227600.00 |
++------------------------------------+-------------+
+122 rows in set (0.00 sec)
+
+mysql> select customerName, creditLimit
+    -> from customers
+    -> order by creditLimit limit 2;
++------------------------+-------------+
+| customerName           | creditLimit |
++------------------------+-------------+
+| American Souvenirs Inc |        0.00 |
+| Havel & Zbyszek Co     |        0.00 |
++------------------------+-------------+
+2 rows in set (0.00 sec)
+
+mysql> select distinct creditLimit
+    -> from customers
+    -> order by creditLimit limit 2;
++-------------+
+| creditLimit |
++-------------+
+|        0.00 |
+|    11000.00 |
++-------------+
+2 rows in set (0.00 sec)
+
+mysql> select customerName, distinct creditLimit
+    -> from customers
+    -> order by creditLimit limit 2;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'distinct creditLimit
+from customers
+order by creditLimit limit 2' at line 1
+
+
+mysql> 
