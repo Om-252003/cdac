@@ -1,0 +1,48 @@
+SELECT orderNumber, status FROM orders ORDER BY status;
+
+
+
+SELECT orderNumber, status FROM orders ORDER BY FIELD(status, 'In Process', 'On Hold', 'Cancelled', 'Resolved', 'Disputed', 'Shipped');
+
+
+
+SELECT orderNumber, status FROM orders ORDER BY FIELD(status, 'In Process', 'On Hold', 'Cancelled', 'Resolve', 'Dispute', 'Shipped');
+
+SELECT lastname, firstname, jobtitle FROM employees WHERE jobtitle = 'Sales Rep';
+
+
+SELECT DISTINCT state FROM customers ORDER BY state;
+
+
+
+SELECT DISTINCT state FROM customers WHERE state IS NOT NULL  order by state LIMIT 5;
+
+
+
+
+
+
+SELECT  , country, state FROM customers WHERE country = 'USA' AND state = 'CA';
+
+SELECT  customername,country, creditLimit FROM customers WHERE (country = 'USA' OR country = 'France')  AND creditlimit > 100000;
+
+SELECT productCode, productName  FROM    products WHERE  productCode LIKE '%\_20%'
+
+ SELECT productCode,  productName FROM  products  WHERE   productCode LIKE '%$_20%' ESCAPE '$';
+
+SELECT  customerNumber, customerName FROM   customers   LIMIT 0, 10;
+
+SELECT  customerNumber, customerName FROM   customers  ORDER BY customerName  LIMIT 0, 10;
+
+SELECT      customerName,     creditLimit FROM     customers ORDER BY     creditLimit ;   
+
+
+
+
+SELECT customerNumber,customerName FROM customers ORDER BY customerName LIMIT 11, 10; 
+
+
+SELECT     distinct  creditLimit FROM     customers ORDER BY creditLimit DESC  LIMIT 1,1;
+
+
+

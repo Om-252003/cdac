@@ -1,0 +1,116 @@
+mysql> create table emp (name varchar(50), salary int);
+Query OK, 0 rows affected (0.04 sec)
+
+mysql>
+mysql> INSERT INTO emp (name, salary) VALUES
+    -> ('Alice',   23000),
+    -> ('Bob',     31000),
+    -> ('Charlie', 7000),
+    -> ('Diana',   6000),
+    -> ('Eve',     6000),
+    -> ('Frank',   4000),
+    -> ('Grace',   8000),
+    -> ('Heidi',   7500),
+    -> ('Ivan',    7500),
+    -> ('Judy',    6000);
+Query OK, 10 rows affected (0.01 sec)
+Records: 10  Duplicates: 0  Warnings: 0
+
+
+mysql> select salary, DENse_RANK() over (order by salary desc) 'Rank' from emp;
++--------+------+
+| salary | Rank |
++--------+------+
+|  31000 |    1 |
+|  23000 |    2 |
+|   8000 |    3 |
+|   7500 |    4 |
+|   7500 |    4 |
+|   7000 |    5 |
+|   6000 |    6 |
+|   6000 |    6 |
+|   6000 |    6 |
+|   4000 |    7 |
++--------+------+
+10 rows in set (0.00 sec)
+
+
+mysql> select *, DENse_RANK() over (order by salary desc) 'Rank' from emp;
++---------+--------+------+
+| name    | salary | Rank |
++---------+--------+------+
+| Bob     |  31000 |    1 |
+| Alice   |  23000 |    2 |
+| Grace   |   8000 |    3 |
+| Heidi   |   7500 |    4 |
+| Ivan    |   7500 |    4 |
+| Charlie |   7000 |    5 |
+| Diana   |   6000 |    6 |
+| Eve     |   6000 |    6 |
+| Judy    |   6000 |    6 |
+| Frank   |   4000 |    7 |
++---------+--------+------+
+10 rows in set (0.00 sec)
+
+
+
+mysql> select *, DENse_RANK() over (order by salary desc) 'Rank' from emp limit 2;
++-------+--------+------+
+| name  | salary | Rank |
++-------+--------+------+
+| Bob   |  31000 |    1 |
+| Alice |  23000 |    2 |
++-------+--------+------+
+2 rows in set (0.00 sec)
+
+mysql> INSERT INTO emp (name, salary) VALUES
+    ->      ('Marina',   23000),
+    ->     ('Karina' ,31000);
+Query OK, 2 rows affected (0.10 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select *, DENse_RANK() over (order by salary desc) 'Rank' from emp limit 2;
++--------+--------+------+
+| name   | salary | Rank |
++--------+--------+------+
+| Bob    |  31000 |    1 |
+| Karina |  31000 |    1 |
++--------+--------+------+
+2 rows in set (0.00 sec)
+
+mysql> select * from emp order by salary desc;
++---------+--------+
+| name    | salary |
++---------+--------+
+| Bob     |  31000 |
+| Karina  |  31000 |
+| Alice   |  23000 |
+| Marina  |  23000 |
+| Grace   |   8000 |
+| Heidi   |   7500 |
+| Ivan    |   7500 |
+| Charlie |   7000 |
+| Diana   |   6000 |
+| Eve     |   6000 |
+| Judy    |   6000 |
+| Frank   |   4000 |
++---------+--------+
+12 rows in set (0.00 sec)
+
+mysql> select * from (select name,salary, dense_rank() over (order by salary desc) ranks from emp) as emp_ranks where ranks = 2;
++--------+--------+-------+
+| name   | salary | ranks |
++--------+--------+-------+
+| Alice  |  23000 |     2 |
+| Marina |  23000 |     2 |
++--------+--------+-------+
+2 rows in set (0.00 sec)
+
+mysql> select * from (select name,salary, dense_rank() over (order by salary desc) ranks from emp) as emp_ranks where ranks = 1;
++--------+--------+-------+
+| name   | salary | ranks |
++--------+--------+-------+
+| Bob    |  31000 |     1 |
+| Karina |  31000 |     1 |
++--------+--------+-------+
+2 rows in set (0.00 sec)

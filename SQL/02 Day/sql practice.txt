@@ -1,0 +1,101 @@
+mysql> create database Day2;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| classicmodels      |
+| day2               |
+| demo               |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+9 rows in set (0.00 sec)
+
+mysql> use day2;
+Database changed
+mysql>
+
+mysql> CREATE TABLE students (
+    ->     student_id INT PRIMARY KEY,
+    ->     student_name VARCHAR(50),
+    ->     marks INT
+    -> );
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> INSERT INTO students (student_id, student_name, marks) VALUES
+    -> (1, 'Alice',   85),
+    -> (2, 'Bob',     92),
+    -> (3, 'Charlie', 92),
+    -> (4, 'Diana',   76),
+    -> (5, 'Eve',     85),
+    -> (6, 'Frank',   90),
+    -> (7, 'Grace',   95),
+    -> (8, 'Heidi',   90),
+    -> (9, 'Ivan',    78),
+    -> (10,'Judy',    78);
+Query OK, 10 rows affected (0.01 sec)
+Records: 10  Duplicates: 0  Warnings: 0
+
+mysql>
+mysql> select marks, DENSE_RANK() over (order by marks desc) as Ranks from students;
++-------+-------+
+| marks | Ranks |
++-------+-------+
+|    95 |     1 |
+|    92 |     2 |
+|    92 |     2 |
+|    90 |     3 |
+|    90 |     3 |
+|    85 |     4 |
+|    85 |     4 |
+|    78 |     5 |
+|    78 |     5 |
+|    76 |     6 |
++-------+-------+
+10 rows in set (0.01 sec)
+
+mysql> select marks, RANK() over (order by marks desc) as 'Rank' from students;
++-------+------+
+| marks | Rank |
++-------+------+
+|    95 |    1 |
+|    92 |    2 |
+|    92 |    2 |
+|    90 |    4 |
+|    90 |    4 |
+|    85 |    6 |
+|    85 |    6 |
+|    78 |    8 |
+|    78 |    8 |
+|    76 |   10 |
++-------+------+
+10 rows in set (0.00 sec)
+
+mysql> select marks,row_number() over (order by marks desc) 'Rank' from students;
++-------+------+
+| marks | Rank |
++-------+------+
+|    95 |    1 |
+|    92 |    2 |
+|    92 |    3 |
+|    90 |    4 |
+|    90 |    5 |
+|    85 |    6 |
+|    85 |    7 |
+|    78 |    8 |
+|    78 |    9 |
+|    76 |   10 |
++-------+------+
+10 rows in set (0.00 sec)
+
+
+
+
+
+

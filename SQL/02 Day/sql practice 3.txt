@@ -1,0 +1,56 @@
+CREATE TABLE sales(
+    name VARCHAR(50) NOT NULL,
+    year INT NOT NULL,
+    sale DECIMAL(14,2) NOT NULL,
+    PRIMARY KEY(name, year)
+);
+
+INSERT INTO sales(name,year,sale)
+VALUES('Bob',2016,100),
+      ('Bob',2017,150),
+      ('Bob',2018,200),
+      ('Alice',2016,150),
+      ('Alice',2017,100),
+      ('Alice',2018,200),
+       ('John',2016,200),
+      ('John',2017,150),
+      ('John',2018,250);
+
+SELECT * FROM sales;
+
+
+mysql> SELECT * FROM sales;
++-------+------+--------+
+| name  | year | sale   |
++-------+------+--------+
+| Alice | 2016 | 150.00 |
+| Alice | 2017 | 100.00 |
+| Alice | 2018 | 200.00 |
+| Bob   | 2016 | 100.00 |
+| Bob   | 2017 | 150.00 |
+| Bob   | 2018 | 200.00 |
+| John  | 2016 | 200.00 |
+| John  | 2017 | 150.00 |
+| John  | 2018 | 250.00 |
++-------+------+--------+
+9 rows in set (0.00 sec)
+
+
+mysql> select *, dense_rank() over (partition by year
+	-> order by sale desc) as ranks from sales;
++-------+------+--------+-------+
+| name  | year | sale   | ranks |
++-------+------+--------+-------+
+| John  | 2016 | 200.00 |     1 |
+| Alice | 2016 | 150.00 |     2 |
+| Bob   | 2016 | 100.00 |     3 |
+| Bob   | 2017 | 150.00 |     1 |
+| John  | 2017 | 150.00 |     1 |
+| Alice | 2017 | 100.00 |     2 |
+| John  | 2018 | 250.00 |     1 |
+| Alice | 2018 | 200.00 |     2 |
+| Bob   | 2018 | 200.00 |     2 |
++-------+------+--------+-------+
+9 rows in set (0.00 sec)
+
+

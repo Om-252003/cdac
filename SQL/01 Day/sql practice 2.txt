@@ -1,0 +1,119 @@
+mysql> create table employee(id int auto_increment,
+    -> name varchar(50),
+    -> pincode varchar(50),
+    -> primary key (id)
+    -> );
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> desc employee;
++---------+-------------+------+-----+---------+----------------+
+| Field   | Type        | Null | Key | Default | Extra          |
++---------+-------------+------+-----+---------+----------------+
+| id      | int         | NO   | PRI | NULL    | auto_increment |
+| name    | varchar(50) | YES  |     | NULL    |                |
+| pincode | varchar(50) | YES  |     | NULL    |                |
++---------+-------------+------+-----+---------+----------------+
+3 rows in set (0.04 sec)
+
+mysql> insert into employee (name, pincode)
+    -> values('Sarvadnya', 420420), ('raj',400056),
+    -> ('Mona_n',400055),
+    ->  ('geeta_t',400057),
+    -> ('mona_n',400057),
+    -> ('Mona_nn',400059),
+    -> ('_raja',400096),
+    -> ('_kavi',400088);
+Query OK, 7 rows affected (0.01 sec)
+Records: 7  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee;
++----+-----------+---------+
+| id | name      | pincode |
++----+-----------+---------+
+|  1 | Sarvadnya | 420420  |
+|  2 | raj       | 400056  |
+|  3 | Mona_n    | 400055  |
+|  4 | geeta_t   | 400057  |
+|  5 | mona_n    | 400057  |
+|  6 | Mona_nn   | 400059  |
+|  7 | _raja     | 400096  |
+|  8 | _kavi     | 400088  |
++----+-----------+---------+
+8 rows in set (0.00 sec)
+
+mysql> select name from employee where name like '\_%';
++-------+
+| name  |
++-------+
+| _raja |
+| _kavi |
++-------+
+2 rows in set (0.00 sec)
+
+
+mysql> select name from employee where name like '%\_%';
++---------+
+| name    |
++---------+
+| Mona_n  |
+| geeta_t |
+| mona_n  |
+| Mona_nn |
+| _raja   |
+| _kavi   |
++---------+
+6 rows in set (0.00 sec)
+
+
+mysql> select * from employee order by id limit 3,2;
++----+---------+---------+
+| id | name    | pincode |
++----+---------+---------+
+|  4 | geeta_t | 400057  |
+|  5 | mona_n  | 400057  |
++----+---------+---------+
+2 rows in set (0.00 sec)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

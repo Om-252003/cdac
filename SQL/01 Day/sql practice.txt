@@ -1649,4 +1649,4 @@ from customers
 order by creditLimit limit 2' at line 1
 
 
-mysql> 
+mysql> --Over
