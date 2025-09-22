@@ -1,0 +1,27 @@
+Big-Endian (byteorder='big'):
+
+In big-endian format, the most significant byte (the "big end") is stored first, at the lowest memory address. For example, the integer 1 represented as four bytes in big-endian format would look like this:
+
+00 00 00 01
+
+Little-Endian (byteorder='little'):
+
+In little-endian format, the least significant byte (the "little end") is stored first. For the same integer 1, it would look like this:
+
+01 00 00 00
+When you use the int.from_bytes() method, the byteorder argument tells Python how to interpret the byte data:
+
+
+# Big-endian representation of the integer 1
+
+number_bytes_big = bytes([0, 0, 0, 1])
+int_value_big = int.from_bytes(number_bytes_big, byteorder='big')
+print(int_value_big)  # Output: 1
+
+# Little-endian representation of the integer 1
+
+number_bytes_little = bytes([1, 0, 0, 0])
+int_value_little = int.from_bytes(number_bytes_little, byteorder='little')
+print(int_value_little)  # Output: 1
+
+Choosing the correct byte order is crucial when working with binary data, especially when interfacing with hardware or network protocols that specify a particular endianness.

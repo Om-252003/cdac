@@ -1,0 +1,27 @@
+Go to Microsoft Visual Studio Community 2022 (64-bit) 
+create a dll from any C program
+
+
+#include "pch.h"
+__declspec(dllexport)void hello()
+{
+    printf("Hello from C!\n");
+}
+
+
+e.g. "for_python.dll" 
+
+copy the above dll file inside the folder from where you run your python file.
+
+
+write the following python file to invoke "hello()" function.
+
+
+import ctypes
+
+lib = ctypes.CDLL("./for_python.dll")  # On Windows, use "./myfunc.dll"
+lib.hello()  # Calls the C function
+
+run the above python code and make sure it calls "hello" function of C program.
+
+

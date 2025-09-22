@@ -1,0 +1,4 @@
+# nested ternary
+
+i=int(input("enter a number"))
+print("positive") if i > 0 else print("negative") if i < 0 else print("zero")

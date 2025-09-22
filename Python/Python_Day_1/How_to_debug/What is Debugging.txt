@@ -1,0 +1,3 @@
+Debugging is a process of finding errors (a.k.a. bugs) in code or software programs. 
+
+Breakpoint is something that allows you to debug your program by stopping execution at certain point in your code.

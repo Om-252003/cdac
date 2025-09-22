@@ -1,0 +1,26 @@
+x = 3
+y = 5
+x, y = y, x
+print(x)  # 5
+print(y)  # 3
+
+
+
+x = 3
+y = 5
+x = x + y  # x = 3 + 5 = 8
+y = x - y  # y = 8 - 5 = 3
+x = x - y  # x = 8 - 3 = 5
+print(x)  # 5
+print(y)  # 3
+
+
+
+x = 3        		# 011
+y = 5			# 101
+x = x ^ y		# 011 ^ 101     110  i.e. x=6
+y = x ^ y		# 110 ^ 101     011  i.e. y=3
+x = x ^ y		# 110 ^ 011     101  i.e. x=5
+print(x)  # 5
+print(y)  # 3
+

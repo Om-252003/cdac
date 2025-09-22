@@ -1,0 +1,21 @@
+Python is an interpreted language, which means that Python code is not compiled into machine code before execution. Instead, Python code is compiled into bytecode, which is then interpreted by the Python interpreter at runtime. This bytecode is platform-independent, allowing Python code to be executed on any platform with a compatible Python interpreter installed.
+
+However, Python implementations may use different methods for bytecode execution:
+
+How to check python implementation we have in our machine:
+
+
+import platform
+
+print(platform.python_implementation())  # Output: 'CPython', 'PyPy', etc
+
+
+
+
+CPython: The most widely used implementation of Python, CPython, compiles Python source code into bytecode (.pyc files) and then executes this bytecode using a virtual machine. While the bytecode is platform-independent, the CPython interpreter itself is platform-specific, meaning you need different versions of CPython for different operating systems.
+
+Jython: Jython is an alternative implementation of Python that compiles Python code into Java bytecode, allowing Python code to run on the Java Virtual Machine (JVM). This means that Jython bytecode is not only platform-independent but also benefits from the portability of the JVM.
+
+IronPython: IronPython is another alternative implementation of Python that targets the Microsoft .NET Framework and the Mono framework. It compiles Python code into Intermediate Language (IL) code, which is then executed by the Common Language Runtime (CLR) or Mono runtime. Like Jython, IronPython benefits from the platform independence of the .NET Framework and Mono.
+
+In summary, while Python code itself is platform-independent, the interpreter or runtime environment used to execute the code may be platform-specific. Different implementations of Python (e.g., CPython, Jython, IronPython) may target different platforms and use different bytecode execution mechanisms. However, Python code written for one implementation should generally be portable across platforms, provided that the necessary interpreter or runtime environment is available

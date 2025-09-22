@@ -1,0 +1,28 @@
+Introduction to python.ppt
+
+How to Install Python on Windows
+
+Hello world application
+	[ on Pycharm ]
+
+
+indentation in python
+
+
+Data types except sequence
+	typecasting in python
+Operators
+How to accept input in python
+if demos
+switch demos
+loop demos
+
+comments in Python
+
+
+
+Assignments
+
+
+
+

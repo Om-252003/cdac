@@ -1,0 +1,87 @@
+* 
+* *
+* * *
+* * * *
+
+ch='*'
+for i in range(0,4):
+    for j in range(0,i+1):
+        print(ch,end=' ')
+    print()
+
+
+
+
+Fibonicci series
+
+a=0
+b=1
+print(a)
+print(b)
+counter=0
+while counter<10:
+    c=a+b
+    print(c)
+    a=b
+    b=c
+    counter+=1
+
+
+
+
+* * * * * * 
+* * * * *
+* * * *
+* * *
+* *
+*
+
+
+ch='*'
+for i in range(6,0,-1):
+    for j in range(0,i):
+        print(ch,end=" ")
+    print()
+
+
+
+
+print prime numbers between  1  to 30
+
+
+start = 1
+end = 30
+
+for num in range(start, end + 1):
+       for i in range(2, num):
+           if (num % i) == 0:
+               break
+       else:
+           print(num)
+
+
+
+
+
+accept a number and display whether it is prime or not
+
+num=int(input("enter a number to check whether it is prime or not"))
+for i in range(2, num):
+    if (num % i) == 0:
+        print(num,"\t is not a prime number")
+        break
+else:
+    print(num,"\t is a prime number")
+
+
+
+
+print numbers from 1 to 20 except 14 using while loop
+
+num=1
+while num<20:
+    num+=1
+    if num==14:
+        continue
+    print(num)
+    

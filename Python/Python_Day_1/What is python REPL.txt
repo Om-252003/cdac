@@ -1,0 +1,14 @@
+What is the Python REPL?
+The interactive Python interpreter goes by many names.
+
+Sometimes you'll hear it referred to as the Python prompt, the Python console, or the Python shell, but it's most often called the Python REPL.
+
+REPL is an acronym. It stands for Read, Evaluate, Print, and Loop.
+
+Those four words describe how the REPL works:
+
+It reads what we've typed
+Then it evaluates it, meaning it runs the code
+Then it prints any value that's returned to it
+Then it loops (to step 1), meaning it waits for more input
+REPL is just an unofficial term, but it's probably the most commonly used term for the interactive Python interpreter.

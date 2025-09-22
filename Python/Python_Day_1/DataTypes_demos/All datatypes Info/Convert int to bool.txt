@@ -1,0 +1,4 @@
+#x=0
+x=3
+x=bool(x)
+print(x)

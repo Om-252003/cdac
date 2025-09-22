@@ -1,0 +1,70 @@
+
+			Python - is a language which has got its set of rules and syntaxes.
+
+But we can never download Python in our computers. We all download Python compilers and interpreters. Python is compiled as well as interpreted language. 
+Non technically you may say that you have downloaded Python but technically you download "Python compiler + Python interpreter".
+Instead of calling "Python compiler + Python interpreter" , we call it as "Python Implementation".
+
+That means
+Python implementation = "Python compiler + Python interpreter"
+
+So Python implementation means tools which you need to work in Python and the tools are 
+a) Python Compiler
+b) Python Interpreter
+
+How many Implementations of Python are available?
+	more than 26 implementations are available today.
+
+Out of 26 , 4 implementations are popular.
+CPython  [ Most popular ]  developed in C   [ This is the official download available on "python.org" site ]
+Jython - developed in Java
+IronPython - developed in dot net
+PyPy - developed in Python
+
+
+99% places Cpython is used.
+
+All these ( Cpython, Jython, IronPython ) have "Compiler+Interpreter".
+
+PyPy has got 3 translators ( Compiler + Interpreter + JITC )
+	what is JITC?
+		Just In Time Compiler
+
+JIT increases interpreter's speed of execution.
+That means out of 26 implementations the fastest implementation is "PyPy". It is 4 to 5 times faster than other implementations.
+
+Then why don't we learn "PyPy", why do we learn "CPython" ?
+	Because PyPy is not an official version from PSF. Whenever PSF does anything new , any updation, it does it in "CPython". It means we get all new features in "CPython".
+
+The Python Software Foundation is an organization devoted to advancing open source technology related to Python programming language.
+
+
+But then why Python has got so many implementations?
+	Python is an extensible language. It means from Python code you can call C/C++/Java/Dot Net code.
+Tomorrow suppose you create a project in Python and you would like to integrate with Java for example.
+So how will you do that?  You can do that by using "Jython". Jython can talk to Java.  If you want to integrate with C language, then you will have to use "CPython". CPython can integrate with C programming language. If you want to integrate Python code with Dot Net, then you will have to use "IronPython".
+
+
+
+Does that mean when you have worked on CPython, in order to work with Jython you will have to learn different syntaxes?
+	No , whether CPython or Jython or any other implementation, syntaxes are same , the only difference is CPython can interact with C programming language , Jython can interact with Java and so on.
+
+Most imp.
+	Out of these 26 Python implementations only "CPython" is PSF's product. Other implementations are made by other companies as Python is an open source product. That means tomorrow we can also make our Python implementations.
+
+CPython is the most imp. implementations among these. Whenever any new feature , upgradation comes , it comes in CPython and then other implementations start using it.
+
+So if you want use all latest features in your code , you need to download CPython.
+
+
+
+
+
+
+
+
+
+
+
+
+

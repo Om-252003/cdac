@@ -1,0 +1,16 @@
+var1=True
+print(var1)
+print(type(var1))
+
+var2 = int(var1)
+print(var2)
+print(type(var2))
+
+
+var3=False
+print(var3)
+print(type(var3))
+
+var4 = int(var3)
+print(var4)
+print(type(var4))

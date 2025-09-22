@@ -1,0 +1,29 @@
+complex() function
+	is used to convert number or string to complex number.
+
+complex() takes two argument
+	real
+	imaginary
+
+both these arguments are optional, by default value is 0.
+
+e.g.
+
+print(complex())
+
+	will print 0j
+
+these arguments can be int or float or string
+
+But string should have a valid number.
+
+
+print(complex())      #  0j
+print(complex(3,0))   #  (3+0j)
+print(complex(0,9))   #  9j
+print(complex(4,5))   #  (4+5j)
+print(complex("4"))   #  (4+0j)
+print(complex("k"))   #   ValueError: complex() arg is a malformed string
+
+
+

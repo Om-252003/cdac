@@ -1,0 +1,10 @@
+# Example of string
+
+name = "Sachin"
+print(name)
+print(type(name))
+
+# We do not have character we have only string in Python
+ch = 'A'
+print(ch)
+print(type(ch))

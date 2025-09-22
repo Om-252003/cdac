@@ -1,0 +1,24 @@
+				Java
+
+public class MyClass 
+{
+	public static void main(String[] args) {
+		int x=8,y=5;
+		System.out.println("Before Swapping\t"+x+"\t"+y);
+		y=x+y;
+		x=y-x;
+		y=y-x;
+		System.out.println("After Swapping\t"+x+"\t"+y);
+	}
+}
+
+
+				Python
+
+x, y = 8, 5
+print("Before Swapping", x, y)
+
+First right gets assigned to first left, second right gets assigned to second left, at the same time. 
+x, y = y, x     # what happens here is  ....  x,y=5,8
+print("After Swapping", x, y)
+

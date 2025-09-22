@@ -1,0 +1,15 @@
+# with list
+list1 = [1, 2, 3, 4, 5, 6, 7]
+print(4 in list1)
+print(4 not in list1)
+
+# with dictionary
+dict = {1:"first",2:"second"}
+print(3 in dict)
+print(2 in dict)
+
+# with tuple
+tup1 = ('physics', 'chemistry', 1997, 2000)
+print('hello' in tup1)
+print('chemistry' not in tup1)
+print(1997 in tup1)

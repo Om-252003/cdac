@@ -1,0 +1,17 @@
+# Example of Dictionary, key - value pair, key must be unique
+
+mydict = { 1:'Rahul',2:'Sachin',3:'Ajinkya',1:'Rohit'}
+
+print(mydict)
+print(type(mydict))
+
+# display all the keys
+print(mydict.keys())
+# display all the values
+print(mydict.values())
+
+# retrieve a value based on a particular key
+print(mydict[2])
+# or
+print(mydict.get(2))
+

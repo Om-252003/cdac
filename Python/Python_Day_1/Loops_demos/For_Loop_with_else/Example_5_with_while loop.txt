@@ -1,0 +1,10 @@
+cnt=0
+
+while(cnt<10):
+    i=int(input("enter 10 numbers , 0 to terminate"))
+    if(i==0):
+        break
+    print(i)
+    cnt+=1
+else:
+    print("User did not enter 0")

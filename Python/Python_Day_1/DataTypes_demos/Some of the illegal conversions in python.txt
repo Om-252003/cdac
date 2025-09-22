@@ -1,0 +1,54 @@
+a=int("345")
+print(a)
+
+# Trying to convert a string that contains non-numeric
+# characters to an integer or float will raise a ValueError.
+# k=int("abc")  # Raises ValueError
+# print(k)
+
+# Attempting to convert a list or dictionary
+# directly to an integer or float will raise a TypeError.
+
+
+# TypeError: int() argument must be a string,
+# a bytes-like object or a real number, not 'list'
+# p=int([10,20,30])
+# print(p)
+
+# Converting a complex number directly to an integer
+# or float is not possible; you need to extract the
+# real or imaginary part.
+
+# int(3 + 4j)  # Raises TypeError
+
+# Trying to convert incompatible data structures
+# (like a set to a dictionary) will not work and
+# will raise a TypeError.
+
+# dict({1, 2, 3})  # Raises TypeError
+
+# If you have a custom object and it doesn't implement
+# methods like __int__, __float__, or __str__,
+# converting it to those types will raise a TypeError.
+
+
+"""
+class MyClass:
+    pass
+int(MyClass())  # Raises TypeError
+
+"""
+# Then how do we make it possible to convert
+# MyClass to int?
+
+class MyClass:
+    def __init__(self, value):
+        self.value = value  # Store an integer value
+
+    def __int__(self):
+        return self.value  # Convert to int
+
+
+obj = MyClass(42)
+result = int(obj)  # it'll work and return 42
+print(result)  # 42

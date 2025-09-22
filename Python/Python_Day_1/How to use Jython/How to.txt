@@ -1,0 +1,92 @@
+Go to
+
+https://www.jython.org/download
+
+click on "Jython Installer"
+
+make sure "jython-installer-2.7.3" executable jar file gets downloaded inside "downloads" folder.
+
+double click "jython-installer-2.7.3" executable jar file 
+
+this will open "Jython Installation" window
+
+next
+
+I accept
+
+select the installation type:  standard   [ this is by default selected ]
+
+next
+
+please select the target directory
+
+	C:\Users\<user name>\Downloads\jython2.7.3   [ don't change this ]
+
+next
+
+it will give you a message:
+	created directory     C:\Users\<user name>\Downloads\jython2.7.3
+
+next
+
+Target directory
+installation type
+OS name/version
+Java vendor/version
+
+	don't disturb this settings
+
+next
+
+it will take some time to install PIP and setuptools
+
+next
+
+congratulations
+
+click on "finish"
+
+now go to "downloads\jython2.7.3\bin" folder
+
+	double click on "jython" Application file
+
+this will open command prompt where python commands can be given
+
+e.g.
+
+>>>
+
+give following command and see the output.
+
+>>>print("welcome to Jython")
+press enter and make sure it outputs "welcome to Jython"
+
+now type the following code
+
+from java.util import Date
+d=Date()
+print(d)
+
+press enter and make sure it outputs the current date on the console.
+
+
+Let's write one more example:
+
+
+>>> from java.util import ArrayList
+>>> a=ArrayList()
+>>> a.add("hello")
+True
+>>> a.add(100)
+True
+>>> a.add(False)
+True
+>>> print(a)
+
+
+make sure it gives you the following output:
+
+[hello, 100, false]
+
+
+	

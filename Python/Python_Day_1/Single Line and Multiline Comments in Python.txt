@@ -1,0 +1,10 @@
+# This is single line comment
+
+"""
+This is called as
+multiline comment
+"""
+print(5/2)
+print("hello")
+
+

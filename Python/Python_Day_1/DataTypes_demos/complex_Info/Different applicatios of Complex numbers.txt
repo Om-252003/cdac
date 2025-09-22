@@ -1,0 +1,7 @@
+Complex numbers are widely used in real world applications.
+
+1) Applications which are related to electronics and electricals
+2) Speech recognition system 
+3) Audio signal processing in machine learning
+4) Scientific calculations
+5) To solve geometrical problems

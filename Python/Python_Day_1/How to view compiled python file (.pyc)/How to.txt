@@ -1,0 +1,26 @@
+create a folder
+d:\\pythontemp
+
+create a python source code file
+
+First.py
+
+and save it inside "d:\\pythontemp"
+
+go to command prompt and give following command
+
+d:\\pythontemp> py -m First.py
+
+go to "d:\\pythontemp"
+
+you will find a subfolder there by the name "__pycache__"
+
+inside "__pycache__" folder you will find "First.cpython-310" as pyc file  which is the compiled code of "First.py" file.
+
+now if you want to run this pyc file, go to command prompt and say:
+
+d:\pythontemp>cd _*
+
+d:\pythontemp\__pycache__>py First.cpython-310.pyc
+
+make sure you get the output.

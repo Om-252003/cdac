@@ -1,0 +1,10 @@
+type "idle" inside "Type here to search" section on the bottom left of your window.
+This will open "IDLE shell" where you can give various python commands.
+
+if you want to use help() function here, there are two ways:
+
+1) help("keywords")
+	or
+2) type "help()" 
+	this will open help shell where you can directly give
+	keywords and press enter

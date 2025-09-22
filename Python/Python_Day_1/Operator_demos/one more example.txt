@@ -1,0 +1,5 @@
+num=5
+print(num*2)
+print(num**2)  # square of 5
+print(num**3)  # cube of 5
+print(num**4) 

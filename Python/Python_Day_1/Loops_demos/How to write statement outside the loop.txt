@@ -1,0 +1,28 @@
+i = 1
+sum=0
+while i<6:
+    sum+=i
+    i = i + 1
+    print("Sum of first 5 numbers is", sum)
+
+
+output:
+	Sum of first 5 numbers is 1
+	Sum of first 5 numbers is 3
+	Sum of first 5 numbers is 6
+	Sum of first 5 numbers is 10
+	Sum of first 5 numbers is 15
+
+
+				vs
+
+i = 1
+sum=0
+while i<6:
+    sum+=i
+    i = i + 1
+print("Sum of first 5 numbers is", sum)
+
+
+output: 
+	Sum of first 5 numbers is 15

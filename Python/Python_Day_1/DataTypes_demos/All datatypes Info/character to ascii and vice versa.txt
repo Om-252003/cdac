@@ -1,0 +1,9 @@
+# character to ascii
+ch='A'
+print(ch)
+print(ord(ch))
+
+# ascii to character
+num=100
+print(num)
+print(chr(num))

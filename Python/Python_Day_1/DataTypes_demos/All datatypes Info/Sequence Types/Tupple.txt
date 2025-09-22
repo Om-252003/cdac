@@ -1,0 +1,5 @@
+# Example of tupple
+
+mytupple= (10,20,30,40,20)
+print(mytupple)
+print(type(mytupple))

@@ -1,0 +1,22 @@
+Python2
+	print "Hello World"
+
+Python3
+	print("Hello World")
+
+so what's the difference?
+	in Python2 "print" was a statement.
+	in Python3 "print" is a function.
+
+
+Python2
+	5/2
+		ans.  2
+
+Python3
+	5/2
+		ans. 2.5
+
+
+The way of accepting user input has also changed and like this there are many changes.
+

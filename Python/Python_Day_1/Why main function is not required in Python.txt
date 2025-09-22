@@ -1,0 +1,23 @@
+In Python, main function is not required because the Python interpreter executes from the top of the file unless a specific function is defined with the keyword "def".
+
+e.g.
+
+
+print("first")
+print("second")
+print("third")
+def disp():
+    print("disp 1")
+    print("disp 2")
+    print("disp 3")
+print("fourth")
+print("fifth")
+
+
+o/p
+
+first
+second
+third
+fourth
+fifth

@@ -1,0 +1,10 @@
+name="Aakash"
+age=20
+
+"""
+TypeError: can only concatenate str (not "int") to str
+print(name +" is "+age+" years old")
+"""
+print(name," is ",age," years old")
+    # or
+print(name+" is "+str(age)+" years old")

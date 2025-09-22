@@ -1,0 +1,4 @@
+import ctypes
+
+lib = ctypes.CDLL("./for_python.dll")  # On Windows, use "./myfunc.dll"
+lib.hello()  # Calls the C function

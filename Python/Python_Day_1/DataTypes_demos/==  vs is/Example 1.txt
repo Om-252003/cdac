@@ -1,0 +1,10 @@
+"""
+a=1000
+b=1000
+print(a==b)   # True
+print(a is b) # True
+"""
+x=1000
+y = int("1000")   # forces creation of a new object
+print(x==y)   # True
+print(x is y) # False

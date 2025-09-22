@@ -1,0 +1,6 @@
+x=int(input("enter number"))
+print(x,"\t",type(x))
+y=float(input("enter percentage"))
+print(y,"\t",type(y))
+z=bool(input("enter True or False"))
+print(z,"\t",type(z)) 

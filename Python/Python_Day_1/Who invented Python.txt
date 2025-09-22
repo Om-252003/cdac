@@ -1,0 +1,22 @@
+Guido van Rossum , a Dutch scientist
+
+at Center for Mathematics and Research , Netherland
+
+This person doesn't like C,C++ because of their syntax. He decided to make Python very simple, that's why we do not have {} and semicolon in Python.
+
+The name Python is inspired from Guido's favourite comedy TV show called "Monty Python's Flying Circus".
+
+Guido wanted a name that was short,unique and slightly mysterious, so he decided to call the language Python.
+
+ 
+
+He started Python language development as a hobby in 1989.
+
+Python is inspired by the language ABC which itself a very simple programming language.
+
+So we can say that Python's parent language is ABC language.
+
+Python is very imp. for Data Analysis.
+
+
+

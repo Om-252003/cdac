@@ -1,0 +1,17 @@
+
+var1 = 5
+print(var1)
+print(type(var1))
+
+# convert normal number i.e. 5  to complex
+
+var2 = complex(var1)
+print(var2)
+print(type(var2))
+
+# pass 2 parameters in order to convert normal number to complex number
+
+var3= 9
+var4= complex(var1,var3)
+print(var4)
+print(type(var4))

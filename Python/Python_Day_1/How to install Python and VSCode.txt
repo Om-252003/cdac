@@ -1,0 +1,17 @@
+steps
+
+1) install python 3.10
+
+2) install "VSCodeUserSetup-x64-1.30.2.exe" from "D:\Java_Soft"
+next
+next
+next 
+finish [ do not select any other item from the checkbox]
+
+3) open VS code
+4) click on "Extensions" from the left hand side panel
+5) type "python" 
+	select "Python for VS code"
+6) click on "install" on the right side window
+7) type "code runner" inside "Extension" textfield
+8) select "code runner" and click on "install"

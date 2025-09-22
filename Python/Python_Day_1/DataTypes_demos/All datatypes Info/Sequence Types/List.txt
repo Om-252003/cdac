@@ -1,0 +1,5 @@
+# Example of list
+
+mylist= [10,20,30,40]
+print(mylist)
+print(type(mylist))

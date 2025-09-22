@@ -1,0 +1,5 @@
+ch='B'
+
+value=ord(ch)     # find out ascii value of a given character
+print(value)
+print(chr(value))  # convert ascii value to character

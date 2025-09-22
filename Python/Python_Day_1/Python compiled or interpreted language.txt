@@ -1,0 +1,9 @@
+Python is both a compiled and interpreted language, but it leans more towards interpretation.
+
+Here's how it works:
+
+Compilation: When you run a Python script or enter commands in the interactive interpreter, the Python source code is first compiled into bytecode. This bytecode is not machine code but rather a low-level representation of the source code that is platform-independent. This compilation step is performed by the Python interpreter.
+
+Interpretation: After compilation, the bytecode is executed by the Python interpreter. The interpreter reads the bytecode instructions one by one and executes them, producing the desired output. This interpretation process happens at runtime, meaning that the Python code is executed on-the-fly as it is being interpreted.
+
+So, Python code is compiled into bytecode before execution, but this bytecode is then interpreted by the Python runtime environment. This is different from languages like C or C++, where source code is compiled directly into machine code before execution.

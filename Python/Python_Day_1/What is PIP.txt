@@ -1,0 +1,1 @@
+PIP [Preferred Installer Program] is a package manager for Python packages, or modules.

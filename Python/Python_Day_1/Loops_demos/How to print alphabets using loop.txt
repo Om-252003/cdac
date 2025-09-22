@@ -1,0 +1,14 @@
+for i in range(ord('A'), ord('K')+1):
+    print(chr(i))
+
+
+# alternate way
+
+"""
+
+import string
+
+for char in string.ascii_uppercase[:11]:  # First 11 letters (A to K)
+    print(char)
+
+"""
