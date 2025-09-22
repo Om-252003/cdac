@@ -1,3 +1,5 @@
+Inside day2 database;
+
 CREATE TABLE sales(
     name VARCHAR(50) NOT NULL,
     year INT NOT NULL,
@@ -53,4 +55,242 @@ mysql> select *, dense_rank() over (partition by year
 +-------+------+--------+-------+
 9 rows in set (0.00 sec)
 
+mysql> use classicmodels;
+Database changed
+
+
+mysql> select officecode from offices where country = 'USA';
++------------+
+| officecode |
++------------+
+| 1          |
+| 2          |
+| 3          |
++------------+
+3 rows in set (0.03 sec)
+
+mysql> select firstname, lastname from employees where officecode in (select officecode from offices where country = 'USA');
++-----------+-----------+
+| firstname | lastname  |
++-----------+-----------+
+| Diane     | Murphy    |
+| Mary      | Patterson |
+| Jeff      | Firrelli  |
+| Anthony   | Bow       |
+| Leslie    | Jennings  |
+| Leslie    | Thompson  |
+| Julie     | Firrelli  |
+| Steve     | Patterson |
+| Foon Yue  | Tseng     |
+| George    | Vanauf    |
++-----------+-----------+
+10 rows in set (0.01 sec)
+
+
+mysql> select customerNumber from payments where amount = (select max(amount) from payments);
++----------------+
+| customerNumber |
++----------------+
+|            141 |
++----------------+
+1 row in set (0.01 sec)
+
+mysql> select max(amount) from payments;
++-------------+
+| max(amount) |
++-------------+
+|   120166.58 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select customernumber, checknumber, amount from payments where amount = (select max(amount) from payments);
++----------------+-------------+-----------+
+| customernumber | checknumber | amount    |
++----------------+-------------+-----------+
+|            141 | JE105477    | 120166.58 |
++----------------+-------------+-----------+
+1 row in set (0.00 sec)
+
+mysql> select customernumber, checknumber, amount from payments where amount > (select avg(amount) from payments);
++----------------+-------------+-----------+
+| customernumber | checknumber | amount    |
++----------------+-------------+-----------+
+|            112 | HQ55022     |  32641.98 |
+|            112 | ND748579    |  33347.88 |
+|            114 | GG31455     |  45864.03 |
+|            114 | MA765515    |  82261.22 |
+|            114 | NR27552     |  44894.74 |
+					.
+					.
+					.
+					.
+|            357 | NB291497    |  36442.34 |
+|            363 | HL575273    |  50799.69 |
+|            363 | PN238558    |  55425.77 |
+|            496 | MN89921     |  52166.00 |
++----------------+-------------+-----------+
+134 rows in set (0.00 sec)
+
+mysql> select distinct customernumber from orders;
++----------------+
+| customernumber |
++----------------+
+|            103 |
+|            112 |
+|            114 |
+|            119 |
+|            121 |
+|            124 |
+|            128 |
+|            129 |
+		.
+		.
+		.
+		.
+		
+|            495 |
+|            496 |
++----------------+
+98 rows in set (0.01 sec)
+
+mysql> select customername from customers where customernumber not in (select distinct customernumber from orders);
++--------------------------------+
+| customername                   |
++--------------------------------+
+| Havel & Zbyszek Co             |
+| American Souvenirs Inc         |
+| Porto Imports Co.              |
+| Asian Shopping Network, Co     |
+| Natürlich Autos                |
+| ANG Resellers                  |
+| Messner Shopping Network       |
+| Franken Gifts, Co              |
+| BG&E Collectables              |
+| Schuyler Imports               |
+| Der Hund Imports               |
+| Cramer Spezialitäten, Ltd      |
+| Asian Treasures, Inc.          |
+| SAR Distributors, Co           |
+| Kommission Auto                |
+| Lisboa Souveniers, Inc         |
+| Precious Collectables          |
+| Stuttgart Collectable Exchange |
+| Feuer Online Stores, Inc       |
+| Warburg Exchange               |
+| Anton Designs, Ltd.            |
+| Mit Vergnügen & Co.            |
+| Kremlin Collectables, Co.      |
+| Raanan Stores, Inc             |
++--------------------------------+
+24 rows in set (0.01 sec)
+
+mysql> select status from orders group by status;
++------------+
+| status     |
++------------+
+| Shipped    |
+| Resolved   |
+| Cancelled  |
+| On Hold    |
+| Disputed   |
+| In Process |
++------------+
+6 rows in set (0.00 sec)
+
+mysql> select status, count(*) from orders group by status order by status desc;
++------------+----------+
+| status     | count(*) |
++------------+----------+
+| Shipped    |      303 |
+| Resolved   |        4 |
+| On Hold    |        4 |
+| In Process |        6 |
+| Disputed   |        3 |
+| Cancelled  |        6 |
++------------+----------+
+6 rows in set (0.00 sec)
+
+mysql> select year(orderdate) as year, count(orderNumber) from orders group by year;
++------+--------------------+
+| year | count(orderNumber) |
++------+--------------------+
+| 2003 |                111 |
+| 2004 |                151 |
+| 2005 |                 64 |
++------+--------------------+
+3 rows in set (0.00 sec)
+
+
+mysql> select ordernumber , sum(quantityordered) as itemcount, sum(priceeach * quantityordered) as total from orderdetails group by ordernumber;
++-------------+-----------+----------+
+| ordernumber | itemcount | total    |
++-------------+-----------+----------+
+|       10100 |       151 | 10223.83 |
+|       10101 |       142 | 10549.01 |
+|       10102 |        80 |  5494.78 |
+|       10103 |       541 | 50218.95 |
+|       10104 |       443 | 40206.20 |
+|       10105 |       545 | 53959.21 |
+|       10106 |       675 | 52151.81 |
+|       10107 |       229 | 22292.62 |
+|       10108 |       561 | 51001.22 |
+					.
+					.
+					.
+					.
+|       10109 |       212 | 25833.14 |
+|       10110 |       570 | 48425.69 |
+|       10111 |       217 | 16537.85 |
+|       10112 |        52 |  7674.94 |
+|       10113 |       143 | 11044.30 |
+|       10114 |       351 | 33383.14 |
+|       10115 |       210 | 21665.98 |
+|       10116 |        27 |  1627.56 |
+|       10117 |       402 | 44380.15 |
+|       10118 |        36 |  3101.40 |
++-------------+-----------+----------+
+326 rows in set (0.01 sec)
+
+mysql> select ordernumber , sum(quantityordered) as itemcount, sum(priceeach * quantityordered) as total from orderdetails group by ordernumber having total > 50000;
++-------------+-----------+----------+
+| ordernumber | itemcount | total    |
++-------------+-----------+----------+
+|       10103 |       541 | 50218.95 |
+|       10105 |       545 | 53959.21 |
+|       10106 |       675 | 52151.81 |
+|       10108 |       561 | 51001.22 |
+|       10122 |       545 | 50824.66 |
+|       10126 |       617 | 57131.92 |
+|       10127 |       540 | 58841.35 |
+|       10135 |       607 | 55601.84 |
+|       10142 |       577 | 56052.56 |
+|       10145 |       563 | 50342.74 |
+|       10159 |       585 | 54682.68 |
+|       10165 |       670 | 67392.85 |
+|       10168 |       642 | 50743.65 |
+|       10181 |       522 | 55069.55 |
+|       10185 |       520 | 52548.49 |
+|       10192 |       585 | 55425.77 |
+|       10204 |       619 | 58793.53 |
+|       10207 |       615 | 59265.14 |
+|       10212 |       612 | 59830.55 |
+|       10222 |       717 | 56822.65 |
+|       10266 |       495 | 51619.02 |
+|       10276 |       527 | 51152.86 |
+|       10287 |       595 | 61402.00 |
+|       10304 |       594 | 53116.99 |
+|       10306 |       587 | 52825.29 |
+|       10310 |       619 | 61234.67 |
+|       10312 |       601 | 55639.66 |
+|       10314 |       524 | 53745.34 |
+|       10322 |       512 | 50799.69 |
+|       10329 |       532 | 50025.35 |
+|       10336 |       447 | 51209.58 |
+|       10360 |       620 | 52166.00 |
+|       10390 |       603 | 55902.50 |
+|       10407 |       571 | 52229.55 |
+|       10414 |       609 | 50806.85 |
+|       10419 |       509 | 52420.07 |
++-------------+-----------+----------+
+36 rows in set (0.00 sec)
 

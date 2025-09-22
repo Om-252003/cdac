@@ -1,3 +1,5 @@
+Inside day2 database
+
 mysql> create table emp (name varchar(50), salary int);
 Query OK, 0 rows affected (0.04 sec)
 
