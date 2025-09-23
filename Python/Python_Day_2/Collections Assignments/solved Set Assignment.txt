@@ -1,0 +1,18 @@
+1) accept 10 values from user and add them inside the set. now accept one more value from user and if it is present in the set, remove it. Make sure program doesn't give any error if number is not there inside the set.
+
+
+demo = set()
+
+for i in range(10):
+    value = input("Enter value " + str(i+1) + ": ")
+    demo.add(value)
+
+remove_value = input("Enter a value to remove from the set: ")
+
+if remove_value in demo:
+    demo.remove(remove_value)
+    print("Value '" + remove_value + "' has been removed from the set.")
+else:
+    print("Value '" + remove_value + "' was not found in the set.")
+
+print("Final set:", demo)

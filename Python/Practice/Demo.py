@@ -1,4 +1,7 @@
-x = [i for i in range(1,21)]
-print(x)
-y = [i for i in x  if i%2 != 0]
-print(y)
+list1 = [10, 20, 30, (40,50), 60]
+sum=0
+for i in list1 :
+    if type(i) == tuple:
+        break
+    sum+=1
+print(sum)

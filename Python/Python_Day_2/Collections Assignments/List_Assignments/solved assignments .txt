@@ -1,0 +1,129 @@
+1) create a list , accept a number,name and a float value from user and store it inside the list.
+  
+now accept one more name from user and insert it at 2nd position.
+
+accept a number and append it at the end of the list.
+print the entire list.
+lst = []
+n = int(input("Num: "))
+name = input("Name: ")
+f = float(input("Float: "))
+lst.extend([n, name, f])
+new_name = input("New name: ")
+lst.insert(1, new_name)
+num_end = int(input("Num to append: "))
+lst.append(num_end)
+print(lst)
+
+
+2) first create list empty. accept numbers till user enters 0 and store them inside the list. Print the list and its length.
+lst = []
+while True:
+    x = int(input("Num: "))
+    if x == 0:
+        break
+    lst.append(x)
+print(lst)
+print("Length:", len(lst))
+
+
+3) accept 5 numbers, store them inside the list and display it. Now add 3 more numbers [hardcoded] at the end of the list using "extend" method.
+lst = []
+for _ in range(5):
+    lst.append(int(input("Num: ")))
+print("List:", lst)
+lst.extend([11, 22, 33])
+print("After extend:", lst)
+
+4) accept a number,string,decimal,boolean value and a character from the user and store it inside the list. First print the list from the beginning and then from the end.
+lst = []
+lst.append(int(input("Num: ")))
+lst.append(input("String: "))
+lst.append(float(input("Decimal: ")))
+lst.append(input("Bool True/False: ") == "True")
+lst.append(input("Char: "))
+print("From start:", lst)
+print("From end:", lst[::-1])
+
+5) accept 5 numbers, store them inside the list. now accept a number from user which he would like to remove from the list and  after removing it, display the list.
+lst = [int(input("Num: ")) for _ in range(5)]
+r = int(input("Remove num: "))
+if r in lst:
+    lst.remove(r)
+print(lst)
+
+6) accept 5 numbers, store them inside the list. now accept a position from user ,remove the element from that position and  after removing it, display the list.
+lst = [int(input("Num: ")) for _ in range(5)]
+pos = int(input("Position to remove (0-4): "))
+if 0 <= pos < len(lst):
+    lst.pop(pos)
+print(lst)
+
+7) create a list and store string,number,character,boolean,decimal values respectively inside it.
+Now slice it in following ways:
+a) display it in reverse order
+b) list all the elements from 2nd position
+c) list the elements from 1st to 3rd position
+d) slice it from 1st to 3rd elements from the end.
+lst = ["Hello", 10, 'A', True, 5.5]
+print("Reverse:", lst[::-1])
+print("From 2nd:", lst[1:])
+print("1st to 3rd:", lst[0:3])
+print("1st to 3rd from end:", lst[-3:-0 if 0 != 0 else None])
+
+
+8) Note: use List comprehension
+ create a list with the numbers from 1 to 20
+ create one more list which should contain only odd numbers from the first list.
+
+lst = [i for i in range(1, 21)]
+odd_lst = [i for i in lst if i % 2 != 0]
+print("All numbers:", lst)
+print("Odd numbers:", odd_lst)
+
+9) accept 5 names and store them in list. Now sort the list in ascending order display and then in descending order.
+
+lst = [input("Name: ") for _ in range(5)]
+lst.sort()
+print("Ascending:", lst)
+lst.sort(reverse=True)
+print("Descending:", lst)
+
+10) create a class "Car" with two instance members i.e. "model(string)" and "isautomatic(boolean)"
+have getter methods also.
+create 5 to 6 objects by passing model name and True or False for "isautomatic".
+
+create a list and store all the objects inside it.
+
+now create one more list and in that list store all the objects from first list where "isautomatic" is True.
+Print both the lists.
+class Car:
+    def __init__(self, model, isautomatic):
+        self.model = model
+        self.isautomatic = isautomatic
+    def get_model(self):
+        return self.model
+    def get_isautomatic(self):
+        return self.isautomatic
+
+c1 = Car("BMW", True)
+c2 = Car("Audi", False)
+c3 = Car("Honda", True)
+c4 = Car("Tesla", True)
+c5 = Car("Ford", False)
+
+all_cars = [c1, c2, c3, c4, c5]
+auto_cars = [car for car in all_cars if car.get_isautomatic()]
+
+print("All Cars:")
+for car in all_cars:
+    print(car.get_model(), car.get_isautomatic())
+
+print("Automatic Cars:")
+for car in auto_cars:
+    print(car.get_model(), car.get_isautomatic())
+
+
+
+
+

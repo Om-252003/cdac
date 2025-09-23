@@ -2,7 +2,28 @@
 
 Sample input : list = [10, 20, 30, (40,50), 60]
 Sample output = 3
+
+list1 = [10, 20, 30, (40,50), 60]
+sum=0
+for i in list1 :
+    if type(i) == tuple:
+        break
+    sum+=1
+print(sum)
    
 2) create a tuple to store 5 numbers and then sort it in ascending and descending order.
+numbers = (15, 8, 22, 3, 10)
+numbers_list = list(numbers)
+numbers_list.sort()
+print("Sorted in ascending order:", numbers_list)
+numbers_list.sort(reverse=True)
+print("Sorted in descending order:", numbers_list)
+
 
 3) Write a Python program to find the repeated items of a tuple.
+my_tuple = (2, 4, 6, 2, 8, 4, 10, 2)
+repeated_items = []
+for item in my_tuple:
+    if my_tuple.count(item) > 1 and item not in repeated_items:
+        repeated_items.append(item)
+print("Repeated items in the tuple:", repeated_items)
