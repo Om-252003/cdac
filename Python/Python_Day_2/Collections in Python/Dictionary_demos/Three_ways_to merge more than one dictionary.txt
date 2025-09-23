@@ -1,0 +1,31 @@
+"""
+There are 3 ways to merge dictionaries
+
+The update() method—dict1.update(dict2)—updates an existing
+dictionary.
+
+{**dict1, **dict2} creates a new merged dictionary using unpacking.
+
+The union | operator in Python 3.9+ merge dictionaries with
+the simple syntax dict1 | dict2.
+
+"""
+
+mydict1={1:'Anil',2:'Rohit',3:'Vishal'}
+mydict2={'Maths':300,"science":400,"History":200}
+
+print("mydict1 is\t",mydict1)
+print("mydict2 is\t",mydict2)
+
+"""
+mydict1.update(mydict2)
+print(mydict1)
+"""
+
+"""
+mydict3={**mydict1,**mydict2}
+print(mydict3)
+"""
+
+mydict3=mydict1 | mydict2
+print(mydict3)

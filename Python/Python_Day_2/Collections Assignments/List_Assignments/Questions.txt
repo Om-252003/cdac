@@ -1,0 +1,48 @@
+1) create a list , accept a number,name and a float value from user and store it inside the list.
+  
+now accept one more name from user and insert it at 2nd position.
+
+accept a number and append it at the end of the list.
+print the entire list.
+
+
+2) first create list empty. accept numbers till user enters 0 and store them inside the list. Print the list and its length.
+
+
+3) accept 5 numbers, store them inside the list and display it. Now add 3 more numbers [hardcoded] at the end of the list using "extend" method.
+
+4) accept a number,string,decimal,boolean value and a character from the user and store it inside the list. First print the list from the beginning and then from the end.
+
+5) accept 5 numbers, store them inside the list. now accept a number from user which he would like to remove from the list and  after removing it, display the list.
+
+6) accept 5 numbers, store them inside the list. now accept a position from user ,remove the element from that position and  after removing it, display the list.
+
+7) create a list and store string,number,character,boolean,decimal values respectively inside it.
+Now slice it in following ways:
+a) display it in reverse order
+b) list all the elements from 2nd position
+c) list the elements from 1st to 3rd position
+d) slice it from 1st to 3rd elements from the end.
+
+
+8) Note: use List comprehension
+ create a list with the numbers from 1 to 20
+ create one more list which should contain only odd numbers from the first list.
+
+
+9) accept 5 names and store them in list. Now sort the list in ascending order display and then in descending order.
+
+
+10) create a class "Car" with two instance members i.e. "model(string)" and "isautomatic(boolean)"
+have getter methods also.
+create 5 to 6 objects by passing model name and True or False for "isautomatic".
+
+create a list and store all the objects inside it.
+
+now create one more list and in that list store all the objects from first list where "isautomatic" is True.
+Print both the lists.
+
+
+
+
+

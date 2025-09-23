@@ -1,0 +1,26 @@
+1) accept a string and display whether it is palindrom or not.
+
+
+
+2) accept a string and display it. now accept slicing positions from and to , slice the string and display it.
+
+3) accept a string and display how many vowel characters are there inside it.
+
+
+4) accept a string and display the characters which are repeated in the string
+
+
+5) accept a string and find out how many words are there in it.
+
+
+6) accept a sentence and reverse it.
+	e.g.  hello world
+		world hello
+
+
+
+
+7) A pangram is a sentence that contains all the alphabets.
+example: The quick brown fox jumps over the lazy dog. Your task here is to write a function to check a sentence to see if it is a pangram or not.
+
+

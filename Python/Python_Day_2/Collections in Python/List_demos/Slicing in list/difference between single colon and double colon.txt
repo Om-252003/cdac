@@ -1,0 +1,21 @@
+mylist[:]
+
+The colon (:) inside the brackets indicates that you are taking a slice of the entire list from the beginning to the end.
+
+It effectively means "give me everything from the start to the end of the list."
+
+mylist[::]
+The double colon (::) introduces a step parameter to the slice.
+The format for slicing is start:stop:step. 
+In this case, you haven't specified start or stop, but you've set the step to its default value of 1.
+Thus, mylist[::] also means "give me everything from the start to the end of the list, with a step of 1."
+
+e.g.
+mylist = [10, 20, 30, 40, 50]
+
+print(mylist[::2])  
+# Output: [10, 30, 50] (every second element)
+This shows how :: can be used for more complex slicing.
+
+
+

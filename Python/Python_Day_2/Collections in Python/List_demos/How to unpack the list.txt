@@ -1,0 +1,22 @@
+"""
+
+print(*mylist)
+
+The * (called unpacking operator) takes the list and unpacks its elements one by one.
+
+So instead of passing the list as a single object, each element is passed separately to print().
+
+Equivalent to:
+
+print(10, 20, 30, 40)
+
+
+Output will be:
+
+10 20 30 40
+
+"""
+
+mylist=[10,20,30,40]
+print(mylist)
+print(*mylist)

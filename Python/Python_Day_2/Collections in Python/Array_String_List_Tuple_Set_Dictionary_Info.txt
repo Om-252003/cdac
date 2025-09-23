@@ -1,0 +1,46 @@
+import array as ar
+
+a = ar.array('i',[1,2,3])   #  array    similar datatypes only, 
+print(a,"\t",id(a))
+a.append(30)   # array references are mutable
+print(a,"\t",id(a))
+a[1]=22    # array elements are mutable
+print(a,"\t",id(a))
+
+mystring = "hello"      #  string  
+print(mystring)
+# mystring[0]='G'    #  Error     string is immutable
+print(mystring.swapcase())  # string is immutable
+print(mystring)
+
+mylist=[10,20,30,40,30]    #  list   can have duplicates
+print(mylist)
+mylist[1]=100   # list is mutable
+print(mylist)
+mylist.append(400) # list is mutable
+print(mylist)
+
+
+mytuple=(100,200,300,400,300)   # tuple    can have duplicates
+print(mytuple)
+#mytuple[1]=700  # Error:  tuple is immutable
+print(mytuple,"\t",id(mytuple))
+mytuple1=mytuple.__add__((70,80,90))  # it'll be a different object altogether
+print(mytuple)
+print(mytuple,"\t",id(mytuple))  # will not change
+print(mytuple1)
+
+myset={10,20,30,40,20}     # set     can't have duplicates
+print(myset)
+print(id(myset))
+#myset[1]=56   # Error:  set is immutable for its elements
+myset.add(45)  # set as an object is mutable
+print(myset)
+print(id(myset))
+
+mydictionary={'abc':100,'xyz':300,'pqr':600,'xyz':330}  # dictionary   can't have duplicate keys
+print(mydictionary)
+mydictionary['pqr']=670    # key 'pqr' value gets chanaged here
+print(mydictionary)
+mydictionary.update({'aaa':333})  # dictionary is mutable
+print(mydictionary)

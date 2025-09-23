@@ -1,0 +1,10 @@
+mydict={5:"hello",2:"hi",1:"bye"}
+
+mylist=sorted(mydict) # sort the keys by default
+
+print(mylist)
+
+# Sort the values
+sorted_values = sorted(mydict.values())
+
+print(sorted_values)

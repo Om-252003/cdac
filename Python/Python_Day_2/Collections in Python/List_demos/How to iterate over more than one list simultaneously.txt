@@ -1,0 +1,17 @@
+num = [1, 2, 3]
+color = ['red', 'white', 'black']
+for (a,b) in zip(num, color):
+     print(a, b)
+
+
+"""
+this is also possible
+"""
+
+"""
+num = [1, 2, 3]
+color = ['red', 'white', 'black']
+mylist=["hello","hi","bye"]
+for (a,b,c) in zip(num, color,mylist):
+     print(a, b,c)
+"""

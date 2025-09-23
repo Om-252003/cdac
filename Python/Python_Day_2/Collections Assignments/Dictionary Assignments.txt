@@ -1,0 +1,36 @@
+1) accept 5 students name and store them in the dictionary by providing keys from 1 to 5 respectively.
+
+
+
+2) create a dictionary with pairs
+	soap:100
+	deo:300
+	perfume:400
+
+now accept a product name from user (in any case, so you have to handle "ignore case") and display its price. Also , if the product is not present in the dictionary display the error message " product not available "
+	Note:  you should not get "KeyError:" in the program.
+
+
+
+
+
+3) define a class "Student" with members
+	name,age,address and qualification
+	
+   define parameterized constructor and "str" member function which returns all the members
+
+   create 4 objects of Student by passing values.
+
+now create a dictionary with rollno ( start from 1 ) as a key and student object as a value.
+
+accept a rollno from user and display all its details i.e. name,age,address and qualification.
+also display message "student not found" in case if rollno entered by user is not available as a key inside the dictionary.
+
+4)  Given a dictionary of students and their favourite colours: 
+people={'Arham':'Blue','Lisa':'Yellow',''Vinod:'Purple','Jenny':'Pink'} 
+1. Find out how many students are in the list 
+2. Change Lisa’s favourite colour 
+3. Remove 'Jenny' and her favourite color
+4. Sort and print students and their favourite colours alphabetically by name
+
+

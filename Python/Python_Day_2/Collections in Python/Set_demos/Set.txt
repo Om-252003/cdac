@@ -1,0 +1,5 @@
+# Example of set , order is not fixed and duplicates are not allowed
+
+myset= {10,20,30,40,20}
+print(myset)
+print(type(myset))

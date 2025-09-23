@@ -1,0 +1,13 @@
+as a dictionary
+
+so that means whatever elements you provide will be taken as a key and value will be provided implicitly.
+
+e.g
+
+myset={1,2,3,4,5}
+
+here all these are keys.
+
+that's the reason when you try to say
+
+myset.remove(6), it gives you an error "KeyError"
