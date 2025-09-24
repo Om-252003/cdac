@@ -33,16 +33,52 @@ print(disp('c', 10, "str"))
 4) define "myfun1()" with a print statement. now define "myfun2()" which should invoke "myfun1()" function. 
 invoke myfun2()
 
+def myfun1(): print("Myfun1() executed")
+def myfun2(): myfun1()
+myfun2()
+
 5) define a function to accept a number. This function should return 1 if a number passed is more than 0
 return -1 if a number passed is less than 0 , else it should return 0.
+def accept(n):
+    if n>0: return 1
+    if n<0 : return -1
+    return 0
+
+print(accept(10))
+print(accept(-10))
+print(accept(0))
 
 6) define a function which accepts a character and return toggle of it. 
+def accept(n):
+    return n.swapcase()
+
+print(accept('q'))
+print(accept('A'))
+
 
 7) define a function which accepts a string , toggle and return it.
 	[ hint :  use "swapcase()" function of string ]
+def accept(n):
+    return n.swapcase()
+
+print(accept('qWeRtY'))
+print(accept('AsDfG'))
+
 
 8) write a function to accept minimum 3 characters and maximum 5 characters. 
  	[ use default arguments method ]
+def accept(s="abc"):
+
+    if 3 <= len(s) >= 5 : print(s)
+    else: print("invalid input")
+
+accept('qWeRtY')
+accept('AsDfG')
+accept('AsD')
+accept('As')
+
+
+
 
 9) define a function in such a way that it can accept n number of values and print their sum. [ variable number of arguments]
 
