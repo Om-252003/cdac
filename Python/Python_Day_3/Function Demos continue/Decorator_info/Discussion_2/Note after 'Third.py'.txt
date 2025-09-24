@@ -1,0 +1,1 @@
+But what if "div" function is not written by us i.e. the source code of "div" is not available?

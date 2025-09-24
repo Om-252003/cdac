@@ -1,0 +1,35 @@
+# we have a solution for this. We can go for "Decorator" function.
+# let's write initialization and release 
+
+def decor_function(myfun):
+    def with_init_release():
+        print("Initialising Resources")
+        myfun()
+        print("Releasing Resources")
+    return with_init_release
+
+@decor_function                  #  when you don't want to initialize or release remove the annotation
+def fun1():
+    print("Important task1")
+
+@decor_function
+def fun2():
+    print("Important task2")
+
+@decor_function
+def fun3():
+    print("Important task3")
+
+@decor_function
+def fun4():
+    print("Important task4") 
+    
+fun1()  # The moment "fun1" statement is encountered, "decor_function" gets called [by passing fun1 as an argument] which returns "with_init_release" function.
+# here we invoke it using (), hence "with_init_release" function gets called [which calls "fun1"] and we get the output. Same for all the 
+# following statements.
+
+fun2()
+fun3()
+fun4()
+
+# place breakpoint at all the print statements and at the "return" statement and observe the call stack
