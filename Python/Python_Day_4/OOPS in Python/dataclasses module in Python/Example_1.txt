@@ -1,0 +1,19 @@
+with *dataclasses* module we no longer need to define *__init__* and *__str__* methods in our class, they are provided implicitly.
+
+
+from dataclasses import dataclass
+
+@dataclass
+class Person:
+    name: str
+    age: int
+    height: float
+    email: str
+
+
+# p=Person() # TypeError: Person.__init__() missing 4 required positional arguments: 'name', 'age', 'height', and 'email'
+# it's because , inside Person class __init__() method is internally provided which needs 4 arguments while
+# creating an object
+
+p=Person("Rohit",35,5.8,"rohit@gmail.com")  # __init__ method which is internally provided gets invoked here
+print(p)  # also __str__() method is internally provided

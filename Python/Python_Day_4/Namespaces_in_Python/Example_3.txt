@@ -1,0 +1,25 @@
+print(dir(__builtins__))        #   built-in namespace
+print("\n\n")
+print("Type of builtins namespace is\t",type(__builtins__))
+
+k=100           # global for everyone 
+def disp():
+    k=30        # local for disp but enclosing for inner
+    r=60
+    def inner():
+        k=60    # local for inner
+        print("inside inner")
+        print("local namespace for inner\t",locals())
+    print("hello")
+    print("local namespace for disp\t",locals())
+    print("\n")
+    print("Type of local namespace is\t",type(locals()))
+    inner()
+
+num1=200
+print("\n\n\n")
+print(globals())
+print("\n\n")
+print("Type of global namespace is\t",type(globals()))
+print("\n\n")
+disp()

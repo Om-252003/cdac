@@ -1,0 +1,15 @@
+from dataclasses import dataclass
+
+@dataclass
+class Person:
+    name: str ="Rohit"
+    age: int  = 35
+    height: float =5.8
+    email: str = "Rohit@gmail.com"
+
+
+p=Person() # now there is __init__() methods with default values which are provided in the class
+
+p1=Person("Sachin",50,5.1,"sachin@gmail.com")  # you can pass also explicitly
+print(p)  
+print(p1) 

@@ -1,0 +1,5 @@
+sub = "python"
+print(f"Learning {sub.upper()} module is fun!")
+
+pi = 3.14159
+print(f"Value of pi: {pi:.2f}")

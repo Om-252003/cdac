@@ -1,0 +1,1 @@
+Python doesn't care about which class of object it is, if it is an object and required behavior (method) is present for that object then it will work. The type of object is distinguished only at runtime. This is called as "Duck Typing".

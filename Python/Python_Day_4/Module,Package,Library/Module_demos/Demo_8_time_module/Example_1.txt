@@ -1,0 +1,8 @@
+import time
+i=0
+start=time.time()
+name=input("enter your name")
+age=int(input("enter your age"))
+message="Name is {} and Age is {}"
+print(message.format(name,age))
+print("This program took\t",time.time()-start,"\tseconds")

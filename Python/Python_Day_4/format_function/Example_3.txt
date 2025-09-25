@@ -1,0 +1,5 @@
+name=input("enter your name")
+technology=input("enter technology name")
+preference=input("enter 'first' or 'second' as a preference")
+message="{} is {}'s {} preference"
+print(message.format(technology,name,preference))

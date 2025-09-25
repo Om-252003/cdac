@@ -1,0 +1,15 @@
+# Code without dataclasses module
+
+class Person:
+    def __init__(self,name,age,height,email):
+        self.name=name
+        self.age=age
+        self.height=height
+        self.email=email
+    
+    def __str__(self):
+        return self.name+"\t"+str(self.age)+"\t"+str(self.height)+"\t"+self.email
+
+
+p=Person("Rohit",35,5.8,"rohit@gmail.com") 
+print(p) 

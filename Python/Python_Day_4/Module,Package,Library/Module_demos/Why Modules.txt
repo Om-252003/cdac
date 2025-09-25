@@ -1,0 +1,7 @@
+In any project, we have to write big programs. If we write everything in one python file (say about 1000 lines code) , we get drawbacks such as difficult to maintain, errorprone,  no reusability etc. So we break down big program into small, managable and organized files having some logic. These files are nothing but modules.
+
+e.g. in Calculator application we can use different modules such as Add.py
+Subtract.py
+Multiply.py
+Devide.py  etc.
+

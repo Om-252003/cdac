@@ -1,0 +1,6 @@
+age=int(input("what is your age?"))
+print("Hello , I am {} years old".format(age))
+
+message="My name is {}"
+name=input("Enter your name")
+print(message.format(name))

@@ -1,0 +1,15 @@
+from dataclasses import dataclass
+
+@dataclass
+class Person:
+    name: str      
+    age: int 
+    height: float =5.8
+    email: str = "Rohit@gmail.com"
+
+
+p=Person("Rohit",35) # other values would be the ones which are provided inside the class
+
+p1=Person("Sachin",50,5.1,"sachin@gmail.com")  # you can pass also explicitly
+print(p)  
+print(p1) 

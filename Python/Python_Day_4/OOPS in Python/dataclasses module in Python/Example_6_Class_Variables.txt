@@ -1,0 +1,22 @@
+from dataclasses import dataclass,field
+
+@dataclass
+class Person:
+    name: str
+    age: int
+    height: float
+    email: str
+    counter:int=field(default=5)     # class variable
+
+p1=Person("Rohit",35,5.1,"Rohit@gmail.com")
+p2=Person("Sachin",38,4.1,"Sachin@gmail.com")
+print(p1)
+print(p2)
+print(Person.counter)
+print("address of counter")
+print(id(Person.counter))
+print(id(p1.counter))
+print(id(p2.counter))
+print("address of name")
+print(id(p1.name))
+print(id(p2.name))
