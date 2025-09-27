@@ -1,0 +1,102 @@
+1) Create a multi-level inheritance , override default constructors in the child classes , instantiate the child class and show how will u invoke parent class constructor from child class ?
+
+class A:
+    def __init__(self):
+        print("A constructor")
+
+class B(A):
+    def __init__(self):
+        super().__init__()
+        print("B constructor")
+
+class C(B):
+    def __init__(self):
+        super().__init__()
+        print("C constructor")
+
+c= C()
+
+
+2) create a class "Vehicle", define a method "public void start()" in it. From this class derive a class FourWheeler. How will u override "start()" method of parent class ?
+
+
+class Vehicle:
+    def start(self):
+        print('vehicle starts')
+
+class FourWheeler(Vehicle):
+    def start(self):
+        print("FourWheeler started")
+car = FourWheeler()
+car.start()
+
+
+3) Go for Hierarchical inheritance, create instances of child class and observe constructor invocation.
+
+class Vehicle:
+
+    def __init__(self):
+        print('vehicle starts')
+
+class Car(Vehicle):
+    def __init__(self):
+        super().__init__()
+        print("Car started")
+
+class Bus(Vehicle):
+    def __init__(self):
+        super().__init__()
+        print("Bus started")
+
+Car()
+Bus()
+
+4) Create a class "Top1" with "disp1()" method.
+From this class Derive "Bottom1", "Bottom2" and "Bottom3" classes ,override the "disp1()".
+create a function "perform" which can take argument as object of any child class.
+Now show how will u achieve dynamic polymorphism.
+
+class Top1:
+
+    def disp1(self):
+        print('Top1 disp1')
+
+class Bottom1(Top1):
+    def disp1(self):
+        print('Bottom1 disp1')
+
+class Bottom2(Top1):
+    def disp1(self):
+        print('Bottom2 disp1')
+
+class Bottom3(Top1):
+    def disp1(self):
+        print('Bottom3 disp1')
+
+def perform(a):
+    a.disp1()
+
+perform(Bottom1())
+perform(Bottom2())
+perform(Bottom3())
+
+
+5) create Base class and Sub class with parameterized constructors. Show how will you invoke Base class parameterized constructor from Sub class.
+
+
+class Base:
+
+    def __init__(self, a):
+        print("a = ",a)
+
+class Child(Base):
+    def __init__(self, b):
+        print("b = ", b)
+        super().__init__(b+10)
+
+Child(10)
+
+
+
+
+

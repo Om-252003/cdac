@@ -1,0 +1,18 @@
+def is_even(num):
+    return num % 2 == 0
+
+def add(num):
+ 	return num+num
+
+
+nums = [2, 4, 6, 7, 8]
+#filtered = filter(is_even, nums)
+
+# the function which is passed to filter function
+# must return true or false
+filtered = filter(add, nums)  # no effect
+
+print(nums)
+print(filtered)
+print(*nums)
+print(*filtered)

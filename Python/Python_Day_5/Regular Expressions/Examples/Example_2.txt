@@ -1,0 +1,18 @@
+#   findall() module is used to search for “all” occurrences that match a given pattern
+
+import re
+
+mystring1="abc123xyz123"
+print(re.match("123",mystring1))
+print(re.search("123",mystring1))
+print(re.findall("123",mystring1))
+
+
+
+"""
+output:
+None
+<re.Match object; span=(3, 6), match='123'>
+['123', '123']
+
+"""

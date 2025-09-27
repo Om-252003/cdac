@@ -1,0 +1,25 @@
+here for descending order we have said
+
+
+a = np.array([[12, 25], [30, 18]])
+
+print("Reverse order axis 0\n")
+arr1 = -np.sort(-a, axis=0)
+print(arr1)
+
+why two minus(-) signs are required here? one for np.sort and other for "a"
+
+
+
+
+First Minus (-a): This negates the elements of the array a. So, for example, the array [[12, 25], [30, 18]] becomes [[-12, -25], [-30, -18]]. 
+This transformation effectively flips the values, allowing larger original values to become smaller (in terms of their negated values).
+
+
+
+np.sort(-a, axis=0): Now, when you apply np.sort to the negated array, it sorts the values in ascending order. 
+For the transformed array, this means the larger original values will appear first.
+
+
+
+Second Minus (-np.sort(-a, axis=0)): Finally, you negate the sorted result again to return it to the original scale. This gives you the values in descending order.

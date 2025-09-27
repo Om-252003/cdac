@@ -1,0 +1,12 @@
+# replace "Java"  with "Python"
+import re
+
+str1="There is a fun in learning Java. It is easy to code java program. Java makes programmer's life easy"
+
+
+regex=re.compile("Java",re.IGNORECASE)
+result=regex.sub("Python",str1)
+
+print(result)
+
+

@@ -1,0 +1,4 @@
+why set is not allowed in case of numpy and pandas?
+
+Sets in Python are unordered collections of unique elements. When you try to create a NumPy array from a set, NumPy doesn’t know how to interpret the set's elements. The concept of array is ordered collection of elements.
+Lists and tuples, on the other hand, are ordered collections that allow duplicates and maintain the sequence of elements. This makes them suitable for creating NumPy arrays because NumPy can interpret them as a series of elements, which can be converted into a structured format (like a 1D or 2D array).

@@ -1,0 +1,13 @@
+import numpy as k
+#indexing in numpy array
+
+arr1=k.array([10,20,30,40])
+print(arr1)
+print(arr1[0])
+print(arr1[-1])
+print("from the begining")
+for i in range(0,arr1.__len__()):
+    print(arr1[i])
+print("from the end")
+for i in range(-1,-(arr1.__len__()+1),-1):
+    print(arr1[i])

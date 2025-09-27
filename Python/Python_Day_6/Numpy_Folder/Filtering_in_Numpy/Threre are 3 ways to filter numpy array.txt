@@ -1,0 +1,5 @@
+1) Using mask [ based on multiple conditions]
+
+2) Iterative method
+
+3) Using lambda

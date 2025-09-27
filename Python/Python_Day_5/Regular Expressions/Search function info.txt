@@ -1,0 +1,9 @@
+Search function
+
+Search function is used to search a string in the entire file e.g.
+
+it scans through a string , looks for any location where this RE matches.
+
+syntax
+
+re.search(pattern,string)

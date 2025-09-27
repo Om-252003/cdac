@@ -1,0 +1,12 @@
+import re
+
+pattern1=r"\d"     # int
+str1="abcd"
+str2="1abcd"
+str3="ab5cd"
+
+print(re.match(pattern1,str1) is not None)
+print(re.match(pattern1,str2) is not None)
+print(re.match(pattern1,str3) is not None)
+print(re.search(pattern1,str3) is not None)
+

@@ -1,0 +1,40 @@
+import numpy as np
+
+arr1=np.array([[1,2,3],[4,5,6]])
+arr2=np.array([[7,8,9],[10,11,12]])
+arr3=np.array([[13,14,15],[16,17,18]])
+
+hstack=np.hstack((arr1,arr2,arr3))
+print("this is hstack")
+print(hstack) # each 2d array's individual rows are stacked horizontally
+
+vstack=np.vstack((arr1,arr2,arr3))
+print("this is vstack")
+print(vstack) # each 2d array is stacked vertically
+
+dstack=np.dstack((arr1,arr2,arr3))
+print("this is dstack")
+print(dstack) # each 2d array's individual member is stacked together
+
+stack_0=np.stack((arr1,arr2,arr3),axis=0)
+print("this is 0 stack")
+print(stack_0)  # in 3d array, axis 0 means no. of 2d arrays
+# here we have 3 2d arrays , so they are stacked one below other
+
+stack_1=np.stack((arr1,arr2,arr3),axis=1)
+print("this is 1 stack")
+print(stack_1)  # in 3d array axis 1 is similar to axis 0 of 2d array
+# i.e. top to bottom
+# each 2d array's 0th rows are stacked from top to bottom , then 1st rows and so on
+
+stack_2=np.stack((arr1,arr2,arr3),axis=2)
+print("this is 2 stack")
+print(stack_2) # in 3d array axis 2 is similar to axis 1 of 2d array
+# i.e. left to right
+# each 2d array's 0th row will be placed in the 0th column, 1st and 2nd column respectively
+# in the first generated 2d array
+# each 2d array's 1th row will be placed in the 0th column, 1st and 2nd column respectively
+# in the second generated 2d array.
+
+print(stack_2.ndim)
+print(stack_2.shape)

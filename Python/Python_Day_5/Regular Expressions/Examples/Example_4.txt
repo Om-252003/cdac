@@ -1,0 +1,30 @@
+"""
+
+r'^[\w\.-]+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,}$'
+
+r' ........... ' : raw string
+
+^: Start of the string.
+\w - Word characters (letters, digits, and underscores).
+\. : .(dot) symbol
+
+@: Matches the @ symbol.
+
+[a-zA-Z0-9-]+: Matches one or more alphanumeric characters or hyphens after the @ symbol (in the domain name).
+
+\.: Matches the dot (.) before the top-level domain.
+
+[a-zA-Z]{2,}: Matches two or more alphabetic characters for the top-level domain (e.g., com, net, org).
+
+$: End of the string.
+
+"""
+
+import re
+email_pattern = r'^[\w\.-]+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,}$'
+
+
+emails = ['nitin.javastudent@gmail.com', 'Guido.russom@example.co.uk', '123@python.com', 'python.masters']
+
+for email in emails:
+    print(re.match(email_pattern,email) is not None)

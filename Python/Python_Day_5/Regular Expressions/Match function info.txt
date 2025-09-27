@@ -1,0 +1,10 @@
+Match function
+
+Match function determines if the Regular Expression matches at the beginning of the string.
+
+syntax 
+re.match(pattern,string)
+
+here "pattern" is the regular expression to be matched.
+"string" is the one which will be searched to match the pattern at the beginning of the string.
+

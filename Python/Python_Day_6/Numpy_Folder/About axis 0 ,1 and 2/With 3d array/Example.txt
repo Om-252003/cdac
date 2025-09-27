@@ -1,0 +1,14 @@
+import numpy  as np
+
+myar=np.array([10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27])
+
+myar.shape=(2,3,3)
+print(myar)
+
+print(np.sum(myar))
+print(np.sum(myar,axis=0)) # put 2nd two d array after first 2d array and then sum
+print("with axis 1")
+print(np.sum(myar,axis=1)) # it's like axis=0 in 2d array , chopping something from top to bottom within each 2d array
+
+print("with axis 2")
+print(np.sum(myar,axis=2)) # it's like axis=1 in 2d array, chopping something from left to right within each 2d array

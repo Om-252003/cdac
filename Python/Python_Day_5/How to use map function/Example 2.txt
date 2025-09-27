@@ -1,0 +1,13 @@
+# using map() function with tuple by passing lambda
+
+
+
+mytuple = (10,20,30,40)
+print(mytuple)
+print(type(mytuple))
+
+result = map(lambda x:x+2,mytuple)
+print(list(result))
+
+
+

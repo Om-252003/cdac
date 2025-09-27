@@ -1,0 +1,14 @@
+# using map() function with tuple
+
+def addition(n):
+    return n+n
+
+mytuple = (10,20,30,40)
+print(mytuple)
+print(type(mytuple))
+
+result = map(addition,mytuple)
+print(list(result))
+
+
+

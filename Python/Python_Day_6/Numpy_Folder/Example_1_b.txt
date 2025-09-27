@@ -1,0 +1,19 @@
+# create single dimensional array
+
+import numpy as np         
+
+# The elements of a NumPy array can also be booleans, strings, or other objects.
+
+first=np.array([100,3.4,"hello",True])
+print(first)
+
+for i in range(0,first.__len__()):
+    print(first[i])
+
+print(type(first))
+print("dimension of array is\t",first.ndim)
+print("\n")
+print("shape of array is\t",first.shape)
+
+# first[4]=500     #  arrays are fixed
+

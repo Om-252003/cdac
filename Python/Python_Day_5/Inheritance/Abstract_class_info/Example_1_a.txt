@@ -1,0 +1,32 @@
+# "abc"  is a module
+# "ABC" is a class inside "abc" module
+# "abstractmethod" is a function inside "abc" module
+
+from abc import ABC, abstractmethod
+
+class Person(ABC):
+    def walk(self):
+        print("I can walk")
+    def talk(self):
+        print("I can talk")
+    def eat(self):
+        print("I can eat")
+    def sleep(self):
+        print("I can sleep")
+    @abstractmethod
+    def performduties(self):
+        pass
+
+class Teacher(Person):
+    def performduties(self,department): # it's ok if you change the parameter
+        self.department=department
+        print("Perform teacher's duties for\t",self.department)
+
+
+
+#ob = Person()   #  TypeError: Can't instantiate abstract class Person with abstract method performduties
+
+t1=Teacher()
+t1.performduties("Maths")
+
+

@@ -1,0 +1,9 @@
+import numpy as np
+first=np.arange(10,91,10) # 3 rows,3 cols ,  10 to 90 values with 10 as a skip value
+first.shape=(3,3)  
+print(first)
+print("************")
+second=first.reshape(9,1)
+print(first)
+print("***************")
+print(second)

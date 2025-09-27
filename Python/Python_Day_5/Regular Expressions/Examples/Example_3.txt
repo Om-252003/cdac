@@ -1,0 +1,9 @@
+import re
+
+pattern1="Vidya"
+mystring1="Vidyanidhi"
+print(re.match(pattern1, mystring1))
+mystring2="vidyanidhi"
+print(re.match(pattern1,mystring2))
+print(re.match(pattern1, mystring2,re.IGNORECASE))
+

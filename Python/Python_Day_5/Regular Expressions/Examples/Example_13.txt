@@ -1,0 +1,10 @@
+# find out all the modules in the given string
+#  * is for zero or more occurrences
+
+import re
+
+message="Java is the first platform independent language whereas Python is the preferred choice for machine learning. Oracle is the best database technology."
+
+pattern=r"[A-Z][a-z]*"
+modules=re.findall(pattern, message)
+print(modules)

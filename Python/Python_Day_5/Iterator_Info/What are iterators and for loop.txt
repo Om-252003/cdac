@@ -1,0 +1,12 @@
+For loop implements Iterator in the background. Before the iteration starts in the for loop, it will create an Iterator object and iterate through all the elements until the StopIteration exception arise.
+
+A for loop is a type of iterator. More accurately, it instantiates an iterator object using the input object's __iter__() method.
+
+Iterators are objects that implement the iterator protocol, which essentially means they have a __next__() method that they can call on iteratable objects (like lists), and they raise a StopIteration exception when there are no more entries to iterate over.
+
+
+Related
+What are iterators in Python?
+Technically an Iterators are a class of objects in Python that support the __next__ method. An iterator is called repeatedly by a for loop; and an iterator is returned when the __iter__ method is called on a iterable.
+
+What that means is that an iterator is the thing that allows a for loop to move through any iterable (such as lists, sets, dictionaries for example. There are also functions that directly return iterators (such as zip, map, range and others).

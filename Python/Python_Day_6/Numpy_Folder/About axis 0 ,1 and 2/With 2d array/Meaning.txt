@@ -1,0 +1,7 @@
+in 2d array
+
+axis 0 means  
+	chopping something from top to bottom
+
+axis 1 means
+	chopping something from left to right

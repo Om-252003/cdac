@@ -1,0 +1,28 @@
+"""
+\w → Matches any word character, i.e.
+[A-Za-z0-9_] (all letters, digits, and underscore).
+
+\w{2,20} means a sequence of 2 to 20 word characters.
+
+\s → Matches any whitespace character, i.e.
+space (" "), tab (\t), newline (\n), etc.
+
+"""
+
+import re
+
+phone_no="445-889-1478"
+#phone_no="44r-7p9-2345"
+if(re.search("\d{3}-\d{3}-\d{4}", phone_no)):
+    print("it's valid phone no.")
+else:
+    print("it's not a valid phone no")
+
+fullname="Sachin Tendulkar"
+#fullname="RahulDravid"
+if(re.search("\w{2,20}\s\w{2,20}", fullname)):
+    print("it's a valid fullname")
+else:
+    print("it's not a valid fullname")
+
+

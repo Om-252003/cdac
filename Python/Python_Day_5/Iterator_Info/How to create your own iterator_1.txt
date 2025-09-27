@@ -1,0 +1,18 @@
+class MyNumber:
+    def __iter__(self):
+        print("inside __iter__")
+        self.num=1
+        return self
+    def __next__(self):
+        print("inside __next__")
+        if self.num<=10:
+            temp=self.num
+            self.num+=1
+            return temp
+        else:
+            raise StopIteration
+
+ref1=MyNumber()
+for i in ref1:
+   print(i)
+print("done")

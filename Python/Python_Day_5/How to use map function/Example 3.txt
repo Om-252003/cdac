@@ -1,0 +1,15 @@
+# Add two lists using map and lambda
+
+
+
+mylist1 = [10,20,30,40]
+mylist2 = [100,200,300,400]
+
+print(mylist1)
+print(mylist2)
+
+result = map(lambda x,y:x+y,mylist1,mylist2)
+print(result)
+print(list(result))
+
+

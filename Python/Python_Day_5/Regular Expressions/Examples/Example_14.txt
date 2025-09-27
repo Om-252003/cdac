@@ -1,0 +1,18 @@
+# find out all the modules and their no. of days in the given string
+#  * is for zero or more occurences
+
+import re
+
+message="Java is the first platform independent language which takes 20 days whereas Python is the prefered choice for machine learning which takes 15 days.Mysql which takes 12 days is the best database technology."
+
+pattern=r"[A-Z][a-z]*"
+modules=re.findall(pattern, message)
+print(modules)
+no_of_days=re.findall(r"\d{2}",message)
+print(no_of_days)
+
+module_wise_no_of_days={}
+
+module_wise_no_of_days={key:value for (key,value) in zip(modules,no_of_days)}
+
+print(module_wise_no_of_days)

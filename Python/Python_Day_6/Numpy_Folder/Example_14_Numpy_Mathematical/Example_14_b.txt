@@ -1,0 +1,34 @@
+import numpy as np
+
+fourth=np.array([[10,20,30],[40,50,60]])
+fifth=np.array([[70,80,90],[100,110,120]])
+sixth=np.sum((fourth,fifth),axis=0)
+"""
+in case of 3d array axis 0 means no.of 2d arrays
+here we have 2 2d arrays , so in axis 0 what happens
+is second 2d array is placed behind 1st 2d array and sum is performed
+on each and every element i.e. 10 is added to 70, 20 is added to 80 and so on....
+"""
+print(sixth)
+""" [[ 80 100 120] 
+     [140 160 180]] """
+print("\n")
+eighth=np.sum((fourth,fifth),axis=1)
+"""
+in 3d array axis 1 is similar to axis 0 of 2d array i.e. top to bottom
+so each 2d arrays sum will be calculated based of top to bottom pattern
+it means 10 is added to 40, 20 is added to 50 and so..on
+"""
+print(eighth)
+""" [[ 50  70  90] 
+ [170 190 210]] """
+print()
+ninth=np.sum((fourth,fifth),axis=2)
+"""
+in 3d array axis 2 means axis 1 of 2d array i.e. left to right
+so each 2d arrays sum will be calculated on left to right pattern
+it means 10+20+30   40+50+60   70+80+90   100+110+120 
+"""
+print(ninth)
+""" [[ 60 150]     
+ [240 330]] """ 

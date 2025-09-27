@@ -1,0 +1,16 @@
+# using map() function with tuple
+# you must return a value from the function you passed to map function
+
+def addition(n):
+    print(n+n)
+
+mytuple = (10,20,30,40)
+print(mytuple)
+print(type(mytuple))
+
+temp="hello"
+result = map(addition,mytuple)     
+print(list(result))
+
+
+

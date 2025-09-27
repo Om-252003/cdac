@@ -1,0 +1,17 @@
+class Base1:
+    def __init__(self):
+        print("Base1 init")
+
+class Base2:
+    def __init__(self,num=6):
+        self.num=num
+        print("Base2 init")
+    def disp(self):
+        print("in disp\t",self.num)     #  AttributeError: 'Sub' object has no attribute 'num'
+        # it's because Base2 __init__ was not called
+
+class Sub(Base1,Base2):
+    pass
+
+s=Sub()    # only Base1 init gets inherited
+s.disp()

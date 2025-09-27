@@ -1,0 +1,17 @@
+"""
+re.findall('\d', str1) → finds all digits in the string str1.
+len(...) ---- counts how many digits.
+
+re.findall('\D', str1) → finds all non-digit characters (letters, spaces, punctuation, etc.).
+len(...) --- counts how many non-digits.
+
+"""
+
+# count how many digits ,characters and spaces are there inside string
+import re
+
+str1="abc4xy6z p8qrst1py"
+
+print("No of digits inside the string are \t",len(re.findall('\d',str1)))
+print("No of characters inside the string are \t",len(re.findall('\D',str1)))
+print("No of white spaces inside the string are \t",len(re.findall(' ',str1)))

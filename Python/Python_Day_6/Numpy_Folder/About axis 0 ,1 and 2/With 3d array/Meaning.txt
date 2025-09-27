@@ -1,0 +1,10 @@
+in 3d array
+
+axis 0 means
+	no. of 2d arrays
+
+axis 1 means  
+	chopping something from top to bottom
+
+axis 2 means
+	chopping something from left to right

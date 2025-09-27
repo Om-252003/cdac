@@ -1,0 +1,88 @@
+import numpy as np
+
+arr1= np.array([[10,20,30],[40,50,60]])
+arr2=np.array([[70,80,90],[100,110,120]])
+
+hstack1=np.hstack((arr1,arr2))
+print("Let's print horizontal stack")
+print(hstack1)
+"""
+[[ 10  20  30  70  80  90]     horizontally stacked
+ [ 40  50  60 100 110 120]]
+"""
+vstack1=np.vstack((arr1,arr2))
+print("Let's print vertical stack")
+print(vstack1)
+"""
+[[ 10  20  30]			vertically stacked
+ [ 40  50  60]
+ [ 70  80  90]
+ [100 110 120]]
+
+"""
+dstack1=np.dstack((arr1,arr2))
+print("Let's print d stack")
+print(dstack1)
+
+"""
+[[[ 10  70]    first array's 0th element second's 0th element and so on....
+  [ 20  80]
+  [ 30  90]]
+
+ [[ 40 100]
+  [ 50 110]
+  [ 60 120]]]
+"""
+
+zerostack=np.stack((arr1,arr2),axis=0)
+print("let's print axis-0 stack")
+print(zerostack)
+
+"""
+since it is going to create 3d array, in 3d array first is no. of 2d arrays
+so both 2d arrays are just stacked one below another
+
+[[[ 10  20  30]
+  [ 40  50  60]]
+
+ [[ 70  80  90]
+  [100 110 120]]]
+"""
+
+onestack=np.stack((arr1,arr2),axis=1)
+print("let's print axis-1 stack")
+print(onestack)
+
+"""
+
+since it is going to create 3d array, in 3d array second is no. of rows
+so both 2d arrays 0th rows and 1st rows are stacked one below another
+
+[[[ 10  20  30]        # 0th row of first 2d array
+  [ 70  80  90]]       # 0th row of second 2d array
+
+ [[ 40  50  60]        # 1st row of first 2d array
+  [100 110 120]]]      # 1st row of second 2d array
+
+"""
+
+twostack=np.stack((arr1,arr2),axis=2)
+print("let's print axis-2 stack")
+print(twostack)
+
+"""
+
+since it is going to create 3d array, in 3d array third is no. of cols
+hence 1st 2d arrays 0th row and 2nd 2d arrays 0th row are placed in the columns 0 and 1 respectively. Similarly 1st 2d arrays 1st row and 2nd 2d arrays 1st row are placed in the columns 0 and 1 respectively.
+
+
+[[[ 10  70]
+  [ 20  80]
+  [ 30  90]]
+
+ [[ 40 100]
+  [ 50 110]
+  [ 60 120]]]
+
+
+"""

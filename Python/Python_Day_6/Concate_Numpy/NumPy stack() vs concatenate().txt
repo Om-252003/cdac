@@ -1,0 +1,15 @@
+""" NumPy stack() vs. concatenate()
+
+the concatenate() function joins elements of two arrays along an existing axis while the stack() function joins the two arrays along a new axis. This means when we use "stack",the resulting array will have one more dimension than the input arrays.
+ """
+import numpy as np
+
+a = np.array([1,2])
+b = np.array([3,4])
+
+c = np.concatenate((a,b)) # return 1-D array                    
+d = np.stack((a,b)) # return 2-D array
+print("concat output")
+print(c)
+print("stack output")
+print(d)

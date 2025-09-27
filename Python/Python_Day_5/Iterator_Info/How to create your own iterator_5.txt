@@ -1,0 +1,21 @@
+# in the following code even if we write "while" loop, for loop doesn't know where to stop. Hence "raise Stopiteration" has to be there which is later handled automatically by "for loop"
+
+
+class MyNumber:
+    def __iter__(self):
+        self.num=1
+        return self
+    def __next__(self):
+        while self.num<=10:
+            print("inside while")
+            temp=self.num
+            self.num+=1
+            return temp
+        """ else:
+            raise StopIteration """
+
+ref1=MyNumber()
+myiter=iter(ref1)
+for i in myiter:
+    print(i)
+print("done")

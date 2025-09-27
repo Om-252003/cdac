@@ -1,0 +1,8 @@
+def disp(fun,**var):
+    fun(**var)
+
+myfun=lambda **var:print(var)
+
+myfun(name="Viraat",age=34,rollno=1,address="Mumbai")
+
+disp(myfun,Player="Rohit",Runs="250")

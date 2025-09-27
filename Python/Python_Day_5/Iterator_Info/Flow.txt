@@ -1,0 +1,17 @@
+Some of the iterators example
+
+invoking  __Iter__ and __next__ functions explicitly
+
+Without invoking __Iter__ and __next__ functions
+
+How to create your own iterator_1
+
+	How does for loop work here
+
+How to create your own iterator_2
+How to create your own iterator_3
+How to create your own iterator_4
+How to create your own iterator_5
+
+What if you don't want to use for loop
+

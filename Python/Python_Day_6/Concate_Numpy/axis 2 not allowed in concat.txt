@@ -1,0 +1,89 @@
+# with stack
+# axis 0,1 and 2 all are possible for stack in the following case
+
+
+import numpy as np
+arr1=np.array([[1,2,3],[4,5,6]])
+arr2=np.array([[7,8,9],[10,11,12]])
+print(arr1.ndim)
+print(arr2.ndim)
+arr3=np.stack((arr1,arr2),axis=0)
+print(arr3)
+print(arr3.ndim)
+print(arr3.shape)
+print("*********")
+arr3=np.stack((arr1,arr2),axis=1)
+print(arr3)
+print(arr3.ndim)
+print(arr3.shape)
+print("*********")
+arr3=np.stack((arr1,arr2),axis=2)
+print(arr3)
+print(arr3.ndim)
+print(arr3.shape)
+
+
+# with concat
+
+
+arr1=np.array([[1,2,3],[4,5,6]])
+arr2=np.array([[7,8,9],[10,11,12]])
+
+in the above case 
+	np.stack
+		axis 0,axis 1 and axis 2 all are possible
+
+	np.concat
+		axis 0 and axis 1 are possible
+		but axis 2 is not possible,it says
+			axis 2 is out of bounds for array of dimension 2
+	why it is so?
+
+arr3=np.concatenate((arr1,arr2),axis=0)
+print(arr3)
+print(arr3.ndim)
+print(arr3.shape)
+
+
+[[ 1  2  3]
+ [ 4  5  6]
+ [ 7  8  9]
+ [10 11 12]]
+
+	dimension 2  [ does not change the dimension of the resulting array which is correct as per "concat" method ]
+	shape - 4,3
+
+
+arr3=np.concatenate((arr1,arr2),axis=1)
+print(arr3)
+print(arr3.ndim)
+print(arr3.shape)
+
+[[ 1  2  3  7  8  9]
+ [ 4  5  6 10 11 12]]
+
+	dimension 2  [ does not change the dimension of the resulting array which is correct as per "concat" method ]
+
+	shape - 2,6
+
+
+arr3=np.concatenate((arr1,arr2),axis=2) # it will not work, but let's assume it works. now let's see what is the side effect of this.
+print(arr3)
+print(arr3.ndim)
+print(arr3.shape)
+
+
+1  7
+2  8
+3  9
+
+4  10
+5  11
+6  12
+
+	dimension 3  [ it will change the dimension of the resulting array which is not correct as per "concat" method. this should not happen that's why here "axis-2" gives error]
+	shape - 2,3,2
+
+in short axis-2 always results into 3d array which concat never supports. Concat works with multiple 2d arrays but result is always the 2d array.
+
+ 

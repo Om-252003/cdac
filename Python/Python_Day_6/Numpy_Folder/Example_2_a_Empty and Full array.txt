@@ -1,0 +1,21 @@
+"""
+
+np.empty(shape) → allocates memory without setting initial values (faster, but contents are unpredictable).
+
+np.full(shape, value) → creates an array of given shape, filled with the specified value.
+
+"""
+
+import numpy as np
+
+# Create an empty array (values are uninitialized, may contain random data)
+
+empty_array = np.empty((3, 3))
+print("Empty Array:")
+print(empty_array)
+
+# Create a full array (all elements set to a specific value, e.g., 7)
+
+full_array = np.full((3, 3), 7)
+print("\nFull Array:")
+print(full_array)

@@ -1,0 +1,12 @@
+# replace space  with newline
+import re
+
+str1="Welcome to Python Programming World"
+
+print(str1)
+regex=re.compile(" ",re.IGNORECASE)
+result=regex.sub("\n",str1)
+
+print(result)
+
+

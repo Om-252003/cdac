@@ -1,0 +1,22 @@
+# Using iterative method
+
+import numpy as np
+ 
+# making a numpy array
+array1 = np.array([x for x in range(11, 40)])
+ 
+print("Original array")
+print(array1)
+ 
+# making a blank list
+mylist = []
+ 
+for x in array1:
+    # applying two conditions: number is divisible by 2 and is greater than 15
+    if x % 2 == 0 and x > 15:
+       mylist.append(x)
+ 
+# Converting new list into numpy array
+array2 = np.array(mylist)
+print("New array")
+print(array2)

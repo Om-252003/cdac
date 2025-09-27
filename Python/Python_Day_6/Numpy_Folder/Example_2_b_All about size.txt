@@ -1,0 +1,17 @@
+import numpy as np
+
+# Create an array
+arr = np.array([1, 2, 3])
+
+# Number of elements in the array
+size = arr.size
+
+# Length of one array element in bytes
+item_size = arr.itemsize
+
+# Total bytes consumed by the elements
+total_bytes = arr.nbytes
+
+print("Size of the array:", size)
+print("Length of one array element in bytes:", item_size)
+print("Total bytes consumed by the elements of the array:", total_bytes)

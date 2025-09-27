@@ -1,0 +1,4 @@
+temp=lambda  x:[print(f"{x} is positive") if x>0
+                else [print("number is zero") if x==0 else print(f"{x} is negative")]]
+
+temp(-4)

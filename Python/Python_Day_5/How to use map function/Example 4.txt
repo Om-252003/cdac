@@ -1,0 +1,17 @@
+# List of strings
+l = ['sat', 'bat', 'cat', 'mat']
+
+# map() can listify the list of strings individually
+test = list(map(list, l))
+print(test)
+
+# what does map(list,l) do ?
+    # map(list,l) returns  [['s','a','t'],['b','a','t'],['c','a','t'],['m','a','t']]
+
+for i in map(list,l):
+    print(i)
+
+for i in map(list,l):
+    for j in i:
+        print(j,end="     ")
+    print("\n")

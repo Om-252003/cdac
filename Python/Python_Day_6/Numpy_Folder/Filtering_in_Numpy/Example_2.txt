@@ -1,0 +1,21 @@
+import numpy as np
+
+arr = np.array([5,8,9,11,12,16])
+print(arr)
+
+print(arr%4==0)  #  it prints  [False  True False False  True  True]
+
+print(arr[(arr%4==0)]) # it's like arr[[False  True False False  True  True]]
+
+print(arr[(arr>=9) & (arr<=15)])
+
+print(arr[(arr%3==0) | (arr%11==0)])
+
+#filter for values that are equal to 2, 3, 5, or 12
+print(np.isin(arr,[2, 3, 5, 12]))
+print("*****************")
+
+print(arr[np.isin(arr,[2, 3, 5, 12])])
+
+
+

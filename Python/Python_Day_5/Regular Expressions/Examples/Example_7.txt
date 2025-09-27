@@ -1,0 +1,15 @@
+# find out how many "python" or "easy" words are there in a text
+import re
+
+pattern1="python|easy"
+str1="There is a fun in learning Python. It is easy to code python program. Python makes programmer's life easy"
+
+result=re.findall(pattern1,str1,re.IGNORECASE)
+
+print(result)
+
+for r in result:
+    print(r)
+
+
+

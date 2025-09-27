@@ -1,0 +1,46 @@
+create a hierarchy
+
+				Animal
+
+					void makeSound()
+					
+override "makeSound()" in all the child classes.
+
+		Dog		Cat		Tiger
+							void hunting()
+
+
+
+define perform function.
+
+	perform function should be defined in such a way that it can accept any animal and invoke "makeSound()" function.
+
+	also make sure if "Tiger" is passed , its "hunting()" method also should be called.
+	
+Answer:
+class Animal:
+    def makeSound(self):
+        print("Animal makes sound")
+
+class Dog(Animal):
+    def makeSound(self):
+        print("Bark")
+
+class Cat(Animal):
+    def makeSound(self):
+        print("meow")
+
+class Tiger(Animal):
+    def makeSound(self):
+        print("Roar")
+    def hunting(self):
+        print("Tiger is hunting")
+
+def perform(a):
+    if isinstance(a,Tiger):
+        a.hunting()
+    a.makeSound()
+
+perform(Dog())
+perform(Cat())
+perform(Tiger())

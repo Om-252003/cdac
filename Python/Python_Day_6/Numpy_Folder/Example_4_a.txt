@@ -1,0 +1,13 @@
+# initialize one-d and 2d array  with one  
+
+import numpy as np
+first=np.ones((1,4))                             # one row , 4 columns
+
+print(first)
+print("\n")
+
+# initialize two-d array with zeros
+
+second=np.ones((3,4))                            # 3 rows and 4 columns
+
+print(second)

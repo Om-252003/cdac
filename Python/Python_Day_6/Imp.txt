@@ -1,0 +1,4 @@
+axis=0   chopping something vertically from top to bottom
+	
+axis=1   chopping something horizontly from left to right
+	

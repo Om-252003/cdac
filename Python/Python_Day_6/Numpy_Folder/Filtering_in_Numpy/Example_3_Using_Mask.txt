@@ -1,0 +1,23 @@
+# Using mask
+
+import numpy as np
+ 
+# making a numpy array
+array1 = np.array([num for num in range(10, 50)])
+ 
+print("Original array")
+print(array1)
+ 
+# defining mask based on two conditions:
+# array element must be greater than 22
+# and must be a divisible by 2
+mask = (array1 > 22) & (array1 % 2 == 0)
+ 
+# making new array on conditions
+array2 = array1[mask]
+print("New array")
+print(array2)
+
+
+
+

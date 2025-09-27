@@ -1,0 +1,3 @@
+myiter=iter([10,20,30])
+for i in myiter:    #  for loop internally handles "Stopiteration"
+    print(i)

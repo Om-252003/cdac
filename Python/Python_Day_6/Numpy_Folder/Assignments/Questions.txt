@@ -1,0 +1,37 @@
+1) create a list, accept 5 numbers , store them in the list and finally convert that list to numpy array.
+
+2) create numpy array of 5 numbers and print their sum
+
+3) create numpy double dimension array of 3*3 to store your initial and display them in a tabular form.
+
+4) create one-d numpy array of 12 elements , accept 12 numbers and display them. Now convert this one-d array into (4*3) two-d array and display it in a tabular form.
+
+5) create two double dimension array and arrange (stack) them using "axis=0" "axis=1" and  "axis=2".
+
+
+6) create two one-d arrays and then find out:
+	a) common elements of both the array
+	b) unique elements of first array
+	c) unique elements of second array
+
+7) accept no.of rows and no. of cols from the user , create two-d array accordingly. Now calculate the sum as per "axis=0" and "axis=1"
+
+8) declare two 2d arrays and calculate the sum as per "axis=0" "axis=1" and "axis=2"
+
+9) create two-d array ,display it. Now accept a number from user and perform all arithmetic operations on each and every element of the array using that number.
+
+10) accept start, end and how many numbers to be generated and then using "linspace" create numpy array.
+
+11) create one-d array of 8 numbers and then using "slicing" concept,
+	a) print numbers from 1 to 4
+	b) print all the numbers from 3rd position
+	c) print last 3 numbers
+
+12) create 2 d array (4*3) with following values:
+[[10,20,30,40],[50,60,70,80],[90,100,110,120]]
+
+now using array slicing concept display following values
+	a) display   50  60  70  80
+	b) display 100 and 110
+	c) display 30 70 and 110
+	d) display 50  60  90 and 100

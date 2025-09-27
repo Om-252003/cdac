@@ -1,0 +1,19 @@
+import re
+# Both re.search() and re.match() returns only the first occurrence of a substring in the string and ignore others.
+#  re.match() only works if the match is found at the beginning of the string. 
+
+mystring1="123abc123"
+print(re.match("123",mystring1))
+print(re.search("123",mystring1))
+
+mystring2="abc123"
+print(re.match("123",mystring2))  #  None
+print(re.search("123",mystring2))
+
+"""
+output:
+<re.Match object; span=(0, 3), match='123'>
+<re.Match object; span=(0, 3), match='123'>
+None
+<re.Match object; span=(3, 6), match='123'>
+"""

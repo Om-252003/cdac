@@ -1,0 +1,19 @@
+# names start with s or r or v
+#  names start with character starts from p to t
+#  \w means word character
+
+
+import re
+
+#name="sachin"
+#name="rahul"
+#name="chetan"
+name="Vishal"
+name1="Pandit"
+
+list1=re.findall(r"^[srv]\w*", name,re.IGNORECASE)
+list2=re.findall(r"^[p-t]\w*", name1,re.IGNORECASE)
+
+print(list1)
+print(list2)
+

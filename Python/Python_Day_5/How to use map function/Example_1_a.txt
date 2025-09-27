@@ -1,0 +1,16 @@
+# using map() function with tuple
+# map function checks that the first argument you give should be a function
+
+def addition(n):
+    return n+n
+
+mytuple = (10,20,30,40)
+print(mytuple)
+print(type(mytuple))
+
+temp="hello"
+result = map(temp,mytuple)     #  TypeError: 'str' object is not callable
+print(list(result))
+
+
+

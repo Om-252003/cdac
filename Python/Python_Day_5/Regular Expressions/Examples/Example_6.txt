@@ -1,0 +1,8 @@
+import re
+
+pattern1=r"\s"		 #  \s  means whitespace characters
+str1="Welcome to RE World"
+
+mylist1=re.split(pattern1,str1)
+print(mylist1)
+print(type(mylist1))

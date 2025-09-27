@@ -1,0 +1,11 @@
+# how to make numpy array read only
+import numpy as np
+
+
+first=np.array([10,20,30])
+first.flags.writeable = False
+print(first,"\t",id(first))
+second=first+1      #  no problem here
+# first[0]=34         # ValueError: assignment destination is read-only
+print(first,"\t",id(first))
+print(second,"\t",id(second))

@@ -1,0 +1,9 @@
+how does "for i in ref1:" work here?
+
+it first invokes "__iter__()" method of MyNumber class.
+
+	__iter__() method returns for loop the object of "MyNumber"
+
+now for loop invokes "__next__()" method of MyNumber class which returns a number every time.
+This number for loop stores inside "i" variable and then prints.
+when the value goes beyond 10, for loop stops as it gets "Stop Iteration" from the "next" function. 

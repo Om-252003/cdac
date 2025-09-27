@@ -1,0 +1,19 @@
+1) Accept a number from the user check if it is special 
+ * number or not? 
+Example: 145
+1! =1 
+4!=1*2*3*4 
+5!=1*2*3*4*5 
+Sum of the factorials is (1+24+120=145) 
+
+some other special numbers are 1,2 and 40585
+
+2) accept a number (maximum 5 digit number) and  calculate sum of its digits.
+
+3)  Print 4 digit armstrong numbers
+ e.g.  1634, 8208, 9474 are four-digit Armstrong numbers
+
+4) accept principle amt, rate of interest and no. of years and calculate simple interest.
+	[ formula :    principle_amt*rate*years)/100 ]
+
+

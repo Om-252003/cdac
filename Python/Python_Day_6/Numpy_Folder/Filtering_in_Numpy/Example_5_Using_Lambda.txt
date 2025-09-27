@@ -1,0 +1,22 @@
+# Using Lambda
+
+import numpy as np
+ 
+# making a numpy array
+array1 = np.array([num for num in range(1,30)])
+ 
+print("Original array")
+print(array1)
+ 
+# using lambda to apply condition
+mylist = list(filter(lambda x: x > 15 and x % 3 == 0 and x % 10 != 0, array1))
+ 
+# Converting new list into numpy array
+array2 = np.array(mylist)
+print("New array")
+print(array2)
+print("Using list comprehension for numpy filtering")
+mylist1=[x for x in array1 if x%5==0]
+array2=np.array(mylist1)
+print(array2)
+

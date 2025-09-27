@@ -1,0 +1,11 @@
+mytuple = ("apple", "banana", "cherry")
+for myit in mytuple:
+    print(myit)
+
+mylist=[10,20,30,40]
+for myit1 in mylist:
+    print(myit1)
+
+mystring="Vidyanidhi"
+for i in mystring:
+    print(i)

@@ -1,0 +1,16 @@
+# *nums is used to unpack the list
+# *mapped is used to unpack the map object
+# *mapped cannot be used more than one as it returns iterator
+
+def square(num):
+    return num * num
+
+nums = [1, 2, 3, 4, 5]
+mapped = map(square, nums)
+
+print(nums)
+print(mapped)
+print(*nums)
+print(*mapped)
+print(*mapped)  # no output
+print(*nums)

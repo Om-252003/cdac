@@ -1,0 +1,16 @@
+import numpy as np
+
+# Sample array
+arr = np.array([1, 2, 3, 4])
+print("Original array")
+print(arr)
+
+# Repeat 2 times
+repeat_2 = np.tile(arr, 2)
+print("Repeating 2 times")
+print(repeat_2)
+
+# Repeat 3 times
+repeat_3 = np.tile(arr, 3)
+print("Repeating 3 times")
+print(repeat_3)

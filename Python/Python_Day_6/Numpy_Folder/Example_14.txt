@@ -1,0 +1,50 @@
+"""
+
+The statement "Unique values that are in only one (not both) of the input arrays" means:
+
+We take two lists of numbers,
+and keep only those numbers that are present in exactly one of the lists,
+but not in both.
+
+e.g.
+
+Array1 = [0, 10, 20, 40, 60, 80]
+Array2 = [10, 30, 40, 50, 70]
+
+Numbers in both arrays (common elements):
+
+10, 40
+
+(We will remove these because they are in both arrays.)
+
+Numbers only in Array1:
+
+0, 20, 60, 80
+
+Numbers only in Array2:
+
+30, 50, 70
+
+Combine these unique-only numbers:
+
+0, 20, 60, 80, 30, 50, 70
+
+Sort them (NumPy does this automatically):
+
+[0, 20, 30, 50, 60, 70, 80]
+
+"""
+
+
+
+import numpy as np
+
+# Arrays
+array1 = np.array([0, 10, 20, 40, 60, 80])
+array2 = np.array([10, 30, 40, 50, 70])
+
+# Set exclusive-or
+result = np.setxor1d(array1, array2)
+
+print("Unique values that are in only one (not both) of the input arrays:")
+print(result)

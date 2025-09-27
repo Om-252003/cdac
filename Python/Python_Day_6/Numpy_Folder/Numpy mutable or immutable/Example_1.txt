@@ -1,0 +1,10 @@
+# numpy array elements are mutable but numpy as an object is immutable
+# first+1  creates a new numpy object in which changes can be seen
+
+import numpy as np
+first=np.array([10,20,30])
+print(first,"\t",id(first))
+second=first+1      #  this is like immutable
+first[0]=34         #  array elements can be changed
+print(first,"\t",id(first))
+print(second,"\t",id(second))
