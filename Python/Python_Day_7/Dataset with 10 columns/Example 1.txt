@@ -1,0 +1,206 @@
+import pandas as pd
+
+data = {
+    "StudentID": range(1, 11),
+    "Name": ["Amit", "Bhavna", "Chirag", "Deepa", "Esha",
+             "Farhan", "Geeta", "Harsh", "Ishita", "Jay"],
+    "Age": [18, 19, 20, 18, 21, 22, 19, 20, 21, 22],
+    "Gender": ["M", "F", "M", "F", "F", "M", "F", "M", "F", "M"],
+    "Course": ["CS", "CS", "IT", "IT", "EC", "EC", "CS", "IT", "EC", "CS"],
+    "Maths": [88, 92, 45, 67, 78, 56, 95, 34, 65, 80],
+    "Physics": [76, 85, 67, 90, 58, 45, 91, 72, 60, 88],
+    "Chemistry": [69, 72, 80, 65, 55, 60, 78, 82, 49, 90],
+    "Attendance(%)": [92, 88, 75, 80, 95, 60, 98, 55, 70, 85],
+    "City": ["Delhi", "Mumbai", "Delhi", "Chennai", "Bangalore",
+             "Delhi", "Pune", "Chennai", "Mumbai", "Pune"]
+}
+
+df = pd.DataFrame(data)
+print("Original DataFrame:")
+print(df.to_string(index=False))
+
+pd.set_option("display.max_columns", None)   # show all columns for whatsoever condition
+print("Students older than 20")
+print(df[df["Age"] > 20])
+
+print("Female students in CS course")
+print(df[(df["Gender"] == "F") & (df["Course"] == "CS")])
+
+print("Maths < 50 OR Attendance < 70")
+print(df[(df["Maths"] < 50) | (df["Attendance(%)"] < 70)])
+
+print("Students from Delhi or Mumbai")
+print(df[df["City"].isin(["Delhi", "Mumbai"])])
+
+print("Names starting with ‘A’")
+print(df[df["Name"].str.startswith("A")])
+
+print("Maths score between 60 and 90")
+print(df[df["Maths"].between(60, 90)])
+
+print("Top 3 students in Physics")
+# This time with selected columns
+print(df.nlargest(3, "Physics")[["StudentID", "Name", "Gender", "Physics"]])
+
+print("Bottom 2 students in Attendance")
+print(df.nsmallest(2, "Attendance(%)")[["StudentID", "Name", "Gender", "Attendance(%)"]])
+
+print("Physics > 70 and City == 'Delhi'")
+print(df.query("Physics > 70 and City == 'Delhi'")[["StudentID", "Name", "Gender", "Physics","City"]])
+
+print("students with Course in [cs, IT] AND City in [Delhi, Pune]")
+print(df[(df["Course"].isin(["CS", "IT"])) & (df["City"].isin(["Delhi", "Pune"]))][["StudentID", "Name", "Gender", "Course","City"]])
+
+"""
+How df.duplicated("City") works
+
+duplicated() marks a row as True if the value in "City" column has already appeared before in the DataFrame.
+
+By default it uses keep="first", meaning:
+
+The first occurrence of a city is marked as False (not duplicate).
+
+All later occurrences of the same city are marked as True.
+
+
+
+Why only Delhi appears twice
+
+Because Delhi occurs 3 times in total:
+
+Row 1 (first Delhi) -- not duplicate
+
+Row 3 (duplicate Delhi) -- shown
+
+Row 6 (duplicate Delhi) -- shown
+
+Other cities (Mumbai, Chennai, Pune) occur only twice, so only one row each is marked as duplicate.
+
+"""
+print("duplicate cities")
+print(df[df.duplicated("City")][["StudentID", "Name", "Gender","City"]])
+
+"""
+If you want all duplicate rows (including the first occurrence)
+
+Use keep=False:
+
+print("All duplicate cities (including first occurrence)")
+print(df[df.duplicated("City", keep=False)][["StudentID", "Name", "Gender","City"]])
+"""
+
+print("All duplicate cities (including first occurrence)")
+print(df[df.duplicated("City", keep=False)][["StudentID", "Name", "Gender","City"]])
+
+"""
+count how many times each city is duplicated (like a frequency table)
+"""
+print("City frequency counts")
+print(df["City"].value_counts())
+
+print("Show only cities that appear more than once")
+print(df["City"].value_counts()[df["City"].value_counts() > 1])
+
+print("Show each city and list of student names")
+grouped = df.groupby("City")["Name"].apply(list)#.reset_index()
+print(grouped)
+
+
+"""
+What is list in the following command?
+    for each city group, all "Name" values are 
+    collected and converted into a Python list.
+    instead of "list" we can also specify "set" or "tuple"
+    or "dict"
+"""
+print("Show each city with count and list of students")
+grouped = df.groupby("City").agg(
+    Student_Count=("StudentID", "count"),
+    Students=("Name",list)
+).reset_index()
+
+print(grouped)
+
+"""
+Step 1: df.apply(...) with axis=1
+
+apply() lets you run a function across rows or columns.
+
+axis=0 -- applies the function column-wise
+
+axis=1 -- applies the function row-wise
+
+Here, axis=1 means the lambda will process each row 
+as a Pandas Series.
+
+Step 2: The lambda function
+lambda x: x["Maths"] + x["Physics"] + x["Chemistry"] > 230
+
+apply() calls the lambda for each row, and the lambda returns a boolean.
+
+For each row (x), it takes the "Maths", "Physics", and 
+"Chemistry" marks.
+
+It adds them.
+
+It checks if the sum is greater than 230.
+
+The output is True or False for each row.
+
+So this returns a Boolean Series, something like:
+
+0    True
+1    True
+2    False
+3    True
+...
+dtype: bool
+
+Step 3: df[...]
+
+When you pass a Boolean Series inside df[...], 
+Pandas filters rows where the condition is True.
+
+So only students with total marks > 230 are kept.
+
+In simple terms:
+The statement selects students whose 
+Maths + Physics + Chemistry > 230.
+"""
+
+"""
+Filter with Lambda + apply
+
+Students whose total marks (Maths + Physics + Chemistry) > 230:
+"""
+print("Students whose total marks (Maths + Physics + Chemistry) > 230")
+
+print(df[df.apply(lambda x: x["Maths"] + x["Physics"] + x["Chemistry"] > 230, axis=1)][["StudentID", "Name", "Maths","Physics","Chemistry"]])
+
+print("Alternate (and cleaner) way without apply:")
+
+print(df[df["Maths"] + df["Physics"] + df["Chemistry"] > 230][["StudentID", "Name", "Maths","Physics","Chemistry"]])
+
+"""
+You can create a temporary column (on the fly) 
+while filtering.
+Just use .assign() to add a calculated column without 
+modifying the original DataFrame.
+"""
+
+result = (
+    df[df["Maths"] + df["Physics"] + df["Chemistry"] > 230]
+    .assign(Total=df["Maths"] + df["Physics"] + df["Chemistry"])
+    [["StudentID", "Name", "Maths", "Physics", "Chemistry", "Total"]]
+)
+
+print(result)
+
+"""
+df["Maths"] + df["Physics"] + df["Chemistry"] 
+ calculates row-wise sum.
+
+.assign(Total=...) 
+ creates a new temporary column Total with that sum.
+(It doesn’t change the original df).
+"""

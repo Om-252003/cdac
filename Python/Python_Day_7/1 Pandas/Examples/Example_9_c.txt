@@ -1,0 +1,26 @@
+# extract DataFrame columns randomly
+
+from pandas import *
+
+mydataframe=DataFrame({"proid":range(5,9),"proname":['soap','perfume','deo','powder'],"price":[120,400,280,160]})
+print(mydataframe)
+
+mylist=mydataframe.values.tolist()                # extract all rows
+print(mylist)
+print("\n\n")
+mylist=mydataframe.iloc[:,[0,2]].values.tolist()    #  extract all rows of 0 and 2nd columns ( by skipping 1st column)
+print(mylist)
+
+'''
+   proid  proname  price
+0      5     soap    120
+1      6  perfume    400
+2      7      deo    280
+3      8   powder    160
+[[5, 'soap', 120], [6, 'perfume', 400], [7, 'deo', 280], [8, 'powder', 160]]
+
+
+
+[[5, 120], [6, 400], [7, 280], [8, 160]]
+
+'''

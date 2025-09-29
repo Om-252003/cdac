@@ -1,0 +1,22 @@
+import pandas as pd
+
+# Creating Dataframe
+students_data = pd.DataFrame({
+    'Prn_No': [101, 102, 103, 104, 105,
+           106, 107, 108, 109, 110],
+    'NAME': ['Jagruti', 'Pavan', 'Harish',
+             'Pooja', 'Rahul', 'Niharika',
+             'Sachin', 'Atul', 'Dean', "Manish"],
+    'course': ['DAC', 'DBDA', 'DBDA', 'DBDA', 'DBDA',
+               'DAC', 'DAC', 'DAC', 'DBDA', 'DBDA']})
+
+# Creating Dataframe
+placement_details = pd.DataFrame(
+    {'Prn_No': [101, 102, 103, 104, 105,
+            106, 107, 108, 109, 110],
+     'status': ['placed', 'not_placed', 'placed',
+                 'placed', 'not_placed', 'not_placed',
+                 'placed', 'not_placed', 'placed', 'placed']})
+
+# Merging Dataframe
+print(pd.merge(students_data, placement_details, on='Prn_No'))

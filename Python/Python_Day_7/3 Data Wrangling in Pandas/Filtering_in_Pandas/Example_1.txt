@@ -1,0 +1,55 @@
+import pandas as pd
+import re
+
+proid = [1, 2, 3, 4]
+proname = ["Soap", "Perfume", "Deo", "Body_Wash"]
+price = [120, 400, 250, 180]
+
+# dictionary of lists
+mydictionary1 = {'proid': proid, 'proname': proname, 'price': price}
+
+mydataframe1 = pd.DataFrame(mydictionary1)
+print(mydataframe1)
+print("without index ************************")
+print(mydataframe1.to_string(index=False))
+print("\nproducts where price more than 200\n")
+print(mydataframe1[mydataframe1.price > 200].to_string(index=False))
+
+print("\nproducts where price is between 200 and 300\n")
+print(mydataframe1[(mydataframe1.price >= 200) & (mydataframe1.price <= 300)].to_string(index=False))
+
+print("\nproducts where name is Soap or Deo\n")
+pronames = ['Soap', 'Deo']
+print(mydataframe1[mydataframe1.proname.isin(pronames)].to_string(index=False))  # case sensitive
+
+print("\nproducts where name is neither Soap nor Deo\n")
+pronames = ['Soap', 'Deo']
+print(mydataframe1[~mydataframe1.proname.isin(pronames)].to_string(index=False))  # case sensitive
+
+print("\nproducts where name is  Soap or Deo with ignore case\n")
+pronames = ['soAp', 'dEo']
+print(mydataframe1[mydataframe1.proname.str.fullmatch('soAp|deO', case=False)])
+
+print("\nproducts where name is  Soap or Deo with case\n")
+
+print(mydataframe1[mydataframe1.proname.str.fullmatch('soAp|deO')])
+
+print("\nProducts start with D\n")
+
+print(mydataframe1[mydataframe1.proname.str.startswith('D')])
+
+print("\nProducts start with d case sensitive\n")
+print(mydataframe1[mydataframe1.proname.str.casefold().str.startswith('d')])
+
+print("\nproducts which contains e \n")
+print(mydataframe1[mydataframe1.proname.str.contains('e')])
+
+print("\nproducts with the largest values\n")
+# print(mydataframe1.nlargest(2,'price'))   # 2 rows in descending order of price
+
+print(mydataframe1.nlargest(1, 'price'))  # 1 row in descending order of price
+
+print("\nproducts with the smallest value\n")
+print(mydataframe1.nsmallest(2, 'price'))  # 2 rows in ascending order of price
+
+

@@ -1,0 +1,10 @@
+Data Wrangling is the process of gathering, collecting, and transforming Raw data into another format for better understanding, decision-making, accessing, and analysis in less time. Data Wrangling is also known as Data Munging.
+
+Data wrangling in Python deals with the below functionalities:
+
+Data exploration: In this process, the data is studied, analyzed, and understood by visualizing representations of data.
+Dealing with missing values: Most of the datasets having a vast amount of data contain missing values of NaN, they are needed to be taken care of by replacing them with mean, mode, the most frequent value of the column, or simply by dropping the row having a NaN value.
+Reshaping data: In this process, data is manipulated according to the requirements, where new data can be added or pre-existing data can be modified.
+Filtering data: Some times datasets are comprised of unwanted rows or columns which are required to be removed or filtered.
+
+Data wrangling involves processing the data in various formats like - merging, grouping, concatenating etc. for the purpose of analysing or getting them ready to be used with another set of data.

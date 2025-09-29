@@ -1,0 +1,12 @@
+ # Series object is a one-dimensional labelled or indexed  array
+
+import pandas as pd
+
+first=pd.Series([100,20,3,40,5])
+print(first)
+print("sorting Pandas values without indexes changed")
+print(first.sort_values())
+print("sorting Pandas values with indexes changed")
+print(first.sort_values(ignore_index=True))
+print("sorting in descending order ,Pandas values with indexes changed")
+print(first.sort_values(ascending=False,ignore_index=True))

@@ -1,0 +1,13 @@
+# difference between tradional reading and pandas way of reading
+
+from pandas import *
+
+myfile=read_json("details.json")
+print(myfile)
+print("\n\n")
+print("let's us read the file in a tradional way")
+f=open("details.json","r")
+for content in f:
+	print(content)
+f.close()
+print("Done")

@@ -17,7 +17,7 @@ print(vstack1)
  [40 50 60]]         vertically stacked
 
 """
-dstack1=np.dstack((arr1,arr2))
+dstack1=np.dstack((arr1,arr2)) # d for depth i.e. depth stack
 print("Let's print d stack")
 print(dstack1)
 

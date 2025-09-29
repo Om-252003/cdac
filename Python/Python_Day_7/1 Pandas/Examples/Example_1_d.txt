@@ -1,0 +1,23 @@
+# if you don't want to print index
+
+import pandas as pd
+
+first=pd.Series([10,20,30,40,50])
+print(first)
+print("*************")
+print(first.to_string(index=False))
+
+'''
+0    10
+1    20
+2    30
+3    40
+4    50
+dtype: int64
+*************
+10
+20
+30
+40
+50
+'''

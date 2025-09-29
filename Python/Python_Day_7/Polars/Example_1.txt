@@ -1,0 +1,29 @@
+import polars as pl
+
+
+# Create a DataFrame
+df = pl.DataFrame({
+    "id": [1, 2, 3, 4, 5],
+    "name": ["Alice", "Bob", "Charlie", "David", "Eva"],
+    "age": [25, 30, 35, 40, 29],
+    "salary": [50000, 60000, 75000, 80000, 65000],
+})
+
+print("DataFrame:")
+print(df)
+
+# Select columns
+print("\nSelect only name and age:")
+print(df.select(["name", "age"]))
+
+# Filter rows
+print("\nEmployees with salary > 60,000:")
+print(df.filter(df["salary"] > 60000))
+
+# Group by and aggregate
+print("\nAverage salary by age > 30 group:")
+print(df.filter(df["age"] > 30).group_by("age").agg(pl.col("salary").mean()))
+
+# Add a new column
+print("\nAdd bonus column (10% of salary):")
+print(df.with_columns((df["salary"] * 0.10).alias("bonus")))

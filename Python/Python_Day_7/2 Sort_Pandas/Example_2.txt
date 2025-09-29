@@ -1,0 +1,17 @@
+# DataFrame is a two dimensional labelled data structure
+# DataFrame comprises of rows and columns
+
+from pandas import *
+
+mydict={"Name":['Sachin','Rahul','Anil'],"Age":[39,35,38]}
+print(mydict)
+mydataframe=DataFrame(mydict)
+print(mydataframe)
+print("Age-wise ascending sort")
+print(mydataframe.sort_values(by="Age",ignore_index=True))
+print("Age-wise descending sort")
+print(mydataframe.sort_values(by="Age",ascending=False,ignore_index=True))
+print("Name-wise ascending sort")
+print(mydataframe.sort_values(by="Name",ignore_index=True))
+print("Name-wise descending sort")
+print(mydataframe.sort_values(by="Name",ascending=False,ignore_index=True))

@@ -1,0 +1,12 @@
+# For this to work , you need to install "xlrd"
+
+# pip install xlrd
+
+import pandas as pd
+mydataframe1 = pd.read_excel('ForPandas.xls')
+ 
+print(mydataframe1)
+
+print("\n\nLet's print Sheet2")
+mydataframe1 = pd.read_excel('ForPandas.xls',sheet_name='Sheet2')
+print(mydataframe1)

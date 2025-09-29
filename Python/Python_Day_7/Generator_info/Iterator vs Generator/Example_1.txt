@@ -1,0 +1,24 @@
+myiterator=[x*x for x in range(3)]     #   iterator or iterable (list ,tuple etc)
+print(type(myiterator))
+for i in myiterator:
+    print(i)
+print("print again")
+for i in myiterator:
+    print(i)
+print("and so on...........")
+# you can read them as much as you wish, as iterators store all the values in memory 
+print("Let's see generator now")
+mygenerator=(x*x for x in range(3))
+print(type(mygenerator))
+for i in mygenerator:
+    print(i)
+print("let's print again")
+for i in mygenerator:
+    print(i)  # no output 
+# this is because ,Generators do not store all the values in memory, they generate the values on the fly:
+# we have to regenerate the generator
+print("We've to regenerate the generator")
+mygenerator=(x*x for x in range(3))
+print(type(mygenerator))
+for i in mygenerator:
+    print(i)

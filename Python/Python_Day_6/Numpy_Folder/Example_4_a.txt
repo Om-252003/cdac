@@ -5,6 +5,9 @@ first=np.ones((1,4))                             # one row , 4 columns
 
 print(first)
 print("\n")
+'''[[1. 1. 1.]
+ [1. 1. 1.]
+ [1. 1. 1.]]'''
 
 # initialize two-d array with zeros
 

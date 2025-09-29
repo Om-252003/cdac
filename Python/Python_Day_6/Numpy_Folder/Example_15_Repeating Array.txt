@@ -14,3 +14,12 @@ print(repeat_2)
 repeat_3 = np.tile(arr, 3)
 print("Repeating 3 times")
 print(repeat_3)
+
+'''
+Original array
+[1 2 3 4]
+Repeating 2 times
+[1 2 3 4 1 2 3 4]
+Repeating 3 times
+[1 2 3 4 1 2 3 4 1 2 3 4]
+'''

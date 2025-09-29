@@ -1,0 +1,33 @@
+import pandas as pd
+import polars as pl
+import numpy as np
+import time
+
+# Small dataset
+N = 1_000_000
+data = {
+    "id": np.arange(N),
+    "value": np.random.randint(1, 1000, size=N)
+}
+
+# Create Pandas and Polars DataFrames
+df_pd = pd.DataFrame(data)
+df_pl = pl.DataFrame(data)
+
+# --------------------
+# Pandas
+# --------------------
+start = time.time()
+result_pd = df_pd["value"].mean()   # simple average
+end = time.time()
+print("Pandas time:", (end - start) * 1000, "ms")
+print("Pandas mean:", result_pd)
+
+# --------------------
+# Polars
+# --------------------
+start = time.time()
+result_pl = df_pl["value"].mean()   # simple average
+end = time.time()
+print("\nPolars time:", (end - start) * 1000, "ms")
+print("Polars mean:", result_pl)

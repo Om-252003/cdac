@@ -1,0 +1,12 @@
+from pandas import *
+myseries=Series([10,20,30,40,50])
+print(myseries)
+myseries1=Series([1,2,3,4,5])
+print(myseries1)
+print("*****")
+print(myseries.add(myseries1)) # pandas are immutable
+print("*********")
+print(myseries)
+
+
+

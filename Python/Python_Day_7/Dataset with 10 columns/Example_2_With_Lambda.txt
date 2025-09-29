@@ -1,0 +1,104 @@
+import pandas as pd
+
+data = {
+    "StudentID": [1, 2, 3, 4, 5, 6, 7, 8],
+    "Name": ["Amit", "Bhavna", "Chirag", "Deepa", "Esha", "Farhan", "Geeta", "Harsh"],
+    "Age": [18, 19, 20, 18, 21, 22, 19, 20],
+    "Gender": ["M", "F", "M", "F", "F", "M", "F", "M"],
+    "Course": ["CS", "CS", "IT", "IT", "EC", "EC", "CS", "IT"],
+    "Maths": [88, 92, 45, 67, 78, 56, 95, 34],
+    "Physics": [76, 85, 67, 90, 58, 45, 91, 72],
+    "Chemistry": [69, 72, 80, 65, 55, 60, 78, 82],
+    "City": ["Delhi", "Mumbai", "Delhi", "Chennai", "Bangalore", "Delhi", "Pune", "Chennai"]
+}
+
+df = pd.DataFrame(data)
+print(df)
+
+print("Apply on a column -- square Maths marks")
+df["Maths_Squared"] = df["Maths"].apply(lambda x: x**2)
+print(df[["Name", "Maths", "Maths_Squared"]])
+
+"""
+df["Maths_Squared"] = df["Maths"].apply(lambda x: x**2)
+print(df[["Name", "Maths", "Maths_Squared"]])
+df["Maths_Squared"] = ... creates a new column in the 
+DataFrame called "Maths_Squared".
+
+It is not just for display — this column actually exists 
+in df after this line. You could use it later for 
+calculations, filtering, etc.
+
+Example:
+
+print(df.columns)
+"""
+print("Let's check whether Maths_Squared column is added or not")
+print(df.columns)
+print("************************************")
+print("Row-wise calculation -- Total marks")
+df["Total"] = df.apply(lambda row: row["Maths"] + row["Physics"] + row["Chemistry"], axis=1)
+print(df[["Name", "Total"]])
+
+print("Conditional labeling -- Pass/Fail")
+df["Result"] = df["Total"].apply(lambda x: "Pass" if x >= 200 else "Fail")
+print(df[["Name", "Total", "Result"]])
+
+print("Multiple conditions → Scholarship eligibility")
+df["Scholarship"] = df.apply(
+    lambda row: "Yes" if (row["Maths"] > 80 and row["Physics"] > 80) else "No", axis=1
+)
+print(df[["Name", "Maths", "Physics", "Scholarship"]])
+
+print("Transform strings → Uppercase names")
+df["Upper_Name"] = df["Name"].apply(lambda x: x.upper())
+print(df[["Name", "Upper_Name"]])
+
+grouped=df.groupby("Course")["Total"]
+print(grouped) # SeriesGroupBy object
+print(*grouped) # unpack SeriesGroupBy object
+"""
+Step 1: df.groupby("Course")
+
+This groups the DataFrame by the "Course" column.
+
+For example, all students with "CS" form one group, 
+"IT" another, and "EC" another.
+
+Step 2: ["Total"]
+
+After grouping, we select the "Total" column only.
+
+So now we have a grouped Series containing "Total" marks 
+for each group.
+
+Step 3: .apply(lambda x: x.mean())
+
+apply() applies the lambda function to each group separately.
+
+x here is a Series containing all "Total" values for 
+that particular course.
+
+Example (imaginary numbers):
+
+Group "CS" → x = [252, 249, 264]
+Group "IT" → x = [192, 222, 180]
+Group "EC" → x = [191, 161]
+
+
+The lambda calculates the mean(average) of each Series:
+
+"""
+
+
+print("Groupby with lambda -- average total per course")
+avg_total = df.groupby("Course")["Total"].apply(lambda x: x.mean())
+print(avg_total)
+
+print("Filtering rows with lambda -- Students with odd StudentID")
+odd_students = df[df["StudentID"].apply(lambda x: x % 2 != 0)]
+print(odd_students[["StudentID", "Name"]])
+
+print("Sorting with custom lambda -- by last character of Name")
+sorted_df = df.sort_values(by="Name", key=lambda col: col.str[-1])
+print(sorted_df[["Name", "Course"]])

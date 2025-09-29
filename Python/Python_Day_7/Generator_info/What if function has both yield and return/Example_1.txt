@@ -1,0 +1,17 @@
+# if a function has got both "yield" and "return", you always get "generator object"
+
+def myfun(val): 
+    print("inside myfun\t",val)
+    if(val%2==0):
+        return val
+    else:
+        yield val 
+   
+temp=myfun(15)
+#temp=myfun(16)
+print(type(temp))
+print(temp)
+for i in temp:
+	print(i)
+print("done")
+

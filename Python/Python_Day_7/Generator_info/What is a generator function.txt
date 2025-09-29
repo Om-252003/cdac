@@ -1,0 +1,25 @@
+A generator is a special type of function which does not return a single value, instead, it returns an iterator object with a sequence of values. In a generator function, a "yield" statement is used rather than a return statement.
+
+A function with yield in, it is still a function, that, when called, returns an instance of a generator object:
+def myfun():
+    	"when called, returns generator object"
+    	yield
+
+A generator expression also returns a generator:
+e.g.
+
+mygenerator = (x for x in range(1,6))
+print(mygenerator)
+print(type(mygenerator))
+
+# How to use this generator
+for i in mygenerator:
+    print(i)
+
+# or
+try:
+    while 1:
+        print(mygenerator.__next__())
+except StopIteration:
+    print("done with iterator")
+    

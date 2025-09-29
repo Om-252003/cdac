@@ -1,0 +1,12 @@
+Pandas stands for "Panel Data" and is the core library for data manipulation and data analysis.
+It consists of single and multidimensional data-structures for data manipulation.
+single dimensional data structure is known as "Series objects" and multi-dimensional data structure is known as "Data Frame".
+In pandas, we can import data from various file formats like JSON, CSV(comma-separated values), Microsoft Excel, etc.
+
+When we have to work on Tabular data, we prefer the pandas module.When we have to work on Numerical data, we prefer the numpy module.
+
+The powerful tools of pandas are Data frame and Series.
+Whereas the powerful tool of numpy is Arrays.
+
+
+

@@ -1,0 +1,39 @@
+1) store marks of 5 subjects
+	here use marks as actual data and subject names as indexes.
+accept both marks and subjects from the user.
+
+2) create dictionary to store player name and runs scored of at least 5 players. Display it. Now convert this dictionary ‌into Series object and print it.
+
+3) accept 10 values and store them in the Series. Now perform following operations:
+
+a) display the entire Series
+b) extract 3rd element
+c) extract elements from 4 to 7
+d) extract elements from fourth last till the last element
+e) extract first 3 elements
+f) extract elements from the 5th position
+
+
+4) accept 5 values in a Series and perform the following operations:
+	a) display their sum
+	b) add the value accepted from the user
+	c) subtract the value accepted from the user
+	d) multiply the value accepted from the user
+	e) add the value accepted from the user
+
+
+
+**********  DataFrame Assignments ************************************
+
+5) accept 5 names,designations and salaries and display them with DataFrame.
+
+6) create a csv file (with whatever columns and rows you want) manually and then read using pandas.
+
+7) create "Vita.xlsx" using pandas. In this Excel file you have to create 2 sheets "DBDA", and "DAC". 
+in each sheet you have to write name,address and age of all the team leaders.
+make sure Excel file gets created successfully.
+
+ 
+
+
+

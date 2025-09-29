@@ -1,9 +1,25 @@
 import numpy as np
-first=np.arange(10,91,10) # 3 rows,3 cols ,  10 to 90 values with 10 as a skip value
-first.shape=(3,3)  
-print(first)
-print("************")
-second=first.reshape(9,1)
-print(first)
-print("***************")
-print(second)
+
+arr=np.arange(10,91,10) # 3 rows,3 cols ,  10 to 90 values with 10 as a skip value
+print("1) arr = ",arr)
+
+arr.shape=(3,3)
+print("2) arr = ", arr)
+print("******After reshape()******")
+reshaped_arr=arr.reshape(9,1)
+print("3)arr = ",arr)
+print("reshaped_arr = ",reshaped_arr)
+
+print("type = ", type(arr))
+print("dimension of array is\t",arr.ndim)
+print("shape of array is\t",arr.shape)
+
+print("type of reshaped_arr = ", type(reshaped_arr))
+print("dimension of reshaped_arr is\t",reshaped_arr.ndim)
+print("shape of reshaped_arr is\t",reshaped_arr.shape)
+
+print("3) arr = ", arr)
+
+# 'shape' modifies array, its a property (tuple), not a method. ex : arr.shape=(3,3)
+# reshape() creates new array, is method.
+# numpy.ndarray is immutable

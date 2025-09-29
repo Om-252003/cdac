@@ -1,0 +1,43 @@
+# pip install openpyxl
+# The ExcelWriter object allows you to use multiple pandas. DataFrame objects can be exported to separate sheets.
+import pandas as pd
+
+proid = [1, 2, 3, 4]
+proname = ["Soap", "Perfume", "Deo", "Body_Wash"]
+price = [120, 400, 250, 180]
+
+# dictionary of lists
+mydictionary1 = {'proid': proid, 'proname': proname, 'price': price}
+
+mydataframe1 = pd.DataFrame(mydictionary1)
+
+name = ['Abc', 'Xyz', 'Pqr']
+designation = ['officer', 'manager', 'salesexecutive']
+salary = [40000, 60000, 70000]
+
+mydictionary2 = {'name': name, 'designation': designation, 'salary': salary}
+
+mydataframe2 = pd.DataFrame(mydictionary2)
+
+print(mydataframe1)
+print("\n\n")
+print(mydataframe2)
+
+"""
+with pd.ExcelWriter('Prod1.xlsx') as mywriter:
+    mydataframe1.to_excel(mywriter, sheet_name='prod_sheet', index=False)
+    mydataframe2.to_excel(mywriter, sheet_name='employee_sheet', index=False)
+
+"""
+
+"""
+try:
+    mywriter = pd.ExcelWriter('Prod1.xlsx')
+    mydataframe1.to_excel(mywriter, sheet_name='prod_sheet', index=False)
+    mydataframe2.to_excel(mywriter, sheet_name='employee_sheet', index=False)
+except Exception as e:
+    print(f"An error occurred: {e}")
+finally:
+    mywriter.close()
+
+"""

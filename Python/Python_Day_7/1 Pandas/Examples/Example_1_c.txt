@@ -1,0 +1,16 @@
+# create panda series using tuple
+
+from pandas import *
+
+mytuple=(100,200,300,400,500)
+myseries=Series(mytuple)
+print(myseries)
+
+'''
+0    100
+1    200
+2    300
+3    400
+4    500
+dtype: int64
+'''

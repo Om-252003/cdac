@@ -1,0 +1,21 @@
+import pandas as pd
+
+# Creating Data
+CDAC_Placement_data = {'Center': ['VITA', 'VITA', 'VITA',
+                              'VITA', 'MET', 'YCP',
+                              'Khaarghar', 'CDAC_Juhu', 'CDAC_Juhu',
+                              ],
+                    'Year': [2020, 2021, 2022, 2019,
+                             2020, 2022, 2020, 2019,
+                             2020],
+                    'Placement_ratio': [96, 99, 92, 99, 95, 85,
+                             92, 88, 87]}
+
+# Creating Dataframe for Provided Data
+df = pd.DataFrame(CDAC_Placement_data)
+print("original dataframe")
+print(df)
+print("group by year")
+# Group the data when year = 2010
+grouped = df.groupby('Year')
+print(grouped.get_group(2020))

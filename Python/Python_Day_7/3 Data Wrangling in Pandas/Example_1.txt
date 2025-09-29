@@ -1,0 +1,42 @@
+"""
+scenario
+
+duplicate registration done by students, we need to remove the names which have been registered more than once.
+
+"""
+
+student_data = {'Name': ['Sachin', 'Praveen', 'Jagruti',
+                         'Sharath', 'Vishal', 'Suraj',
+                         'Rohit', 'Satyapal', 'Sachin',
+                         'Sharath', 'Suraj', 'Sachin'],
+
+                'Prn_No': [23, 54, 29, 36, 59, 38,
+                            12, 45, 34, 36, 38, 23],
+                'Email': ['xxxx@gmail.com', 'xxxxxx@gmail.com',
+                          'xxxxxx@gmail.com', 'xx@gmail.com',
+                          'xxxx@gmail.com', 'xxxxx@gmail.com',
+                          'xxxxx@gmail.com', 'xxxx@gmail.com',
+                          'xxxxx@gmail.com', 'xx@gmail.com',
+                          'xxxxx@gmail.com', 'xxxx@gmail.com']}
+from pandas import *
+# creating dataframe
+df = DataFrame(student_data)
+print("original data set is")
+print(df)
+# Here df.duplicated() list duplicate  Entries in ROllno.
+# So that ~(NOT) is placed in order to get non duplicate values.
+non_duplicate = df[~df.duplicated('Prn_No')]
+print("dataset after removing duplicates is")
+# printing non-duplicate values
+print(non_duplicate)
+
+"""
+In the above example,
+
+df[~df.duplicated('Prn_No')]
+→ Filters the whole row, not just Prn_No.
+That’s why when a duplicate Prn_No row is dropped, 
+its Name and Email also disappear — 
+because pandas works at the row level, 
+not at individual column level
+"""

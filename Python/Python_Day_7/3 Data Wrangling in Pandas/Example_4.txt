@@ -1,0 +1,29 @@
+import pandas as pd
+
+# Creating Dataframe
+students_data = pd.DataFrame({
+    'Prn_No': [101, 102, 103, 104, 105,
+           106, 107, 108, 109, 110],
+    'NAME': ['Jagruti', 'Pavan', 'Harish',
+             'Pooja', 'Rahul', 'Niharika',
+             'Sachin', 'Atul', 'Dean', "Manish"],
+    'course': ['DAC', 'DBDA', 'DBDA', 'DBDA', 'DBDA',
+               'DAC', 'DAC', 'DAC', 'DBDA', 'DBDA'],
+    'project_marks': [94,82,75,98,65,58,73,63,90,72]
+})
+
+print(students_data)
+
+students_data = students_data.rename(columns={'project_marks': 'Project_grade'})
+print(students_data)
+grade=""
+for marks in students_data["Project_grade"]:
+    if marks>=90:
+        grade='A'
+    elif marks>70 and marks<90:
+        grade='B'
+    else:
+        grade='C'
+    students_data["Project_grade"]=students_data["Project_grade"].replace({marks:grade})
+
+print(students_data)

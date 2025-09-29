@@ -1,0 +1,24 @@
+# Series object is a one-dimensional labelled or indexed  array
+
+import pandas as pd
+
+first=pd.Series([10,2.8,True,40,"hello"])
+print(first)
+print("********")
+print(first.index)
+print("********")
+print(first.values)
+
+'''
+0       10
+1      2.8
+2     True
+3       40
+4    hello
+dtype: object
+********
+RangeIndex(start=0, stop=5, step=1)
+********
+[10 2.8 True 40 'hello']
+
+'''

@@ -1,0 +1,27 @@
+# labels or indexes can be of any type
+from pandas import *
+
+first=Series([10,20,30,40,50],index=['hello','q',3,6.7,False])
+print(first)
+
+print("*********************")
+# There can be same index also
+first=Series([10,20,30,40,50,60],index=['hello','hello','q',3,6.7,False])
+print(first)
+
+'''
+hello    10
+q        20
+3        30
+6.7      40
+False    50
+dtype: int64
+*********************
+hello    10
+hello    20
+q        30
+3        40
+6.7      50
+False    60
+dtype: int64
+'''

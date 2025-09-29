@@ -1,0 +1,20 @@
+# install openpyxl
+
+import pandas as pd
+ 
+proid = [1,2,3,4]
+proname = ["Soap","Perfume","Deo","Body_Wash"]
+price = [120,400,250,180]
+ 
+# dictionary of lists
+mydictionary = {'proid':proid,'proname':proname,'price':price}
+     
+mydataframe = pd.DataFrame(mydictionary)
+ 
+print(mydataframe)
+# index=False   is not to include dataframe index inside the excel file
+mydataframe.to_excel("prod.xlsx",sheet_name="prod_sheet",index=False)
+
+
+
+

@@ -1,0 +1,15 @@
+# difference between traditional reading and pandas way of reading
+# copy "Book1.csv" file inside pycharm project folder
+
+
+from pandas import *
+
+myfile=read_csv("Book1.csv")
+print(myfile)
+print("\n\n")
+print("let's us read the file in a tradional way")
+f=open("Book1.csv","r")
+for content in f:
+	print(content)
+f.close()
+print("Done")

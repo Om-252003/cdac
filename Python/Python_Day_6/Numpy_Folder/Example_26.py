@@ -8,3 +8,9 @@ first=None
 print(first)                    # None, no need to worry, we can load the saved array
 second=np.load("myarray.npy")   # extension "npy" mandatory
 print(second)
+
+'''[10 20 30 40]
+None
+[10 20 30 40]
+
+'''
