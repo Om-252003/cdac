@@ -1,0 +1,27 @@
+# import library
+import re
+
+# url link
+myurl = "https://imsports.rediff.com:8080/score/in_asa_1083661.html"
+
+# Protocol
+protocol = re.findall('(\w+)://', myurl)
+print("Protocol is\t", protocol)
+
+# Hostname
+hostname = re.findall('://([\w\.]+)', myurl)
+print("Hostname is\t", hostname)
+
+portno = re.findall(':(\d+)', myurl)
+print("Port no. is\t", portno)
+
+path = re.findall('/(\w+)/', myurl)
+print("Path is\t", path)
+
+# The $sign is used to match an expression to its
+# left at the end of a string.
+# t$ is an expression match to a string which ends
+# with t such as "dot", "mat", "cat", "rat", etc.
+
+filename = re.findall('(\w+\.\w+)$', myurl)
+print("filename is\t", filename)

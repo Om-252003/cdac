@@ -1,0 +1,9 @@
+from urllib.parse import urlparse,parse_qs
+
+
+url = "https://imsports.rediff.com:8080/score/in_asa_1083661.html?subject=Python&test=practical"
+parsed_url = urlparse(url)
+print(parsed_url.port)
+print(parsed_url.hostname)
+print(parsed_url.path)
+print(parse_qs(parsed_url.query))

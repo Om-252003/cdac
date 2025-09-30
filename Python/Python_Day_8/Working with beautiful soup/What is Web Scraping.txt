@@ -1,0 +1,10 @@
+What is Web-Scraping?
+
+ans:- The process of extracting data from websites is called as Web Scraping.
+
+How does Web Scraping work?
+ans:- 
+1) load website
+2) parse HTML data
+3) Extract tidy data
+4) Transform data into required format

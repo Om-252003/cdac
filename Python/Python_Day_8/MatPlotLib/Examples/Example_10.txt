@@ -1,0 +1,78 @@
+# pie chart example
+
+"""
+Scenario:
+
+A student wants to track how they spend their
+24 hours in a day:
+
+Sleep – 8 hours
+
+Study – 6 hours
+
+School/College – 5 hours
+
+Leisure (TV, mobile, etc.) – 3 hours
+
+Meals and other activities – 2 hours
+
+"""
+
+from matplotlib import pyplot as py
+
+# Set larger figure size
+py.figure(figsize=(10, 6))  # 10 inches wide, 6 inches tall
+
+# Data
+activities = ['Sleep', 'Study', 'School/College', 'Leisure', 'Meals/Others']
+time_spent = [8, 6, 5, 3, 2]
+colors = ['skyblue', 'lightgreen', 'orange', 'violet', 'gold']
+
+# Pie chart
+py.pie(time_spent, colors=colors, autopct='%1.1f%%', startangle=90)
+
+# Legend placed outside
+
+"""
+bbox_to_anchor=(x, y)
+Means:
+
+x = 1 → Move the legend to the right edge of the plot 
+(1 means 100% from the left).
+
+y = 0.5 → Center the legend vertically 
+(50% height = halfway from bottom to top).
+
+"""
+py.legend(activities, title="Activities", loc="center left", bbox_to_anchor=(1, 0.5))
+
+# Title
+py.title('Student Daily Time Distribution')
+
+# Circular and neat layout
+
+"""
+
+Especially in pie charts, you want the circle to look like a perfect circle, not stretched like an oval. If you don’t use py.axis('equal'), the pie chart might look distorted, especially on widescreen displays or custom figure sizes.
+
+"""
+
+py.axis('equal')
+
+"""
+The tight_layout() method automatically adjusts the 
+spacing between subplots, labels, titles, and tick 
+marks to make sure nothing overlaps or gets cut off in 
+your figure.
+"""
+py.tight_layout()
+
+# Display the chart
+py.show()
+
+"""
+Sleep is 8/24 → 33.3% of the day
+
+Study is 6/24 → 25% of the day
+
+"""

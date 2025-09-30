@@ -1,0 +1,101 @@
+"""
+In sns.violinplot(), the parameter inner controls
+what is drawn inside each violin (the violin is the
+smooth distribution shape).
+
+Possible values of inner:
+
+'box' → shows a mini boxplot inside the violin
+(median line, box, whiskers).
+
+'quartile' → shows lines for the 25th, 50th (median),
+and 75th percentiles.
+
+'point' → shows the median only as a dot.
+
+'stick' → shows each individual data point as short
+lines inside.
+
+None → nothing is drawn inside, just the violin shape.
+
+"""
+
+import seaborn as sns
+import matplotlib.pyplot as plt
+import pandas as pd
+
+# Commute times (in minutes)
+virar = [90, 95, 100, 110, 105, 100, 98, 102, 107]
+"""
+Five-number summary for virar:
+
+Minimum = 90
+
+Q1 (1st quartile) = 96.5
+
+Median (Q2) = 100
+
+Q3 (3rd quartile) = 106
+
+Maximum = 110
+"""
+thane = [60, 65, 70, 75, 72, 68, 66, 74, 69]
+"""
+Five-number summary for thane:
+
+Minimum = 60
+
+Q1 = 66.5
+
+Median (Q2) = 70
+
+Q3 = 74
+
+Maximum = 75
+"""
+
+dombivli = [70, 75, 78, 80, 76, 74, 72, 79, 77]
+
+"""
+Five-number summary for dombivli:
+
+Minimum = 70
+
+Q1 = 74
+
+Median (Q2) = 76
+
+Q3 = 79
+
+Maximum = 80
+"""
+
+# Create DataFrame
+df = pd.DataFrame({
+    'Commute Time': virar + thane + dombivli,
+    'Location': ['Virar'] * len(virar) + ['Thane'] * len(thane) + ['Dombivli'] * len(dombivli)
+})
+
+# Plot
+plt.figure(figsize=(8,6))
+sns.violinplot(
+    x='Location',
+    y='Commute Time',
+    hue='Location',              # Explicit hue assignment
+    data=df,
+    #palette='Set2',
+palette={'Virar': 'pink', 'Thane': 'red','Dombivli': 'green'},
+    inner='box',
+    #inner='quartile',
+    #inner='point',
+    #inner='stick',
+    #inner=None,
+    linewidth=1.5,
+    legend=True                 # Hide/Show duplicate legend
+)
+
+# Customizations
+plt.title("Commute Time to Juhu from Various Mumbai Locations", fontsize=14)
+plt.ylabel("Commute Time (minutes)", fontsize=12)
+plt.grid(True, linestyle='--', alpha=0.5)
+plt.show()

@@ -1,0 +1,27 @@
+"""
+
+DataFrame is not compulsory for using Seaborn, but it is highly 
+recommended because Seaborn is built to work well with pandas DataFrames.
+
+"""
+
+import seaborn as sns
+import matplotlib.pyplot as py
+
+# Data: Hours worked and corresponding earnings
+hours = list(range(1, 11))
+earnings = [200 * h for h in hours]
+
+# Set Seaborn style
+sns.set(style='whitegrid')
+
+# Create line plot using seaborn directly with lists
+py.figure(figsize=(8, 5))
+sns.lineplot(x=hours, y=earnings, marker='o', color='teal', linewidth=2)
+
+# Add title and labels
+py.title('Earnings Based on Hours Worked', fontsize=14)
+py.xlabel('Hours Worked')
+py.ylabel('Money Earned (₹)')
+py.tight_layout()
+py.show()

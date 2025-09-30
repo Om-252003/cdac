@@ -1,0 +1,13 @@
+1) create first array "overs" with 4 elements
+5,10,15,20
+create another array "runs_scored" with 4 elements and store
+no.of runs scored at the end of each over
+e.g.  40 runs at the end of 5th over , 75 runs at the end of 10th over etc.
+
+now create a line plot to show the relationship between "overs" and "runs_scored"
+
+2) create a Bar plot to show how many people like "Action","Romance","Comedy" or "Drama" movies.
+
+3) create a piechart to show popularity of various modules (Java,Python etc.)
+
+ 

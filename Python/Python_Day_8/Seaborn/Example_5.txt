@@ -1,0 +1,68 @@
+"""
+A boxplot is a summary chart of data distribution.
+
+A stripplot shows all individual data points on top of the boxplot.
+    Each student’s mark appears as a dot.
+
+jitter=True
+
+When plotting many points (like marks for each subject),
+if multiple students have the same score, their dots
+overlap and we can’t see them properly.
+
+jitter=True makes seaborn spread those dots slightly
+left and right (horizontally) so they don’t
+hide each other.
+
+It doesn’t change the value, just the display position.
+So, in our chart, if many students got the same marks,
+we’ll see their dots scattered side-by-side
+instead of stacked.
+
+alpha=0.5
+
+alpha controls transparency of points (ranges from 0 to 1):
+
+alpha=1.0 -- fully solid (no transparency).
+
+alpha=0.0 -- fully invisible.
+
+alpha=0.5 -- 50% transparent.
+
+Transparency helps when dots overlap—you can still see both
+
+"""
+
+import seaborn as sns
+import matplotlib.pyplot as plt
+import pandas as pd
+import statistics
+
+# Original scores
+math_scores = [1,2,3,4,5,6,7,8,9]
+english_scores = [1,2,3,4,5,4,3,2,1]
+science_scores = [6,7,8,9,8,7,6,5,4]
+
+# Print medians
+print("Median of Math scores:", statistics.median(math_scores))
+print("Median of English scores:", statistics.median(english_scores))
+print("Median of Science scores:", statistics.median(science_scores))
+
+# Convert to DataFrame for Seaborn
+df = pd.DataFrame({
+    'Marks': math_scores + english_scores + science_scores,
+    'Subject': ['Math']*len(math_scores) + ['English']*len(english_scores) + ['Science']*len(science_scores)
+})
+
+# Plot using Seaborn
+plt.figure(figsize=(8,6))
+sns.boxplot(x='Subject', y='Marks', data=df, palette='pastel', width=0.5, linewidth=2)
+# Try commenting "stripplot" statement and see what happens
+# Try jitter=False
+#sns.stripplot(x='Subject', y='Marks', data=df, color='black', size=4, jitter=True, alpha=0.5)
+sns.stripplot(x='Subject', y='Marks', data=df, color='black', size=4, jitter=True, alpha=1.0)
+
+plt.title("Distribution of Marks in Three Subjects", fontsize=14)
+plt.ylabel("Marks", fontsize=12)
+plt.grid(True, linestyle='--', alpha=0.6)
+plt.show()

@@ -1,0 +1,1 @@
+Matplotlib is a python library used for data visualization. You can create bar-plots, scatter-plots,histo-grams and lot more with "Matplotlib".

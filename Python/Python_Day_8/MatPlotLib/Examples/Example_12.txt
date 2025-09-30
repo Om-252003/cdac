@@ -1,0 +1,78 @@
+"""
+for i, v in enumerate(runs_block):
+    py.text(i, v + 1, str(v), ha='center', fontweight='bold')
+
+enumerate(runs_block)
+
+runs_block = [40, 45, 50, 45]
+
+enumerate gives both:
+
+i -- index of the element (0, 1, 2, 3)
+
+v -- value at that index (40, 45, 50, 45)
+
+So iteration looks like:
+
+(i=0, v=40)
+(i=1, v=45)
+(i=2, v=50)
+(i=3, v=45)
+
+py.text(x, y, text, ...)
+
+This function places custom text on the graph.
+
+Parameters here:
+
+x = i - the position of the bar on the x-axis.
+
+y = v + 1 - slightly above the bar height (v is bar’s value, so +1 makes the text float above it).
+
+text = str(v) - converts the number into a string so it can be displayed as text.
+
+ha='center' - horizontal alignment = center (so text is centered over the bar).
+
+fontweight='bold' - makes text bold.
+
+Effect in graph
+
+For the first bar (i=0, v=40), it places "40"
+at position (0, 41) on the graph.
+
+For the second bar (i=1, v=45), it places "45"
+at (1, 46).
+
+And so on...
+
+This makes the run values appear just above
+each bar.
+
+Without this line → bars show, but no numbers
+on top.
+With this line → each bar has its run value
+displayed neatly above it.
+
+"""
+
+from matplotlib import pyplot as py
+
+# Overs blocks (each 5-over segment)
+blocks = ["0-5", "6-10", "11-15", "16-20"]
+
+# Runs scored in each block
+runs_block = [40, 45, 50, 45]   # Example data
+
+# Bar chart
+py.bar(blocks, runs_block, color=['blue', 'green', 'orange', 'red'], width=0.6)
+
+# Labels and title
+py.xlabel("Over Blocks")
+py.ylabel("Runs Scored in Block")
+py.title("20 Overs Cricket Match Block-wise Runs")
+
+# Show values on top of each bar
+for i, v in enumerate(runs_block):
+    py.text(i, v + 1, str(v), ha='center', fontweight='bold')
+
+py.show()

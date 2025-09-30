@@ -1,0 +1,29 @@
+import seaborn as sns
+import pandas as pd
+import matplotlib.pyplot as py
+
+# Data
+months = ['January', 'February', 'March', 'April', 'May', 'June']
+data_usage = [12, 15, 13, 18, 17, 20]
+
+# Convert to DataFrame (seaborn prefers tabular data)
+df = pd.DataFrame({
+    'Month': months,
+    'Data Used (GB)': data_usage
+})
+
+# Set Seaborn style
+sns.set(style="whitegrid")
+
+# Create bar plot
+py.figure(figsize=(9, 5))
+sns.barplot(data=df, x='Month', y='Data Used (GB)', color='seagreen')
+
+# Add title and labels
+py.title("Average Monthly Mobile Data Usage", fontsize=14)
+py.xlabel("Months")
+py.ylabel("Data Used (in GB)")
+py.tight_layout()
+
+# Show plot
+py.show()

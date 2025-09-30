@@ -1,0 +1,21 @@
+from matplotlib import pyplot as py
+
+# Overs summary
+overs = [5, 10, 15, 20]                 # Checkpoints
+runs = [40, 85, 135, 180]               # Runs scored at each stage
+
+# Line graph for progression
+py.plot(overs, runs, marker='o', color='green', linewidth=2, label="Runs Progression")
+
+# Bar chart to highlight runs at each stage
+py.bar(overs, runs, width=1.5, alpha=0.5, color='orange', label="Stage Runs")
+
+# Labels and title
+py.xlabel("Overs")
+py.ylabel("Runs Scored")
+py.title("20 Overs Cricket Match Summary")
+py.xticks(overs)   # show ticks at 5, 10, 15, 20 overs
+py.legend()
+py.grid(True, linestyle="--", alpha=0.6)
+
+py.show()
