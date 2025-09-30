@@ -1,0 +1,11 @@
+git init
+git add .
+git status
+git commit -m "files added"
+git remote add origin paste_here_link_from_github
+git push -u origin master 
+
+if branch changed to main by mistake then use :
+git branch -M master 
+
+
