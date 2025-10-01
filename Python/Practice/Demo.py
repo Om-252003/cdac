@@ -1,23 +1,13 @@
-from abc import abstractmethod
-def temp():
-        pass
-a=10
-class Parent:
-    def disp1(self):
-        print("in disp1")
-    def disp2(self):
-        print("in disp2")
+s = 65
+for i in range(6):
+    if i%2 == 0:
+        for j in range(i):
+           print(chr(s), end="")
+           s+=1
 
-    @abstractmethod
-    def disp3(self):
-        print("disp3")
-
-
-
-
-
-p1=Parent()    # No error , because though we have abstract method in the class, the class is not abstract
-p1.disp3()
-del p1
-if p1 : print("yes")
-
+    else:
+        last = s+i
+        for j in range(last-1, s-1,-1):
+            print(chr(j) ,end="")
+        s = last
+    print()
