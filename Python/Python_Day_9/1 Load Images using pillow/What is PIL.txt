@@ -1,0 +1,1 @@
+PIL is the Python Imaging Library which provides the python interpreter with image editing capabilities.

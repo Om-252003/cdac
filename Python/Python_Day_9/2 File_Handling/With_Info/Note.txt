@@ -1,0 +1,3 @@
+In order to be used with the "with" statement , a class must follow  Python’s "context management protocol" which says that class must have "__enter__" and "__exit__" methods.
+
+__enter__ method is called at the start of with block and __exit__ method is called at the end.

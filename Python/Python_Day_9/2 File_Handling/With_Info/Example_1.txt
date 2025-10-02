@@ -1,0 +1,15 @@
+
+""" In order to be used with the "with" statement , a class must follow  Python’s context management protocol which says that class must have "__enter__" and "__exit__" methods. """
+
+var1=100
+
+#  AttributeError: __enter__
+""" with var1:          
+    print("hello") """
+
+class MyClass:
+    pass
+
+#AttributeError: __enter__
+""" with MyClass() as m:
+    print("created MyClass") """

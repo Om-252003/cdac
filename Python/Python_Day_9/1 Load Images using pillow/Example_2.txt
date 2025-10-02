@@ -1,0 +1,9 @@
+# Resize an image
+
+from PIL import Image
+
+img=Image.open("Ghost.jpg")
+new_size=(200,200)    #  can reduce but cannot increase the size of original image
+img.thumbnail(new_size)
+img.save('Happy_Diwali_1.jpg')
+print("Done")

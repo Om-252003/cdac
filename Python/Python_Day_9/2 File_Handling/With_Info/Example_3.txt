@@ -1,0 +1,23 @@
+
+class MyReader:
+    def __init__(self, filename,mode):
+       self.filename=filename
+       self.mode=mode
+    def __enter__(self):
+        print("in __enter__")
+        # logic to open "filename" in "mode" mode  
+        return self
+    def __exit__(self, exception_type, exception_value, traceback):
+        print("in __exit__\t",exception_value)
+        self.close()
+    def close(self):
+        print("closing the stream\n")
+    def read(self):
+        if len(self.filename)<9:
+            raise Exception("not able to read the file")
+        print("successfully read the file")
+
+with MyReader("abcd.txt","r") as m:
+    # exception successfully pass to __exit__
+    m.read()
+print("done")

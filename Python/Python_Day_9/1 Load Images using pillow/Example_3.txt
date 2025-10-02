@@ -1,0 +1,8 @@
+# Rotating an image
+
+from PIL import Image
+
+img=Image.open("3_idiots.jpg")
+img.rotate(120).show()
+
+print("Done")

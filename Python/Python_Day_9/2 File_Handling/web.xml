@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app>
+	<welcome-file-list>
+		<welcome-file>login.html</welcome-file>
+	</welcome-file-list>
+	<context-param>
+		<param-name>driver</param-name>
+		<param-value>Type4</param-value>
+	</context-param>
+	<servlet>
+		<servlet-name>FirstServ</servlet-name>
+		<servlet-class>FirstServ</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>FirstServ</servlet-name>
+		<url-pattern>/FirstServ</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>LoadServ1</servlet-name>
+		<servlet-class>LoadServ1</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LoadServ1</servlet-name>
+		<url-pattern>/LoadServ1</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>LoadServ2</servlet-name>
+		<servlet-class>LoadServ2</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LoadServ2</servlet-name>
+		<url-pattern>/LoadServ2</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>TrialErrorServ</servlet-name>
+		<servlet-class>TrialErrorServ</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>TrialErrorServ</servlet-name>
+		<url-pattern>/TrialErrorServ</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>ConPoolServ</servlet-name>
+		<servlet-class>ConPoolServ</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ConPoolServ</servlet-name>
+		<url-pattern>/ConPoolServ</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>ReadParamServ1</servlet-name>
+		<servlet-class>ReadParamServ1</servlet-class>
+		<init-param>
+			<param-name>file</param-name>
+			<param-value>MyFile</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ReadParamServ1</servlet-name>
+		<url-pattern>/ReadParamServ1</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>ReadParamServ2</servlet-name>
+		<servlet-class>ReadParamServ2</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ReadParamServ2</servlet-name>
+		<url-pattern>/ReadParamServ2</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>InitTest1</servlet-name>
+		<servlet-class>InitTest1</servlet-class>
+		<init-param>
+			<param-name>user</param-name>
+			<param-value>root</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>InitTest1</servlet-name>
+		<url-pattern>/InitTest1</url-pattern>
+	</servlet-mapping>
+	<servlet>
+	<servlet-name>InitTest2</servlet-name>
+	<servlet-class>InitTest2</servlet-class>
+	<init-param>
+		<param-name>user</param-name>
+		<param-value>root</param-value>
+	</init-param>
+</servlet>
+<servlet-mapping>
+	<servlet-name>InitTest2</servlet-name>
+	<url-pattern>/InitTest2</url-pattern>
+</servlet-mapping>
+<servlet>
+	<servlet-name>InitTest3</servlet-name>
+	<servlet-class>InitTest3</servlet-class>
+	<init-param>
+		<param-name>user</param-name>
+		<param-value>root</param-value>
+	</init-param>
+</servlet>
+<servlet-mapping>
+	<servlet-name>InitTest3</servlet-name>
+	<url-pattern>/InitTest3</url-pattern>
+</servlet-mapping>
+	<servlet>
+		<servlet-name>RedirectingServ</servlet-name>
+		<servlet-class>RedirectingServ</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RedirectingServ</servlet-name>
+		<url-pattern>/RedirectingServ</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>RedirectedServ</servlet-name>
+		<servlet-class>RedirectedServ</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RedirectedServ</servlet-name>
+		<url-pattern>/RedirectedServ</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>ForwardingServ</servlet-name>
+		<servlet-class>ForwardingServ</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ForwardingServ</servlet-name>
+		<url-pattern>/ForwardingServ</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>ForwardedServ</servlet-name>
+		<servlet-class>ForwardedServ</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ForwardedServ</servlet-name>
+		<url-pattern>/ForwardedServ</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>IncluderServ</servlet-name>
+		<servlet-class>IncluderServ</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>IncluderServ</servlet-name>
+		<url-pattern>/IncluderServ</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>IncludedServ</servlet-name>
+		<servlet-class>IncludedServ</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>IncludedServ</servlet-name>
+		<url-pattern>/IncludedServ</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>HiddenServ1</servlet-name>
+		<servlet-class>HiddenServ1</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>HiddenServ1</servlet-name>
+		<url-pattern>/HiddenServ1</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>HiddenServ2</servlet-name>
+		<servlet-class>HiddenServ2</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>HiddenServ2</servlet-name>
+		<url-pattern>/HiddenServ2</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>CustomCookieServ</servlet-name>
+		<servlet-class>CustomCookieServ</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CustomCookieServ</servlet-name>
+		<url-pattern>/CustomCookieServ</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>First</servlet-name>
+		<servlet-class>First</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>First</servlet-name>
+		<url-pattern>/First</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>Second</servlet-name>
+		<servlet-class>Second</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Second</servlet-name>
+		<url-pattern>/Second</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>SessionDemo</servlet-name>
+		<servlet-class>SessionDemo</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SessionDemo</servlet-name>
+		<url-pattern>/SessionDemo</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>InactiveTimeIntervalServ</servlet-name>
+		<servlet-class>InactiveTimeIntervalServ</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>InactiveTimeIntervalServ</servlet-name>
+		<url-pattern>/InactiveTimeIntervalServ</url-pattern>
+	</servlet-mapping>
+	<servlet>
+	<servlet-name>LoginServ</servlet-name>
+	<servlet-class>LoginServ</servlet-class>
+</servlet>
+<servlet-mapping>
+	<servlet-name>LoginServ</servlet-name>
+	<url-pattern>/LoginServ</url-pattern>
+</servlet-mapping>
+<filter>
+	<filter-name>FirstFilter</filter-name>
+	<filter-class>mypack.FirstFilter</filter-class>
+</filter>
+<filter-mapping>
+	<filter-name>FirstFilter</filter-name>
+	<url-pattern>/LoginServ</url-pattern>
+</filter-mapping>
+<filter>
+	<filter-name>SecondFilter</filter-name>
+	<filter-class>mypack.SecondFilter</filter-class>
+</filter>
+<filter-mapping>
+	<filter-name>SecondFilter</filter-name>
+	<url-pattern>/LoginServ</url-pattern>
+</filter-mapping>
+
+<!--
+<error-page>
+	<exception-type>java.lang.Exception</exception-type>
+	<location>/Error.jsp</location>
+</error-page>
+-->
+</web-app>
+
+

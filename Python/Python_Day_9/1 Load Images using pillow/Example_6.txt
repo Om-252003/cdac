@@ -1,0 +1,9 @@
+# Filtering Images
+
+from PIL import Image,ImageFilter
+
+img=Image.open("Balls.jpg")
+# img.filter(ImageFilter.BLUR()).show()
+# img.filter(ImageFilter.EDGE_ENHANCE()).show()
+# img.filter(ImageFilter.EMBOSS()).show()
+# img.filter(ImageFilter.CONTOUR()).show()

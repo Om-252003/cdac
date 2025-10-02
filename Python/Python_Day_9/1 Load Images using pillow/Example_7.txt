@@ -1,0 +1,11 @@
+# Writing text on the image
+
+from PIL import Image,ImageDraw,ImageFont
+
+img=Image.open("Ishant.jpg")
+draw=ImageDraw.Draw(img)
+myfont=ImageFont.truetype("arial.ttf",20)
+points=380,350
+title="Arre , isse kya huva!"
+draw.text(points, title,"red",font=myfont)
+img.show()
