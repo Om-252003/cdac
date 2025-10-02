@@ -1,0 +1,32 @@
+import requests
+from bs4 import BeautifulSoup
+import pandas as pd
+
+# Step 1: Define the website URL
+url = "http://books.toscrape.com/"
+
+# Step 2: Send an HTTP request and get the page content
+response = requests.get(url)
+soup = BeautifulSoup(response.text, "html.parser")
+
+# Step 3: Find book details (titles, prices, availability)
+books = soup.find_all("article", class_="product_pod")  # Finds all books
+
+# Step 4: Create an empty list to store book data
+book_data = []
+
+# Step 5: Loop through books and extract information
+for book in books:
+    title = book.h3.a["title"]  # Extract book title
+    price = book.select_one(".price_color").text  # Extract price
+    availability = book.select_one(".availability").text.strip()  # Extract availability status
+
+    book_data.append([title, price, availability])  # Store in list
+
+# Step 6: Convert list to a Pandas DataFrame
+df = pd.DataFrame(book_data, columns=["Title", "Price", "Availability"])
+
+# Step 7: Save data to a CSV file
+df.to_csv("books.csv", index=False)
+
+print("Data saved to 'books.csv' successfully!")
