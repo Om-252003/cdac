@@ -1,0 +1,157 @@
+select ename,salary,
+case 
+when salary>=1500 then 'High'
+when salary>=1000 then 'Above Avg'
+when salary>=500 then 'Below Avg'
+else 'Low'
+end as salary_bucket 
+from emp;
+
++-------+--------+---------------+
+| ename | salary | salary_bucket |
++-------+--------+---------------+
+| a1    |   9847 | High          |
+| a2    |   4499 | High          |
+| a3    |   2952 | High          |
+| a4    |   1263 | Above Avg     |
+| a5    |   7459 | High          |
+| a6    |   3508 | High          |
+| a7    |   5161 | High          |
+| a8    |   5282 | High          |
+| a9    |    926 | Below Avg     |
+| a10   |   8784 | High          |
+| a11   |   1144 | Above Avg     |
+| a12   |   9367 | High          |
+| a13   |   3402 | High          |
+| a14   |   8908 | High          |
+| a15   |   4337 | High          |
+| a16   |   4959 | High          |
+| a17   |   1786 | High          |
+| a18   |   4052 | High          |
+| a19   |   4904 | High          |
+| a20   |   2362 | High          |
+| a21   |   7097 | High          |
+| a22   |   8400 | High          |
+| a23   |    708 | Below Avg     |
+| a24   |   8339 | High          |
+| a25   |   9572 | High          |
+| a26   |   2844 | High          |
+| a27   |   5505 | High          |
+| a28   |   8993 | High          |
+| a29   |   8451 | High          |
+| a30   |   5275 | High          |
+| a31   |   1021 | Above Avg     |
+| a32   |   9279 | High          |
+| a33   |   3335 | High          |
+| a34   |   8836 | High          |
+| a35   |   4176 | High          |
+| a36   |   4371 | High          |
+| a37   |   9328 | High          |
+| a38   |   3525 | High          |
+| a39   |   9644 | High          |
+| a40   |   7644 | High          |
+| a41   |   9288 | High          |
+| a42   |   3506 | High          |
+| a43   |   9666 | High          |
+| a44   |   7813 | High          |
+| a45   |     68 | Low           |
+| a46   |   6901 | High          |
+| a47   |   4302 | High          |
+| a48   |    805 | Below Avg     |
+| a49   |   1119 | Above Avg     |
+| a50   |   3181 | High          |
+| a51   |   2548 | High          |
+| a52   |   3195 | High          |
+| a53   |   8332 | High          |
+| a54   |   2074 | High          |
+| a55   |   5376 | High          |
+| a56   |    659 | Below Avg     |
+| a57   |   7165 | High          |
+| a58   |   3850 | High          |
+| a59   |   7753 | High          |
+| a60   |   7217 | High          |
+| a61   |   2826 | High          |
+| a62   |   2478 | High          |
+| a63   |   3914 | High          |
+| a64   |   2135 | High          |
+| a65   |   8935 | High          |
+| a66   |   8268 | High          |
+| a67   |   4534 | High          |
+| a68   |   7868 | High          |
+| a69   |   5739 | High          |
+| a70   |   5089 | High          |
+| a71   |   8227 | High          |
+| a72   |   5869 | High          |
+| a73   |   4666 | High          |
+| a74   |   5720 | High          |
+| a75   |   4602 | High          |
+| a76   |   5850 | High          |
+| a77   |   5445 | High          |
+| a78   |   9675 | High          |
+| a79   |   2038 | High          |
+| a80   |   1166 | Above Avg     |
+| a81   |   9718 | High          |
+| a82   |   5089 | High          |
+| a83   |   6291 | High          |
+| a84   |   6187 | High          |
+| a85   |   2064 | High          |
+| a86   |   1759 | High          |
+| a87   |   2604 | High          |
+| a88   |   7742 | High          |
+| a89   |    897 | Below Avg     |
+| a90   |   1258 | Above Avg     |
+| a91   |   3600 | High          |
+| a92   |   4227 | High          |
+| a93   |    334 | Low           |
+| a94   |   8989 | High          |
+| a95   |   3944 | High          |
+| a96   |   2751 | High          |
+| a97   |   1925 | High          |
+| a98   |   1372 | Above Avg     |
+| a99   |   1085 | Above Avg     |
+| a100  |   1307 | Above Avg     |
++-------+--------+---------------+
+100 rows in set (0.00 sec)
+
+
+create table students(roll int, sub varchar(20), marks int);
+
+insert into students values(1,'M',98);
+insert into students values(1,'E',97);
+insert into students values(1,'H',96);
+insert into students values(2,'M',90);
+insert into students values(2,'E',92);
+insert into students values(2,'H',20);
+insert into students values(3,'M',36);
+insert into students values(3,'E',38);
+insert into students values(3,'H',39);
+
+Display pass if minimum marks are 35 in each subject and percentage are at leaset 40% else fail
+
+select roll, 
+case when min(marks)>=35 and avg(marks) > 40 then 'Pass'
+else 'Fail'
+end as result
+from students
+group by roll;
+
++------+--------+
+| roll | result |
++------+--------+
+|    1 | Pass   |
+|    2 | Fail   |
+|    3 | Fail   |
++------+--------+
+
+select dname from dept 
+where not exists
+(
+	select 1 from emp where emp.did = dept.did
+);
+
++-------+
+| dname |
++-------+
+| OPR   |
++-------+
+1 row in set (0.01 sec)
