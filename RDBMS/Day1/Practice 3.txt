@@ -1,0 +1,180 @@
+1)select ename from emp where salary between 500 and 1300;
++-------+
+| ename |
++-------+
+| a4    |
+| a9    |
+| a11   |
+| a23   |
+| a31   |
+| a48   |
+| a49   |
+| a56   |
+| a80   |
+| a89   |
+| a90   |
+| a99   |
++-------+
+12 rows in set (0.04 sec)
+
+2)select ename from emp where did in (select did from dept where dname = 'HR');
+2) select dname, ename from emp join dept on emp.did = dept.did where dname = 'HR';
+2)select dname, ename from emp , dept where emp.did = dept.did and dname = 'HR';
++-------+
+| ename |
++-------+
+| a1    |
+| a4    |
+| a7    |
+| a10   |
+| a13   |
+| a16   |
+| a19   |
+| a22   |
+| a25   |
+| a28   |
+| a31   |
+| a34   |
+| a37   |
+| a40   |
+| a43   |
+| a46   |
+| a49   |
+| a52   |
+| a55   |
+| a58   |
+| a61   |
+| a64   |
+| a67   |
+| a70   |
+| a73   |
+| a76   |
+| a79   |
+| a82   |
+| a85   |
+| a88   |
+| a91   |
+| a94   |
+| a97   |
+| a100  |
++-------+
+
+3)select d.dname, count(e.eid) from emp e join dept d on d.did = e.did group by d.dname;
++---------+--------------+
+| dname   | count(e.eid) |
++---------+--------------+
+| HR      |           34 |
+| IT      |           33 |
+| Finance |           33 |
++---------+--------------+
+
+4)select e.ename, d.dname, e.salary from emp e join dept d on e.did = d.did order by salary desc limit 1;
++-------+-------+--------+
+| ename | dname | salary |
++-------+-------+--------+
+| a1    | HR    |   9847 |
++-------+-------+--------+
+
+5)select e.ename, d.dname, e.salary from emp e join dept d on e.did = d.did order by salary limit 1;
+5)select e.ename, d.dname, e.salary from emp e join dept d on e.did = d.did order by 3 limit 1;
+-- Here 3 is position of column in select statement
++-------+---------+--------+
+| ename | dname   | salary |
++-------+---------+--------+
+| a45   | Finance |     68 |
++-------+---------+--------+
+1 row in set (0.00 sec)
+
+6)select e.ename, d.dname, e.salary from emp e join dept d on e.did = d.did order by salary desc limit 1 offset 1;
+6)select e.ename, d.dname, e.salary from emp e join dept d on e.did = d.did order by salary desc limit 1, 1;
+
++-------+---------+--------+
+| ename | dname   | salary |
++-------+---------+--------+
+| a81   | Finance |   9718 |
++-------+---------+--------+
+
+7) select e.ename, d.dname from emp e join dept d on e.did = d.did order by salary desc limit 5;
++-------+---------+
+| ename | dname   |
++-------+---------+
+| a1    | HR      |
+| a81   | Finance |
+| a78   | Finance |
+| a43   | HR      |
+| a39   | Finance |
++-------+---------+
+5 rows in set (0.00 sec)
+
+8)select * from 
+	(
+		select dname, ename,salary,
+		row_number() over(partition by dname order by salary desc) rn
+		from emp join dept
+		on emp.did = dept.did
+	) as t
+where rn <=5;
++---------+-------+--------+----+
+| dname   | ename | salary | rn |
++---------+-------+--------+----+
+| Finance | a81   |   9718 |  1 |
+| Finance | a78   |   9675 |  2 |
+| Finance | a39   |   9644 |  3 |
+| Finance | a12   |   9367 |  4 |
+| Finance | a24   |   8339 |  5 |
+| HR      | a1    |   9847 |  1 |
+| HR      | a43   |   9666 |  2 |
+| HR      | a25   |   9572 |  3 |
+| HR      | a37   |   9328 |  4 |
+| HR      | a28   |   8993 |  5 |
+| IT      | a41   |   9288 |  1 |
+| IT      | a32   |   9279 |  2 |
+| IT      | a65   |   8935 |  3 |
+| IT      | a14   |   8908 |  4 |
+| IT      | a29   |   8451 |  5 |
++---------+-------+--------+----+
+15 rows in set (0.00 sec)
+
+9)select d.dname,avg(salary) as avgsal, max(salary) from emp e right join dept d on d.did = e.did group by d.dname;
++---------+-----------+-------------+
+| dname   | avgsal    | max(salary) |
++---------+-----------+-------------+
+| HR      | 5296.3235 |        9847 |
+| IT      | 4850.9091 |        9288 |
+| Finance | 4669.5455 |        9718 |
+| OPR     |      NULL |        NULL |
++---------+-----------+-------------+
+4 rows in set (0.01 sec)
+
+10)select d.dname,avg(salary) as avgsal, min(salary) from emp e right join dept d on d.did = e.did group by d.dname;
++---------+-----------+-------------+
+| dname   | avgsal    | min(salary) |
++---------+-----------+-------------+
+| HR      | 5296.3235 |        1021 |
+| IT      | 4850.9091 |         659 |
+| Finance | 4669.5455 |          68 |
+| OPR     |      NULL |        NULL |
++---------+-----------+-------------+
+4 rows in set (0.00 sec)
+
+********************************PRACTICE FOR Q8***************************************
+create table emp_rank(eid int, ename varchar(100), salary int, did int);
+insert into emp_rank values(1,'a',100,1);
+insert into emp_rank values(2,'b',200,2);
+insert into emp_rank values(3, 'c',100, 1);
+insert into emp_rank values(4,'d',200,2);
+insert into emp_rank values(5,'e',50,1);
+insert into emp_rank values(6,'f',60,2);
+insert into emp_rank values(7,'g',70,1);
+
+select *,
+row_number() over (order by salary desc) rn,
+rank() over (order by salary desc) rnk,
+dense_rank() over(order by salary desc) dnsrnk
+from emp_rank;
+
+select *, 
+row_number() over (partition by did order by salary desc) as rn,
+rank() over (partition by did order by salary desc) as rnk,
+dense_rank() over (partition by did order by salary desc) as dnsrnk
+from emp_rank;

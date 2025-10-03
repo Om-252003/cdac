@@ -1,0 +1,1084 @@
+mysql> create table t5(id int primary key, name varchar(20));
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> insert into t5 values(1,'a');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into t5 values(1,'a');
+ERROR 1062 (23000): Duplicate entry '1' for key 't5.PRIMARY'
+mysql> insert into t5 values(2,'a');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into t5 values('a');
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into t5 values(null,'a');
+ERROR 1048 (23000): Column 'id' cannot be null
+mysql> create table t6(id int primary key, name varchar(20) primary key);
+ERROR 1068 (42000): Multiple primary key defined
+mysql> create table t6(id int primary key, name varchar(20), c3 int, primary key(id,c3) );
+ERROR 1068 (42000): Multiple primary key defined
+mysql> create table t6(id int, name varchar(20), c3 int, primary key(id,c3) );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> insert into t6 values(null,'a', null);
+ERROR 1048 (23000): Column 'id' cannot be null
+mysql> insert into t6 values(1,'a',1);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into t6 values(1,'a',1);
+ERROR 1062 (23000): Duplicate entry '1-1' for key 't6.PRIMARY'
+mysql> insert into t6 values(1,'a',2);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into t6 values(1,'a',2);
+ERROR 1062 (23000): Duplicate entry '1-2' for key 't6.PRIMARY'
+
+
+mysql> create table t7(id int primary key, c3 int);
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> drop table t7;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> create table t7(id int not null, c3 int);
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> insert into t7 (c3) values(1);
+ERROR 1364 (HY000): Field 'id' doesn't have a default value
+mysql> insert into t7  values(null, 1);
+ERROR 1048 (23000): Column 'id' cannot be null
+mysql> create table t8(eid int, ename varchar(20), salary int check(salary>=0));
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> insert into t8  values(1,'a', 50);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into t8  values(1,'a', 50);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into t8  values(1,'a', 0);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into t8  values(1,'a', -1);
+ERROR 3819 (HY000): Check constraint 't8_chk_1' is violated.
+mysql> insert into t8  values(1,'a', null);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> create table parent(deptid int, depname varchar(20));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> create table child(eid int, ename varchar(20), deptid int, foreign key(deptid) references parent(deptid));
+ERROR 1822 (HY000): Failed to add the foreign key constraint. Missing index for constraint 'child_ibfk_1' in the referenced table 'parent'
+mysql> alter table parent add primary key(deptid);
+Query OK, 0 rows affected (0.08 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> create table child(eid int, ename varchar(20), deptid int, foreign key(deptid) references parent(deptid));
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> insert into child values(1,a,1);
+ERROR 1054 (42S22): Unknown column 'a' in 'field list'
+mysql> insert into child values(1,a,null);
+ERROR 1054 (42S22): Unknown column 'a' in 'field list'
+mysql> insert into child values(1,'a',1);
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`trainingdb`.`child`, CONSTRAINT `child_ibfk_1` FOREIGN KEY (`deptid`) REFERENCES `parent` (`deptid`))
+mysql> insert into child values(1,'a',null);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into parent values(1,'HR');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into child values(1,'a',1);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from parent;
++--------+---------+
+| deptid | depname |
++--------+---------+
+|      1 | HR      |
++--------+---------+
+1 row in set (0.00 sec)
+
+mysql> select * from child;
++------+-------+--------+
+| eid  | ename | deptid |
++------+-------+--------+
+|    1 | a     |   NULL |
+|    1 | a     |      1 |
++------+-------+--------+
+2 rows in set (0.00 sec)
+
+mysql> desc child;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| eid    | int         | YES  |     | NULL    |       |
+| ename  | varchar(20) | YES  |     | NULL    |       |
+| deptid | int         | YES  | MUL | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql> desc parent;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| deptid  | int         | NO   | PRI | NULL    |       |
+| depname | varchar(20) | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> create table tdef(id int, name varchar(20), salary int default 100);
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> insert into tdef(id,name) values(1,'a');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into tdef values(1,'a', null);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from tdef;
++------+------+--------+
+| id   | name | salary |
++------+------+--------+
+|    1 | a    |    100 |
+|    1 | a    |   NULL |
++------+------+--------+
+2 rows in set (0.00 sec)
+
+mysql> drop table t1;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> drop table t2;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> show tables;
++----------------------+
+| Tables_in_trainingdb |
++----------------------+
+| child                |
+| parent               |
+| t3                   |
+| t4                   |
+| t5                   |
+| t6                   |
+| t7                   |
+| t8                   |
+| tdef                 |
+| test                 |
++----------------------+
+10 rows in set (0.00 sec)
+
+mysql> create table t1(c1 int , c2 varchar(20));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> create table t2(c1 int , c3 varchar(20));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> insert into t1 values(1,'a'), (2,'b'), (3,'c');
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> insert into t2 values(3,'x'), (4,'y'), (5,'z');
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from t1 cross join t2;          -- new syntax / ansi syntax
++------+------+------+------+
+| c1   | c2   | c1   | c3   |
++------+------+------+------+
+|    3 | c    |    3 | x    |
+|    2 | b    |    3 | x    |
+|    1 | a    |    3 | x    |
+|    3 | c    |    4 | y    |
+|    2 | b    |    4 | y    |
+|    1 | a    |    4 | y    |
+|    3 | c    |    5 | z    |
+|    2 | b    |    5 | z    |
+|    1 | a    |    5 | z    |
++------+------+------+------+
+9 rows in set (0.00 sec)
+
+mysql> select * from t1 , t2; 					-- old syntax
++------+------+------+------+
+| c1   | c2   | c1   | c3   |
++------+------+------+------+
+|    3 | c    |    3 | x    |
+|    2 | b    |    3 | x    |
+|    1 | a    |    3 | x    |
+|    3 | c    |    4 | y    |
+|    2 | b    |    4 | y    |
+|    1 | a    |    4 | y    |
+|    3 | c    |    5 | z    |
+|    2 | b    |    5 | z    |
+|    1 | a    |    5 | z    |
++------+------+------+------+
+9 rows in set (0.00 sec)
+
+mysql> select t1.*, c3  from t1 cross join t2;
++------+------+------+
+| c1   | c2   | c3   |
++------+------+------+
+|    3 | c    | x    |
+|    2 | b    | x    |
+|    1 | a    | x    |
+|    3 | c    | y    |
+|    2 | b    | y    |
+|    1 | a    | y    |
+|    3 | c    | z    |
+|    2 | b    | z    |
+|    1 | a    | z    |
++------+------+------+
+9 rows in set (0.00 sec)
+
+mysql> select t1.* from t1 cross join t2;
++------+------+
+| c1   | c2   |
++------+------+
+|    3 | c    |
+|    2 | b    |
+|    1 | a    |
+|    3 | c    |
+|    2 | b    |
+|    1 | a    |
+|    3 | c    |
+|    2 | b    |
+|    1 | a    |
++------+------+
+9 rows in set (0.00 sec)
+
+mysql> select t1.* from t1 ,t2;
++------+------+
+| c1   | c2   |
++------+------+
+|    3 | c    |
+|    2 | b    |
+|    1 | a    |
+|    3 | c    |
+|    2 | b    |
+|    1 | a    |
+|    3 | c    |
+|    2 | b    |
+|    1 | a    |
++------+------+
+9 rows in set (0.00 sec)
+
+mysql> select *
+    -> from t1 inner join t2
+    -> on t1.c1 = t2.c1 ; 			-- new syntax / ansi syntax
++------+------+------+------+
+| c1   | c2   | c1   | c3   |
++------+------+------+------+
+|    3 | c    |    3 | x    |
++------+------+------+------+
+1 row in set (0.00 sec)
+
+mysql> select *
+    -> from t1 , t2
+    -> where t1.c1 = t2.c1;		    -- old syntax
++------+------+------+------+
+| c1   | c2   | c1   | c3   |
++------+------+------+------+
+|    3 | c    |    3 | x    |
++------+------+------+------+
+1 row in set (0.00 sec)
+
+mysql> select * from t1
+    -> left join t2
+    -> on t1.c1 = t2.c1;
++------+------+------+------+
+| c1   | c2   | c1   | c3   |
++------+------+------+------+
+|    1 | a    | NULL | NULL |
+|    2 | b    | NULL | NULL |
+|    3 | c    |    3 | x    |
++------+------+------+------+
+3 rows in set (0.00 sec)
+
+mysql> select * from t1
+    -> left outer join t2
+    -> on t1.c1 = t2.c1;				-- doesn't matter if we write "outer" or not
++------+------+------+------+
+| c1   | c2   | c1   | c3   |
++------+------+------+------+
+|    1 | a    | NULL | NULL |
+|    2 | b    | NULL | NULL |
+|    3 | c    |    3 | x    |
++------+------+------+------+
+3 rows in set (0.00 sec)
+
+mysql> select t1.*, t2.c1 from t1
+    -> left outer join t2
+    -> on t1.c1 = t2.c1;
++------+------+------+
+| c1   | c2   | c1   |
++------+------+------+
+|    1 | a    | NULL |
+|    2 | b    | NULL |
+|    3 | c    |    3 |
++------+------+------+
+3 rows in set (0.00 sec)
+
+mysql> select * from t1 right join t2 on t1.c1 = t2.c1;
++------+------+------+------+
+| c1   | c2   | c1   | c3   |
++------+------+------+------+
+|    3 | c    |    3 | x    |
+| NULL | NULL |    4 | y    |
+| NULL | NULL |    5 | z    |
++------+------+------+------+
+3 rows in set (0.00 sec)
+
+mysql> select * from t1 right outer join t2 on t1.c1 = t2.c1;
++------+------+------+------+
+| c1   | c2   | c1   | c3   |
++------+------+------+------+
+|    3 | c    |    3 | x    |
+| NULL | NULL |    4 | y    |
+| NULL | NULL |    5 | z    |
++------+------+------+------+
+3 rows in set (0.00 sec)
+
+mysql> select t2.*, t1.c1 from t1 right outer join t2 on t1.c1 = t2.c1;
++------+------+------+
+| c1   | c3   | c1   |
++------+------+------+
+|    3 | x    |    3 |
+|    4 | y    | NULL |
+|    5 | z    | NULL |
++------+------+------+
+3 rows in set (0.00 sec)
+
+mysql> -- mysql doesn't support full outer join others do
+mysql> -- we achieve full outer join using union of 2 joins i.e. left join and right join
+mysql>
+mysql>
+
+
+mysql> create table t1(a int);
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> create table t2(a int);
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> insert into t1 values(1),(2),(3);
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> insert into t2 values(3),(4),(5);
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from t1
+    -> union
+    -> select * from t2;
++------+
+| a    |
++------+
+|    1 |
+|    2 |
+|    3 |
+|    4 |
+|    5 |
++------+
+5 rows in set (0.01 sec)
+
+mysql> select * from t2
+    -> union
+    -> select * from t1;
++------+
+| b    |
++------+
+|    3 |
+|    4 |
+|    5 |
+|    1 |
+|    2 |
++------+
+5 rows in set (0.00 sec)
+
+
+mysql> select * from t1
+    -> union all
+    -> select * from t2;
++------+
+| a    |
++------+
+|    1 |
+|    2 |
+|    3 |
+|    3 |
+|    4 |
+|    5 |
++------+
+6 rows in set (0.00 sec)
+
+mysql> select * from t2
+    -> union all
+    -> select * from t1;
++------+
+| b    |
++------+
+|    3 |
+|    4 |
+|    5 |
+|    1 |
+|    2 |
+|    3 |
++------+
+6 rows in set (0.00 sec)
+
+mysql> select * from t1
+    -> intersect
+    -> select * from t2;
++------+
+| a    |
++------+
+|    3 |
++------+
+1 row in set (0.00 sec)
+
+mysql> select * from t2
+    -> intersect
+    -> select * from t1;
++------+
+| b    |
++------+
+|    3 |
++------+
+1 row in set (0.00 sec)
+
+mysql> select * from t1
+    -> except
+    -> select * from t2;
++------+
+| a    |
++------+
+|    1 |
+|    2 |
++------+
+2 rows in set (0.00 sec)
+
+mysql> select * from t2
+    -> except
+    -> select * from t1;
++------+
+| b    |
++------+
+|    4 |
+|    5 |
++------+
+2 rows in set (0.00 sec)
+
+mysql> select * from t1 left join t2 on t1.a = t2.b
+    -> union
+    -> select * from t1 right join t2 on t1.a = t2.b
+    -> ;
++------+------+
+| a    | b    |
++------+------+
+|    1 | NULL |
+|    2 | NULL |
+|    3 |    3 |
+| NULL |    4 |
+| NULL |    5 |
++------+------+
+5 rows in set (0.00 sec)
+
+
+mysql> select * from t1 left join t2 on t1.a = t2.b
+    -> union
+    -> select * from t1 right join t2 on t1.a = t2.b
+    -> ;
++------+------+
+| a    | b    |
++------+------+
+|    1 | NULL |
+|    2 | NULL |
+|    3 |    3 |
+| NULL |    4 |
+| NULL |    5 |
++------+------+
+5 rows in set (0.00 sec)
+
+mysql> select count(*) from t1;
++----------+
+| count(*) |
++----------+
+|        3 |
++----------+
+1 row in set (0.01 sec)
+
+mysql> select count(1) from t1;
++----------+
+| count(1) |
++----------+
+|        3 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> insert into t1 values(null);
+Query OK, 1 row affected (0.08 sec)
+
+mysql> select count(*) from t1;
++----------+
+| count(*) |
++----------+
+|        4 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select count(1) from t1;
++----------+
+| count(1) |
++----------+
+|        4 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select count(a) from t1;
++----------+
+| count(a) |
++----------+
+|        3 |
++----------+
+1 row in set (0.00 sec)
+
+mysql>
+
+mysql> select count(1) from t1;
++----------+
+| count(1) |
++----------+
+|        5 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select count(distinct a) from t1;
++-------------------+
+| count(distinct a) |
++-------------------+
+|                 3 |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> select * from t1;
++------+
+| a    |
++------+
+|    1 |
+|    2 |
+|    3 |
+| NULL |
+|    1 |
++------+
+5 rows in set (0.00 sec)
+
+mysql> select sum(a) from t1;
++--------+
+| sum(a) |
++--------+
+|      7 |
++--------+
+1 row in set (0.00 sec)
+
+mysql> select sum(distinct a) from t1;
++-----------------+
+| sum(distinct a) |
++-----------------+
+|               6 |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> select min(a) from t1;
++--------+
+| min(a) |
++--------+
+|      1 |
++--------+
+1 row in set (0.00 sec)
+
+mysql> select max(a) from t1;
++--------+
+| max(a) |
++--------+
+|      3 |
++--------+
+1 row in set (0.00 sec)
+
+mysql> select avg(a) from t1;
++--------+
+| avg(a) |
++--------+
+| 1.7500 |
++--------+
+1 row in set (0.00 sec)
+
+mysql> select * from t1 where a in (select a from t2);
++------+
+| a    |
++------+
+|    1 |
+|    2 |
+|    3 |
+|    1 |
++------+
+4 rows in set (0.00 sec)
+***************************************************************************************************************
+
+mysql> create table dept(dit int, dname varchar(20));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> create table emp(eid int, ename varchar(20), salary int, did int);
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> alter table dept rename column dit to did;
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> insert into dept values (1,'HR'),(2,'IT'),(3,'Finance'),(4,'OPR');
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from dept;
++------+---------+
+| did  | dname   |
++------+---------+
+|    1 | HR      |
+|    2 | IT      |
+|    3 | Finance |
+|    4 | OPR     |
++------+---------+
+4 rows in set (0.00 sec)
+
+mysql> select * from emp;
+Empty set (0.00 sec)
+
+mysql> insert into emp
+    -> with recursive tab
+    -> as
+    -> (select 1 eid, cast('a1' as char(100))as ename, rand() * 10000 salary, 1 did
+    -> union all
+    -> select eid+1, concat('a',eid+1), rand()*10000 salary, mod(eid, 3)+1
+    -> from tab where eid<100)
+    -> select * from tab;
+Query OK, 100 rows affected (0.01 sec)
+Records: 100  Duplicates: 0  Warnings: 0
++------+-------+--------------------+------+
+| eid  | ename | salary             | did  |
++------+-------+--------------------+------+
+|    1 | a1    |  435.7078209851941 |    1 |
+|    2 | a2    |  8242.952617111572 |    2 |
+|    3 | a3    |  9907.639929938727 |    3 |
+|    4 | a4    |  4809.342105695365 |    1 |
+|    5 | a5    |  4323.791045997097 |    2 |
+|    6 | a6    |  7190.929220235841 |    3 |
+|    7 | a7    | 2983.2732705243616 |    1 |
+|    8 | a8    | 3343.5789992507353 |    2 |
+|    9 | a9    |  7768.075492017041 |    3 |
+|   10 | a10   |  8809.640769669451 |    1 |
+|   11 | a11   |  743.9776796325834 |    2 |
+|   12 | a12   |  7290.966396491012 |    3 |
+|   13 | a13   |   4222.89925089376 |    1 |
+|   14 | a14   |  9241.597372332213 |    2 |
+|   15 | a15   | 3539.2894163162346 |    3 |
+|   16 | a16   |  9971.655271920987 |    1 |
+|   17 | a17   |  9240.408417992674 |    2 |
+|   18 | a18   |  6287.076581536863 |    3 |
+|   19 | a19   |  3714.157961042745 |    1 |
+|   20 | a20   |  9709.560367939584 |    2 |
+|   21 | a21   |  7405.328263906137 |    3 |
+|   22 | a22   | 7897.9605230483785 |    1 |
+|   23 | a23   |  7273.818130859936 |    2 |
+|   24 | a24   |  2675.209392490992 |    3 |
+|   25 | a25   | 1554.5928772116013 |    1 |
+|   26 | a26   |  9747.336515921483 |    2 |
+|   27 | a27   | 4072.9042553090526 |    3 |
+|   28 | a28   | 1122.5120361172706 |    1 |
+|   29 | a29   | 3393.8477219956444 |    2 |
+|   30 | a30   | 3601.7028089628584 |    3 |
+|   31 | a31   |  7826.971186163808 |    1 |
+|   32 | a32   |  8329.747811266918 |    2 |
+|   33 | a33   |  8167.825805179613 |    3 |
+|   34 | a34   |   5849.88589943376 |    1 |
+|   35 | a35   | 4745.9523889664115 |    2 |
+|   36 | a36   |  6180.104553867229 |    3 |
+|   37 | a37   |  6662.665909773359 |    1 |
+|   38 | a38   |  4773.016194601558 |    2 |
+|   39 | a39   | 3877.0835510241645 |    3 |
+|   40 | a40   |  5066.369478652598 |    1 |
+|   41 | a41   | 3700.5970475269455 |    2 |
+|   42 | a42   | 3303.8771090133832 |    3 |
+|   43 | a43   |  5417.594709822531 |    1 |
+|   44 | a44   |  7176.342529408952 |    2 |
+|   45 | a45   |  9628.928824913623 |    3 |
+|   46 | a46   |  6615.616843677701 |    1 |
+|   47 | a47   |  4191.298050984086 |    2 |
+|   48 | a48   | 1109.6400312237813 |    3 |
+|   49 | a49   | 2974.3063105030974 |    1 |
+|   50 | a50   | 1542.6117661805933 |    2 |
+|   51 | a51   |  8790.140206730124 |    3 |
+|   52 | a52   |  9322.866042445288 |    1 |
+|   53 | a53   | 243.90989937252357 |    2 |
+|   54 | a54   | 3250.9516768632006 |    3 |
+|   55 | a55   |  5523.028993534883 |    1 |
+|   56 | a56   | 7862.2902444212605 |    2 |
+|   57 | a57   | 2742.3645488381053 |    3 |
+|   58 | a58   | 124.95231826319576 |    1 |
+|   59 | a59   |  2397.668252138112 |    2 |
+|   60 | a60   | 1613.4846132374225 |    3 |
+|   61 | a61   |  874.4186171092266 |    1 |
+|   62 | a62   |  9531.639553170317 |    2 |
+|   63 | a63   |  5034.942221860348 |    3 |
+|   64 | a64   |  6579.792757127241 |    1 |
+|   65 | a65   |  7794.137427391612 |    2 |
+|   66 | a66   |  9231.309172912788 |    3 |
+|   67 | a67   | 2774.1338897255564 |    1 |
+|   68 | a68   |  6176.742237225866 |    2 |
+|   69 | a69   | 2561.3098242891115 |    3 |
+|   70 | a70   |  4276.322717104407 |    1 |
+|   71 | a71   | 3697.6844199911548 |    2 |
+|   72 | a72   |     5659.454255979 |    3 |
+|   73 | a73   |  7204.218327257985 |    1 |
+|   74 | a74   |  9042.729175689377 |    2 |
+|   75 | a75   |  3600.991204009383 |    3 |
+|   76 | a76   |  876.7688003152318 |    1 |
+|   77 | a77   | 3580.8706968844594 |    2 |
+|   78 | a78   | 5274.0473908130525 |    3 |
+|   79 | a79   |  5627.625170748332 |    1 |
+|   80 | a80   | 2315.9839886389523 |    2 |
+|   81 | a81   |  4697.044738286217 |    3 |
+|   82 | a82   |  6537.272032850675 |    1 |
+|   83 | a83   |  8595.226256731177 |    2 |
+|   84 | a84   |  3364.315492440309 |    3 |
+|   85 | a85   | 1035.8989993444636 |    1 |
+|   86 | a86   |   5086.54882673784 |    2 |
+|   87 | a87   |  2325.047442992262 |    3 |
+|   88 | a88   |  6365.591042084238 |    1 |
+|   89 | a89   |  4852.813188780857 |    2 |
+|   90 | a90   |  5167.293124988018 |    3 |
+|   91 | a91   | 1278.0263659339644 |    1 |
+|   92 | a92   |  888.2527620422213 |    2 |
+|   93 | a93   |  607.1850197456637 |    3 |
+|   94 | a94   |  371.1671199381045 |    1 |
+|   95 | a95   |  34.28084778998126 |    2 |
+|   96 | a96   |  9057.903186472042 |    3 |
+|   97 | a97   |  5186.673696326719 |    1 |
+|   98 | a98   |   8759.65922955392 |    2 |
+|   99 | a99   |  8238.275366125885 |    3 |
+|  100 | a100  |  4912.399449304118 |    1 |
++------+-------+--------------------+------+
+100 rows in set (0.01 sec)
+
+mysql> select * from emp;
+Empty set (0.00 sec)
+
+
+
+mysql> select dname, ename,salary from emp join dept on emp.did = dept.did;
++---------+-------+--------+
+| dname   | ename | salary |
++---------+-------+--------+
+| HR      | a1    |   9847 |
+| IT      | a2    |   4499 |
+| Finance | a3    |   2952 |
+| HR      | a4    |   1263 |
+| IT      | a5    |   7459 |
+| Finance | a6    |   3508 |
+| HR      | a7    |   5161 |
+| IT      | a8    |   5282 |
+| Finance | a9    |    926 |
+| HR      | a10   |   8784 |
+| IT      | a11   |   1144 |
+| Finance | a12   |   9367 |
+| HR      | a13   |   3402 |
+| IT      | a14   |   8908 |
+| Finance | a15   |   4337 |
+| HR      | a16   |   4959 |
+| IT      | a17   |   1786 |
+| Finance | a18   |   4052 |
+| HR      | a19   |   4904 |
+| IT      | a20   |   2362 |
+| Finance | a21   |   7097 |
+| HR      | a22   |   8400 |
+| IT      | a23   |    708 |
+| Finance | a24   |   8339 |
+| HR      | a25   |   9572 |
+| IT      | a26   |   2844 |
+| Finance | a27   |   5505 |
+| HR      | a28   |   8993 |
+| IT      | a29   |   8451 |
+| Finance | a30   |   5275 |
+| HR      | a31   |   1021 |
+| IT      | a32   |   9279 |
+| Finance | a33   |   3335 |
+| HR      | a34   |   8836 |
+| IT      | a35   |   4176 |
+| Finance | a36   |   4371 |
+| HR      | a37   |   9328 |
+| IT      | a38   |   3525 |
+| Finance | a39   |   9644 |
+| HR      | a40   |   7644 |
+| IT      | a41   |   9288 |
+| Finance | a42   |   3506 |
+| HR      | a43   |   9666 |
+| IT      | a44   |   7813 |
+| Finance | a45   |     68 |
+| HR      | a46   |   6901 |
+| IT      | a47   |   4302 |
+| Finance | a48   |    805 |
+| HR      | a49   |   1119 |
+| IT      | a50   |   3181 |
+| Finance | a51   |   2548 |
+| HR      | a52   |   3195 |
+| IT      | a53   |   8332 |
+| Finance | a54   |   2074 |
+| HR      | a55   |   5376 |
+| IT      | a56   |    659 |
+| Finance | a57   |   7165 |
+| HR      | a58   |   3850 |
+| IT      | a59   |   7753 |
+| Finance | a60   |   7217 |
+| HR      | a61   |   2826 |
+| IT      | a62   |   2478 |
+| Finance | a63   |   3914 |
+| HR      | a64   |   2135 |
+| IT      | a65   |   8935 |
+| Finance | a66   |   8268 |
+| HR      | a67   |   4534 |
+| IT      | a68   |   7868 |
+| Finance | a69   |   5739 |
+| HR      | a70   |   5089 |
+| IT      | a71   |   8227 |
+| Finance | a72   |   5869 |
+| HR      | a73   |   4666 |
+| IT      | a74   |   5720 |
+| Finance | a75   |   4602 |
+| HR      | a76   |   5850 |
+| IT      | a77   |   5445 |
+| Finance | a78   |   9675 |
+| HR      | a79   |   2038 |
+| IT      | a80   |   1166 |
+| Finance | a81   |   9718 |
+| HR      | a82   |   5089 |
+| IT      | a83   |   6291 |
+| Finance | a84   |   6187 |
+| HR      | a85   |   2064 |
+| IT      | a86   |   1759 |
+| Finance | a87   |   2604 |
+| HR      | a88   |   7742 |
+| IT      | a89   |    897 |
+| Finance | a90   |   1258 |
+| HR      | a91   |   3600 |
+| IT      | a92   |   4227 |
+| Finance | a93   |    334 |
+| HR      | a94   |   8989 |
+| IT      | a95   |   3944 |
+| Finance | a96   |   2751 |
+| HR      | a97   |   1925 |
+| IT      | a98   |   1372 |
+| Finance | a99   |   1085 |
+| HR      | a100  |   1307 |
++---------+-------+--------+
+100 rows in set (0.00 sec)
+
+mysql> select sum(salary) total from emp join dept on emp.did = dept.did;
++--------+
+| total  |
++--------+
+| 494250 |
++--------+
+1 row in set (0.00 sec)
+
+mysql> select dname, sum(salary) total from emp right join dept on emp.did = dept.did group by dname;
++---------+--------+
+| dname   | total  |
++---------+--------+
+| HR      | 180075 |
+| IT      | 160080 |
+| Finance | 154095 |
+| OPR     |   NULL |
++---------+--------+
+4 rows in set (0.00 sec)
+
+mysql> select dname, sum(salary) total from emp right join dept on emp.did = dept.did group by dname having sum(salary)>160000;
++-------+--------+
+| dname | total  |
++-------+--------+
+| HR    | 180075 |
+| IT    | 160080 |
++-------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select count(eid) from emp join dept on emp.did = dept.did group by dept.did;
++------------+
+| count(eid) |
++------------+
+|         34 |
+|         33 |
+|         33 |
++------------+
+3 rows in set (0.00 sec)
+
+mysql> select count(eid) from emp join dept on emp.did = dept.did group by dept.dname;
++------------+
+| count(eid) |
++------------+
+|         34 |
+|         33 |
+|         33 |
++------------+
+3 rows in set (0.00 sec)
+
+mysql> select dname, count(eid) from emp join dept on emp.did = dept.did group by dept.dname;
++---------+------------+
+| dname   | count(eid) |
++---------+------------+
+| HR      |         34 |
+| IT      |         33 |
+| Finance |         33 |
++---------+------------+
+3 rows in set (0.00 sec)
+
+mysql> select dname,ename,salary from emp join dept on emp.did = dept.did order by dname,salary desc;
++---------+-------+--------+
+| dname   | ename | salary |
++---------+-------+--------+
+| Finance | a81   |   9718 |
+| Finance | a78   |   9675 |
+| Finance | a39   |   9644 |
+| Finance | a12   |   9367 |
+| Finance | a24   |   8339 |
+| Finance | a66   |   8268 |
+| Finance | a60   |   7217 |
+| Finance | a57   |   7165 |
+| Finance | a21   |   7097 |
+| Finance | a84   |   6187 |
+| Finance | a72   |   5869 |
+| Finance | a69   |   5739 |
+| Finance | a27   |   5505 |
+| Finance | a30   |   5275 |
+| Finance | a75   |   4602 |
+| Finance | a36   |   4371 |
+| Finance | a15   |   4337 |
+| Finance | a18   |   4052 |
+| Finance | a63   |   3914 |
+| Finance | a6    |   3508 |
+| Finance | a42   |   3506 |
+| Finance | a33   |   3335 |
+| Finance | a3    |   2952 |
+| Finance | a96   |   2751 |
+| Finance | a87   |   2604 |
+| Finance | a51   |   2548 |
+| Finance | a54   |   2074 |
+| Finance | a90   |   1258 |
+| Finance | a99   |   1085 |
+| Finance | a9    |    926 |
+| Finance | a48   |    805 |
+| Finance | a93   |    334 |
+| Finance | a45   |     68 |
+| HR      | a1    |   9847 |
+| HR      | a43   |   9666 |
+| HR      | a25   |   9572 |
+| HR      | a37   |   9328 |
+| HR      | a28   |   8993 |
+| HR      | a94   |   8989 |
+| HR      | a34   |   8836 |
+| HR      | a10   |   8784 |
+| HR      | a22   |   8400 |
+| HR      | a88   |   7742 |
+| HR      | a40   |   7644 |
+| HR      | a46   |   6901 |
+| HR      | a76   |   5850 |
+| HR      | a55   |   5376 |
+| HR      | a7    |   5161 |
+| HR      | a70   |   5089 |
+| HR      | a82   |   5089 |
+| HR      | a16   |   4959 |
+| HR      | a19   |   4904 |
+| HR      | a73   |   4666 |
+| HR      | a67   |   4534 |
+| HR      | a58   |   3850 |
+| HR      | a91   |   3600 |
+| HR      | a13   |   3402 |
+| HR      | a52   |   3195 |
+| HR      | a61   |   2826 |
+| HR      | a64   |   2135 |
+| HR      | a85   |   2064 |
+| HR      | a79   |   2038 |
+| HR      | a97   |   1925 |
+| HR      | a100  |   1307 |
+| HR      | a4    |   1263 |
+| HR      | a49   |   1119 |
+| HR      | a31   |   1021 |
+| IT      | a41   |   9288 |
+| IT      | a32   |   9279 |
+| IT      | a65   |   8935 |
+| IT      | a14   |   8908 |
+| IT      | a29   |   8451 |
+| IT      | a53   |   8332 |
+| IT      | a71   |   8227 |
+| IT      | a68   |   7868 |
+| IT      | a44   |   7813 |
+| IT      | a59   |   7753 |
+| IT      | a5    |   7459 |
+| IT      | a83   |   6291 |
+| IT      | a74   |   5720 |
+| IT      | a77   |   5445 |
+| IT      | a8    |   5282 |
+| IT      | a2    |   4499 |
+| IT      | a47   |   4302 |
+| IT      | a92   |   4227 |
+| IT      | a35   |   4176 |
+| IT      | a95   |   3944 |
+| IT      | a38   |   3525 |
+| IT      | a50   |   3181 |
+| IT      | a26   |   2844 |
+| IT      | a62   |   2478 |
+| IT      | a20   |   2362 |
+| IT      | a17   |   1786 |
+| IT      | a86   |   1759 |
+| IT      | a98   |   1372 |
+| IT      | a80   |   1166 |
+| IT      | a11   |   1144 |
+| IT      | a89   |    897 |
+| IT      | a23   |    708 |
+| IT      | a56   |    659 |
++---------+-------+--------+
+100 rows in set (0.00 sec)
+
+mysql> select * from emp order by salary limit 5;
++------+-------+--------+------+
+| eid  | ename | salary | did  |
++------+-------+--------+------+
+|   45 | a45   |     68 |    3 |
+|   93 | a93   |    334 |    3 |
+|   56 | a56   |    659 |    2 |
+|   23 | a23   |    708 |    2 |
+|   48 | a48   |    805 |    3 |
++------+-------+--------+------+
+5 rows in set (0.00 sec)
+
+mysql> select * from emp order by salary desc limit 5;
++------+-------+--------+------+
+| eid  | ename | salary | did  |
++------+-------+--------+------+
+|    1 | a1    |   9847 |    1 |
+|   81 | a81   |   9718 |    3 |
+|   78 | a78   |   9675 |    3 |
+|   43 | a43   |   9666 |    1 |
+|   39 | a39   |   9644 |    3 |
++------+-------+--------+------+
+5 rows in set (0.00 sec)
+
+mysql> select * from emp order by salary desc limit 5 offset 1;
++------+-------+--------+------+
+| eid  | ename | salary | did  |
++------+-------+--------+------+
+|   81 | a81   |   9718 |    3 |
+|   78 | a78   |   9675 |    3 |
+|   43 | a43   |   9666 |    1 |
+|   39 | a39   |   9644 |    3 |
+|   25 | a25   |   9572 |    1 |
++------+-------+--------+------+
+5 rows in set (0.00 sec)
+
