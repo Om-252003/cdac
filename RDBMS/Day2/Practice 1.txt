@@ -278,3 +278,151 @@ ERROR 1701 (42000): Cannot truncate a table referenced in a foreign key constrai
 mysql> rollback;
 Query OK, 0 rows affected (0.00 sec)
 
+****************************Common Table Expressions (with queries)****************************
+mysql> with tab as (select * from parent) select * from tab;
++--------+---------+
+| deptid | depname |
++--------+---------+
+|      1 | HR      |
++--------+---------+
+1 row in set (0.00 sec)
+
+mysql> with tab as (select * from empmgr) select * from tab;
++------+-------+-------+
+| eid  | ename | mgrid |
++------+-------+-------+
+|    1 | a     |     4 |
+|    2 | b     |     4 |
+|    3 | c     |     4 |
+|    4 | d     |     4 |
+|    5 | e     |     6 |
+|    6 | f     |     6 |
+|    7 | g     |     6 |
++------+-------+-------+
+7 rows in set (0.00 sec)
+
+mysql> with sarvadnya as (select 1 as eid) select * from sarvadnya;
++-----+
+| eid |
++-----+
+|   1 |
++-----+
+1 row in set (0.01 sec)
+
+**********************Factorial program**********************
+-- This is my own
+mysql> with recursive f as (select 5 as n, 1 as fact union select n-1, fact *( n ) from f where n>1) select fact from f order by fact desc limit 1;
++------+
+| fact |
++------+
+|  120 |
++------+
+1 row in set (0.00 sec)
+
+-- By Teacher
+with recursive fact as (select 5 num, 5 fact union all select num-1, fact*(num-1) from fact where num>2) select max(fact) from fact;
+
+with recursive fact as (select 5 num, 5 fact, 5 inputnumber union all select num-1, fact*(num-1), inputnumber from fact where num>2) select concat('Factorial of ', inputnumber, 'is',max(fact)) Factorial from fact group by inputnumber;
+
+**********************Fibonacci program**********************
+--mine
+
+with recursive f as (select 1 as n, 0 as f1, 1 as f2 union all select n+1, f2, (f1+f2) from f where n<10) select * from f;
+
+--Teacher
+with recursive fab as (select 1 as currnum, 0 as prevnum, 1 as id union all select currnum+prevnum as currnum, currnum as prevnum, id+1 from fab where id<10) select currnum fab from fab;
+
+**********************Prime Number program**********************
+
+
+**********************Top Most parent program**********************
+
+create table part(partid varchar(1), parentpartid varchar(1));
+
+insert into part values('A','A');
+insert into part values('B','A');
+insert into part values('C','B');
+insert into part values('D','B');
+insert into part values('E','D');
+insert into part values('F','E');
+insert into part values('G','G');
+insert into part values('H','G');
+insert into part values('I','H');
+insert into part values('J','I');
+insert into part values('K','K');
+insert into part values('L','K');
+insert into part values('M','L');
+insert into part values('N','L');
+
+WITH RECURSIVE tab AS (
+    -- Anchor: start from each part
+    SELECT Partid AS originalpartid,
+           ParentPartid AS immediateparent,
+           ParentPartid AS topmostparent,
+           1 AS level
+    FROM part
+    
+    UNION ALL
+    
+    -- Recursive step: move up to parent
+    SELECT tab.originalpartid,
+           tab.immediateparent,
+           p.ParentPartid,
+           level + 1
+    FROM tab
+    JOIN part p
+      ON tab.topmostparent = p.Partid
+    WHERE p.Partid <> p.ParentPartid
+)
+SELECT originalpartid AS Partid,
+       topmostparent AS TopMostParent
+FROM (
+    SELECT originalpartid,
+           topmostparent,
+           ROW_NUMBER() OVER (PARTITION BY originalpartid ORDER BY level DESC) AS rn
+    FROM tab
+) AS t
+WHERE rn = 1
+ORDER BY Partid;
+
++--------+---------------+
+| Partid | TopMostParent |
++--------+---------------+
+| A      | A             |
+| B      | A             |
+| C      | A             |
+| D      | A             |
+| E      | A             |
+| F      | A             |
+| G      | G             |
+| H      | G             |
+| I      | G             |
+| J      | G             |
+| K      | K             |
+| L      | K             |
+| M      | K             |
+| N      | K             |
++--------+---------------+
+14 rows in set (0.00 sec)
+
+ **********************Concat() function program**********************
+select dname, group_concat(ename separator '->') as employees
+from emp e join dept d on 
+e.did = d.did 
+group by dname;
+
++---------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| dname   | employees                                                                                                                                                              |
++---------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Finance | a45->a69->a3->a36->a99->a6->a54->a96->a9->a66->a93->a12->a51->a90->a15->a39->a87->a18->a57->a84->a21->a63->a81->a24->a42->a78->a27->a48->a75->a30->a60->a72->a33       |
+| HR      | a1->a100->a4->a7->a10->a16->a19->a22->a25->a28->a31->a34->a37->a40->a43->a46->a49->a13->a52->a55->a58->a61->a64->a67->a70->a73->a76->a79->a82->a85->a88->a91->a94->a97 |
+| IT      | a2->a35->a50->a71->a32->a59->a74->a29->a44->a77->a26->a53->a80->a23->a62->a83->a20->a41->a86->a17->a56->a89->a14->a65->a92->a11->a38->a95->a8->a47->a98->a5->a68       |
++---------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+********************** parent Hierarchy program**********************
+
+
+********************** Similarity of customers program**********************
+create table cust(cid int, pid int);
+
+insert into cust values (1,1), (1,4),(1,5),(1,7),(1,10),(1,11),(2,1),(2,4),(2,7),(2,13),(2,14),(3,7),(3,8),(3,9),(3,10),(3,11);
