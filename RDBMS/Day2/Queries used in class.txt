@@ -1,0 +1,483 @@
+select  d1.deptname d1,d2.deptname d2
+from dept d1, dept d2
+where d1.deptname<d2.deptname;
+
+
+create table emp_mgr(eid int, ename varchar(10), mgrid int);
+insert into emp_mgr values(1,'a',4);
+insert into emp_mgr values(2,'b',4);
+insert into emp_mgr values(3,'c',4);
+insert into emp_mgr values(4,'d',4);
+insert into emp_mgr values(5,'e',6);
+insert into emp_mgr values(6,'f',6);
+insert into emp_mgr values(7,'g',6);
+
+
+select e.mgrid,m.ename mgrname,e.eid,e.ename
+from emp_mgr e , emp_mgr m
+where e.mgrid<>e.eid
+and e.mgrid=m.eid;
+
+create table account (accno int primary key auto_increment, accname varchar(100));
+insert into account(accname) values('a'),('b'),('c');
+
+alter table account auto_increment=1001;
+
+insert into account(accname) values('d');
+
+
+insert into account values(5001,'e');
+
+insert into account(accname) values('f');
+
+
+create table o2(c1 int unique auto_increment, c2 int unique , c3 varchar(100));
+
+
+delete from account;
+insert into account(accname) values('d');
+
+truncate table account;
+insert into account(accname) values('d');
+
+
+truncate table t_parent;
+
+delete from t_parent where deptid=4;
+
+
+create table salespeople
+(snum int, sname varchar(100),city varchar(100), comm float);
+
+create table customers
+(cnum int, cname varchar(100),city  varchar(100),rating int, snum int);
+
+create table orders
+(onum int,amt float, odate date, cnum int, snum int);
+insert into salespeople values
+(1001,'Peel','London',.12),
+(1002,'Serres','San Jose',.13),
+(1004,'Motika','London',.11),
+(1007,'Rifkin','Barcelona',.15),
+(1003,'AxelRod','New York',.10),
+(1005,'Fran','London',.26);
+
+
+select * from salespeople;
+
+insert into customers values
+(2001,'Hoffman','London',100,1001),
+(2002,'Giovanni','Rome',200,1003),
+(2003,'Liu','San Jose',200,1002),
+(2004,'Grass','Berlin',300,1002),
+(2006,'Clemens','London',100,1001),
+(2008,'Cisneros','San Jose',300,1007),
+(2007,'Pereira','Rome',100,1004);
+
+
+select * from customers;
+
+insert into orders values
+(3001,18.69,'1996-10-03',2008,1007),
+(3003,767.19 ,'1996-10-03',2001,1001),
+(3002,1900.10,'1996-10-03',2007,1004),
+(3005,5160.45,'1996-10-03',2003,1002),
+(3006,1098.16,'1996-10-03',2008,1007),
+(3009,1713.23,'1996-10-04',2002,1003),
+(3007,75.75,'1996-10-04',2002,1003),
+(3008,4723,'1996-10-05',2006,1001),
+(3010,1309.95 ,'1996-10-06',2004,1002),
+(3011,9891.88 ,'1996-10-06',2006,1001);
+
+
+
+--List the Customer table if and only if one or more of the customers in the Customer table are 
+located in San Jose. 
+
+
+select * from customers where exists(select 1 from customers where city='San Jose');
+
+
+19. Write a query that uses the EXISTS operator to extract all salespeople who have customers 
+with a rating of 300. 
+
+
+
+select * from salespeople s
+where exists
+(select 1 from customers c where s.snum=c.snum and rating=300);
+
+
+
+
+41. Find all orders with amounts smaller than any amount for a customer in San Jose. 
+
+
+select * from orders where amt<
+(select max(amt) from orders o , customers c
+where o.cnum=c.cnum and city='San Jose');
+
+
+
+select * from orders where amt<any
+(select amt from orders o , customers c
+where o.cnum=c.cnum and city='San Jose');
+
+
+
+
+-- CTE- Common Table Expressions also called as With Queries
+with 
+tab
+as
+(select * from emp)
+select  * from tab;
+
+
+with 
+t
+as
+(select 1 as ID)
+select * from t;
+
+
+with recursive
+t
+as
+(select 1 as ID)
+select * from t;
+
+
+
+with recursive
+t
+as
+(select 1 as ID
+union all
+select id+1 from t)
+select * from t;
+
+
+
+with recursive
+t
+as
+(select 1 as ID
+union all
+select id+1 from t where id<100)
+select * from t;
+
+
+
+
+
+with recursive
+fact
+as
+(select 5 num, 5 fact
+union all
+select num-1, fact*(num-1) from fact where num>2)
+select max(fact) from fact;
+
+
+
+
+with recursive
+fact
+as
+(select 5 num, 5 fact, 5 inputnumber
+union all
+select num-1, fact*(num-1),inputnumber from fact where num>2)
+select concat('Factorial of ', inputnumber, ' is ',max(fact)) Factorial from fact group by inputnumber;
+
+
+with recursive
+fact
+as
+(select 5 num, 5 fact
+union all
+select num-1, fact*(num-1) from fact where num>2)
+select * from fact order by num;
+
+-- write a recursive CTE to display first 10 numbers of fibbonica series
+
+1
+1
+2
+3
+5
+8
+13
+21
+34
+55
+
+
+with recursive fab
+as
+(select 1 currnum, 0 prevnum, 1  as id
+union all 
+select currnum+prevnum currnum, currnum  prevnum
+, id+1 from fab where id<10)
+select currnum fab from fab;
+
+
+create table parts(partid varchar(10), parentpartid varchar(10));
+insert into parts values('A','A');
+insert into parts values('B','A');
+insert into parts values('C','B');
+insert into parts values('D','B');
+insert into parts values('E','D');
+insert into parts values('F','E');
+insert into parts values('G','G');
+insert into parts values('H','G');
+insert into parts values('I','H');
+insert into parts values('J','I');
+insert into parts values('K','K');
+insert into parts values('L','K');
+insert into parts values('M','L');
+insert into parts values('N','L');
+
+
+with recursive 
+tab
+as
+(select partid originalpartid, parentpartid immediateparent, parentpartid topmostparent,
+1 level from parts)
+select * from tab;
+
+
+
+
+with recursive 
+tab
+as
+(select partid originalpartid, parentpartid immediateparent, parentpartid topmostparent,
+1 level from parts
+union all
+select originalpartid,immediateparent,parts.parentpartid,level+1
+from tab join parts 
+on tab.topmostparent=parts.partid 
+where parts.partid<>parts.parentpartid)
+select * from tab ;
+
+
+
+
+with recursive 
+tab
+as
+(select partid originalpartid, parentpartid immediateparent, parentpartid topmostparent,
+1 level from parts
+union all
+select originalpartid,immediateparent,parts.parentpartid,level+1
+from tab join parts 
+on tab.topmostparent=parts.partid 
+where parts.partid<>parts.parentpartid)
+select  originalpartid partid , topmostparent from (select *, row_number() over(partition by originalpartid order by level desc) rn from tab ) as t where rn=1;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- write a recursive cte to check whether a given number is prime number?
+
+
+
+
+-- write a query to gives output in two columns
+1. Deptname
+2. Emp_list
+
+HR,a1,d3,f5..
+IT,
+
+
+
+select deptname,group_concat(ename separator '->')
+from emp join dept on 
+emp.deptid=dept.deptid
+group by deptname;
+
+Hierarchy
+A->B->C,D->E->F
+G->H->I->J
+K->L->M,N
+
+
+with recursive tab
+as
+(select partid , parentpartid immediateparent, parentpartid topmostparent, 1 level
+from parts
+union all
+select tab.partid,immediateparent,parts.parentpartid,level+1
+from tab join parts
+on tab.topmostparent=parts.partid
+where parts.partid<>parts.parentpartid )
+select concat(topmostparent,'->',group_concat(partid separator '->')) hierarchy
+from
+(select topmostparent,group_concat(partid separator ',') partid,level from tab where topmostparent
+in(select partid from parts where partid=parentpartid)
+and topmostparent<>partid
+group by topmostparent,level) as t2
+group by topmostparent;
+
+
+create table custprod (cid int, pid int);
+insert into custprod values(1,1);
+insert into custprod values(1,4);
+
+insert into custprod values(1,5);
+insert into custprod values(1,7);
+insert into custprod values(1,10);
+insert into custprod values(1,11);
+insert into custprod values(2,1);
+insert into custprod values(2,4);
+insert into custprod values(2,7);
+insert into custprod values(2,13);
+insert into custprod values(2,14);
+insert into custprod values(3,7);
+insert into custprod values(3,8);
+insert into custprod values(3,9);
+insert into custprod values(3,10);
+insert into custprod values(3,11);
+
+with tab
+as
+(
+select c1.cid c1,c2.cid c2,
+count(case when c1.pid=c2.pid then c1.pid else null end) num,
+count(distinct c1.pid) + count(distinct c2.pid)-count(case when c1.pid=c2.pid then c1.pid else null end) den
+from custprod c1, custprod c2
+where c1.cid<c2.cid
+group by c1.cid,c2.cid)
+select c1,c2,num,den,concat(num*100.0/den,'%') as similarity
+from tab;
+
+
+create view emp_dept_vw
+as
+select eid,ename,salary , deptname
+from emp join dept
+on emp.deptid=dept.deptid;
+
+
+select  * from emp_dept_vw;
+
+-- query execution plan
+
+
+explain select  * from emp_dept_vw;
+
+select table_name from information_schema.tables where table_schema='trainingdb';
+
+
+create table t_csv(id int not null, name varchar(100) not null) engine=csv;
+insert into t_csv values(1,'a'),(2,'b'),(3,'c');
+
+show variables like 'datadir';
+
+flush table t_csv;
+
+
+insert into emp_dept_vw(eid,ename,salary) values(101,'a101',100);
+
+select * from emp where eid=101;
+
+select substring('abcdef',-2,4);
+select instr('abcdef','cd');
+
+select instr('abcdef','cdcd');
+
+select instr('abcdefcdcdcd','cd');
+
+
+select date_format(now(),'YY');
+
+
+delimiter $$
+create function sf_check_even_odd(num int)
+returns text
+DETERMINISTIC
+begin
+if mod(num,2)=0 then
+return(concat(num,' is an even number'));
+else
+return(concat(num,' is an odd number'));
+end if;
+end;
+$$
+
+delimiter ;
+
+
+select sf_check_even_odd(134);
+
+delimiter $$
+create function sf_fact(num int)
+returns bigint
+deterministic
+begin
+declare fact bigint;
+declare i int;
+set fact=1;
+set i=1;
+while(i<=num) do
+set fact=fact*i;
+set i=i+1;
+end while;
+return(fact);
+end;
+$$
+delimiter ;
+
+select sf_fact(6);
+
+delimiter $$
+create function sf_check_prime(num int)
+returns text
+deterministic
+begin
+declare i int;
+set i=2;
+while(i<=num/2) do
+if mod(num,i)=0 then
+return(concat(num,' is not a prime number'));
+end if;
+set i=i+1;
+end while;
+return(concat(num,' is  a prime number'));
+end;
+$$
+delimiter ;
+
+select sf_check_prime(13);
+
+
+
+
+
+
+
+
+
+
+
+;
+
+
+
+
+
+
