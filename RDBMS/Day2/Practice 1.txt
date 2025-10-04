@@ -1,0 +1,280 @@
+select d1.dname, d2.dname
+from dept d1, dept d2
+where d1.dname > d2.dname;
+
++-------+---------+
+| dname | dname   |
++-------+---------+
+| OPR   | HR      |
+| IT    | HR      |
+| OPR   | IT      |
+| OPR   | Finance |
+| IT    | Finance |
+| HR    | Finance |
++-------+---------+
+6 rows in set (0.04 sec)
+
+mysql> select d1.dname, d2.dname
+    -> from dept d1, dept d2
+    -> where d1.dname < d2.dname;
++---------+-------+
+| dname   | dname |
++---------+-------+
+| Finance | HR    |
+| Finance | IT    |
+| HR      | IT    |
+| Finance | OPR   |
+| IT      | OPR   |
+| HR      | OPR   |
++---------+-------+
+
+create table empmgr (eid int, ename varchar(20), mgrid int);
+
+insert into empmgr(eid, ename,mgrid) values(1, 'a', 4);
+insert into empmgr(eid, ename,mgrid) values(2, 'b', 4);
+insert into empmgr(eid, ename,mgrid) values(3, 'c', 4);
+insert into empmgr(eid, ename,mgrid) values(4, 'd', 4);
+insert into empmgr(eid, ename,mgrid) values(5, 'e', 6);
+insert into empmgr(eid, ename,mgrid) values(6, 'f', 6);
+insert into empmgr(eid, ename,mgrid) values(7, 'g', 6);
+
+mysql> select * from empmgr;
++------+-------+-------+
+| eid  | ename | mgrid |
++------+-------+-------+
+|    1 | a     |     4 |
+|    2 | b     |     4 |
+|    3 | c     |     4 |
+|    4 | d     |     4 |
+|    5 | e     |     6 |
+|    6 | f     |     6 |
+|    7 | g     |     6 |
++------+-------+-------+
+7 rows in set (0.00 sec)
+
+select m.mgrid, m.ename as mgrname, e.eid, e.ename 
+from empmgr e , empmgr m
+where e.mgrid != e.eid
+and e.mgrid = m.eid;
+
++-------+---------+------+-------+
+| mgrid | mgrname | eid  | ename |
++-------+---------+------+-------+
+|     4 | d       |    3 | c     |
+|     4 | d       |    2 | b     |
+|     4 | d       |    1 | a     |
+|     6 | f       |    7 | g     |
+|     6 | f       |    5 | e     |
++-------+---------+------+-------+
+5 rows in set (0.00 sec)
+
+mysql> create table account(accno int primary key, accname varchar(20));
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> alter table account auto_increment = 1001;
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> insert into account(accname) values('d');
+ERROR 1364 (HY000): Field 'accno' doesn't have a default value
+mysql> alter table account auto_increment=1001;
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> insert into account(accname) values('d');
+ERROR 1364 (HY000): Field 'accno' doesn't have a default value
+mysql> drop table account;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> create table account(accno int primary key auto_increment, accname varchar(20));
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> insert into account (accname) values ('a'),('b'),('c');
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from account;
++-------+---------+
+| accno | accname |
++-------+---------+
+|     1 | a       |
+|     2 | b       |
+|     3 | c       |
++-------+---------+
+3 rows in set (0.00 sec)
+
+mysql> alter table account auto_increment=1000;
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> insert into account (accname) values ('d');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from account;
++-------+---------+
+| accno | accname |
++-------+---------+
+|     1 | a       |
+|     2 | b       |
+|     3 | c       |
+|  1000 | d       |
++-------+---------+
+4 rows in set (0.00 sec)
+
+mysql> insert into account (accname) values ('e');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from account;
++-------+---------+
+| accno | accname |
++-------+---------+
+|     1 | a       |
+|     2 | b       |
+|     3 | c       |
+|  1000 | d       |
+|  1001 | e       |
++-------+---------+
+5 rows in set (0.00 sec)
+
+mysql> insert into account (accname) values ('e'), ('f');
+Query OK, 2 rows affected (0.01 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from account;
++-------+---------+
+| accno | accname |
++-------+---------+
+|     1 | a       |
+|     2 | b       |
+|     3 | c       |
+|  1000 | d       |
+|  1001 | e       |
+|  1002 | e       |
+|  1003 | f       |
++-------+---------+
+7 rows in set (0.00 sec)
+
+mysql> insert into account values (2000,'e');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from account;
++-------+---------+
+| accno | accname |
++-------+---------+
+|     1 | a       |
+|     2 | b       |
+|     3 | c       |
+|  1000 | d       |
+|  1001 | e       |
+|  1002 | e       |
+|  1003 | f       |
+|  2000 | e       |
++-------+---------+
+8 rows in set (0.00 sec)
+
+mysql> create table deletedemo(id int);
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> insert into deletedemo values (1),(2),(3),(4);
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from deletedemo;
++------+
+| id   |
++------+
+|    1 |
+|    2 |
+|    3 |
+|    4 |
++------+
+4 rows in set (0.00 sec)
+
+mysql> start transaction
+    -> ;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> delete from deletedemo;
+Query OK, 4 rows affected (0.00 sec)
+
+mysql> rollback;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from deletedemo;
++------+
+| id   |
++------+
+|    1 |
+|    2 |
+|    3 |
+|    4 |
++------+
+4 rows in set (0.00 sec)
+
+mysql> start transaction;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> truncate table deletedemo;
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> rollback;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from deletedemo;
+Empty set (0.00 sec)
+
+mysql> delete from account;
+Query OK, 8 rows affected (0.01 sec)
+
+
+mysql> insert into account (accname) values('g');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from account;
++-------+---------+
+| accno | accname |
++-------+---------+
+|  2001 | g       |
++-------+---------+
+1 row in set (0.00 sec)
+
+mysql> truncate table account;
+Query OK, 0 rows affected (0.06 sec)
+
+
+mysql> insert into account (accname) values('a');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from account;
++-------+---------+
+| accno | accname |
++-------+---------+
+|     1 | a       |
++-------+---------+
+1 row in set (0.00 sec)
+
+mysql> start transaction;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> delete from parent;
+ERROR 1451 (23000): Cannot delete or update a parent row: a foreign key constraint fails (`trainingdb`.`child`, CONSTRAINT `child_ibfk_1` FOREIGN KEY (`deptid`) REFERENCES `parent` (`deptid`))
+mysql> delete from child;
+Query OK, 2 rows affected (0.00 sec)
+
+mysql> delete from parent;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> rollback;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql>
+mysql> truncate table parent;
+ERROR 1701 (42000): Cannot truncate a table referenced in a foreign key constraint (`trainingdb`.`child`, CONSTRAINT `child_ibfk_1`)
+mysql> truncate table child;
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> truncate table parent;
+ERROR 1701 (42000): Cannot truncate a table referenced in a foreign key constraint (`trainingdb`.`child`, CONSTRAINT `child_ibfk_1`)
+mysql> rollback;
+Query OK, 0 rows affected (0.00 sec)
+
