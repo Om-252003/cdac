@@ -1,0 +1,144 @@
+delimiter $$
+create function check_evenodd(num int)
+returns text
+DETERMINISTIC 
+begin
+	if mod(num,2)=0 then return (concat(num, ' is even!'));
+	else return (concat(num,' is odd!'));
+	end if;
+end;
+$$
+delimiter ;
+
+
+select check_evenodd(10);
+
+mysql> delimiter $$
+mysql> create function check_evenodd(num int)
+    -> returns text
+    -> DETERMINISTIC
+    -> begin
+    -> if mod(num,2)=0 then return (concat(num, ' is even!'));
+    -> else return (concat(num,' is odd!'));
+    -> end if;
+    -> end;
+    -> $$
+ERROR 1304 (42000): FUNCTION check_evenodd already exists
+mysql> delimiter ;
+mysql> select check_evenodd(10);
++-------------------+
+| check_evenodd(10) |
++-------------------+
+| 10 is even!       |
++-------------------+
+1 row in set (0.00 sec)
+
+*********************************************************************************************
+
+delimiter $$
+create function fact(num int)
+returns bigint
+DETERMINISTIC
+begin
+	declare fact bigint;
+	declare i int;
+	set i = 1;
+	set fact=1;
+	
+	while(i<=num) do
+		set fact = fact*i;
+		set i= i+1;
+	end while;
+	
+	return (fact);
+end;
+$$
+delimiter ;
+
+mysql> delimiter $$
+mysql> create function fact(num int)
+    -> returns bigint
+    -> DETERMINISTIC
+    -> begin
+    -> declare fact bigint;
+    -> declare i int;
+    -> set i = 1;
+    -> set fact=1;
+    ->
+    -> while(i<=num) do
+    -> set fact = fact*i;
+    -> set i= i+1;
+    -> end while;
+    ->
+    -> return (fact);
+    -> end;
+    -> $$
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> delimiter ;
+mysql> select fact(5);
++---------+
+| fact(5) |
++---------+
+|     120 |
++---------+
+1 row in set (0.00 sec)
+
+**********************************************************
+
+delimiter $$
+create function checkprime(num int)
+returns text
+DETERMINISTIC
+begin
+	declare i int;
+	set i = 2;
+	while(i < sqrt(num)) do
+		if mod(num,i)=0
+			then return (concat(num, ' is not prime !'));
+		end if;
+		set i = i+1;
+	end while;
+return (concat(num, ' is prime'));
+end;
+$$
+delimiter ;
+
+mysql> delimiter $$
+mysql> create function checkprime(num int)
+    -> returns text
+    -> DETERMINISTIC
+    -> begin
+    -> declare i int;
+    -> set i = 2;
+    -> while(i < sqrt(num)) do
+    -> if mod(num,i)=0
+    -> then return (concat(num, ' is not prime !'));
+    -> end if;
+    -> set i = i+1;
+    -> end while;
+    -> return (concat(num, ' is prime'));
+    -> end;
+    -> $$
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> delimiter ;
+mysql> select checkprime(7);
++---------------+
+| checkprime(7) |
++---------------+
+| 7 is prime    |
++---------------+
+1 row in set (0.00 sec)
+
+
+
+mysql> select checkprime(212);
++--------------------+
+| checkprime(212)    |
++--------------------+
+| 212 is not prime ! |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql>
