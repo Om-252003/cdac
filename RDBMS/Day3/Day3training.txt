@@ -1,0 +1,290 @@
+select salary from emp where eid=1;
+start transaction;
+update emp set salary=200 where eid=1;
+
+create index emp_eid_idx on emp(eid);
+
+-- write a query to display dulicate salary from emp table
+
+select salary,count(*) from emp group by salary having count(*)>1;
+
+-- write a query without using sub query to display
+-- ename,salary, deptname of emp having duplicate salaries
+with tab
+as(
+select salary, row_number() over(partition by salary order by salary) rn
+from emp )
+select e.ename,e.salary,d.deptname from tab,emp e , dept d  where rn>1
+and e.deptid=d.deptid
+and e.salary=tab.salary;
+
+
+select eid,ename,salary,deptid,(select sum(salary) from emp I
+where i.salary>o.salary  or (i.salary=o.salary and i.eid<=o.eid)
+) running_salary_total from emp o
+order by salary desc,eid;
+
+
+select eid,ename,salary ,deptid,sum(salary) over() running_salary_total
+from emp;
+
+
+select eid,ename,salary ,deptid,sum(salary) over(order by salary desc
+rows between unbounded preceding and current row ) running_salary_total
+from emp;
+
+
+-- aggregate functions with over clause also called as windowing functions...
+
+-- rows between clause
+-- unbounded preceding
+-- 1 preceding
+-- 2 preceding
+-- n preceding
+-- current row
+-- 1 following
+-- 2 following
+-- n following
+-- unbounded following
+
+
+
+select eid,ename,salary ,deptid,sum(salary) over(order by salary desc
+rows between 1 preceding and 1 preceding ) Prev_High_Salary,
+sum(salary) over(order by salary desc
+rows between 1 following  and 1 following ) next_High_Salary
+from emp;
+
+
+
+
+select eid,ename,salary ,deptid,max(salary) over(order by salary desc
+rows between 1 preceding and 1 preceding ) Prev_High_Salary,
+min(salary) over(order by salary desc
+rows between 1 following  and 1 following ) next_High_Salary
+from emp;
+
+select eid,ename,salary ,deptid,
+lead(salary,1,0) over(order by salary desc) next_high_sal
+ from emp;
+
+
+select eid,ename,salary ,deptid,
+lag(salary,1,0) over(order by salary desc) prev_high_sal
+ from emp;
+
+
+drop function sf_getdept;
+delimiter $$
+create function sf_getdept(v_eid int)
+returns varchar(100)
+reads sql data
+begin
+declare v_deptname varchar(100);
+select deptname into v_deptname from emp join dept on emp.deptid=dept.deptid where eid=v_eid
+limit 1;
+return(v_deptname);
+end;
+$$
+delimiter ;
+
+select sf_getdept(2) ;
+
+select eid,ename,sf_getdept(eid) deptname from emp;
+
+
+-- write a procedure to take input two numbers and return whether two numbers are co-prime or not
+
+delimiter $$
+create procedure sp_coprime(num1 int, num2 int)
+begin
+declare i int default 2;
+declare flag int default 0;
+while(i<=num1) do
+if mod(num1,i)=0 and mod(num2,i)=0 then
+select concat(num1,' and ', num2 ,' are not co-prime numbers');
+set flag=1;
+end if;
+set i=i+1;
+end while;
+if flag=0 then
+select concat(num1,' and ', num2 ,' are co-prime numbers');
+end if;
+end;
+$$
+delimiter ;
+
+call sp_coprime(5,13);
+
+-- write a procedure to do following tasks-
+Procedure takes input parameter as a number
+
+1. truncate all the records from the emp table
+2. insert as many records in the emp table as the input number
+eid- 1,2,3,4,5,6....n
+ename- a1,b2,c3,d4... z26, a27,b28....
+salary- 212 ,3434 ,5454,66565..
+deptid- 1,2,3,1,2,3,1,2,3....
+
+drop procedure sp_loademp;
+delimiter $$
+create procedure sp_loademp(rec int)
+begin
+declare i int default 1;
+truncate table emp;
+start transaction;
+while(i<=rec) do
+insert into emp (eid,ename,salary,deptid) values(i,concat(cast(char(mod((i-1),26)+97) as char(10)),i),rand()*10000,mod((i-1),3)+1);
+set i=i+1;
+end while;
+commit;
+end;
+$$
+delimiter ;
+
+call sp_loademp(50);
+
+select cast(char(mod(0,26)+97) as char(10));
+
+select cast(char(mod(25,26)+97) as char(10));
+
+
+
+select * from emp;
+
+
+delimiter $$
+create procedure sp_listemp()
+begin
+declare flag int default 0;
+declare v_ename varchar(100);
+declare c1 cursor for select ename from emp;
+declare continue handler for not found set flag=1;
+open c1;
+myloop:loop
+fetch c1 into v_ename;
+if flag=1 then
+leave myloop;
+else
+select v_ename;
+end if;
+end loop;
+close c1;
+end;
+$$
+delimiter ;
+
+call sp_listemp();
+
+-- write a function that uses a cursor and not group_concat function to take 
+-- input a deptname and returns name of all the employees working in that dept as a list separator by a character which is also passed as a second parameter
+
+drop function sf_getelist;
+delimiter $$
+create function sf_getelist(v_dept varchar(100), sep varchar(100))
+returns text
+reads sql data
+begin
+declare flag int default 0;
+declare elist text default '';
+declare v_ename varchar(100);
+declare c1 cursor for select ename from emp join dept on emp.deptid=dept.deptid 
+where deptname=v_dept;
+declare continue handler for not found set flag=1;
+open c1;
+myloop:loop
+fetch c1 into v_ename;
+if flag=1 then
+leave myloop;
+else
+set elist=concat(elist,sep,v_ename);
+end if;
+end loop;
+close c1;
+return(substring(elist,length(sep)+1));
+end;
+$$
+delimiter ;
+
+select sf_getelist('HR',',');
+
+
+
+create table emp_audit
+(username varchar(100),upd_ts timestamp,old_eid int,new_eid int,old_ename varchar(100),
+new_ename varchar(100),old_salary int(100),new_salary int(100),old_deptid int(100),
+new_deptid int(100));
+
+
+select concat(column_name,',') from information_schema.columns where table_name='emp_audit' order by ordinal_position;
+
+
+delimiter $$
+create trigger trg_up_emp
+before update on emp
+for each row
+begin
+insert into emp_audit(username,upd_ts,old_eid,new_eid,old_ename,new_ename, old_salary,        
+ new_salary,old_deptid,new_deptid)
+values( user(),now(),old.eid,new.eid,old.ename,new.ename,old.salary,new.salary,
+old.deptid,new.deptid);
+end;
+$$
+delimiter ;
+
+
+
+delimiter $$
+create trigger trg_ins_emp
+before insert on emp
+for each row
+begin
+insert into emp_audit(username,upd_ts,old_eid,new_eid,old_ename,new_ename, old_salary,        
+ new_salary,old_deptid,new_deptid)
+values( user(),now(),null,new.eid,null,new.ename,null,new.salary,
+null,new.deptid);
+end;
+$$
+delimiter ;
+
+delimiter $$
+create trigger trg_del_emp
+before delete on emp
+for each row
+begin
+insert into emp_audit(username,upd_ts,old_eid,new_eid,old_ename,new_ename, old_salary,        
+ new_salary,old_deptid,new_deptid)values( user(),now(),old.eid,null,old.ename,null,old.salary,null,
+old.deptid,null);
+end;
+$$
+delimiter ;
+
+
+update emp set salary=salary+100 where eid in(1,2,3,4,5);
+
+
+start transaction;
+update emp set salary=salary+100 where eid in(1,2);
+rollback;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

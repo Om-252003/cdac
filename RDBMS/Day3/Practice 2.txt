@@ -1,0 +1,893 @@
+mysql> with tab as (select salary, rownumber() over (partition by salary order by salary) rn from emp) select e.name, e.salary,d.dname from tab, emp e where rn>1 and e.did = d.did and e.salary=tab.salary;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'over (partition by salary order by salary) rn from emp) select e.name, e.salary,' at line 1
+mysql> with tab as (select salary, rownumber() over (partition by salary order by salary)rn from emp) select e.name, e.salary,d.dname from tab, emp e where rn>1 and e.did = d.did and e.salary=tab.salary;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'over (partition by salary order by salary)rn from emp) select e.name, e.salary,d' at line 1
+mysql> with tab as (select salary, rownumber() over (partition by salary order by salary)as rn from emp) select e.name, e.salary,d.dname from tab, emp e where rn>1 and e.did = d.did and e.salary=tab.salary;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'over (partition by salary order by salary)as rn from emp) select e.name, e.salar' at line 1
+mysql> with tab as (select salary, row_number() over (partition by salary order by salary)as rn from emp) select e.name, e.salary,d.dname from tab, emp e where rn>1 and e.did = d.did and e.salary=tab.salary;
+ERROR 1054 (42S22): Unknown column 'e.name' in 'field list'
+mysql> with tab as (select salary, row_number() over (partition by salary order by salary)as rn from emp) select e.ename, e.salary,d.dname from tab, emp e where rn>1 and e.did = d.did and e.salary=tab.salary;
+ERROR 1054 (42S22): Unknown column 'd.dname' in 'field list'
+mysql> with tab as (select salary, row_number() over (partition by salary order by salary)as rn from emp) select e.ename, e.salary,d.dname from tab, emp e where rn>1 and e.did = d.did and e.salary=tab.salary;
+
+
+
+****************Non deterministic function**********************
+
+delimiter $$
+create function getdept(v_eid int)
+returns varchar(100)
+reads sql data
+begin
+	declare v_deptname varchar(100);
+	select dname into v_deptname from emp join dept on emp.did=dept.did where eid = v_eid;
+	return (v_deptname);
+end;
+$$
+delimiter ;
+
+mysql> delimiter $$
+mysql> create function getdept(v_eid int)
+    -> returns varchar(100)
+    -> reads sql data
+    -> begin
+    -> declare v_deptname varchar(100);
+    -> select dname into v_deptname from emp join dept on emp.did=dept.did where eid = v_eid;
+    -> return (v_deptname);
+    -> end;
+    -> $$
+Query OK, 0 rows affected (0.14 sec)
+
+mysql> delimiter ;
+mysql> select getdept(2);
++------------+
+| getdept(2) |
++------------+
+| IT         |
++------------+
+1 row in set (0.01 sec)
+
+mysql> select eid,ename,getdept(eid) from emp where eid = 2;
++------+-------+--------------+
+| eid  | ename | getdept(eid) |
++------+-------+--------------+
+|    2 | a2    | IT           |
++------+-------+--------------+
+1 row in set (0.00 sec)
+
+
+**************************Procedures***************************
+delimiter $$
+
+create procedure sp_coprime(num1 int, num2 int)
+begin
+    declare i int default 2;
+    declare flag int default 0;
+    declare mini int;
+
+    set mini = least(num1,num2);
+
+    while i <= mini do
+        if (mod(num1,i)=0) and (mod(num2,i)=0) then
+            set flag=1; -- common divisor found
+            leave;        -- exit loop early
+        end if;
+        set i=i+1;
+    end while;
+
+    if flag = 0 then
+        select concat(num1, ' and ', num2, ' are co-prime') as Result;
+    else
+        select concat(num1, ' and ', num2, ' are not co-prime') as Result;
+    end if;
+end$$
+
+delimiter ;
+
+mysql> DELIMITER $$   -- 1. change delimiter so MySQL doesn't stop at ';'
+mysql>
+mysql> CREATE PROCEDURE sp_coprime(IN num1 INT, IN num2 INT)
+    -> BEGIN
+    ->     -- 2. declare variables (must be at the top inside BEGIN)
+    ->     DECLARE i INT DEFAULT 2;
+    ->     DECLARE flag INT DEFAULT 0;
+    ->     DECLARE mini INT;
+    ->
+    ->     SET mini = LEAST(num1, num2);
+    ->
+    ->     check_loop: WHILE i <= mini DO       -- 3. label the loop
+    ->         IF (MOD(num1, i) = 0) AND (MOD(num2, i) = 0) THEN
+    ->             SET flag = 1;                -- common divisor found
+    ->             LEAVE check_loop;            -- 4. exit the loop
+    ->         END IF;
+    ->         SET i = i + 1;
+    ->     END WHILE;
+    ->
+    ->     -- 5. final result
+    ->     IF flag = 0 THEN
+    ->         SELECT CONCAT(num1, ' and ', num2, ' are co-prime') AS Result;
+    ->     ELSE
+    ->         SELECT CONCAT(num1, ' and ', num2, ' are not co-prime') AS Result;
+    ->     END IF;
+    -> END$$
+Query OK, 0 rows affected (0.01 sec)
+
+mysql>
+mysql> DELIMITER ;   -- 6. restore delimiter
+mysql> call sp_coprime(3,2);
++----------------------+
+| Result               |
++----------------------+
+| 3 and 2 are co-prime |
++----------------------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+***************************************************************************************************************************************************************************************
+
+delimiter $$
+create procedure sp_listEmp()
+begin
+	declare flag int default 0;
+	declare v_ename varchar(100);
+	
+	declare c1 cursor for select ename from emp;
+	declare continue handler for not found set flag=1;
+	
+	open c1;
+	myloop:loop
+		fetch c1 into v_ename;
+		if flag=1 then 
+			leave myloop;
+		else
+			select v_ename;
+		end if;
+	end loop;
+	close c1;
+end;
+$$
+
+delimiter ;
+
+call sp_listEmp();
+
+mysql>
+mysql> delimiter $$
+mysql> create procedure sp_listEmp()
+    -> begin
+    -> declare flag int default 0;
+    -> declare v_ename varchar(100);
+    ->
+    -> declare c1 cursor for select ename from emp;
+    -> declare continue handler for not found set flag=1;
+    ->
+    -> open c1;
+    -> myloop:loop
+    -> fetch c1 into v_ename;
+    -> if flag=1 then
+    -> leave myloop;
+    -> else
+    -> select v_ename;
+    -> end if;
+    -> end loop;
+    -> close c1;
+    -> end;
+    -> $$
+Query OK, 0 rows affected (0.01 sec)
+
+mysql>
+mysql> delimiter ;
+mysql>
+mysql> call sp_listEmp();
++---------+
+| v_ename |
++---------+
+| a1      |
++---------+
+1 row in set (0.00 sec)
+
++---------+
+| v_ename |
++---------+
+| a2      |
++---------+
+1 row in set (0.00 sec)
+
++---------+
+| v_ename |
++---------+
+| a3      |
++---------+
+1 row in set (0.00 sec)
+
++---------+
+| v_ename |
++---------+
+| a4      |
++---------+
+1 row in set (0.01 sec)
+
++---------+
+| v_ename |
++---------+
+| a5      |
++---------+
+1 row in set (0.01 sec)
+
++---------+
+| v_ename |
++---------+
+| a6      |
++---------+
+1 row in set (0.01 sec)
+
++---------+
+| v_ename |
++---------+
+| a7      |
++---------+
+1 row in set (0.01 sec)
+
++---------+
+| v_ename |
++---------+
+| a8      |
++---------+
+1 row in set (0.01 sec)
+
++---------+
+| v_ename |
++---------+
+| a9      |
++---------+
+1 row in set (0.03 sec)
+
++---------+
+| v_ename |
++---------+
+| a10     |
++---------+
+1 row in set (0.03 sec)
+
++---------+
+| v_ename |
++---------+
+| a11     |
++---------+
+1 row in set (0.04 sec)
+
++---------+
+| v_ename |
++---------+
+| a12     |
++---------+
+1 row in set (0.04 sec)
+
++---------+
+| v_ename |
++---------+
+| a13     |
++---------+
+1 row in set (0.04 sec)
+
++---------+
+| v_ename |
++---------+
+| a14     |
++---------+
+1 row in set (0.06 sec)
+
++---------+
+| v_ename |
++---------+
+| a15     |
++---------+
+1 row in set (0.08 sec)
+
++---------+
+| v_ename |
++---------+
+| a16     |
++---------+
+1 row in set (0.08 sec)
+
++---------+
+| v_ename |
++---------+
+| a17     |
++---------+
+1 row in set (0.08 sec)
+
++---------+
+| v_ename |
++---------+
+| a18     |
++---------+
+1 row in set (0.09 sec)
+
++---------+
+| v_ename |
++---------+
+| a19     |
++---------+
+1 row in set (0.09 sec)
+
++---------+
+| v_ename |
++---------+
+| a20     |
++---------+
+1 row in set (0.09 sec)
+
++---------+
+| v_ename |
++---------+
+| a21     |
++---------+
+1 row in set (0.10 sec)
+
++---------+
+| v_ename |
++---------+
+| a22     |
++---------+
+1 row in set (0.10 sec)
+
++---------+
+| v_ename |
++---------+
+| a23     |
++---------+
+1 row in set (0.11 sec)
+
++---------+
+| v_ename |
++---------+
+| a24     |
++---------+
+1 row in set (0.12 sec)
+
++---------+
+| v_ename |
++---------+
+| a25     |
++---------+
+1 row in set (0.12 sec)
+
++---------+
+| v_ename |
++---------+
+| a26     |
++---------+
+1 row in set (0.12 sec)
+
++---------+
+| v_ename |
++---------+
+| a27     |
++---------+
+1 row in set (0.14 sec)
+
++---------+
+| v_ename |
++---------+
+| a28     |
++---------+
+1 row in set (0.14 sec)
+
++---------+
+| v_ename |
++---------+
+| a29     |
++---------+
+1 row in set (0.15 sec)
+
++---------+
+| v_ename |
++---------+
+| a30     |
++---------+
+1 row in set (0.19 sec)
+
++---------+
+| v_ename |
++---------+
+| a31     |
++---------+
+1 row in set (0.19 sec)
+
++---------+
+| v_ename |
++---------+
+| a32     |
++---------+
+1 row in set (0.20 sec)
+
++---------+
+| v_ename |
++---------+
+| a33     |
++---------+
+1 row in set (0.20 sec)
+
++---------+
+| v_ename |
++---------+
+| a34     |
++---------+
+1 row in set (0.21 sec)
+
++---------+
+| v_ename |
++---------+
+| a35     |
++---------+
+1 row in set (0.21 sec)
+
++---------+
+| v_ename |
++---------+
+| a36     |
++---------+
+1 row in set (0.22 sec)
+
++---------+
+| v_ename |
++---------+
+| a37     |
++---------+
+1 row in set (0.23 sec)
+
++---------+
+| v_ename |
++---------+
+| a38     |
++---------+
+1 row in set (0.23 sec)
+
++---------+
+| v_ename |
++---------+
+| a39     |
++---------+
+1 row in set (0.23 sec)
+
++---------+
+| v_ename |
++---------+
+| a40     |
++---------+
+1 row in set (0.24 sec)
+
++---------+
+| v_ename |
++---------+
+| a41     |
++---------+
+1 row in set (0.24 sec)
+
++---------+
+| v_ename |
++---------+
+| a42     |
++---------+
+1 row in set (0.26 sec)
+
++---------+
+| v_ename |
++---------+
+| a43     |
++---------+
+1 row in set (0.28 sec)
+
++---------+
+| v_ename |
++---------+
+| a44     |
++---------+
+1 row in set (0.30 sec)
+
++---------+
+| v_ename |
++---------+
+| a45     |
++---------+
+1 row in set (0.30 sec)
+
++---------+
+| v_ename |
++---------+
+| a46     |
++---------+
+1 row in set (0.31 sec)
+
++---------+
+| v_ename |
++---------+
+| a47     |
++---------+
+1 row in set (0.31 sec)
+
++---------+
+| v_ename |
++---------+
+| a48     |
++---------+
+1 row in set (0.32 sec)
+
++---------+
+| v_ename |
++---------+
+| a49     |
++---------+
+1 row in set (0.32 sec)
+
++---------+
+| v_ename |
++---------+
+| a50     |
++---------+
+1 row in set (0.33 sec)
+
++---------+
+| v_ename |
++---------+
+| a51     |
++---------+
+1 row in set (0.34 sec)
+
++---------+
+| v_ename |
++---------+
+| a52     |
++---------+
+1 row in set (0.34 sec)
+
++---------+
+| v_ename |
++---------+
+| a53     |
++---------+
+1 row in set (0.36 sec)
+
++---------+
+| v_ename |
++---------+
+| a54     |
++---------+
+1 row in set (0.36 sec)
+
++---------+
+| v_ename |
++---------+
+| a55     |
++---------+
+1 row in set (0.36 sec)
+
++---------+
+| v_ename |
++---------+
+| a56     |
++---------+
+1 row in set (0.37 sec)
+
++---------+
+| v_ename |
++---------+
+| a57     |
++---------+
+1 row in set (0.37 sec)
+
++---------+
+| v_ename |
++---------+
+| a58     |
++---------+
+1 row in set (0.37 sec)
+
++---------+
+| v_ename |
++---------+
+| a59     |
++---------+
+1 row in set (0.38 sec)
+
++---------+
+| v_ename |
++---------+
+| a60     |
++---------+
+1 row in set (0.39 sec)
+
++---------+
+| v_ename |
++---------+
+| a61     |
++---------+
+1 row in set (0.40 sec)
+
++---------+
+| v_ename |
++---------+
+| a62     |
++---------+
+1 row in set (0.40 sec)
+
++---------+
+| v_ename |
++---------+
+| a63     |
++---------+
+1 row in set (0.41 sec)
+
++---------+
+| v_ename |
++---------+
+| a64     |
++---------+
+1 row in set (0.42 sec)
+
++---------+
+| v_ename |
++---------+
+| a65     |
++---------+
+1 row in set (0.43 sec)
+
++---------+
+| v_ename |
++---------+
+| a66     |
++---------+
+1 row in set (0.45 sec)
+
++---------+
+| v_ename |
++---------+
+| a67     |
++---------+
+1 row in set (0.45 sec)
+
++---------+
+| v_ename |
++---------+
+| a68     |
++---------+
+1 row in set (0.45 sec)
+
++---------+
+| v_ename |
++---------+
+| a69     |
++---------+
+1 row in set (0.46 sec)
+
++---------+
+| v_ename |
++---------+
+| a70     |
++---------+
+1 row in set (0.46 sec)
+
++---------+
+| v_ename |
++---------+
+| a71     |
++---------+
+1 row in set (0.46 sec)
+
++---------+
+| v_ename |
++---------+
+| a72     |
++---------+
+1 row in set (0.47 sec)
+
++---------+
+| v_ename |
++---------+
+| a73     |
++---------+
+1 row in set (0.47 sec)
+
++---------+
+| v_ename |
++---------+
+| a74     |
++---------+
+1 row in set (0.48 sec)
+
++---------+
+| v_ename |
++---------+
+| a75     |
++---------+
+1 row in set (0.49 sec)
+
++---------+
+| v_ename |
++---------+
+| a76     |
++---------+
+1 row in set (0.49 sec)
+
++---------+
+| v_ename |
++---------+
+| a77     |
++---------+
+1 row in set (0.49 sec)
+
++---------+
+| v_ename |
++---------+
+| a78     |
++---------+
+1 row in set (0.51 sec)
+
++---------+
+| v_ename |
++---------+
+| a79     |
++---------+
+1 row in set (0.51 sec)
+
++---------+
+| v_ename |
++---------+
+| a80     |
++---------+
+1 row in set (0.51 sec)
+
++---------+
+| v_ename |
++---------+
+| a81     |
++---------+
+1 row in set (0.52 sec)
+
++---------+
+| v_ename |
++---------+
+| a82     |
++---------+
+1 row in set (0.52 sec)
+
++---------+
+| v_ename |
++---------+
+| a83     |
++---------+
+1 row in set (0.53 sec)
+
++---------+
+| v_ename |
++---------+
+| a84     |
++---------+
+1 row in set (0.54 sec)
+
++---------+
+| v_ename |
++---------+
+| a85     |
++---------+
+1 row in set (0.54 sec)
+
++---------+
+| v_ename |
++---------+
+| a86     |
++---------+
+1 row in set (0.56 sec)
+
++---------+
+| v_ename |
++---------+
+| a87     |
++---------+
+1 row in set (0.56 sec)
+
++---------+
+| v_ename |
++---------+
+| a88     |
++---------+
+1 row in set (0.57 sec)
+
++---------+
+| v_ename |
++---------+
+| a89     |
++---------+
+1 row in set (0.57 sec)
+
++---------+
+| v_ename |
++---------+
+| a90     |
++---------+
+1 row in set (0.59 sec)
+
++---------+
+| v_ename |
++---------+
+| a91     |
++---------+
+1 row in set (0.59 sec)
+
++---------+
+| v_ename |
++---------+
+| a92     |
++---------+
+1 row in set (0.59 sec)
+
++---------+
+| v_ename |
++---------+
+| a93     |
++---------+
+1 row in set (0.59 sec)
+
++---------+
+| v_ename |
++---------+
+| a94     |
++---------+
+1 row in set (0.60 sec)
+
++---------+
+| v_ename |
++---------+
+| a95     |
++---------+
+1 row in set (0.60 sec)
+
++---------+
+| v_ename |
++---------+
+| a96     |
++---------+
+1 row in set (0.60 sec)
+
++---------+
+| v_ename |
++---------+
+| a97     |
++---------+
+1 row in set (0.60 sec)
+
++---------+
+| v_ename |
++---------+
+| a98     |
++---------+
+1 row in set (0.61 sec)
+
++---------+
+| v_ename |
++---------+
+| a99     |
++---------+
+1 row in set (0.62 sec)
+
++---------+
+| v_ename |
++---------+
+| a100    |
++---------+
+1 row in set (0.62 sec)
+
++---------+
+| v_ename |
++---------+
+| a101    |
++---------+
+1 row in set (0.62 sec)
+
+Query OK, 0 rows affected (0.63 sec)
+
+
+********************************************************************************************************************

@@ -1,15 +1,19 @@
-# how to write inside a file and read also using "w+" mode ( write and read mode)
+nums = [1,2,3]
+if len(nums) == 1:
+    print(nums[0])
 
+evnsum, oddsum  = 0,0
+if len(nums) > 1:
 
-with open("myfile.txt","w+") as f:
-    print("enter messages, stop to quit\n")
-    while True:
-        str=input()
-        if str=="stop":
-            break
-        f.writelines(str+"\n")
-    f.seek(0, 0)  # place the file pointer at the beginning
-    data=f.read()
-    print(data)
-print("Done")
+    i=0
+    while(i<len(nums)):
+        evnsum += nums[i]
+        i+=2
+    j=1
+    while(j<len(nums)):
+        oddsum +=nums[j]
+        j+=2
+
+print(evnsum-oddsum)
+
 
