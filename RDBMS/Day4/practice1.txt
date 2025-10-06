@@ -1,0 +1,410 @@
+mysql> use trainingdb;
+Database changed
+mysql> show tables;
++----------------------+
+| Tables_in_trainingdb |
++----------------------+
+| account              |
+| child                |
+| cust                 |
+| deletedemo           |
+| dept                 |
+| emp                  |
+| emp_dept_vw          |
+| emp_rank             |
+| empmgr               |
+| parent               |
+| part                 |
+| students             |
+| t1                   |
+| t2                   |
+| t3                   |
+| t4                   |
+| t5                   |
+| t6                   |
+| t7                   |
+| t8                   |
+| tcsv                 |
+| tdef                 |
+| test                 |
++----------------------+
+23 rows in set (0.07 sec)
+
+mysql> delete from emp_dept_vw;
+ERROR 1395 (HY000): Can not delete from join view 'trainingdb.emp_dept_vw'
+mysql> select * from emp_dept_vw;
++------+-------+--------+---------+
+| eid  | ename | salary | dname   |
++------+-------+--------+---------+
+|    1 | a1    |  30000 | HR      |
+|    2 | a2    |   4499 | IT      |
+|    3 | a3    |   2952 | Finance |
+|    4 | a4    |   1263 | HR      |
+|    5 | a5    |   7459 | IT      |
+|    6 | a6    |   3508 | Finance |
+|    7 | a7    |   5161 | HR      |
+|    8 | a8    |   5282 | IT      |
+|    9 | a9    |    926 | Finance |
+|   10 | a10   |   8784 | HR      |
+|   11 | a11   |   1144 | IT      |
+|   12 | a12   |   9367 | Finance |
+|   13 | a13   |   3402 | HR      |
+|   14 | a14   |   8908 | IT      |
+|   15 | a15   |   4337 | Finance |
+|   16 | a16   |   4959 | HR      |
+|   17 | a17   |   1786 | IT      |
+|   18 | a18   |   4052 | Finance |
+|   19 | a19   |   4904 | HR      |
+|   20 | a20   |   2362 | IT      |
+|   21 | a21   |   7097 | Finance |
+|   22 | a22   |   8400 | HR      |
+|   23 | a23   |    708 | IT      |
+|   24 | a24   |   8339 | Finance |
+|   25 | a25   |   9572 | HR      |
+|   26 | a26   |   2844 | IT      |
+|   27 | a27   |   5505 | Finance |
+|   28 | a28   |   8993 | HR      |
+|   29 | a29   |   8451 | IT      |
+|   30 | a30   |   5275 | Finance |
+|   31 | a31   |   1021 | HR      |
+|   32 | a32   |   9279 | IT      |
+|   33 | a33   |   3335 | Finance |
+|   34 | a34   |   8836 | HR      |
+|   35 | a35   |   4176 | IT      |
+|   36 | a36   |   4371 | Finance |
+|   37 | a37   |   9328 | HR      |
+|   38 | a38   |   3525 | IT      |
+|   39 | a39   |   9644 | Finance |
+|   40 | a40   |   7644 | HR      |
+|   41 | a41   |   9288 | IT      |
+|   42 | a42   |   3506 | Finance |
+|   43 | a43   |   9666 | HR      |
+|   44 | a44   |   7813 | IT      |
+|   45 | a45   |     68 | Finance |
+|   46 | a46   |   6901 | HR      |
+|   47 | a47   |   4302 | IT      |
+|   48 | a48   |    805 | Finance |
+|   49 | a49   |   1119 | HR      |
+|   50 | a50   |   3181 | IT      |
+|   51 | a51   |   2548 | Finance |
+|   52 | a52   |   3195 | HR      |
+|   53 | a53   |   8332 | IT      |
+|   54 | a54   |   2074 | Finance |
+|   55 | a55   |   5376 | HR      |
+|   56 | a56   |    659 | IT      |
+|   57 | a57   |   7165 | Finance |
+|   58 | a58   |   3850 | HR      |
+|   59 | a59   |   7753 | IT      |
+|   60 | a60   |   7217 | Finance |
+|   61 | a61   |   2826 | HR      |
+|   62 | a62   |   2478 | IT      |
+|   63 | a63   |   3914 | Finance |
+|   64 | a64   |   2135 | HR      |
+|   65 | a65   |   8935 | IT      |
+|   66 | a66   |   8268 | Finance |
+|   67 | a67   |   4534 | HR      |
+|   68 | a68   |   7868 | IT      |
+|   69 | a69   |   5739 | Finance |
+|   70 | a70   |   5089 | HR      |
+|   71 | a71   |   8227 | IT      |
+|   72 | a72   |   5869 | Finance |
+|   73 | a73   |   4666 | HR      |
+|   74 | a74   |   5720 | IT      |
+|   75 | a75   |   4602 | Finance |
+|   76 | a76   |   5850 | HR      |
+|   77 | a77   |   5445 | IT      |
+|   78 | a78   |   9675 | Finance |
+|   79 | a79   |   2038 | HR      |
+|   80 | a80   |   1166 | IT      |
+|   81 | a81   |   9718 | Finance |
+|   82 | a82   |   5089 | HR      |
+|   83 | a83   |   6291 | IT      |
+|   84 | a84   |   6187 | Finance |
+|   85 | a85   |   2064 | HR      |
+|   86 | a86   |   1759 | IT      |
+|   87 | a87   |   2604 | Finance |
+|   88 | a88   |   7742 | HR      |
+|   89 | a89   |    897 | IT      |
+|   90 | a90   |   1258 | Finance |
+|   91 | a91   |   3600 | HR      |
+|   92 | a92   |   4227 | IT      |
+|   93 | a93   |    334 | Finance |
+|   94 | a94   |   8989 | HR      |
+|   95 | a95   |   3944 | IT      |
+|   96 | a96   |   2751 | Finance |
+|   97 | a97   |   1925 | HR      |
+|   98 | a98   |   1372 | IT      |
+|   99 | a99   |   1085 | Finance |
+|  100 | a100  |   1307 | HR      |
++------+-------+--------+---------+
+100 rows in set (0.03 sec)
+
+mysql> delete from emp_dept_vw where eid=1;
+ERROR 1395 (HY000): Can not delete from join view 'trainingdb.emp_dept_vw'
+mysql> a^C
+mysql> update emp_dept_vw set ename='a', dname='HR' where eid=1;
+ERROR 1393 (HY000): Can not modify more than one base table through a join view 'trainingdb.emp_dept_vw'
+mysql> update emp_dept_vw set ename='a' where eid=1;
+Query OK, 1 row affected (0.05 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update mp_dept_vw set deptname='a's dept' where eid=1;
+    '> ;
+    '> ^C
+mysql> update mp_dept_vw set deptname="a's dept" where eid=1;
+ERROR 1146 (42S02): Table 'trainingdb.mp_dept_vw' doesn't exist
+mysql> update emp_dept_vw set deptname="a's dept" where eid=1;
+ERROR 1054 (42S22): Unknown column 'deptname' in 'field list'
+mysql> update emp_dept_vw set dname="a's dept" where eid=1;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from emp join dept on emp.did = dept.did limit 5;
++------+-------+--------+------+------+----------+
+| eid  | ename | salary | did  | did  | dname    |
++------+-------+--------+------+------+----------+
+|    1 | a     |  30000 |    1 |    1 | a's dept |
+|    2 | a2    |   4499 |    2 |    2 | IT       |
+|    3 | a3    |   2952 |    3 |    3 | Finance  |
+|    4 | a4    |   1263 |    1 |    1 | a's dept |
+|    5 | a5    |   7459 |    2 |    2 | IT       |
++------+-------+--------+------+------+----------+
+5 rows in set (0.00 sec)
+
+mysql> create view dept_emp_count_vw as select dname,count(eid) as emp_count from dept join emp on dept.did = emp.eid group by dname;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> select * from dept_emp_count_vw;
++----------+-----------+
+| dname    | emp_count |
++----------+-----------+
+| a's dept |         1 |
+| IT       |         1 |
+| Finance  |         1 |
+| OPR      |         1 |
++----------+-----------+
+4 rows in set (0.00 sec)
+
+mysql> select * from emp join dept on emp.did = dept.did limit 10;
++------+-------+--------+------+------+----------+
+| eid  | ename | salary | did  | did  | dname    |
++------+-------+--------+------+------+----------+
+|    1 | a     |  30000 |    1 |    1 | a's dept |
+|    2 | a2    |   4499 |    2 |    2 | IT       |
+|    3 | a3    |   2952 |    3 |    3 | Finance  |
+|    4 | a4    |   1263 |    1 |    1 | a's dept |
+|    5 | a5    |   7459 |    2 |    2 | IT       |
+|    6 | a6    |   3508 |    3 |    3 | Finance  |
+|    7 | a7    |   5161 |    1 |    1 | a's dept |
+|    8 | a8    |   5282 |    2 |    2 | IT       |
+|    9 | a9    |    926 |    3 |    3 | Finance  |
+|   10 | a10   |   8784 |    1 |    1 | a's dept |
++------+-------+--------+------+------+----------+
+10 rows in set (0.00 sec)
+
+mysql> delete from dept_emp_count_vw;
+ERROR 1288 (HY000): The target table dept_emp_count_vw of the DELETE is not updatable
+mysql> update dept_emp_count_vw set dname = 'b';
+ERROR 1288 (HY000): The target table dept_emp_count_vw of the UPDATE is not updatable
+mysql> insert into dept_emp_count_vw (dname) values ('c');
+ERROR 1471 (HY000): The target table dept_emp_count_vw of the INSERT is not insertable-into
+mysql>
+
+delimiter $$
+create procedure sp_loademp(rec int)
+begin
+declare i int default 1;
+truncate table newemp;
+start transaction;
+while(i<=rec) do
+insert into newemp (eid,ename,salary,did) values(i,concat(cast(char(mod((i-1),26)+97) as char(10)),i),rand()*10000,mod((i-1),3)+1);
+set i=i+1;
+end while;
+commit;
+end;
+$$
+delimiter ;
+
+call sp_loademp(10);
+
+mysql>create table newemp(eid int, ename varchar(200), salary int, did int);
+
+mysql> delimiter $$
+mysql> create procedure sp_loademp(rec int)
+    -> begin
+    -> declare i int default 1;
+    -> truncate table newemp;
+    -> start transaction;
+    -> while(i<=rec) do
+    -> insert into newemp (eid,ename,salary,did) values(i,concat(cast(char(mod((i-1),26)+97) as char(10)),i),rand()*10000,mod((i-1),3)+1);
+    -> set i=i+1;
+    -> end while;
+    -> commit;
+    -> end;
+    -> $$
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> delimiter ;
+mysql>
+mysql> call sp_loademp(10);
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> select * from newemp;
++------+-------+--------+------+
+| eid  | ename | salary | did  |
++------+-------+--------+------+
+|    1 | a1    |   9946 |    1 |
+|    2 | b2    |   5096 |    2 |
+|    3 | c3    |   5644 |    3 |
+|    4 | d4    |   2929 |    1 |
+|    5 | e5    |   7716 |    2 |
+|    6 | f6    |   9793 |    3 |
+|    7 | g7    |   5816 |    1 |
+|    8 | h8    |   9700 |    2 |
+|    9 | i9    |   1053 |    3 |
+|   10 | j10   |   6166 |    1 |
++------+-------+--------+------+
+10 rows in set (0.00 sec)
+
+mysql> call sp_loademp(2000000);
+Query OK, 0 rows affected (1 min 11.05 sec)
+
+mysql> delimiter $$
+mysql> create procedure sp_loademp(rec int)
+    -> begin
+    -> declare i int default 1;
+    -> truncate table newemp;
+    -> start transaction;
+    -> while(i<=rec) do
+    -> insert into newemp (eid,ename,salary,did) values(i,concat(cast(char(mod((i-1),26)+97) as char(10)),i),rand()*10000,mod((i-1),3)+1);
+    -> set i=i+1;
+    -> end while;
+    -> commit;
+    -> end;
+    -> $$
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> delimiter ;
+mysql>
+mysql> call sp_loademp(10);
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> select * from newemp;
++------+-------+--------+------+
+| eid  | ename | salary | did  |
++------+-------+--------+------+
+|    1 | a1    |   9946 |    1 |
+|    2 | b2    |   5096 |    2 |
+|    3 | c3    |   5644 |    3 |
+|    4 | d4    |   2929 |    1 |
+|    5 | e5    |   7716 |    2 |
+|    6 | f6    |   9793 |    3 |
+|    7 | g7    |   5816 |    1 |
+|    8 | h8    |   9700 |    2 |
+|    9 | i9    |   1053 |    3 |
+|   10 | j10   |   6166 |    1 |
++------+-------+--------+------+
+10 rows in set (0.00 sec)
+
+mysql> call sp_loademp(2000000);
+Query OK, 0 rows affected (1 min 11.05 sec)
+
+mysql> show indexes from newemp;
+Empty set (0.02 sec)
+
+mysql> -- if index present drop it;
+mysql> select * from newemp where eid = 1234;
++------+-------+--------+------+
+| eid  | ename | salary | did  |
++------+-------+--------+------+
+| 1234 | l1234 |   5676 |    1 |
++------+-------+--------+------+
+1 row in set (1.15 sec)
+
+mysql> explain select * from newemp where eid = 1234
+    -> ;
++----+-------------+--------+------------+------+---------------+------+---------+------+---------+----------+-------------+
+| id | select_type | table  | partitions | type | possible_keys | key  | key_len | ref  | rows    | filtered | Extra       |
++----+-------------+--------+------------+------+---------------+------+---------+------+---------+----------+-------------+
+|  1 | SIMPLE      | newemp | NULL       | ALL  | NULL          | NULL | NULL    | NULL | 1994424 |    10.00 | Using where |
++----+-------------+--------+------------+------+---------------+------+---------+------+---------+----------+-------------+
+1 row in set, 1 warning (0.00 sec)
+
+mysql> explain select * from newemp where eid = 1234 \G;
+*************************** 1. row ***************************
+           id: 1
+  select_type: SIMPLE
+        table: newemp
+   partitions: NULL
+         type: ALL
+possible_keys: NULL
+          key: NULL
+      key_len: NULL
+          ref: NULL
+         rows: 1994424
+     filtered: 10.00
+        Extra: Using where
+1 row in set, 1 warning (0.00 sec)
+
+ERROR:
+No query specified
+
+mysql> create index idx on newemp(eid);
+Query OK, 0 rows affected (6.57 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from newemp where eid = 1234;
++------+-------+--------+------+
+| eid  | ename | salary | did  |
++------+-------+--------+------+
+| 1234 | l1234 |   5676 |    1 |
++------+-------+--------+------+
+1 row in set (0.00 sec)
+
+mysql> drop index idx on newemp;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from newemp where eid = 1234;
++------+-------+--------+------+
+| eid  | ename | salary | did  |
++------+-------+--------+------+
+| 1234 | l1234 |   5676 |    1 |
++------+-------+--------+------+
+1 row in set (1.17 sec)
+
+mysql> select * from newemp where eid = 1234 \G;
+*************************** 1. row ***************************
+   eid: 1234
+ ename: l1234
+salary: 5676
+   did: 1
+1 row in set (1.10 sec)
+
+ERROR:
+No query specified
+
+mysql> create index idx on newemp(eid);
+Query OK, 0 rows affected (6.32 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> explain select * from newemp where eid = 1234 \G;
+*************************** 1. row ***************************
+           id: 1
+  select_type: SIMPLE
+        table: newemp
+   partitions: NULL
+         type: ref
+possible_keys: idx
+          key: idx
+      key_len: 5
+          ref: const
+         rows: 1
+     filtered: 100.00
+        Extra: NULL
+1 row in set, 1 warning (0.00 sec)
+
+ERROR:
+No query specified
+
+mysql>
