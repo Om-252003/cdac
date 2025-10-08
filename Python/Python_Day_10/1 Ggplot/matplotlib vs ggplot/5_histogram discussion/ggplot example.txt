@@ -1,0 +1,33 @@
+"""
+Explanation
+
+geom_histogram() → draws the histogram.
+
+bins=5 → divides ages into 
+5 ranges 
+(12–13, 14–15, 16–17, 18–19, 20–22).
+
+fill and color → styling 
+(blue bars with black edges).
+
+"""
+
+import pandas as pd
+from plotnine import ggplot, aes, geom_histogram, labs, theme_minimal
+
+# Ages of 20 students
+ages = [12, 13, 13, 14, 15, 15, 16, 16, 16, 17,
+        17, 17, 18, 18, 19, 19, 20, 21, 21, 22]
+
+# Convert to DataFrame (ggplot works with DataFrames)
+df = pd.DataFrame({"Age": ages})
+
+# Create histogram
+plot = (ggplot(df, aes(x="Age"))
+        + geom_histogram(bins=5, fill="skyblue", color="black")
+        + labs(title="Histogram of Student Ages",
+               x="Age Ranges (bins)",
+               y="Number of Students")
+        + theme_minimal())
+
+plot.show()

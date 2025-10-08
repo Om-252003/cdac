@@ -1,0 +1,234 @@
+show tables;
+
+-- delete on a view with join is not allowed as delete will try to delete the data from multiple base tables at the same time
+
+delete from emp_dept_vw  ;
+
+-- update on view with join is allowed only if the update affects columns of 1 base table at
+a time
+
+update emp_dept_vw set  ename='a' , deptname='HR' where eid=1; -- fail
+update emp_dept_vw set  ename='a' where eid=1; -- work
+
+update emp_dept_vw set  deptname='a' where eid=1; -- works 
+
+
+-- if the view is a complex view then DMLs are not allowed
+-- Complex view is a view which contains one the following
+-- group by
+-- having clause
+-- ranking functions
+--aggregate functions
+
+create view vw_dept_emp_count
+as
+select deptname , count(eid) emp_cnt
+from dept join emp on dept.deptid=emp.deptid
+group by deptname;
+
+select * from  vw_dept_emp_count;
+delete from vw_dept_emp_count;
+update  vw_dept_emp_count set deptname='b';
+insert into vw_dept_emp_count (deptname) valueS('c');
+
+
+-- if the table contains some not null columns and view on that table doesn't
+-- include some of these not null columns where even the default value is not defined then
+-- insert on that view will not be allowed
+
+create table test_notnull(c1 int not null, c2 int not null , c3 varchar(100));
+create view vw_test_notnull 
+as
+select c1,c3 from test_notnull;
+
+insert into vw_test_notnull  values(1,'a');
+
+delete from vw_test_notnull; -- allowed
+
+show indexes from emp;
+
+drop index emp_eid_idx on emp;
+
+
+select * from emp where eid=1234;
+
+explain select * from emp where eid=1234 \G;
+create index emp_eid_idx on emp(eid);
+
+show table status like 'emp' \G;
+
+select table_name,engine from information_schema.tables where table_schema=database();
+
+create table t_myisam(id int) engine=myisam;
+
+insert into t_myisam values(1),(2),(3);
+
+start transaction;
+delete from t_myisam;
+rollback;
+
+select * from t_myisam;
+
+
+create table t_my_parent(deptid int primary key, deptname varchar(100)) engine=myisam;
+create table t_my_child(eid int, ename varchar(100), deptid int, 
+foreign key fk1(deptid) references t_my_parent(deptid))
+engine=myisam ;
+
+insert into t_my_child values(1,'a',1);
+
+
+
+create table t_mem(id int, name varchar(100)) engine=memory;
+insert into t_mem values(1,'a'),(2,'b');
+
+alter table t_mem engine=innodb;
+
+
+78. Write a query that extracts from the Customers table every customer assigned to a 
+salesperson who currently has at least one other customer (besides the customer being 
+selected) with orders in the Orders table. 
+
+select * from customers
+where snum in(
+select snum 
+from customers group by snum
+having count(distinct cnum)>1);
+
+
+
+121.Is there any evidence linking the performance of a salesperson to the commission that he or 
+she is being paid? 
+
+
+
+
+select sname,sum(amt),max(comm)
+from orders o,salespeople s
+where o.snum=s.snum
+group by sname
+order by 2 desc;
+
+
+
+select case when hc.sname=ho.sname then 
+'Yes, the performance of Salesperon is linked to the comm paid to the salesperon'
+else
+'No, the performance of Salesperon is not linked to the comm paid to the salesperon'
+end Answer
+from
+(select sname from orders o,salespeople s
+where o.snum=s.snum
+group by sname
+order by sum(amt) desc limit 1) ho left join
+(select sname from salespeople order by comm desc limit 1) hc
+on ho.sname=hc.sname;
+
+
+
+select sum(amt)-sum(amt*comm) income
+from 
+salespeople s , orders o 
+where s.snum=o.snum;
+
+
+74. Count the number of salespeople registering orders for each day. (If a salesperson has more 
+than one order on a given day, he or she should be counted only once.)
+
+
+
+select odate,count(distinct snum) salespeople_count
+from  orders 
+group by odate;
+
+122.Does the total amount in orders by customer in Rome and London exceed the commission 
+paid to salespersons in London and New York by more than 5 times? 
+
+
+select case when amt>5*comm then 'Yes' else 'No' end Answer from(
+select sum(amt) amt
+from orders o , customers c
+where o.cnum=c.cnum
+and city in('rome','london')) ca,
+(select sum(amt*comm) comm
+from orders o , salespeople s
+where o.snum=s.snum
+and city in('New York','london')) sc;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+,
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

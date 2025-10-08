@@ -1,0 +1,17 @@
+"""
+asctime is "ASCII time." It refers to a string
+representation of the date and time in a human-readable
+format, typically including the year, month, day, hour,
+minute, and second. This format is used in logging
+to easily convey when a particular log entry was created.
+
+"""
+
+import logging
+
+# Set up logging to a file
+logging.basicConfig(filename='second.log',format='%(asctime)s - %(levelname)s - %(message)s', level=logging.DEBUG)
+
+logging.debug('Debug message written to file')
+logging.warning('Warning message written to file')
+logging.error('Error message written to file')

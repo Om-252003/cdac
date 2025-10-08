@@ -1,0 +1,14 @@
+Iterator vs Generator
+What is a generator function
+Difference between 'yield' and 'return'
+
+Example_1
+Example_1_a
+
+How does yield work
+
+What does interpreter do
+
+Example_2
+
+What if function has both yield and return

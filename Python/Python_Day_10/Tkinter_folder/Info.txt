@@ -1,0 +1,5 @@
+Tkinter is a standard Python GUI library which gives us an object oriented interface to the Tk GUI toolkit.
+
+how to install?
+
+pip install tk

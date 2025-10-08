@@ -1,0 +1,60 @@
+[Running] python -u "e:\work\First.py"
+<class 'generator'>
+id of mysequence is	 2337734760976
+id of returnOdds is	 2337734934048
+inside generator function
+before yield
+before print
+1
+after print
+after yield
+before yield
+before print
+3
+after print
+after yield
+before yield
+before print
+5
+after print
+after yield
+before yield
+before print
+7
+after print
+after yield
+before yield
+before print
+9
+after print
+after yield
+before yield
+before print
+11
+after print
+after yield
+before yield
+before print
+13
+after print
+after yield
+before yield
+before print
+15
+after print
+after yield
+before yield
+before print
+17
+after print
+after yield
+before yield
+before print
+19
+after print
+after yield
+after for loop of returnOdds
+after for loop of caller
+
+[Done] exited with code=0 in 0.107 seconds
+

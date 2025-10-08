@@ -1,0 +1,17 @@
+# Pickling Unpickling
+# Pickling means storing an entire object inside the file system ( a.k.a.  Serialization)
+# Unpickling meand retrieving an entire object from the file system ( a.k.a.  Deserialization)
+
+import pickle
+import pandas as pd
+
+
+df=pd.read_csv("Players.csv")
+
+# serialization or pickling
+pickle.dump(df,open("myplayer.pkl","wb"))
+
+# deserialization or unpickling
+mydf=pickle.load(open("myplayer.pkl","rb"))
+print("displaying dataframe which just has been read")
+print(mydf.head())

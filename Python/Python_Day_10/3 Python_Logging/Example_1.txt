@@ -1,0 +1,21 @@
+import logging as lg
+
+# Set up lg level
+
+lg.basicConfig(level=lg.DEBUG)
+# lg.basicConfig(level=lg.WARNING)
+
+# lg messages with different severity levels
+lg.debug('This is a debug message')
+lg.info('This is an info message')
+lg.warning('This is a warning message')
+lg.error('This is an error message')
+lg.critical('This is a critical message')
+
+'''Output
+DEBUG:root:This is a debug message
+INFO:root:This is an info message
+WARNING:root:This is a warning message
+ERROR:root:This is an error message
+CRITICAL:root:This is a critical message
+'''

@@ -1,0 +1,13 @@
+import mysql.connector as m
+mydatabase=m.connect(host="localhost",user="root",password="root",database="pythondb1")
+cursor=mydatabase.cursor()
+
+query="insertt into dept(dname,loc) values(%s,%s)"
+try:
+    cursor.execute(query,['training','Pune'])
+    cursor.execute(query,['cleaning','Banglore'])
+    mydatabase.commit()
+except Exception as e:
+    print("exception occured\t",e)
+    mydatabase.rollback()
+print("done")

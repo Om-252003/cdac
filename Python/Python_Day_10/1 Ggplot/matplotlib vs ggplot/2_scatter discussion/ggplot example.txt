@@ -1,0 +1,18 @@
+from plotnine import ggplot, aes, geom_line, geom_point, geom_bar, labs, theme_minimal
+from plotnine import theme_bw,theme_dark
+import pandas as pd
+
+# Sample data
+df = pd.DataFrame({
+    'x': [1, 2, 3, 4, 5],
+    'y': [10, 15, 13, 17, 14]
+})
+
+plot = (ggplot(df, aes(x='x', y='y'))
+        + geom_point(color='red')
+        + labs(title="Scatter Plot - ggplot")
+        #+ theme_minimal())
+        #+theme_bw())
+        +theme_dark())
+
+plot.show()

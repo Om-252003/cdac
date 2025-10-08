@@ -1,0 +1,20 @@
+def returnOdds(val):    # generator function
+    print("inside generator function")
+    for i in range(1,val+1):
+        if(i%2!=0):
+            print("before yield")
+            yield i            # yield allows you to return generator 
+            print("after yield")
+    print("after for loop of returnOdds")
+
+
+mysequence=returnOdds(20)
+print(type(mysequence))
+print("id of mysequence is\t",id(mysequence))
+print("id of returnOdds is\t",id(returnOdds))
+for x in mysequence:
+    print("before print")
+    print(x)
+    print("after print")
+print("after for loop of caller")
+

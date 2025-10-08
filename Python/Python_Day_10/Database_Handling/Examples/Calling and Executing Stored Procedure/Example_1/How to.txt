@@ -1,0 +1,89 @@
+Go to mysql and make sure you have "pythondb1" database created.
+
+create a table
+
+CREATE TABLE employees (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50)
+);
+
+
+insert 3 records
+
+INSERT INTO employees (name) VALUES ('Alice'), ('Bob'), ('Charlie');
+
+
+create stored procedure:
+
+DELIMITER //
+
+CREATE PROCEDURE GetEmployees()
+BEGIN
+    SELECT * FROM employees;
+END //
+
+DELIMITER ;
+
+make sure there is no error.
+	
+	[ Imp.- Suppose if procedure already exists, above command i.e. create procedure will give you error. That's why it is alway safe to say:
+
+	DROP PROCEDURE IF EXISTS GetEmployees;
+
+	]
+
+
+try to invoke this procedure from mysql itself by giving following command:
+
+
+CALL GetEmployees();
+
+
+make sure procedure gets executed and displays all the records from employees table.
+
+
+
+now go to pycharm and create a module
+
+			Connection_Provider.py
+
+import mysql.connector
+
+def getConnection():
+    # Connect to MySQL
+    conn = mysql.connector.connect(
+        host="localhost",
+        user="root",
+        password="root",
+        database="pythondb1"
+    )
+    return conn
+
+
+
+create another python file (script)  e.g. First.py 
+
+
+import mysql.connector
+from Connection_Provider import *
+conn=getConnection()
+
+# Create a cursor
+cursor = conn.cursor()
+
+# Call stored procedure
+cursor.callproc("GetEmployees")
+
+# Fetch results (stored procedures return results as a result set in cursor.stored_results())
+for result in cursor.stored_results():
+    for row in result.fetchall():
+        print(row)  # Each row is a tuple (id, name)
+
+# Clean up
+cursor.close()
+conn.close()
+
+
+run "First.py" and make sure it works properly.
+
+

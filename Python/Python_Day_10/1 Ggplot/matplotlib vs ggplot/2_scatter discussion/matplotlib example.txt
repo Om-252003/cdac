@@ -1,0 +1,15 @@
+import matplotlib.pyplot as plt
+import pandas as pd
+
+# Sample data
+df = pd.DataFrame({
+    'x': [1, 2, 3, 4, 5],
+    'y': [10, 15, 13, 17, 14]
+})
+
+plt.figure(figsize=(6,4))
+plt.scatter(df['x'], df['y'], color='red')
+plt.title("Scatter Plot - Matplotlib")
+plt.xlabel("X axis")
+plt.ylabel("Y axis")
+plt.show()

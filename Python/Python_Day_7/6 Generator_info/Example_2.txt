@@ -1,0 +1,16 @@
+ def myfun():
+    print("inside myfun")
+    yield 5
+
+val=myfun()
+print("val is\t",val)
+print(val,"\ttype of val is\t",type(val))
+print("type of myfun is\t",type(myfun))
+
+print("with __next__() method\t",val.__next__())
+#print("with __next__ method again!\t",val.__next__())    # StopIteration exception
+
+val=myfun()
+print("with for loop")
+for i in val:
+    print(i)

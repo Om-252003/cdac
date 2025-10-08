@@ -1,0 +1,68 @@
+
+"""
+When we say "Polars has seamless conversion functions to and from Pandas", it means you can "easily switch between a Polars DataFrame and a Pandas DataFrame" without manually copying or restructuring data. This is useful if you want to use Polars for speed but still need Pandas functions for certain operations.
+
+"""
+
+"""
+Polars can convert to Pandas using to_pandas(), 
+but it depends on pyarrow.
+
+If you don’t install pyarrow, conversion will fail.
+"""
+
+"""
+Convert a Pandas DataFrame to Polars:
+
+"""
+import pandas as pd
+import polars as pl
+
+# Pandas DataFrame
+df_pd = pd.DataFrame({
+    "A": [1, 2, 3],
+    "B": [4, 5, 6]
+})
+
+# Convert to Polars
+df_pl = pl.from_pandas(df_pd)
+
+print(df_pl)
+
+"""
+
+	Output (Polars DataFrame):
+
+
+shape: (3, 2)
+┌─────┬─────┐
+│ A   │ B   │
+│ --- │ --- │
+│ i64 │ i64 │
+╞═════╪═════╡
+│ 1   │ 4   │
+│ 2   │ 5   │
+│ 3   │ 6   │
+└─────┴─────┘
+"""
+"""
+Convert a Polars DataFrame back to Pandas:
+
+"""
+df_pd2 = df_pl.to_pandas()
+print(df_pd2)
+
+""" 
+Output (Pandas DataFrame):
+
+
+   A  B
+0  1  4
+1  2  5
+2  3  6
+"""
+# You can freely **move data back and forth** between Pandas and Polars.
+
+# Use Polars when you want "fast operations" or need "lazy evaluation".
+# Use Pandas when you need "specific Pandas-only functions".
+

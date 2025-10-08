@@ -1,0 +1,24 @@
+import pandas as pd
+from plotnine import ggplot, aes, geom_boxplot, labs, theme_minimal, geom_jitter
+
+# Test scores for 3 subjects
+math_scores = [1,2,3,4,5,6,7,8,9]       # Gradual increase — wider spread
+english_scores = [1,2,3,4,5,4,3,2,1]    # Symmetric, centered at 3–5
+science_scores = [6,7,8,9,8,7,6,5,4]    # Higher performance cluster
+
+# Convert into tidy DataFrame
+df = pd.DataFrame({
+    "Subject": ["Math"]*len(math_scores)
+             + ["English"]*len(english_scores)
+             + ["Science"]*len(science_scores),
+    "Score": math_scores + english_scores + science_scores
+})
+
+# Create boxplot
+plot = (ggplot(df, aes(x="Subject", y="Score", fill="Subject"))
+        + geom_boxplot()
+        + geom_jitter(width=0.25, height=0.0, color="black", alpha=0.7, size=2)  # controlled jitter
+        + labs(title="Distribution of Marks in Three Subjects",
+               x="Subject", y="Marks")
+        + theme_minimal())
+plot.show()

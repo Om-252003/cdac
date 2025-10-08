@@ -1,0 +1,13 @@
+class MyNum:
+    def __init__(self,num):
+        self.num=num
+    """
+    def __eq__(self, other):
+        return self.num==other.num
+    """
+
+m1=MyNum(100)
+m2=MyNum(100)
+
+print(m1==m2)
+print(m1 is m2)

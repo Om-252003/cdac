@@ -1,0 +1,29 @@
+import pickle
+
+class Student:
+    def __init__(self,name,age):
+        self.name=name
+        self.age=age
+    def __str__(self):
+        return ""+self.name+"\t"+str(self.age)
+
+s1=Student("Rohit",25)
+print("After creating object")
+print(s1)
+
+# pickling or serialization
+pickle.dump(s1,open("mystudent.pkl","wb"))
+
+s1=None
+print("After storing object and after making s1 None")
+print(s1)
+
+print("Not to worry, we've stored object inside the filesystem, so it can be retrieved")
+
+# unpickling or deserialization
+temp=pickle.load(open("mystudent.pkl","rb"))
+print(temp)
+
+
+
+

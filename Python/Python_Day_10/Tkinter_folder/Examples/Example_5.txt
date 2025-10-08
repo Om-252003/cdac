@@ -1,0 +1,33 @@
+from tkinter import *
+
+
+def printDetails() :
+    usernameText = usernameEntry.get()
+    finaltext="user entered :"+usernameText
+    displaylabel['text']=finaltext
+    
+
+#window
+tkWindow = Tk()  
+tkWindow.geometry('400x150')  
+tkWindow.title('Python Examples')
+
+#label
+usernameLabel = Label(tkWindow, text="Enter your name")
+#entry for user input
+usernameEntry = Entry(tkWindow)
+
+displaylabel=Label(tkWindow,text="")
+
+
+#submit button
+submitButton = Button(tkWindow, text="Submit", command=printDetails)
+
+#place label, entry, and button in grid
+usernameLabel.grid(row=0, column=0)
+usernameEntry.grid(row=0, column=1) 
+submitButton .grid(row=1, column=1)  
+displaylabel.grid(row=6,column=1)
+
+#main loop
+tkWindow.mainloop()

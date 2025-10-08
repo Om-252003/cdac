@@ -1,0 +1,56 @@
+"""
+fill='category'
+
+The fill aesthetic tells ggplot what to use to
+color the inside of the bars.
+
+Here, fill='category' means:
+
+Each bar’s color will depend on its category.
+
+So each of the categories A, B, C, D, E will get a
+different fill color automatically.
+
+If you remove fill='category', all bars
+would have the same color.
+"""
+
+"""
+stat='identity'
+
+This one is subtle but very important.
+
+By default, geom_bar() does counting — 
+it counts how many times each x value appears.
+That’s because the default is stat='count'.
+
+But here, we already have our own values in the 
+y column (value = 20, 35, 30, ...).
+
+We don’t want ggplot to count anything — 
+we want it to use the actual numbers we provided.
+
+So we tell ggplot:
+
+stat='identity'
+
+
+This means:
+
+“Use the actual numbers in the y column as 
+bar heights — don’t count them.”
+
+"""
+from plotnine import ggplot, aes, geom_line, geom_point, geom_bar, labs, theme_minimal
+import pandas as pd
+
+# Sample data
+df = pd.DataFrame({
+    'category': ['A', 'B', 'C', 'D', 'E'],
+    'value': [20, 35, 30, 35, 27]
+})
+
+plot = (ggplot(df, aes(x='category', y='value', fill='category'))
+         + geom_bar(stat='identity') + labs(title="Bar Plot - ggplot") + theme_minimal())
+
+plot.show()

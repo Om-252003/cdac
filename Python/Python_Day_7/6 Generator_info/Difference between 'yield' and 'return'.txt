@@ -1,0 +1,46 @@
+def myfun():
+    print("inside myfun")
+    return 5
+
+val=myfun()
+print("val is\t",val)
+print(val,"\ttype of val is\t",type(val))
+print("type of myfun is\t",type(myfun))
+
+
+""" output:
+
+inside myfun
+val is	 5
+5 	type of val is	 <class 'int'>
+type of myfun is	 <class 'function'>
+
+"""
+
+
+
+def myfun():
+    print("inside myfun")
+    yield 5
+
+val=myfun()
+print("val is\t",val)
+print(val,"\ttype of val is\t",type(val))
+print("type of myfun is\t",type(myfun))
+print("still 'inside myfun' statement is not executed")
+print(val.__next__())   # now it will get called
+
+"""
+output:
+
+val is	 <generator object myfun at 0x000001C5E72D9A10>
+<generator object myfun at 0x000001C5E72D9A10> 	type of val is	 <class 'generator'>
+type of myfun is	 <class 'function'>
+still 'inside myfun' statement is not executed
+inside myfun
+5
+
+"""
+
+
+

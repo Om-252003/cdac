@@ -1,0 +1,27 @@
+# read from database and store inside CSV
+
+import pandas as pd
+import mysql.connector as m
+
+mydatabase=m.connect(host="localhost",user="root",password="root",database="pythondb1")
+
+cursor=mydatabase.cursor()
+
+query="select name,age,address from book"
+cursor.execute(query)
+result=cursor.fetchall()     # here we get tuples equivalent to the number of records
+names=[]
+ages=[]
+addresses=[]
+
+for name,age,address in result:
+    names.append(name)
+    ages.append(age)
+    addresses.append(address)
+
+mydictionary={'Names':names,'Age':ages,'Address':addresses}
+#print(mydictionary)
+
+df=pd.DataFrame(mydictionary)
+df_csv=df.to_csv('NewBook.csv',index=False)
+

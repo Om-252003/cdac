@@ -1,0 +1,28 @@
+"""
+Matplotlib style
+
+You tell the computer step by step what to do:
+
+Make a plot
+
+Add x-label
+
+Add y-label
+
+Add title
+
+This is called an imperative approach → you control the HOW.
+"""
+
+
+from numpy import *
+from matplotlib import pyplot as py
+
+first = arange(1, 11)     # Number of hours worked (1 to 10)
+second = 200 * first      # Total money earned (₹200 per hour)
+
+py.plot(first, second)     
+py.xlabel("Hours Worked")
+py.ylabel("Money Earned (₹)")
+py.title("Hours Worked vs Money Earned")
+py.show()

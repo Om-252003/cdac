@@ -1,0 +1,20 @@
+# read from csv and insert into database table
+
+import pandas as pd
+import mysql.connector as m
+empdata = pd.read_csv('Book1.csv', index_col=False, delimiter = ',')
+
+mydatabase=m.connect(host="localhost",user="root",password="root",database="pythondb1")
+
+cursor=mydatabase.cursor()
+
+cursor.execute('DROP TABLE IF EXISTS book;')
+cursor.execute("create table book(name varchar(20),age int(3),address varchar(30))")
+
+for i,row in empdata.iterrows():
+            #here %S means string values 
+            sql = "INSERT INTO book VALUES (%s,%s,%s)"
+            cursor.execute(sql, tuple(row))
+            # the connection is not auto committed by default, so we must commit to save our changes
+mydatabase.commit()
+print("Records inserted")

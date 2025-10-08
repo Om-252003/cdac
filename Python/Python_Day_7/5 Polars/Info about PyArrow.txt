@@ -1,0 +1,3 @@
+PyArrow is needed because it provides the Apache Arrow format, which allows Polars to efficiently exchange data with Pandas and read/write Parquet files. Without PyArrow, Polars can still work on its own data but cannot perform zero-copy conversions or handle Arrow-based file formats.
+
+A Parquet file is a columnar storage file format commonly used for large datasets.

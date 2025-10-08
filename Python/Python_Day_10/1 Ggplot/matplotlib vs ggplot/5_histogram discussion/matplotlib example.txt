@@ -1,0 +1,43 @@
+"""
+
+Output Explanation
+
+Suppose we use 5 bins:
+
+Bin1: 12–13 → 3 students
+    it means there are 3 students between
+    age group 12 to 13
+
+Bin2: 14–15 → 3 students
+    it means there are 3 students between
+    age group 14 to 15
+
+Bin3: 16–17 → 6 students
+    it means there are 6 students between
+    age group 16 to 17
+
+Bin4: 18–19 → 4 students
+    it means there are 4 students between
+    age group 18 to 19
+
+Bin5: 20–22 → 4 students
+    it means there are 4 students between
+    age group 20 to 22
+
+The histogram will show bars with these counts.
+
+"""
+
+import matplotlib.pyplot as plt
+
+# Ages of 20 students
+ages = [12, 13, 13, 14, 15, 15, 16, 16, 16, 17,
+        17, 17, 18, 18, 19, 19, 20, 21, 21, 22]
+
+# Create histogram with 5 bins (intervals)
+plt.hist(ages, bins=5, color="skyblue", edgecolor="black")
+
+plt.title("Histogram of Student Ages")
+plt.xlabel("Age Ranges (bins)")
+plt.ylabel("Number of Students")
+plt.show()

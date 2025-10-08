@@ -1,0 +1,21 @@
+ggplot doesn't work on pycharm [ except "show" method ]
+we need Jupyter notebook 
+
+how to install
+
+pip install notebook
+
+it will take some time, after installation type following command on the terminal
+
+jupyter notebook
+
+
+copy following url and paste it inside the browser
+
+
+http://localhost:8888/tree?token=c06bdbc8545dbc0df0063b449ce3d3a52e293e3a11
+278010
+
+
+make sure it opens jupyter notebook
+

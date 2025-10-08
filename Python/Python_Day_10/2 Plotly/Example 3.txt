@@ -1,0 +1,61 @@
+# pip install plotly
+
+"""
+Why Plotly opens a browser window?
+
+Ans:- Plotly creates interactive (HTML + JavaScript)
+charts, unlike Matplotlib or ggplot which create
+static images.
+
+So when you call
+
+fig.show()
+
+
+Plotly internally:
+
+Saves the figure as a temporary HTML file.
+
+Starts a local web server (something like
+http://127.0.0.1:62241/).
+
+Opens that file in your default web browser
+for interactivity (zoom, hover, pan, etc.).
+
+if u don't want this then u should save your graph
+as a separate html file and later open in whichever
+browser you want.
+
+"""
+
+"""
+
+fig = px.bar(df, x="Category", y="Value", color="Category", title="Category Comparison")
+color tells Plotly to assign different colors to bars based on a column.
+
+Here, the column is "Category", which has values "A", "B", "C", "D".
+
+	 What happens in the output
+Each bar gets a different color according to its category.
+
+Plotly automatically creates a legend showing which color corresponds to which category.
+
+This makes it easier to distinguish bars visually.
+
+Without color="Category":
+
+All bars would appear in the same default color, and it would be harder to differentiate categories.
+
+"""
+
+import plotly.express as px
+import pandas as pd
+
+# Sample data
+df = pd.DataFrame({"Category": ["A", "B", "C", "D"], "Value": [10, 25, 18, 30]})
+
+# Create an interactive bar chart
+fig = px.bar(df, x="Category", y="Value", color="Category", title="Category Comparison")
+
+# fig.show()
+fig.write_html("e:\\sales_bar_chart.html")

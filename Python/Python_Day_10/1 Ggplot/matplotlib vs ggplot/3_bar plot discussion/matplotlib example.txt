@@ -1,0 +1,15 @@
+import matplotlib.pyplot as plt
+import pandas as pd
+
+# Sample data
+df = pd.DataFrame({
+    'category': ['A', 'B', 'C', 'D', 'E'],
+    'value': [20, 35, 30, 35, 27]
+})
+
+plt.figure(figsize=(6,4))
+plt.bar(df['category'], df['value'], color='green')
+plt.title("Bar Plot - Matplotlib")
+plt.xlabel("Category")
+plt.ylabel("Value")
+plt.show()

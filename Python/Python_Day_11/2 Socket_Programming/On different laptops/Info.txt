@@ -1,0 +1,119 @@
+In this example client and server can be run from two different laptops provided they both are connected to same wifi ( in our case it is "smvita")
+
+decide the laptop from where you are going to run server application. Find out its IPAddress by giving following command on CMD:
+
+ipconfig
+
+when u give above command u will get output like this:
+
+
+Windows IP Configuration
+
+
+Ethernet adapter vEthernet (WSL (Hyper-V firewall)):
+
+   Connection-specific DNS Suffix  . :
+   Link-local IPv6 Address . . . . . : fe80::d917:f0f5:9e8f:b61b%41
+   IPv4 Address. . . . . . . . . . . : 172.21.224.1
+   Subnet Mask . . . . . . . . . . . : 255.255.240.0
+   Default Gateway . . . . . . . . . :
+
+Wireless LAN adapter Local Area Connection* 1:
+
+   Media State . . . . . . . . . . . : Media disconnected
+   Connection-specific DNS Suffix  . :
+
+Wireless LAN adapter Local Area Connection* 2:
+
+   Media State . . . . . . . . . . . : Media disconnected
+   Connection-specific DNS Suffix  . :
+
+Wireless LAN adapter Wi-Fi:
+
+   Connection-specific DNS Suffix  . :
+   Link-local IPv6 Address . . . . . : fe80::a16c:be33:c9a0:6ccb%17
+   IPv4 Address. . . . . . . . . . . : 192.168.0.109
+   Subnet Mask . . . . . . . . . . . : 255.255.254.0
+   Default Gateway . . . . . . . . . : 192.168.0.5
+
+Ethernet adapter Bluetooth Network Connection:
+
+   Media State . . . . . . . . . . . : Media disconnected
+   Connection-specific DNS Suffix  . :
+
+
+in the above output
+ IPv4 Address. . . . . . . . . . . : 192.168.0.109
+
+192.1680.109  is your IPAddress which u must share with the other laptop who is going to act as a client. Before sharing this ip address just try one more command on your CMD:
+
+ping  192.168.0.109
+
+it should give u following output:
+
+
+Pinging 192.168.0.109 with 32 bytes of data:
+Reply from 192.168.0.109: bytes=32 time<1ms TTL=128
+Reply from 192.168.0.109: bytes=32 time<1ms TTL=128
+Reply from 192.168.0.109: bytes=32 time<1ms TTL=128
+Reply from 192.168.0.109: bytes=32 time<1ms TTL=128
+
+Ping statistics for 192.168.0.109:
+    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 0ms, Maximum = 0ms, Average = 0ms
+
+
+That means everything is fine, one who is connected to same wifi can connect to your laptop easily. For that u have to share your IPAddress 192.168.0.109 with the other person.
+
+
+Since u r going to act as a server, run following python code (Server.py) on your PyCharm:
+
+
+import socket
+
+host = "0.0.0.0"  # listen on all interfaces
+port = 12345
+
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.bind((host, port))
+s.listen(1)
+print("Server listening...")
+
+conn, addr = s.accept()
+print("Connected by:", addr)
+
+while True:
+    data = conn.recv(1024)
+    if not data:
+        break
+    print("Client:", data.decode())
+    msg = input("Server reply: ")
+    conn.send(msg.encode())
+
+conn.close()
+
+
+make sure it works and give a message "Server listening ..."
+
+
+go to other laptop and inside the PyCharm type following code (Client.py):
+
+
+import socket
+
+host = 192.168.0.109 # replace with server's IP
+port = 12345
+
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.connect((host, port))
+
+while True:
+    msg = input("Client message: ")
+    s.send(msg.encode())
+    data = s.recv(1024)
+    print("Server:", data.decode())
+
+
+
+run this program  and make it connects to the other laptop and thereby the entire socket programming application works smoothly.

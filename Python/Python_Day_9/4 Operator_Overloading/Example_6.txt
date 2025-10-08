@@ -1,0 +1,13 @@
+class Number1:
+    def __init__(self,num):
+        self.num=num
+    def __str__(self):
+        return str(self.num)
+    def __iadd__(self,temp):
+        print("inside iadd method\t",temp)
+	self.num+=temp
+        return self
+
+n1=Number1(100)
+n1+=10
+print(n1.num)

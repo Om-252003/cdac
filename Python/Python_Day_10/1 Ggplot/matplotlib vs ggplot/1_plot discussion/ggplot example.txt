@@ -1,0 +1,61 @@
+"""
+
+ggplot style
+
+You describe what the plot should show, not step-by-step instructions.
+
+The idea comes from the Grammar of Graphics (GoG):
+
+Data → your DataFrame
+
+Aesthetics (aes) → mapping of variables to axes (x=Hours, y=Money)
+
+Geometry (geom_line) → type of plot (line, bar, scatter, etc.)
+
+Labels (labs) → title, x-axis, y-axis
+
+So you’re saying “Plot Money Earned vs Hours as a line graph” → and ggplot builds it.
+This is a declarative approach → you describe the WHAT.
+
+"""
+
+"""
+
+Definition of Grammar of Graphics
+
+Grammar of Graphics is a framework for building plots by combining independent building blocks:
+
+Data
+
+Aesthetics (mapping data to axes, color, size)
+
+Geometries (how data is displayed: line, bar, scatter)
+
+Scales, Facets, Labels, etc.
+
+It’s like constructing a sentence in grammar: subject + verb + object.
+In ggplot → data + aes + geom.
+
+"""
+
+
+from plotnine import ggplot, aes, geom_line, labs, ggtitle
+import pandas as pd
+
+df = pd.DataFrame({
+    "Hours Worked": range(1, 11),
+    "Money Earned": [200 * i for i in range(1, 11)]
+})
+
+plot = (
+    ggplot(df, aes(x="Hours Worked", y="Money Earned"))
+    + geom_line()
+    + labs(
+        title="Hours Worked vs Money Earned",
+        x="Hours Worked",
+        y="Money Earned (₹)"
+    )
+)
+
+# Display the plot
+plot.show()   # <-- this works in PyCharm / scripts

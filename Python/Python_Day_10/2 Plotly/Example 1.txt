@@ -1,0 +1,44 @@
+# pip install plotly
+
+"""
+Why Plotly opens a browser window?
+
+Ans:- Plotly creates interactive (HTML + JavaScript)
+charts, unlike Matplotlib or ggplot which create
+static images.
+
+So when you call
+
+fig.show()
+
+
+Plotly internally:
+
+Saves the figure as a temporary HTML file.
+
+Starts a local web server (something like
+http://127.0.0.1:62241/).
+
+Opens that file in your default web browser
+for interactivity (zoom, hover, pan, etc.).
+
+if u don't want this then u should save your graph
+as a separate html file and later open in whichever
+browser you want.
+
+"""
+
+import plotly.express as px
+
+# Sample data
+data = {
+    "Day": ["Mon", "Tue", "Wed", "Thu", "Fri"],
+    "Sales": [200, 300, 400, 350, 500]
+}
+
+# Create interactive line chart
+fig = px.line(data, x="Day", y="Sales", title="Sales Over the Week")
+
+# Show the plot
+# fig.show()  # this will open a browser
+fig.write_html("e:\\sales_chart.html")  # if u want to save graph as separate html file

@@ -1,0 +1,8 @@
+import logging
+
+logging.basicConfig(filename="third.log",level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
+
+try:
+    f=open("special.txt","r")  #  this file does not exist
+except FileNotFoundError:
+    logging.exception('File does not exist')
