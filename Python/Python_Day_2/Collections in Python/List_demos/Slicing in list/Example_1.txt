@@ -5,8 +5,8 @@ mylist=[10,20,30,40,50]
 print(mylist)
 print(mylist[:])
 print(mylist[::])
-print(mylist[1::2])  # print every second element from position 1
-print(mylist[::2])   # print every second element from the beginning
+print(mylist[1::2])   # print every second element from position 1
+print(mylist[::2])    # print every second element from the beginning
 print(mylist[2::2])   # print every second element from position 2
 print(mylist[1:4])    # from position 1 to 3, 4 is exclusive
 print(mylist[2:])     # from position 2 till end
