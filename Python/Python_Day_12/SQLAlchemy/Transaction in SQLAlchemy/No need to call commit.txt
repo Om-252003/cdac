@@ -1,0 +1,71 @@
+# ---------- Step 1: Imports ----------
+from sqlalchemy import create_engine, Column, Integer, String
+from sqlalchemy.orm import declarative_base, Session
+
+# ---------- Step 2: Base and Engine ----------
+Base = declarative_base()
+
+# Using SQLite for simplicity. For MySQL, use:
+engine = create_engine("mysql+mysqlconnector://root:root@localhost/pythondb1")
+
+
+# ---------- Step 3: Define ORM Model ----------
+class Person(Base):
+    __tablename__ = 'persons'
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    name = Column(String(50))
+    city = Column(String(60))
+    age = Column(Integer)
+
+    def __str__(self):
+        return str(self.id)+"\t"+self.name+"\t"+str(self.age)+"\t"+self.city
+
+
+# ---------- Step 4: Create Table ----------
+Base.metadata.create_all(engine)
+
+
+# ---------- Step 5: Use Automatic Transaction ----------
+# No need to call commit() manually — handled by context manager
+with Session(engine) as session: # no need to call session.close() explicitly,it will be invoked automatically
+    with session.begin():   # starts a transaction automatically
+        p1 = Person(name="Riya", city="Pune", age=25)
+        p2 = Person(name="Amit", city="Mumbai", age=30)
+        session.add_all([p1, p2])
+        # No need for session.commit() here!
+
+# At this point:
+#  If no errors → COMMIT automatically happens
+#  If an exception occurs → ROLLBACK automatically happens
+
+
+# ---------- Step 6: Verify the Data ----------
+# New session to read back
+with Session(engine) as session:
+    persons = session.query(Person).all()
+    for p in persons:
+        print(p)
+
+"""
+in the above code:
+
+Two different Session instances are created.
+
+But that’s not a problem — it’s actually the 
+intended design in SQLAlchemy.
+
+A Session in SQLAlchemy is not meant to be reused 
+for a long time.
+
+It’s short-lived, typically used per “unit of work” —
+i.e., one block of logic that should happen in one 
+transaction.
+
+So our code is doing the right thing:
+
+First session = insert records
+
+Second session = select records
+
+"""

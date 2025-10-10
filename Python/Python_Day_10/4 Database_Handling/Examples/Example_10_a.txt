@@ -1,5 +1,5 @@
 import mysql.connector as m
-with m.connect(host="localhost",user="root",password="root",database="pythondb1") as mydatabase:
+with m.connect(host="localhost",user="root",password="12345",database="pythondb1") as mydatabase:
     cursor=mydatabase.cursor()
     query="select * from dept"
     cursor.execute(query)

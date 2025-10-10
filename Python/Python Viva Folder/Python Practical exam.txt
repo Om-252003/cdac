@@ -1,0 +1,35 @@
+3 questions will be there 
+	duration : 1 hr 
+
+numpy
+	slicing [ one d array , two d array ]
+	arithmetic operation on numpy
+
+pandas
+	Series
+		arithmetic operations
+	DataFrame
+		using dictionary, display without index
+
+
+list,set,dictionary,string
+	comprehensions
+	how to use zip function to traverse more than one list
+
+inner function, outer function
+	inner function returns some value
+	invoking inner function from outer function
+
+OOPS
+instance members
+_init_
+_str_
+	[ no inheritance ]
+
+patterns
+	star , number
+
+exception handling
+	create user defined exception
+	raise
+	handle (also provide "finally" block)

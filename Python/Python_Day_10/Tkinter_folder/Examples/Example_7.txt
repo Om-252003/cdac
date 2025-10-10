@@ -5,52 +5,57 @@ from tkinter import *
 from functools import partial
 import tkinter.font as font
 
-
 import mysql.connector as m
 
-mydatabase=m.connect(host="localhost",user="root",password="root",database="pythondb1")
-query="insert into person(name,address,age) values(%s,%s,%s)"         #  must be "s"
-
+mydatabase = m.connect(host="localhost", user="root", password="12345", database="pythondb1")
+query = "insert into person(name,address,age) values(%s,%s,%s)"  # must be "s"
+cursor = mydatabase.cursor()
+cursor.execute("CREATE TABLE IF NOT EXISTS person(id INT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(100), address VARCHAR(100), age INT)")
 
 def savePerson():
-    myFont = font.Font(family='Helvetica',size=20)
-    name_1=nameEntry.get()
-    address_1=addressEntry.get()
-    age_1=ageEntry.get()
-    #print(name_1,address_1,age_1)
-    cursor=mydatabase.cursor()
-    cursor.execute(query,[name_1,address_1,age_1])       #  second argument has to be list or tuple or dictionary
-    mydatabase.commit()
-    
+    myFont = font.Font(size=20)
+    name_1 = nameEntry.get()
+    address_1 = addressEntry.get()
+    age_1 = ageEntry.get()
+    # print(name_1,address_1,age_1)
 
-#window
-tkWindow = Tk()  
-tkWindow.geometry('400x150')  
+    cursor.execute(query, [name_1, address_1, age_1])  # second argument has to be list or tuple or dictionary
+    mydatabase.commit()
+    cursor.execute("select * from person")
+    res = cursor.fetchall()
+    print(res)
+    resLabel = Label(tkWindow, text="".join([f"{id}) {name} {address} {age} \n" for id,name,address, age in res]))
+    resLabel.grid(row=5, column=0)
+
+
+
+# window
+tkWindow = Tk()
+tkWindow.geometry('500x500')
 tkWindow.title('Tkinter Login Form - pythonexamples.org')
 
-#name label and text entry box
+# name label and text entry box
 nameLabel = Label(tkWindow, text="Name")
 nameLabel.grid(row=0, column=0)
 nameEntry = Entry(tkWindow)
-nameEntry.grid(row=0, column=1)  
+nameEntry.grid(row=0, column=1)
 
-#Address label and password entry box
-addressLabel = Label(tkWindow,text="Address")
-addressLabel.grid(row=1, column=0)  
+# Address label and password entry box
+addressLabel = Label(tkWindow, text="Address")
+addressLabel.grid(row=1, column=0)
 
 addressEntry = Entry(tkWindow)
-addressEntry.grid(row=1, column=1)  
+addressEntry.grid(row=1, column=1)
 
-#Age label and password entry box
-ageLabel = Label(tkWindow,text="Age")
-ageLabel.grid(row=2, column=0)  
+# Age label and password entry box
+ageLabel = Label(tkWindow, text="Age")
+ageLabel.grid(row=2, column=0)
 
 ageEntry = Entry(tkWindow)
-ageEntry.grid(row=2, column=1)  
+ageEntry.grid(row=2, column=1)
 
-
-#login button
+# save button
 saveButton = Button(tkWindow, text="Save", command=savePerson)
-saveButton.grid(row=4, column=0)  
+saveButton.grid(row=4, column=0)
 
 tkWindow.mainloop()

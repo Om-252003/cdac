@@ -1,0 +1,20 @@
+Assignment 4: Menu-Driven Product Management System
+
+Objective: Combine all CRUD operations in one program.
+
+Tasks:
+Build a menu-driven application with options:
+
+1. Add new product
+2. View all products
+3. Update product
+4. Delete product
+5. Search product by category
+6. Exit
+
+
+Each operation should be defined in a separate function.
+
+Keep the program running in a loop until the user chooses to exit.
+
+Use formatted output for displaying data.

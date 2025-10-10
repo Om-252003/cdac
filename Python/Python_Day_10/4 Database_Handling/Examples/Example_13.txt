@@ -2,9 +2,11 @@
 
 import pandas as pd
 import mysql.connector as m
+from statsmodels.graphics.tukeyplot import results
+
 empdata = pd.read_csv('Book1.csv', index_col=False, delimiter = ',')
 
-mydatabase=m.connect(host="localhost",user="root",password="root",database="pythondb1")
+mydatabase=m.connect(host="localhost",user="root",password="12345",database="pythondb1")
 
 cursor=mydatabase.cursor()
 
@@ -18,3 +20,6 @@ for i,row in empdata.iterrows():
             # the connection is not auto committed by default, so we must commit to save our changes
 mydatabase.commit()
 print("Records inserted")
+cursor.execute("select * from book")
+result = cursor.fetchall()
+print(result)

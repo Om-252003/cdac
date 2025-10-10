@@ -1,0 +1,19 @@
+Assignment 3: Update and Delete Product Details
+Objective: Modify and delete specific records.
+
+Tasks:
+
+Update a product’s price or stock based on its ID.
+
+Delete a product whose ID you take as input.
+	
+	Ask the user for confirmation (Y/N) before deleting.
+
+Confirm with messages like:
+
+"Product updated successfully!"
+
+"Product deleted successfully!"
+
+Handle mysql.connector.Error exceptions properly.
+

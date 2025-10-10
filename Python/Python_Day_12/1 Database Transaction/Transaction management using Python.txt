@@ -1,0 +1,42 @@
+# Example: Python + MySQL Transaction
+
+import mysql.connector
+
+try:
+    #  Connect to the database
+    conn = mysql.connector.connect(
+        host="localhost",
+        user="root",
+        password="root",
+        database="pythondb1"
+    )
+
+    # Create a cursor
+    cursor = conn.cursor()
+
+    # Start a transaction manually
+    conn.start_transaction()
+
+    print("Transaction started...")
+
+    #  Execute multiple SQL statements
+    cursor.execute("INSERT INTO dept (dname,loc) VALUES ('Acc', 'Mumbai')")
+    cursor.execute("INSERT INTO dept (dname, loc) VALUES ('Mktg', 'Pune')")
+
+    # Simulate an error, try it by enabling and disabling
+    raise Exception("Something went wrong! Rolling back...")
+
+    # Commit if all good
+    conn.commit()
+    print("Transaction committed successfully.")
+
+except Exception as e:
+    print(e)
+    #  Rollback if any error occurs
+    conn.rollback()
+    print("Transaction rolled back.")
+
+finally:
+    # Close connection and cursor
+    cursor.close()
+    conn.close()

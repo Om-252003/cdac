@@ -1,0 +1,165 @@
+"""
+Each student has one unique profile
+(like address, phone, etc.).
+Each profile belongs to exactly one student.
+
+"""
+
+from sqlalchemy import create_engine, Column, Integer, String, ForeignKey
+from sqlalchemy.orm import declarative_base, relationship, sessionmaker
+
+engine = create_engine("mysql+pymysql://root:root@localhost:3306/pythondb1")
+Base = declarative_base()
+
+# ---------- Parent Table ----------
+class Student(Base):
+    __tablename__ = 'student'
+    id = Column(Integer, primary_key=True)
+    name = Column(String(50))
+    age = Column(Integer)
+
+    # Relationship — one student has one profile
+
+    """
+    relationship("Profile", ...) → tells SQLAlchemy that the 
+    Student model is related to another table/model 
+    named "Profile".
+
+    back_populates="student" → means the Profile class 
+    will have a matching relationship attribute also 
+    named "student".
+
+    So the connection works in both directions:
+    From a Student → you can get its profile
+    From a Profile → you can get its student
+
+    uselist=False → this is the key that makes it One-to-One.
+    Normally, relationships can have multiple related 
+    objects (a list).
+    But here:
+    uselist=False tells SQLAlchemy → “Only one profile 
+    per student.”
+    So instead of student.profile[0], you simply do 
+    student.profile.
+
+    """
+    profile = relationship("Profile", back_populates="student", uselist=False)
+
+# ---------- Child Table ----------
+class Profile(Base):
+    __tablename__ = 'profiles'
+    id = Column(Integer, primary_key=True)
+    address = Column(String(100))
+    phone = Column(String(15))
+    """
+    it defines the foreign key (link) to the students_one_to_one table.
+
+    Explanation:
+    •	student_id is a column in the profiles table.
+    •	ForeignKey('students_one_to_one.id') → 
+        connects profiles.student_id to student.id 
+        (i.e., the Student table’s primary key).
+    This tells the database:
+    “Each profile belongs to exactly one student 
+    — the one whose ID matches student_id.”
+    
+    e.g
+    Profile.id  1
+    Address – Pune
+    Phone – 999888777
+    Student_id - 5
+
+    Means: this profile belongs to the student 
+    whose id = 5 in student table.
+
+    """
+    student_id = Column(Integer, ForeignKey('student.id'))
+
+    # Back-reference to student
+    """
+    This is the reverse relationship inside the Profile class — it links each Profile back to its Student.
+    Explanation:
+    •	relationship("Student", ...) → tells 
+    SQLAlchemy that each Profile is related to one Student.
+
+    •	back_populates="profile" → matches with 
+    the line inside Student where we used 
+    back_populates="student".
+    
+    This creates a two-way link between them.
+    So you can now say:
+    profile.student.name
+        and
+    student.profile.address
+
+    """
+    student = relationship("Student", back_populates="profile")
+
+
+"""
+This creates all the tables in your database that 
+are defined as ORM classes (models).
+
+How it works:
+"Base" is your declarative base class 
+(usually created as Base = declarative_base()).
+
+Every ORM model (e.g., Product, Customer, Student, etc.) 
+inherits from Base.
+
+Each of those models defines a table structure 
+using Columns.
+
+.metadata stores information about all those 
+table definitions.
+
+.create_all(engine) tells SQLAlchemy:
+    “Look at all my model classes and create 
+    those tables in the database connected through 
+    engine, if they don’t already exist.”
+"""
+Base.metadata.create_all(engine)
+
+
+"""
+sessionmaker() is a built-in SQLAlchemy function 
+that builds a new Session factory.
+
+"bind=engine" means every session created by 
+this factory will use that database connection 
+(the engine) you defined earlier.
+
+What is a Session?
+A Session is your “communication channel” between your 
+Python code and the database — you use it to:
+"""
+Session = sessionmaker(bind=engine)
+
+"""
+This creates one actual session object from the 
+session factory.
+
+It’s like saying:
+
+“Give me one working session (connection) to 
+interact with the database.”
+
+You now use this session to perform operations:
+
+session.add(product)
+session.commit()
+session.query(Product).all()
+"""
+session = Session()
+
+# ---------- Create Student + Profile ----------
+student1 = Student(name="Rahul", age=16)
+profile1 = Profile(address="Pune, India", phone="9876543210", student=student1)
+
+session.add(student1)
+session.add(profile1)
+session.commit()
+
+# ---------- Fetch and Display ----------
+result = session.query(Student).first()
+print(f"Student Name: {result.name}, Address: {result.profile.address}, Phone: {result.profile.phone}")

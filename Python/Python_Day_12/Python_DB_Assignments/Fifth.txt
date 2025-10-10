@@ -1,0 +1,30 @@
+Assignment 5: Product Search, Sorting & Filtering
+
+Objective: Work with conditions and ordering in SQL.
+
+Tasks:
+
+Connect to shop_db.
+
+Allow the user to:
+
+Search product by name or category.
+
+View all products sorted by price (ascending) or stock (descending).
+
+Handle cases where no matching products are found.
+
+Print results in a clean table format.
+
+Expected Output Example:
+
+Enter category to search: Electronics
+Results:
+1. Laptop - ₹45000.00
+2. Headphones - ₹2999.00
+
+Products sorted by price:
+ID | Name        | Price
+-------------------------
+2  | Shampoo     | 120.50
+1  | Laptop      | 45000.00

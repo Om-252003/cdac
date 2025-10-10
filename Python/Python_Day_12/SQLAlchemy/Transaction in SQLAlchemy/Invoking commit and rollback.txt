@@ -1,0 +1,61 @@
+from sqlalchemy import create_engine, Column, Integer, String
+from sqlalchemy.orm import declarative_base, Session
+
+# ---------- Step 2: Base and Engine ----------
+Base = declarative_base()
+
+# Using MySQL
+engine = create_engine("mysql+mysqlconnector://root:root@localhost/pythondb1")
+
+
+# ---------- Step 3: Define ORM Model ----------
+class Person(Base):
+    __tablename__ = 'persons'
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    name = Column(String(50))
+    city = Column(String(60))
+    age = Column(Integer)
+
+    def __str__(self):
+        return str(self.id) + "\t" + self.name + "\t" + str(self.age) + "\t" + self.city
+
+
+# ---------- Step 4: Create Table ----------
+Base.metadata.create_all(engine)
+
+
+# ---------- Step 5: Manual Transaction ----------
+# Here we manage commit() and rollback() ourselves
+session = Session(engine)  # create a session manually
+
+try:
+    p1 = Person(name="Riya", city="Pune", age=25)
+    p2 = Person(name="Amit", city="Mumbai", age=30)
+    session.add_all([p1, p2])
+
+    # Explicitly commit the transaction
+    session.commit()
+    print(" Records inserted successfully!")
+
+except Exception as e:
+    # Rollback on any error
+    session.rollback()
+    print(" Error occurred:", e)
+
+finally:
+    # Always close the session
+    session.close()
+    print(" Session closed.")
+
+
+# ---------- Step 6: Verify the Data ----------
+session = Session(engine)
+try:
+    persons = session.query(Person).all()
+    print("\nID\tName\tAge\tCity")
+    print("----------------------------")
+    for p in persons:
+        print(p)
+finally:
+    session.close()

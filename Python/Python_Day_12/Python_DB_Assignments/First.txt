@@ -1,0 +1,26 @@
+Assignment 1: Create Database and Product Table
+Objective: Practice MySQL database connection and table creation.
+
+Tasks:
+
+Connect Python to MySQL using mysql.connector.
+
+Create a database named shop_db (if not exists).
+
+Create a table named product with these columns:
+
+id → INT, Primary Key, Auto Increment
+
+name → VARCHAR(50)
+
+category → VARCHAR(30)
+
+price → DECIMAL(10,2)
+
+stock → INT
+
+Print a success message once the table is created.
+
+Expected Output Example:
+
+Database and table created successfully!

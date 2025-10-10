@@ -1,7 +1,7 @@
 # insert records in the table
 
 import mysql.connector as m
-mydatabase=m.connect(host="localhost",user="root",password="root",database="pythondb1")
+mydatabase=m.connect(host="localhost",user="root",password="12345",database="pythondb1")
 
 cursor=mydatabase.cursor()
 

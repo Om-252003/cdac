@@ -1,0 +1,44 @@
+from sqlalchemy import create_engine, Column, Integer, String, ForeignKey
+from sqlalchemy.orm import declarative_base, relationship, sessionmaker
+
+engine = create_engine("mysql+pymysql://root:root@localhost:3306/pythondb1")
+Base = declarative_base()
+
+# ---------- Parent Table ----------
+class Teacher(Base):
+    __tablename__ = 'teachers'
+    id = Column(Integer, primary_key=True)
+    name = Column(String(50))
+    subject = Column(String(50))
+
+    # Relationship: one teacher → many students
+    students = relationship("Student", back_populates="teacher")
+
+# ---------- Child Table ----------
+class Student(Base):
+    __tablename__ = 'students'
+    id = Column(Integer, primary_key=True)
+    name = Column(String(50))
+    teacher_id = Column(Integer, ForeignKey('teachers.id'))
+
+    teacher = relationship("Teacher", back_populates="students")
+
+Base.metadata.create_all(engine)
+
+Session = sessionmaker(bind=engine)
+session = Session()
+
+# ---------- Create Teacher + Students ----------
+teacher1 = Teacher(name="Mr. Sharma", subject="Maths")
+student1 = Student(name="Amit", teacher=teacher1)
+student2 = Student(name="Priya", teacher=teacher1)
+student3 = Student(name="Rohit", teacher=teacher1)
+
+session.add_all([teacher1, student1, student2, student3])
+session.commit()
+
+# ---------- Fetch and Display ----------
+teacher = session.query(Teacher).first()
+print(f"Teacher: {teacher.name} teaches {len(teacher.students)} students:")
+for s in teacher.students:
+    print(f" → {s.name}")

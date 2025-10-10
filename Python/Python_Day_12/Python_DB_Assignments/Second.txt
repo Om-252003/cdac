@@ -1,0 +1,19 @@
+Assignment 2: Insert and Display Products
+Objective: Insert and retrieve product data.
+
+Tasks:
+
+Connect to shop_db.
+
+Insert at least 5 products into the product table using parameterized queries.
+
+Fetch and display all records in a table-like format:
+
+ID | Name        | Category     | Price   | Stock
+-------------------------------------------------
+1  | Laptop      | Electronics  | 45000.00 | 10
+2  | Shampoo     | PersonalCare |  120.50  | 50
+...
+
+
+Close the connection properly.

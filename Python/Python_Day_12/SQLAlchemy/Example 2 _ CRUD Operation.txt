@@ -1,0 +1,120 @@
+"""
+session.query(Student)
+→ This asks SQLAlchemy to start a query on
+the Student table (ORM class).
+
+.filter_by(name="Priya")
+→ Adds a condition — “only rows where the name
+column equals 'Priya'”.
+
+.first()
+→ This tells SQLAlchemy:
+“Give me the first matching record (row)
+from the result.”
+
+ What .first() actually does:
+
+Executes the SQL query immediately.
+
+Returns only one object — the first row that
+matches your condition.
+
+If no matching row is found → it returns
+None (not an error).
+
+if you instead did:
+
+students = session.query(Student).filter_by(name="Priya").all()
+
+
+ You’d get a list of both Priya records.
+
+ In short:
+Method	Returns	Example Output
+.first()	A single object (or None)
+<Student id=1 name='Priya'>
+
+.all()	A list of objects
+[<Student id=1>, <Student id=2>]
+
+
+"""
+
+from sqlalchemy import create_engine, Column, Integer, String
+from sqlalchemy.orm import declarative_base, sessionmaker
+
+# Connect to MySQL database
+engine = create_engine("mysql+pymysql://root:12345@localhost:3306/pythondb1")
+
+#engine = create_engine("mysql+pymysql://root:12345@localhost:3306/pythondb1", echo = True) when we write echo=True, it shows us which queries it is executing on the terminal.
+
+# Base class for ORM models
+Base = declarative_base()
+
+# Define Student entity (table structure)
+class Student(Base):
+    __tablename__ = 'students'
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    name = Column(String(50))
+    age = Column(Integer)
+    grade = Column(String(10))
+
+    def __str__(self):
+        return str(self.id) + "\t" + self.name + "\t" + str(self.age) + "\t" + self.grade
+
+
+# Create the table automatically if not exists
+Base.metadata.create_all(engine)
+
+# Create a session
+Session = sessionmaker(bind=engine)
+session = Session()
+
+
+students = [
+    Student(name="Rahul", age=16, grade="10th"),
+    Student(name="Priya", age=15, grade="9th"),
+    Student(name="Amit", age=17, grade="11th"),
+    Student(name="Sneha", age=16, grade="10th")
+]
+
+session.add_all(students)
+session.commit()
+print(" Students added successfully!\n")
+
+
+# Fetch all students
+all_students = session.query(Student).all()
+print("All Students:")
+for s in all_students:
+    print(s)
+
+
+input("Press Enter to update a record of student in grade 10th: ")
+# Fetch students of grade 10th only
+grade10_students = session.query(Student).filter_by(grade="10th").all()
+print("\nStudents in grade 10th:")
+for s in grade10_students:
+    print(s)
+
+student_to_update = session.query(Student).filter_by(name=input("Enter name to update grade to 10th: ")).first()
+if student_to_update:
+    student_to_update.grade = "10th"   # Promote Priya to 10th grade
+    session.commit()
+    print(f"\n {student_to_update}’s grade updated successfully!")
+
+
+input(f"Press Enter to delete a record")
+# DELETE (Remove a student)
+
+student_to_delete = session.query(Student).filter_by(name=input("Enter name to delete : ")).first()
+if student_to_delete:
+    session.delete(student_to_delete)
+    session.commit()
+    print(f" {student_to_delete}’s record deleted successfully!\n")
+
+
+# Final list after update and delete
+print("Updated list of students:")
+for s in session.query(Student).all():
+    print(s)

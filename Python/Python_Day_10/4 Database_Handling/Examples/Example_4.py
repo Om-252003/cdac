@@ -2,7 +2,7 @@
 # run this program on "terminal"
 
 import mysql.connector as m
-mydatabase=m.connect(host="localhost",user="root",password="root",database="pythondb1")
+mydatabase=m.connect(host="localhost",user="root",password="12345",database="pythondb1")
 query="insert into dept(dname,loc) values(%s,%s)"         #  must be "s"
 dname=input("enter department name")
 loc=input("enter location")

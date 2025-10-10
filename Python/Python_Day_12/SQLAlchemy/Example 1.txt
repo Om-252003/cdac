@@ -1,0 +1,99 @@
+"""
+
+When you use SQLAlchemy ORM, you work with Python classes to represent database tables.
+
+But before you create those classes (like Student, Employee, etc.), you need a base class from which all your ORM models will inherit.
+
+That’s exactly what this line does:
+
+Base = declarative_base()
+
+
+It creates a special base class called Base that:
+
+Keeps track of all the ORM models (tables) you define.
+
+Helps SQLAlchemy automatically create tables in the database.
+
+Links your classes to the SQLAlchemy ORM system.
+
+ In simple words:
+
+declarative_base() → creates a foundation or blueprint on which all your database model classes will be built.
+
+ In our example:
+
+from sqlalchemy.orm import declarative_base
+from sqlalchemy import Column, Integer, String
+
+# Step 1: Create base class
+Base = declarative_base()
+
+# Step 2: Create your ORM class (table)
+class Student(Base):
+    __tablename__ = "students"      # Table name in database
+
+    id = Column(Integer, primary_key=True)
+    name = Column(String)
+    age = Column(Integer)
+
+
+Here’s what happens:
+
+The class Student inherits from Base.
+
+Because of that, SQLAlchemy knows:
+
+It represents a database table (students).
+
+What columns it has (id, name, age).
+
+Later, when you call Base.metadata.create_all(engine),
+it will create the actual table in the database.
+
+
+Think of Base like a parent class for all your table models.
+Each new model (like Student, Teacher, Course) is a child that gets ORM powers automatically.
+
+"""
+
+from sqlalchemy import create_engine, Column, Integer, String
+from sqlalchemy.orm import declarative_base, sessionmaker
+
+# Step 1: Connect to MySQL database
+# Replace username, password, and host with your details
+engine = create_engine("mysql+pymysql://root:12345@localhost:3306/pythondb1") #username:password => root:12345
+
+# Step 2: Base class for ORM models
+Base = declarative_base()
+
+# Step 3: Define the Student class
+class Student(Base):
+    __tablename__ = 'students'
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    name = Column(String(50))
+    age = Column(Integer)
+    grade = Column(String(10))
+
+    def __str__(self):
+        return str(self.id)+"\t"+self.name+"\t"+str(self.age)+"\t"+self.grade
+
+# Step 4: Create the table automatically in MySQL
+Base.metadata.create_all(engine)
+
+# Step 5: Create a session
+Session = sessionmaker(bind=engine)
+session = Session()
+
+# Step 6: Create a new student object
+new_student = Student(name="Rahul", age=16, grade="10th")
+
+# Step 7: Add and commit to the database
+session.add(new_student)
+session.commit()
+
+# Step 8: Fetch and display all rows
+students = session.query(Student).all()
+for s in students:
+    print(s)

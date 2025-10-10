@@ -1,0 +1,39 @@
+"""
+Why We Still Keep try/except
+
+Python’s with only ensures cleanup (close connection/cursor),
+not transaction control — so if you want rollback on error,
+you still need a try/except block inside.
+
+"""
+
+import mysql.connector
+
+# Connect to database (autocommit disabled)
+with mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password="root",
+    database="pythondb1",
+    autocommit=False
+) as conn:
+
+    with conn.cursor() as cursor:
+        print("Transaction started...")
+
+        try:
+            # Execute multiple SQL statements
+            cursor.execute("INSERT INTO dept (dname, loc) VALUES ('Acc', 'Mumbai')")
+            cursor.execute("INSERT INTO dept (dname, loc) VALUES ('Mktg', 'Pune')")
+
+            # Simulate an error
+            raise Exception("Something went wrong! Rolling back...")
+
+            # Commit if all goes well
+            conn.commit()
+            print("Transaction committed successfully.")
+
+        except Exception as e:
+            print(e)
+            conn.rollback()
+            print("Transaction rolled back.")
