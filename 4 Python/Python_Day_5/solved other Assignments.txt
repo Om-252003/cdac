@@ -1,0 +1,70 @@
+1) Accept a number from the user check if it is special 
+ * number or not? 
+Example: 145
+1! =1 
+4!=1*2*3*4 
+5!=1*2*3*4*5 
+Sum of the factorials is (1+24+120=145) 
+
+some other special numbers are 1,2 and 40585
+
+n = int(input("Enter number: "))
+original_num = n
+def fact(num):
+    facto = 1
+    for i in range(1,num+1): facto *= i
+    return facto
+sum=0
+while(n!=0):
+    r = n%10
+    n = n//10
+    sum+= fact(r)
+ 
+
+if original_num == sum:
+    print("special
+")
+else: print('No')
+
+
+2) accept a number (maximum 5 digit number) and  calculate sum of its digits.
+
+n = int(input("Enter number: "))
+if n>99999:
+    print("max 5 digit number is allowed")
+sum=0
+while n!=0 and n<=99999:
+    r = n%10
+    n = n//10
+    sum= sum+r
+print(sum)
+
+
+3)  Print 4 digit armstrong numbers
+ e.g.  1634, 8208, 9474 are four-digit Armstrong numbers
+ 
+ def isarmstrong(n):
+    num = n
+    sums=0
+    while n !=0:
+        r = n%10
+        n = n//10
+        sums += r*r*r*r
+        
+    if num == sums : return True
+    return False
+
+for i in range(1000, 10000):
+
+    if isarmstrong(i):
+        print(i, "is armstrong")
+
+
+4) accept principle amt, rate of interest and no. of years and calculate simple interest.
+	[ formula :    principle_amt*rate*years)/100 ]
+
+pr = int(input("Enter principle: "))
+yrs = int(input("Enter Years: "))
+rate = int(input("Enter Rate: "))
+
+print("Simple interest = ", (pr*yrs*rate)//100)
