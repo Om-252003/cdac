@@ -24,7 +24,7 @@ class(x)        # class "numeric"
 y = 3; y        # ; is delimiter so this is creating object is 1 command
                 # and 'y' is like print(y)
 
-
+rm(list = ls())    # To clear the environment means delete all objects
 
 #### Operators ####
 
@@ -384,12 +384,32 @@ print("Hello \n World")  # "Hello \n World"
 cat("Hello \t World")    # Hello 	 World
 print("Hello \t world")  # "Hello \t world"
 
+cat("a"+"b")   # Error in "a" + "b" : non-numeric argument to binary operator
+cat(abcd = 20) ; abcd  # 20 gets printed and then error Error: object 'abcd' not found
+abcd                 # Error: object 'abcd' not found
+
+cat(10+20)          # 30
 
 
+# *******************************************
 
 
-
-
-
-
+# > print(as.logical(1))
+# [1] TRUE
+# > print(as.logical(""))
+# [1] NA
+# > print(as.logical("0"))
+# [1] NA
+# > print(as.logical("1"))
+# [1] NA
+# > print(as.logical("abcd"))
+# [1] NA
+# > print(as.logical("false"))
+# [1] FALSE
+# > print(as.logical("true"))
+# [1] TRUE
+# > print(as.logical(true))
+# Error: object 'true' not found
+# > print(as.logical(1.1))
+# [1] TRUE
 

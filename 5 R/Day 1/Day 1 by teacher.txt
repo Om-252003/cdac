@@ -1,0 +1,639 @@
+#### Assignment & Introduction ####
+
+#To run any command press Ctrl + Enter
+#You can write a comment in the script by starting a line with the "#" sign
+#A comment is not run by R when you press ctrl + Enter
+#R is Case Sensitive
+#rm(list = ls()) to clear environment
+#cat("\014") to Clear Console
+cat("\014")
+rm(list = ls())
+#ctrl + shift + c is use to comment multiple line
+
+
+
+
+##Assignment
+#rm(list = ls())
+#cat("\014")
+
+
+x = 2 #Created an Object having value 2
+print(x)
+x
+
+x = 2;print(x)
+class(x)
+z = 4L
+z
+d = 4.1L
+class(z)
+print(x)
+print(X)
+
+rm(x)
+print(x)
+
+rm(d,z)
+
+
+
+
+
+
+
+
+
+X = 5
+X
+rm(list = ls())
+print(x)
+x
+y <- 2
+y
+class(y)
+x
+
+Z = "Hello"
+print(Z)
+class(Z)
+u = "2"
+clss(u)
+u = 2
+class(u)
+#print
+print("Hello World")
+class(x)
+class(y)
+class(Z)
+
+
+#### Vectors ####
+
+#Types of Vectors
+
+# Creating a sequence from 8 to 17.
+v <- 8:17
+v
+print(v)
+
+# Creating a sequence from 5.5 to 17.5.
+v <- 5.5:17.5
+print(v)
+print(v)
+
+# If the final element specified does not belong to the sequence 
+#then it is discarded.
+v <- 3.8:11.4
+print(v)
+
+#Using sequence (Seq.) operator
+?seq
+# Create vector with elements from 5 to 9 incrementing by 0.5
+s <- seq(5, 9, by = 0.5)
+length(s)
+print(s)
+?seq
+# Create vector with elements from 10 to 20 incrementing by 0.1
+# Print even number between 10 to 20 
+
+# Print multiple of 7 from 7 to 100
+
+
+
+#Using the c() function
+### VECTORS
+
+v = c(14,26,38,26,30) ### use c() to store several values in 
+sum(v)
+mean(x)
+max(v)
+min(v)
+sort(v) #ascending
+sort(v,decreasing = TRUE) #descending
+rev(x)
+unique(x)
+
+v = c(14,26,38,30) ### use c() to store several values in 
+
+v = c(v,26)
+v
+
+
+
+
+
+
+
+
+
+
+c = 2+3
+
+print(c)
+
+#create a character vector of names and print the second & last element
+
+
+
+
+
+
+
+
+one variable
+v
+class(v)
+
+v_1  = c("A","B","C")
+v_1
+class(v_1)
+
+v_2 = c(1L,2L,3L)
+v_2
+class(v_2)
+
+?rep
+
+f = rep(5,4)
+f
+g = rep(c(1,2),3)
+
+# Create a vector name "A1" which has 5 7 times and 8 9 times
+A1 = c(rep(5,7),rep(8,9))
+rep(c(5,7),c(8,9))
+# Create a vector "Mine" which has "I love R" 4 times
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+length(v)
+v[1]
+v[1:3]
+v[2] = 27
+v
+
+
+
+v_1 <- c(12.111,12.2)
+v_1 = as.integer(v_1)
+class(v_1)
+v_2= c("Hello","Good morning","Nice to meet you","Me too")
+v_2
+v_2[length(v_2)]
+v_2[-c(8,9)]
+
+
+class(v_2)
+v_2[1]
+v_2[1:2]
+9
+v_2[2:3]
+
+v_2[1] <- "A"
+v_2
+
+v_3 = c(10,20,30,"Hello")
+class(v_3)
+grade <- c("A","B","c","D","E")
+grade
+class(grade)
+
+grade <- as.factor(grade)
+grade
+class(grade)
+is.factor(grade)
+
+
+
+
+
+
+
+grade <- as.character(grade)
+class(grade)
+class(v_1)
+class(v)
+class(v_2)
+class(v_3)
+
+
+#The non-character values are coerced
+#to character type if one of the elements is a character.
+# The logical and numeric values are converted to characters.
+s <- c('apple',"red",5,TRUE)
+print(s)
+class(s)
+s[1] #Print first value
+s[4] #Print fourth value
+t <- c(F,5,TRUE)
+class(t)
+
+#Accessing vector elements
+#You can access an individual element of a vector by its position (or "index"), 
+#indicated using square brackets.
+#In R, the first element has an index of 1
+
+grade <- c("A","B","c","D","E")
+grade[5] <- "O" #update the fifth element from "E" to "O"
+# Call 3rd value of v
+v[3]
+
+g = c(7,9,0,TRUE)
+g
+class(g) #numeric
+letters
+LETTERS
+#You can also change the elements of a vector using the same notation 
+#as you use to access them:
+
+##create a vector and store first 5 multiple of 5,first 5 multiple of 7 & first 5 multiple of 16 in it.
+g1 = c(seq(5,5*5,5),seq(7,7*5,7),seq(16,16*5,16))
+
+
+
+v[1] <- 5
+
+#You can access multiple elements of a vector by specifying a vector of element indices
+#Inside the square brackets.
+v <- c(10,12,14,16,18,20,22,24,26,28,30,32)
+length(v) #to check the length of vector
+rev(v)
+?rev
+v[c(1,2)] #First & Second element of vector v
+v[c(1,5,10)]
+v[1:3] #First 3 elements
+
+rev(v) #Print the reverse
+v[-1] #remove first element
+v_updated = v[-1]
+v[c(-1:-2)]
+dummy <- v[c(-1:-3)]
+#
+v = -5:5
+print(v)
+v[v>0]
+v[v<0]
+
+#finding index from name
+k = c(11,13,15,7,8,9)
+which(k == 11)
+
+Roll <- c(1:20)
+Roll[c(5,10,15,20)]
+Roll_5 <- Roll[c(5,10,15,20)]
+
+Roll <- c(1:100)
+seq(5,100,5)
+Roll[seq(5,100,5)]
+Roll_5 <- Roll[seq(5,100,5)]
+Roll_5
+
+#Create a vector "F" store any 50 elements in it
+#then create another vector "J" and store random 5 
+#positions in it and then access elements from F
+# with specified position in J.
+
+F = c(1:50)
+J = c(27,9,32,16,7)
+F[J]
+
+######
+?sample
+sample(1:6,1)
+
+#create a vector containing 5 names of your classmates and select one bestfriend for you!
+
+friends = c("Salman","SRK","Hrithik","KRK","Amir")
+bestfriend = sample(friends,1)
+bestfriend
+
+set.seed(121)
+sample(c("Salman","SRK","Hrithik","KRK","Amir"),1)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+a <- 'a'
+class(a)
+b <- 'bcd'
+class(b)
+
+v <- seq(6,12, by = 2)
+v
+
+m <- seq(12,6, by = -2)
+m[-1]
+m[-1:-3]
+
+v[2]=17
+v[-1]
+v[-1:-3:-5]
+c <- v[! v %in% c(14,18)]
+
+v
+#Logical Data Type
+l <- T
+class(l)
+l_1 <- TRUE
+class(l_1)
+
+l_2 <- "TRUE"
+class(l_2)
+
+
+#Numeric Data Type
+Num1 = 63.5
+class(Num1)
+
+#Integer Data Type
+Num2 = 63L
+class(Num2)
+
+#Complex data type
+comp1 = 3+2i
+class(comp1)
+Im(z) #Imaginary part
+Re(z) #Real part
+Mod(z)
+Arg(z)
+Conj(z)
+
+
+
+
+x = 5
+y = as.complex(x)
+y
+
+
+#### Operators ####
+
+#Arithmetic Operators
+x <- 4
+y <- 17
+#Addition
+x+y
+#Subtraction
+x-y
+#Multiplication
+x*y
+#Division
+y/x #x should not be equal to Zero
+#Integer Division
+y%/%x
+20%/%3
+#Modulus(Remainder From Division)
+y%%x
+#Exponent
+y^x
+y**x
+
+####
+
+x_1 <- c(1,2,3,4)
+y_1 <- c(5,6,7,8)
+
+#Addition
+x_1+y_1
+#Subtraction
+x_1-y_1
+#Multiplication
+x_1*y_1
+#Division
+y_1/x_1
+#Integer Division
+y_1%/%x_1
+#Modulus(Remainder From Division)
+y_1%%x_1
+#Exponent
+y_1^x_1
+
+##
+
+x_1 <- c(1,2,3,4)
+y_1 <- c(5,6,7)
+
+#Addition
+x_1+y_1
+#Subtraction
+x_1-y_1
+#Multiplication
+x_1*y_1
+#Division
+y_1/x_1
+#Integer Division
+y_1%/%x_1
+#Modulus(Remainder From Division)
+y_1%%x_1
+#Exponent
+y_1^x_1
+
+
+#
+x_1 <- c(1,2,3,4,5,6)
+y_1 <- c(5,6,7)
+
+#Addition
+x_1+y_1
+#Subtraction
+x_1-y_1
+#Multiplication
+x_1*y_1
+#Division
+y_1/x_1
+#Integer Division
+y_1%/%x_1
+#Modulus(Remainder From Division)
+y_1%%x_1
+#Exponent
+y_1^x_1
+
+x_1 <- c(1,2,3,4,11,12,13)
+y_1 <- c(5,6,7,8)
+
+x_1+y_1
+#
+8.9%/%2.9
+
+x = 10
+y = 3
+y%%x
+x%%y
+  
+#Relational Operators
+
+x <- 18
+y <- 17
+
+#Less than
+x<y
+#Greater than
+x>y
+#Less than or equal to
+x<=9
+#Greater than or equal to
+y>=17
+#Equal to
+y == 17
+#Not equal to
+x != 18
+
+x_1 <- c(17,18,19,20)
+y_1 <- c(17,18,19,20)
+#Less than
+x_1<y_1
+#Greater than
+x_1>y_1
+#Less than or equal to
+x_1<=9
+#Greater than or equal to
+y_1>=17
+#Equal to
+y_1 == 17
+
+#Not equal to
+x_1 != 18
+
+
+x_1 == y_1
+
+z <- c(1,3,T)
+class(z)
+
+
+#Logical Operators
+#Zero is considered as FALSE and non-zero numbers are taken as TRUE
+#Operators & and | perform element-wise operation
+x <- c(TRUE,FALSE,0,8)
+class(x)
+a = as.numeric(x)
+y <- c(TRUE,FALSE,FALSE,TRUE)
+class(y)
+
+a <- c(1,1,0,1)
+b <- c(0,1,0,1)
+class(x)
+class(y)
+!a
+
+#Logical NOT
+!x
+#Element-wise logical AND
+x&y
+#Element-wise logical OR
+x|y
+
+x <- c(TRUE,FALSE,0,8);length(x);class(x)
+y <- c(TRUE,FALSE,1,7);length(y);class(y)
+
+
+
+#Miscellanous Operator
+
+#This operator is used to identify if an element belongs to a vector.
+
+v1 <- 2
+v2 <- 12
+t <- 1:10
+print(v1 %in% t) 
+print(v2 %in% t) 
+
+#consider a vector vowel = c("a",.......)
+#check whether b <- "c" is a vowel or not
+
+s <- "b"
+vowel <- c("a","e","i","o","u")
+s %in% vowel
+
+cat("Hello\nWorld")
+
+cat("Hello\nWorld")
+print("Hello\nWorld")
+
+cat("Hello\tWorld")
+print("Hello\tWorld")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#Take input from the user and check whether it is vowel or not
+#print in new line
+numbers = 1:10
+
+for (i in numbers) {
+  cat(i,"\n")
+  #print(i)
+}
+
+#This operator is used to multiply a matrix 
+
+M = matrix( c(2,6,5,1,10,4), nrow = 2,ncol = 3,byrow = TRUE)
+t = M %*% t(M)
+print(t)
+
+M = matrix( c(2,6,5,1,10,4,1,2,3), nrow = 3,ncol = 3,byrow = TRUE)
+M1 = matrix( c(1,6,5,1,10,4,1,2,3), nrow = 3,ncol = 3,byrow = TRUE)
+t = M %*% M1
+
+
+
+
+
+
