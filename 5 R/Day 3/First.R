@@ -45,7 +45,7 @@ names(l1)
 # ***************************
 # Indexing
 
-cat(l1[1])  # Error in cat(l1[1]) : argument 1 (type 'list') cannot be handled by 'cat'
+# cat(l1[1])  # Error in cat(l1[1]) : argument 1 (type 'list') cannot be handled by 'cat'
 print(l1[1]) # works  1
 
 # if we want to access elements of vector/list which are 
@@ -197,3 +197,315 @@ if(x<0){print(TRUE)}  # TRUE
 
 x = -1 
 if (x>0) {TRUE} else{FALSE} 
+
+# ********************************************
+# For loop
+
+# write the word for and press tab
+
+# for (variable in vector) { }
+
+x<-letters[1:10]
+
+for (i in x) {  print(i) }   # print statement is mandatory
+
+for (j in 1:10) { print(j) }
+
+for (k in 1:22) { print( k*7 ) }
+
+for (i in 1:22) { print( paste0( i , "* 7 = ", i*7 ) ) }
+
+# take input from user and print factorial
+
+n = as.numeric(readline("Enter number: "))
+fact = 1
+for (i in 1:n){ fact = fact*i }
+fact
+
+# ***************************************************************
+
+# While loop
+
+# while (condition) { }
+
+x = 2
+while(x<=5)
+{
+  print(x)
+  x = x+1
+}
+
+# print sum of first n natural numbres
+# sum = (n*(n+1))/2 is the formula but print using loop 
+
+sum = 0 ; i=0
+n = as.numeric(readline("Enter n: "))
+
+while(i <= n){
+  sum=sum+i
+  i=i+1
+}
+sum
+
+# *******************************************************
+
+# repeat  : it is always used with break
+
+x = 1
+repeat{
+  print(x)
+  x = x+1
+  if(x>7) {break}
+}   #  prints 1 to 7
+
+# print table of 7 using repeat
+
+x = 7
+repeat{
+  print(x)
+  x = x+7
+  if(x>70){break}
+}
+
+# ***************************************************************
+ 
+# next  : means skip, it is like continue in other languages
+
+for ( i in 1:10) {
+  if (i %% 2 == 0){
+    next
+  }
+  print(i)
+}
+
+
+# ***************************************************************
+
+# Switch      # length of vector that we are passing in switch should be 1
+# only character() is allowed 
+color = 'red'
+switch(color, "red" = "Stop here !",
+              "green" = "Go Ahead !", 
+              "yellow" = "Wait !",
+              "invalid color")
+
+
+# ***************************************************************
+
+#1 for a given vector x = 15:25, Print number greater than 20
+
+x = 15:25
+for (i in x){if(i>20){print(i)}}
+
+#2 Print multiplication table of upto 7*24 but only even multiple
+
+for (i in 1:24){
+  if ( (i*7) %% 2 == 0){
+    print(paste(i, "x 7 =", (i*7)))
+  }
+}
+
+
+#3 Create a numeric vector of length 2 and print its #max element, 
+# without using max function
+
+v1 = c(10,20)
+ifelse(v1[1]>v1[2], paste(v1[1], "is greater"), paste(v1[2], 'is greater') )
+
+#4 Create a character vector with 5 consonant 
+# alphabets and 3 vowels then print all the vowels from this vector using control statement
+v2 = c('a','e','i','b','c','d','f','g')
+for (i in v2){
+  if (i %in% c('a','e','i','o','u'))
+  {
+    print(i)
+  }
+}
+
+#5 Create an arithmetic operator calculator using switch
+{
+  n1 = as.numeric(readline("Enter n1: "))
+  n2 = as.numeric(readline("Enter n2: "))
+  choice <- menu(c("Add", "subtract", "multiply", 'divide'), 
+                 title = "select operation number: ")
+}
+
+switch(choice, "1" = paste("sum = ",n1+n2), 
+             "2" = paste("subtraction = ",n1-n2), 
+             "3" = paste("product = ",n1*n2),
+             "4" = paste("quotient = ",n1/n2)
+             )
+
+#### User Defined Functions ####
+
+# write fun and press tab
+
+# "local" function is function which is created by yourself i.e. user defined function
+# "global" function is function already present in global package
+
+# fun = function(arguments){}
+# class of function is "function"
+# if your written function has errors, and you run the function, you'll not get error
+# in console, but when you call the function, you get the error
+
+fun = function(){
+  print("hello")
+}
+fun()
+
+class(fun)         # "function"
+
+
+fun2 = function(a){
+  print(a)
+}
+fun2(10)
+
+# **********************************************
+
+add <- function(x,y) {
+  print(x+y)
+}
+
+calc <- function() {
+  x = as.integer(readline("enter n1: "))
+  y = as.integer(readline("enter n2: "))
+  add(x,y)
+  print(x-y)
+  print(x*y)
+  print(x/y)
+}
+calc()
+
+# *****************************************************************
+# create udf to create an employee df (name,gender,age)
+
+name = vector() ; age = vector() ; gender = vector()
+
+df = data.frame(name,age,gender)
+
+addE <- function(df,names,ages, genders) {
+  df <- rbind(df, data.frame(names,ages,genders))
+  return (df)
+}
+
+df = addE(df,"A", 20, "Male")
+df
+
+#### Plot ####
+
+# Line Plot
+?plot
+?iris
+
+data()       # all datasets will be shown
+colors()     # all colors will be shown
+
+v <- c(8,14,26,5,43)
+
+plot(v, type="p")   # points 
+plot(v, type="l")   # line
+
+plot(v, type  = "o", col = "red", 
+     xlab = "X axis", ylab = "Y axis",
+     main = "Line Chart")
+
+# if we want to display multiple plots then we can 
+# make partitions of Help section
+
+par (mfrow = c(1,2))  
+# partition( Main Frame Row = (1 row, 2 columns))
+
+plot(v, type="p")
+plot(v, type="o")
+
+# Setting mfrow to 1 again and background = red
+par (mfrow = c(1,1))
+par(bg = "red")
+
+plot(v, type="o")
+
+# ******************************************
+par(bg = "white")
+
+data = iris
+names(data)
+View(data)
+str(data)
+unique(data$Species)
+par(mfrow = c(1,2))
+plot(data$Sepal.Length , type = "o", col = "red", main = "Comparison of sepal length and petal length")
+lines(data$Petal.Length, type = "o", col = 'blue')
+# we can add multiple lines into the chart using lines()
+
+#compare sepal length of setosa species with sepal length
+# of versicolor species
+
+
+
+# setosas = subset(data, Species == "setosa", select=Sepal.Length) ; setosas
+# versicolors = subset(data, Species == "versicolor", select=Sepal.Length) ; versicolors
+
+# Why only the red line appears
+# 
+# Problem:
+#   subset(..., select=Sepal.Length) returns a data frame, not a numeric vector.
+# When you call:
+#   
+#   plot(setosas, type="o", col="red")
+# 
+# 
+# R interprets this as plot.data.frame, which actually plots nothing meaningful for a single-column data frame (it makes an empty plot and sets up the axes).
+# 
+# Then:
+#   
+#   lines(versicolors, type="o", col="blue")
+# 
+# 
+# is ignored because lines() expects numeric x/y coordinates — but versicolors is still a data frame, not a numeric vector.
+# 
+# So the red "line" you see is likely a series of points connected in a trivial way, and the blue line never appears because of how lines() interprets your data.
+# 
+# ✅ Fix
+# 
+# Convert the subsets to numeric vectors before plotting:
+#   
+#   setosas <- subset(data, Species == "setosa")$Sepal.Length
+# versicolors <- subset(data, Species == "versicolor")$Sepal.Length
+# 
+# plot(setosas, type = "o", col = "red", main = "Demo",
+#      ylim = range(c(setosas, versicolors)), ylab = "Sepal.Length")
+# lines(versicolors, type = "o", col = "blue")
+# 
+# 
+# Now you’ll see both red and blue lines correctly drawn.
+
+setosas <- subset(data, Species == "setosa")$Sepal.Length
+versicolors <- subset(data, Species == "versicolor")$Sepal.Length
+
+
+plot(setosas, type="o", col="red", main="Demo")
+lines(versicolors, type="o", col="blue")
+
+# ***************************************************
+# Bar Plot
+H = c(5,7,9,11)
+M = c('a','b','c','d')
+
+barplot(H,names.arg = M, col = "red", borde = "green")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

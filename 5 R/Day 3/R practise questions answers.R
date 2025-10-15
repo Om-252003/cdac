@@ -101,8 +101,44 @@ sum(demo)
 
 
 
+# 31.
+# Take a variable:
+#   day <- 3
+# Sub-questions:
+#   a) Use switch() to print the name of the day (1 = Monday, 2 = Tuesday, …, 7 = Sunday).
+# b) If day = 8, print "Invalid Input" using if-else.
+# c) Extend the problem: if day is 6 or 7, print "Weekend", else "Weekday".
+
+day <- "1"
+
+switch(day, "1" = "sunday", '2' = "moday", '3' = 'tuesday', '4' = 'wednesday', 
+       '5' = 'thursday' , '6' = 'friday', '7' = "saturday")
+ 
+ifelse(day=8, "Invalid Input")
+
+switch(day, "1" = "Weekday", '2' = "Weekday", '3' = 'Weekday', '4' = 'Weekday', 
+       '5' = 'Weekday' , '6' = 'weekend', '7' = "weekend")
 
 
+# 32.
+# Sub-questions:
+#   a) Write a for loop to compute the factorial of n = 5.
+#   b) Repeat using a while loop.
+# c) Modify your code to print the intermediate result after each multiplication step.
+# d) Add an if condition to check if n < 0, print "Factorial not defined".
 
+# a) Write a for loop to compute the factorial of n = 5.
+fact = 1
+for (i in 1:5){
+  fact = fact*i
+}
+print(fact)
 
+#   b) Repeat using a while loop.
+fact = 1
+n=5
+while(
+}
+
+# *********************************************************************************
 
