@@ -6,7 +6,7 @@
 
 # Comment is always ignored by R when program is run
 
-# R is case sensitive
+# R is "case sensitive" and "indentation sensitive" also
 
 # rm(list = ls())  this is usd to clear the environment
  
@@ -25,6 +25,14 @@ y = 3; y        # ; is delimiter so this is creating object is 1 command
                 # and 'y' is like print(y)
 
 rm(list = ls())    # To clear the environment means delete all objects
+
+
+# To see what value an object holds without writing print statement 
+# we can select the object's name at the place it is written
+# (it can be written anywhere) and run the selected part. 
+# this results in seeing the value and not typing redundant print() 
+# which we have to remove later
+
 
 #### Operators ####
 
