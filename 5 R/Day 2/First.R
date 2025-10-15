@@ -558,158 +558,85 @@ df
 
 
 # ******************************************
-# Refer class assignment section Data Frame 2, 3
+# Refer class assignment section Data Frame 2, 3, 4, 5
 # ******************************************
 
+#### Data sets ####
 
+# R has many inbuilt data sets
 
+?data()
 
+ # missing values are denoted by using NA
 
+x = c(NA,2,3) ; length(x)  # 3 values
+y = c(6,7,8)  ; length(y)
+z = c(10,11,NA)
+d7 = data.frame(x=x,y=y,z=z)
 
+# d8 = data.frames(x,y,z)
 
+is.na(d7)
 
+# x     y     z
+# [1,]  TRUE FALSE FALSE
+# [2,] FALSE FALSE FALSE
+# [3,] FALSE FALSE  TRUE
 
+is.na(d7$x)  # [1]  TRUE FALSE FALSE
+sum(is.na(d7$x))       # 1
+sum(d7)             # NA
+sum(d7, na.rm = T)   # [1] 47
+cleaned_data = na.omit(d7) ; cleaned_data
 
+# x y  z
+# 2 2 7 11
 
+sum(cleaned_data)  # 20
 
+# ***********************************************************************
+?airquality
+airquality           # inbuilt data set
+View(airquality)     # opens new section in editor showing this data set
 
+# subset() # extracts row and column based on condition
 
+subset(airquality, Temp > 80, select = c(Ozone, Temp))  # when select Ozone, Temp from airquality where temp> 80
+subset(airquality, Day == 1, select =-Temp) # select all without Temp column
+# subset(airquality, select = ozone:Wind)
 
+# **************************************************************
+View(ToothGrowth)
+table(ToothGrowth$dose)     #  shows frequency distribution
+mean(ToothGrowth$len[ToothGrowth$supp == 'OJ'])   # 20.66333
+subset(ToothGrowth, len>25 & dose == 2)  # and 
 
+subset(ToothGrowth, len>25 | dose == 2)  # or
 
+colSums(is.na(airquality))
+# Ozone Solar.R    Wind    Temp   Month     Day 
+# 37       7       0       0       0       0 
 
+airquality$Ozone[is.na(airquality$Ozone)] = mean(airquality$Ozone, na.rm = T)
 
+airquality[which.max(airquality$Temp), ]
+View(airquality)
 
+# ******************************************
+x = c(2,2,2,2,2,2,2,2,2,2,2,2,3,3,3,3,3,3,3,3,3,3,3,4,4,4,4,4,4,4,4,4,4,6,7,7)
+table(x)
 
+# x
+# 2  3  4  6  7 
+# 12 11 10  1  2 
 
 
+# ********************************************************
+View(iris)
 
+print("hello")
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+ 
 
 
 

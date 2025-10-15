@@ -109,7 +109,7 @@ v = c('hello','i','am',24,50,60,45,'rrr')
 # create matrix of same vecror of 2 rows and 4 columns
 m1 = matrix(v, nrow = 2) ; m1
 
-#### DataFrame ####
+#### Data Frame ####
 
 # create DF having 20 rows and 4 columns 
 # Serial number, name of student, department, Marks out of 400
@@ -263,9 +263,37 @@ studs$name[studs$mark>60]          # [1] "ravi" "zoya" "neha"
 
 
 
-
 #### Data Frame 3 ####
-
 #### Data Frame 4 ####
+
+#### Data Set ####
+
+# view iris data set
+# lsit all columns
+# list all species
+# filter outt the data when sepal length > 5 & sepal width <3
+# display only petal length and petal width
+# filter data where species is versicolor
+# filter data where species is versicolor , petal width < 2.5
+
+View(iris)
+
+colnames(iris)
+
+unique(iris$Species)
+
+filtered_sepcies = subset(iris, Sepal.Length > 5 & Sepal.Width < 3)
+filtered_sepcies
+
+only_PL_and_PW = subset(iris, select = c(Petal.Length, Petal.Width))
+only_PL_and_PW
+
+filtered_versicolor = subset(iris, Species == "versicolor")
+filtered_versicolor
+
+
+filtered_versicolor_and_PW = subset(iris, Species == "versicolor" & Petal.Width < 2.5)
+filtered_versicolor_and_PW
+
 
 
