@@ -33,6 +33,13 @@ rm(list = ls())    # To clear the environment means delete all objects
 # this results in seeing the value and not typing redundant print() 
 # which we have to remove later
 
+v = c(1:10000) # this is a sequence called as vector 
+v    # can print only 1000 values 9000 are not printed [ reached 'max' / getOption("max.print") -- omitted 9000 entries ]
+print(v)  # can print only 1000 values 9000 are not printed [ reached 'max' / getOption("max.print") -- omitted 9000 entries ]
+cat(v)    # can print all values
+paste(v)  # can print only 1000 values 9000 are not printed [ reached 'max' / getOption("max.print") -- omitted 9000 entries ]
+
+
 
 #### Operators ####
 

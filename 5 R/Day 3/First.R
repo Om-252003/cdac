@@ -7,6 +7,8 @@
 
 # list is created using list() function
 
+# list doesn't have dimensions it is linear because it can store other sequences in it
+
 ?list
 
 l1 = list(1,2,3,4.1,'Abc', TRUE, FALSE, NA,NULL,
@@ -392,7 +394,7 @@ addE <- function(df,names,ages, genders) {
 df = addE(df,"A", 20, "Male")
 df
 
-#### Plot ####
+#### Plots ####
 
 # Line Plot
 ?plot
@@ -425,7 +427,7 @@ par(bg = "red")
 
 plot(v, type="o")
 
-# ******************************************
+# ***********************
 par(bg = "white")
 
 data = iris
@@ -487,14 +489,101 @@ versicolors <- subset(data, Species == "versicolor")$Sepal.Length
 plot(setosas, type="o", col="red", main="Demo")
 lines(versicolors, type="o", col="blue")
 
-# ***************************************************
+# **************************************************************************
 # Bar Plot
+# wherever we use line plot we can use bar plot
+# we use this for frequency distribution
+
+
+?barplot
+
 H = c(5,7,9,11)
 M = c('a','b','c','d')
 
 barplot(H,names.arg = M, col = "red", borde = "green")
 
+# ***************
 
+View(mtcars)
+str(mtcars)
+
+# first use table() command for getting frequency distribution so we dont get redundant bars
+cylinders = table(mtcars$cyl)
+barplot(cylinders, main="Count of Cars by Cylinders types", xlab = "Cylinders types", ylab = "Count of cars", col = "skyblue")
+
+gears = table(mtcars$gear)
+barplot(gears, main="count of Cars by No.of gears", xlab = "No.of gear", ylab="count of cars")
+
+# plotting multiple simple barplots at a time using loop 
+names(mtcars)
+par(mfrow=c(2,3))
+
+names = c('cyl','vs','am','gear','carb')
+col_num = match(names, names(mtcars))   
+# OR
+col_num = which(names(mtcars) %in% names)
+
+for(i in 1:length(col_num)){
+  count = table(mtcars[,col_num[i]])
+  barplot(count, col = i, main = names[i])
+}
+
+# col = i means = every color is assigned a value in R like 1,2,3......
+
+
+# ***********************
+# Multiple Barplots
+
+counts <- table(mtcars$vs, mtcars$gear)
+rownames(counts)
+barplot(counts, main="car distribution by Gears and VS", 
+        xlab = "Number of Gears",
+        col = c("darkblue", "red"), beside = TRUE)
+legend("topright", pch=16, col=c("darkblue", "red"), c("vs", "gear"))
+
+
+# ***************************
+# Stacked Barplot  
+# just do besides=false 
+
+counts <- table(mtcars$vs, mtcars$gear)
+rownames(counts)
+barplot(counts, main="car distribution by Gears and VS", 
+        xlab = "Number of Gears",
+        col = c("darkblue", "red"), beside = FALSE)
+legend("topright", pch=16, col=c("darkblue", "red"), c("vs", "gear"))
+
+# *****************************************************************************
+
+# Pie Chart
+
+?pie
+slices =  c(10,12,4,16,8)
+labelss = c('us','uk','aus','nz','br')
+pie(slices)
+pie(slices, labels=labelss, main="Pie char of countries")
+
+
+# ****************************************************************************
+
+# Histogram
+# just use hist() instead of barplot() / pie()
+?hist
+
+View(airquality)
+tempr = airquality$Temp
+hist(tempr)
+
+hist(tempr, main="Maximum daily temprature at La Guardia Airport",
+     xlab = "Temprature in degrees F",
+     xlim = c(40,120),
+     ylim = c(0,40), 
+     col="blue", labels = T)   # labels gives numbers on the bars
+
+# histograms with breaks
+
+hist(tempr, breaks=4, main="With breaks 4")
+hist(tempr, breaks=20, main="With breaks 20")
 
 
 
