@@ -96,7 +96,7 @@ e = c(2,3,4,5,6,7,100,"a", "b", 'c', 4L, 5.2) ; e
 
 class(e)
 
-e_1 = (10,20,by  = 1)       # Error: unexpected ',' in "e_1 = (10,"  # error ended here
+# e_1 = (10,20,by  = 1)       # Error: unexpected ',' in "e_1 = (10,"  # error ended here
 e_1 = c(10,20,30) ; class(e_1)        # "numeric"
 e_2 = c("A", "B", "C") ; class(e_2)   # "character"
 e_3 = c(10L, 20L) ; class(e_3)        # "integer"
@@ -131,7 +131,7 @@ v[2]
 # [1] 9
 # >
 
-x = 2 is an Object OR Atomic Vector (only 1 value)
+x = 2 # is an Object OR Atomic Vector (only 1 value)
 
 # **************************
 

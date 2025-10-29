@@ -1,0 +1,55 @@
+
+
+kernel : is a piece of software which helps interacting with and controlling hardware
+
+
+kernel types : 
+	monolithic kernel : One large code capable of doing everything thst you require
+				-ve : maintaining , managing, updating would be troublesome, restart needed after every change
+				+ve : Fast
+				
+	micro : code provides interface to services, managing , coding done by application and coder.
+				-ve : application development and managing became difficult. Speed issues
+				+ve : no restart, modularity
+	
+	hybrid : best of both. Major services and access by kernel but can add new needed module
+			Everything after windows 7 is this type. 
+
+			
+Syntax : grammar of programming
+Semantics : when to use what syntax.
+shell does not support fractions. it's from when in ALU arithmetic operationd on factions were not possible.
+
+nano demo.sh # creates the file demo.sh
+# file automatically opens
+
+# write below lines
+#!/bin/bash
+echo "hello world"
+
+# save file with Ctrl + O and then press Enter
+# exit file with ctrl + X
+
+# change mode of file
+chmod 777 demo.sh
+
+# to run file
+./demo.sh
+
+# to see what we have written in file
+cat demo.sh
+
+
+****************** Interview *********************
+what number is associated with what mode in shell scripting ? Refer steps in writing shell script image
+
+
+
+
+
+left shift -> multiply by 2
+right shift -> divides by 2
+complement ~ not operation  -> ~(-226) -> +226 -1 = 225 
+								  ~128 -> -128 -1 = -129
+								  
+								
