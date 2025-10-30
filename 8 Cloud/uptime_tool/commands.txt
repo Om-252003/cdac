@@ -1,0 +1,118 @@
+# create folders
+mkdir -p ~/uptime_tool/bin ~/uptime_tool/logs
+
+# create targets file with two example URLs 
+cat > ~/uptime_tool/targets.txt <<'EOF'
+https://example.com
+https://httpbin.org/status/200
+EOF
+
+# create scripts and make executable
+touch ~/uptime_tool/bin/check_urls.sh ~/uptime_tool/bin/ops.sh
+chmod +x ~/uptime_tool/bin/*.sh
+
+# display all files
+ls -l ~/uptime_tool
+ls -l ~/uptime_tool/bin
+cat ~/uptime_tool/targets.txt
+
+# write check_urls.sh file to check uptime
+gedit ~/uptime_tool/bin/check_urls.sh
+
+# run it because already made it executable
+~/uptime_tool/bin/check_urls.sh
+
+# see the logs here
+cat ~/uptime_tool/logs/uptime_$(date +%Y%m%d).log
+
+# add alert conditions
+gedit ~/uptime_tool/bin/check_urls.sh
+
+# install bc calculator
+sudo apt install bc -y
+
+# test it
+~/uptime_tool/bin/check_urls.sh
+
+# check logs
+cat ~/uptime_tool/logs/uptime_$(date +%Y%m%d).log
+
+# check alerts
+cat ~/uptime_tool/logs/alerts.log
+
+# Update script header to support a flag
+gedit ~/uptime_tool/bin/check_urls.sh
+
+# Test normal mode
+~/uptime_tool/bin/check_urls.sh
+
+# test parallel mode
+~/uptime_tool/bin/check_urls.sh --parallel
+
+# Modify check_urls.sh to include summary statistics
+gedit ~/uptime_tool/bin/check_urls.sh
+
+# test the summary output
+~/uptime_tool/bin/check_urls.sh
+
+# see logs
+cat ~/uptime_tool/logs/uptime_$(date +%Y%m%d).log
+
+
+# Create ops.sh skeleton
+gedit ~/uptime_tool/bin/ops.sh
+
+# make it executable
+chmod +x ~/uptime_tool/bin/ops.sh
+
+# test  the menu menu
+~/uptime_tool/bin/ops.sh
+
+# Add log rotation check in check_urls.sh
+gedit ~/uptime_tool/bin/check_urls.sh
+
+
+
+#### Stretch Goals ####
+gedit ~/uptime_tool/bin/check_urls.sh
+
+# add code to save summary of counts and comapreing the summary with yesterday's
+
+# run it
+~/uptime_tool/bin/check_urls.sh
+
+# view lofs
+cat ~/uptime_tool/logs/uptime_$(date +%Y%m%d).log
+
+# Modify check_urls.sh for JSON output
+gedit ~/uptime_tool/bin/check_urls.sh
+
+# test json output
+~/uptime_tool/bin/check_urls.sh
+
+# check generated json file
+cat $(ls -t ~/uptime_tool/logs/uptime_*.json | head -1)
+
+# Modify send_report.sh for Email Reporting
+gedit ~/uptime_tool/send_report.sh
+
+# make it executab;e
+chmod +x ~/uptime_tool/send_report.sh
+
+# test the reporting
+~/uptime_tool/send_report.sh
+
+# to check if mail is done
+mail
+
+# press 1
+
+# we cnas see the log file and json file attachd
+
+# to exit press q
+
+# to check next message press n
+
+
+
+
