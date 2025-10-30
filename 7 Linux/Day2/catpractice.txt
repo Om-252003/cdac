@@ -1,0 +1,7 @@
+hello
+writing this code in terminal directly
+
+cat > filename.extension_name
+
+this command helps to write in file directly
+to exit this command press Ctrl + d

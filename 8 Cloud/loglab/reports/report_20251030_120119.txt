@@ -1,0 +1,9 @@
+Total Requests: 2
+Unique IPs: 2
+Top IPs:
+      1 192.168.1.10
+      1 10.0.0.5
+HTTP Status Codes:
+      1 512
+      1 128
+Total Bytes Sent: 0

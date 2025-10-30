@@ -1,0 +1,14 @@
+./all_details.txt
+./dats.txt
+./catpractice.txt
+./testfile.txt
+./email_details.txt
+./shells.txt
+./txts.txt
+./headtailprctice.txt
+./name_details.txt
+./listOfFiles.txt
+./phone_details.txt
+./final.txt
+./amp3.txt
+./amp2.txt

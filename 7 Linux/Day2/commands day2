@@ -1,0 +1,398 @@
+ls           # list all files
+
+ls --help    # show commands that can be used with ls command
+
+ls *.sh      # lists all .sh files
+
+ls *.txt     # lists all txt files
+
+ls -l        # shows files' accessibilties
+
+man ls       # shows manual ( simpler way of help )
+	     # press q to exit manual
+	     # press H to see which key does what in it
+	     # press h to see help about command
+	     
+info 	     # shows all information
+
+info ls      # shows all info about ls in simple way
+ 
+whatis ls    # one line descriptino of ls command
+ 
+whatis mkdir # one line descriptino of ls command
+
+# info, man, help :  are commands to get help about commands. 
+
+######################## FILE COMMANDS #########################
+
+
+cat  filename.extension_name    # shows content of file
+
+cat -n filename.extension_name  # shows content of file but with line numbers 
+
+cat > filename.extension_name   # this command helps to write in file directly
+				# to exit this command press Ctrl + d
+				# if file not present it creates it
+				# this command overwrites the old file
+
+cat >> filename.extension_name  # appends data to the file
+
+
+#### Practice ####
+
+create 3 files with 3 details name,email,phone, then combine them				
+
+Command : cat file1,file2,.....,filen > resultFile
+
+omsai@Faaltu:~$ cat > name_details.txt
+Omsai Alladwar
+
+omsai@Faaltu:~$ cat > email_details.txt
+omsaialladwar@gmail.com
+
+omsai@Faaltu:~$ cat > phone_details.txt
+8308321808
+
+omsai@Faaltu:~$ cat name_details.txt email_details.txt phone_details.txt >> all_details.txt
+
+omsai@Faaltu:~$ cat all_details.txt
+Omsai Alladwar
+omsaialladwar@gmail.com
+8308321808
+
+omsai@Faaltu:~$ 
+
+############## FILE READING #################
+
+cat > headtailprctice.txt  # write some lines in this file
+
+head headtailprctice.txt   # prints first 10 rows
+
+tail headtailprctice.txt   # prints last 10 rows
+
+head -n 5 headtailprctice.txt  # prints first 5 rows
+
+tail -n 5 headtailprctice.txt  # prints last 5 rows
+
+tail -f headtailprctice.txt    # continuously monitors the file.  to exit Ctrl + c
+
+more headtailprctice.txt       # shows file in scrollable way and controlled using arrow keys. once at end of file it gets out of file.
+
+less headtailprctice.txt       # more advance than more command. 
+			       # it doesn't come out of file reading at end of file.
+			       # we can traverse in file. 
+			       # at the end of file (END) will be written. 
+			       # to exit press q
+
+nl headtailprctice.txt         # shows content with number of lines of file
+
+wc headtailprctice.txt         # shows number of lines , no of words , no of characters
+
+wc -w headtailprctice.txt      # shows no of words
+
+wc -l headtailprctice.txt      # shows no of lines
+
+wc -c headtailprctice.txt      # shows no of characters
+
+# blank lines are counted too in no of lines.
+
+############## Piping ##############
+
+take first's data and connect with second's data
+
+done using pipe symbol |
+
+we can combine multiple files 
+
+# output of head command given to nl command and then shown
+
+head -n 5 headtailprctice.txt | nl   # prints head 5 rows with row numbers
+
+head -n 6 headtailprctice.txt | wc -w  # Show first 6 words of headtailprctice.txt
+
+
+##### Refer combiner.sh file #######
+
+$@ returns all positional arguments in string format
+-f "filename"          # returns True if file exists
+
+touch filename.extension_name    # just creates a file of given name and extension
+
+#################################################
+
+whatis grep     # print lines that matches patterns i.e. searches content and returns data found
+
+cat > testfile.txt        # write some data in it.
+                          # case sensitive
+                          # -i removes case sensitivity
+
+grep "line" testfile.txt  # searches and prints whole line where "line" is present in testfile
+			  
+grep -i "line" testfile.txt  # case insensitive 
+
+grep -i -n "line" testfile.txt  # adds row numbers but those are row numbers from the file where "line" is present.
+
+grep -l "omsai" *.txt     # finds all occurances of "omsai" in all files (*) and prints files' names
+			  
+############### searching practice ###############################
+
+#!/bin/bash
+
+# grep -l "$1" *.txt | cat >> "listOfFiles.txt"
+# OR
+# find files which have data in them
+listOfFiles=$(grep -l "omsai" *.txt)
+
+# use loop to print one filename at a time
+for file in $listOfFiles
+do
+	echo -e "$file \n"
+done
+
+# print all lines that has data and print line numbers
+
+for file in $listOfFiles
+do
+	grep -i -n "omsai" $file
+done
+
+
+# One liner
+omsai@Faaltu:~/Day2$ grep -i -n "omsai" *.txt
+all_details.txt:1:Omsai Alladwar
+all_details.txt:2:omsaialladwar@gmail.com
+email_details.txt:1:omsaialladwar@gmail.com
+name_details.txt:1:Omsai Alladwar
+omsai@Faaltu:~/Day2$ 
+
+############### count script files ##########
+
+# list all *.sh files and count total lines generated
+
+data_needed=$(ls *.sh | wc -l)
+echo $data_needed
+
+# take extension as positional argument from user, show files of that extension
+
+ls *"$1"
+
+############ Rename and move files and directories ############
+
+omsai@Faaltu:~/Day2$ cat amp1.txt
+
+grdvxc wegsdv
+gsdv
+wgSDV EFSDX
+
+omsai@Faaltu:~/Day2$ mv amp1.txt amp3.txt
+
+omsai@Faaltu:~/Day2$ cat amp1.txt
+cat: amp1.txt: No such file or directory
+
+omsai@Faaltu:~/Day2$ cat amp3.txt
+grdvxc wegsdv
+gsdv
+wgSDV EFSDX
+
+omsai@Faaltu:~/Day2$ 
+
+
+################ Alias ###############
+
+alias alltxtfiles="./countscripts.sh .txt" # cretes an alias alltxtfiles and saves 
+# the command ./countscripts .txt in it.
+# so to display results just write alltxtfiles in the terminal 
+# no need to write ./countscripts.sh .txt
+
+############ Sudo #############
+
+su -  # enters super user mode
+
+su -i # enters super user mode
+
+useradd newUserName  # adds a new user
+
+passwd newUserName   # adds password to user
+
+userdel newUserName  # Remove user
+
+cut -d: -f1 /etc/passwd   # list all users # see from below of results
+
+################### Find ####################
+
+find searches file/s , directory or more than just extension
+
+find can search on day/size/update/group/mode
+
+. (dot) represnets current working directory and its subdirectories also
+~ (tilde) only strictly cwd
+
+find . <option> <file type> <pattern> 
+
+find . type f -name "*.txt"  # prints all .txt files
+
+find . ttype f -iname "*.txt" # prints all .txt, .Txt, .TXT , etc files case insensitive.
+
+################
+
+following can be used in find command to filter files
+
+for days:
+
+-atime     -mtime     -ctime       # returns time in days
+accessed   modified   changed 
+
+-amin   -mmin   -cmin              # retuns time in minutes
+
+find . type f -iname "*.txt" -atime -2     # all txt files accessed in past 2 days means -2 days
+
+for sizes:
+
+b (default, if no suffix is specified): Size is in 512-byte blocks.
+
+c: Size is in bytes (characters).
+
+k: Size is in kilobytes (1024 bytes).
+
+M: Size is in megabytes (1024 kilobytes).
+
+G: Size is in gigabytes (1024 megabytes).
+
+T: Size is in terabytes (1024 gigabytes).
+
+P: Size is in petabytes (1024 terabytes).
+
+E: Size is in exabytes (1024 petabytes).
+
+Size Comparison Operators:
+
++: Greater than a specified size.
+
+-: Less than a specified size.
+
+=: Exactly equal to a specified size
+
+1. Files greater than a certain size:
+find /path/to/search -size +100M
+
+
+This will find all files larger than 100 MB.
+
+2. Files smaller than a certain size:
+find /path/to/search -size -10k
+
+
+This will find all files smaller than 10 KB.
+
+3. Files of exact size:
+find /path/to/search -size 500k
+
+
+This will find files that are exactly 500 KB in size.
+
+4. Files of exactly one byte (empty files):
+find /path/to/search -size 1c
+
+
+This finds files that are exactly 1 byte in size. Useful for finding empty files.
+
+5. Find files between a size range:
+
+You can combine -size with other expressions to define a range:
+
+find /path/to/search -size +10M -and -size -100M
+
+
+This will find files that are larger than 10 MB but smaller than 100 MB.
+
+6. Find files exactly 1 MB or larger:
+find /path/to/search -size +1M -and -size -2M
+
+
+This will find files that are between 1 MB and 2 MB.
+
+7. Using -exec with size:
+
+You can combine size options with the -exec flag to perform actions on the files found. For example, to delete files larger than 1 GB:
+
+find /path/to/search -size +1G -exec rm {} \;
+
+
+###########################
+# Refer sortall.sh
+# from given machine create 3 files
+all shell scripts in 1 file
+all txt in 1 file
+all dat in 1 file
+
+organize as
+.sh files created before 1day,2day,3day,.....,10day
+
+
+
+
+omsai@Faaltu:~/Day2$ chmod 777 sortall.sh
+omsai@Faaltu:~/Day2$ ./sortall.sh 
+omsai@Faaltu:~/Day2$ cat txts.txt
+./all_details.txt
+./catpractice.txt
+./testfile.txt
+./email_details.txt
+./txts.txt
+./headtailprctice.txt
+./name_details.txt
+./listOfFiles.txt
+./phone_details.txt
+./final.txt
+./amp3.txt
+./amp2.txt
+omsai@Faaltu:~/Day2$ cat dats.txt
+omsai@Faaltu:~/Day2$ cat shells.txt
+./combiner.sh
+./searching.sh
+./sortall.sh
+./countscripts.sh
+omsai@Faaltu:~/Day2$ wc -l dats.txt
+0 dats.txt
+omsai@Faaltu:~/Day2$ wc -l shells.txt
+4 shells.txt
+omsai@Faaltu:~/Day2$ wc -l txts.txt
+12 txts.txt
+omsai@Faaltu:~/Day2$ wc -l < txts.txt
+12
+omsai@Faaltu:~/Day2$ # < means read from file and process on it.
+omsai@Faaltu:~/Day2$ # > means write into file
+./countscripts.sh
+***************************************
+Files 8 days old are :
+
+***************************************
+./combiner.sh
+./searching.sh
+./sortall.sh
+./countscripts.sh
+***************************************
+Files 9 days old are :
+
+***************************************
+./combiner.sh
+./searching.sh
+./sortall.sh
+./countscripts.sh
+***************************************
+Files 10 days old are :
+
+***************************************
+./combiner.sh
+./searching.sh
+./sortall.sh
+./countscripts.sh
+***************************************
+omsai@Faaltu:~/Day2$ 
+
+
+
+
+
+
+

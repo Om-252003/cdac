@@ -1,0 +1,151 @@
+# creating the logs folder and its sub folders
+mkdir -p ~/loglab/raw ~/loglab/archive ~/loglab/reports
+
+# create sample access.log  file
+cat > ~/loglab/raw/access.log <<'EOF'
+192.168.1.10 - - [28/Oct/2025:10:01:12 +0530] "GET /index.html 200" 512
+10.0.0.5 - - [28/Oct/2025:10:01:15 +0530] "POST /login 302" 128
+EOF
+
+# create three script files
+touch ~/loglab/log_report.sh ~/loglab/verify_archive.sh ~/loglab/run_daily.sh
+
+# make them executable
+chmod +x ~/loglab/*.sh
+
+# viewing files in directories
+ls -l ~/loglab
+ls -l ~/loglab/raw
+
+# see content of access.log file
+cat ~/loglab/raw/access.log
+
+# create a file which creates log reports
+gedit ~/loglab/log_report.sh
+
+# see if file is created
+ls ~/loglab/reports
+
+# cat content of it 
+cat ~/loglab/reports/report_*.txt
+
+# 2) creating log rotation script
+
+gedit ~/loglab/rotate_logs.sh
+
+# change its access mode, make it executable
+chmod +x ~/loglab/rotate_logs.sh
+
+# run 
+~/loglab/rotate_logs.sh
+
+# check is archives are created
+ls ~/loglab/archive
+
+# following 2 files must be created
+# access-20251030.log.tar.gz
+# access-20251030.log.tar.gz.sha256
+
+# now only access.log file should remain
+ls ~/loglab/raw
+
+
+# 3) create verify_archive.sh file
+gedit ~/loglab/verify_archive.sh
+
+# change the mode
+chmod +x ~/loglab/verify_archive.sh
+
+# run it, it must show verification complete, OK
+~/loglab/verify_archive.sh
+
+# 4) now build the main daily automation script. (Schedule execution with cron or systemd)
+
+# create run_daily.sh
+gedit ~/loglab/run_daily.sh
+
+# change its mode
+chmod +x ~/loglab/run_daily.sh
+
+# test the full pipeline
+~/loglab/run_daily.sh
+
+# 5 Add archive retention logic (last 7 only) in rotate_logs.sh file
+gedit ~/loglab/rotate_logs.sh
+
+# run logs creating file for 10 times
+for i in $(seq 1 10); do
+    echo "log $i" >> ~/loglab/raw/access.log
+    ~/loglab/run_daily.sh
+    sleep 1
+done
+
+# check only 7 remain, others must be deleted
+ls -l ~/loglab/archive
+
+# Creating Readme file
+gedit ~/loglab/Assignment_Explanation.txt
+
+# we can schedule this using cron
+# run 
+crontab -e
+
+# then write 
+0 0 * * * /home/omsai/loglab/run_daily.sh
+
+# it will run daily at 00:00
+
+# executes the automation script
+
+
+############# stretch Goal ################
+
+# 1) Daily Trend Comparison
+
+# edit log_report.sh file for summary generation
+gedit ~/loglab/log_report.sh
+
+# this can be tested after next day's logs are stored
+cat ~/loglab/reports/report_*.txt
+
+# 2) generate JSON log reports
+gedit ~/loglab/log_report.sh
+
+# run automation once
+~/loglab/run_daily.sh
+
+# Check the JSON report, there must be one .json file
+ls ~/loglab/reports
+
+# Now see the JSON file
+cat ~/loglab/reports/report_*.json
+
+
+
+# 3)  email reporting
+
+sudo apt update
+sudo apt install mailutils -y
+
+# select Local only then click OK
+
+# create report sending file
+gedit ~/loglab/send_report.sh
+
+# make it executable
+chmod +x ~/loglab/send_report.sh
+
+# run it
+~/loglab/send_report.sh
+
+# mails are stored at (Local) 
+/var/mail/omsai
+
+# to see the mail run 
+mail
+
+# press 1
+# q to exit
+
+
+

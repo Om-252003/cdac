@@ -1,0 +1,8 @@
+Total Requests: 1
+Unique IPs: 1
+Top IPs:
+      1 192.168.1.11
+HTTP Status Codes:
+      1 200
+Total Bytes Sent: 256
+No previous data to compare
