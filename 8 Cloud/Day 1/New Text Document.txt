@@ -1,0 +1,163 @@
+cloud computinh
+
+ex. Netflix
+
+	- delivery : streaming services. deliver from anywhere to anywhere.
+	- availability : available 24/7
+	- Analytics : analyzing our personal data. like each user's age, locality, subscription packages, genders etc. 
+	
+to provide these features to users, they have to use cloud computing. 
+
+
+ex2. youtube
+
+	- storage : all videos of all youtubers must be stored on servers
+	- scalability : all youtubers must be able to upload any size/quality of videos they want regardless of any restriction
+	- personalization : Ads , show related videos to users.
+	- Moderation : Sensitive media must be taken down.
+	
+ex3. Amazon prime video
+
+	- Analytics : data from amazon e-commerce account and data from amazon prime video account will be analyzed
+	- Redundancy : these 2 platform's data causes redundancy
+	- critical : if data gets lost/leaked/breached, then user's confidence get's low, they won't reappear to use the services. so they decentralize the data.	
+	- Recommendation : based on media consumed on amazon prime video, amazon e-commerce can recommend products to the user
+	
+ex4. Google Drive
+
+	- Storage : stores any kind of data
+	- Accessibility : accessible everywhere
+	- Scability : if paid money, more storage is allowed
+	- Availability : available 24/7
+	
+ex5. icloud
+	
+	- Storage :
+	- synchronization : copy on mobile, paste on Mac / iwatch / ipad etc if same account is on all devices.
+	- Accessibility : 
+	- security :
+	
+ex6. AWS
+
+	- services : different types of services
+	- hosting : want to run website but don't want to manage backend, just develope it and AWS can maintain
+	- Scalability : add/remove resources
+	- security : encrypted 
+	- personalization : recommend relative services that we already used
+	- Analytics : analyze our data 
+	- Foundation : all these services are available, no need to create from scratch. just go and deploy.
+	
+
+Refer cloud computing evolution image
+
+What is cloud computing ? 
+
+	cloud computing is on-demand delivery of IT resources over internet with pay-as-you-go pricing.
+	
+	= consistent delivery
+	= on demand access
+	= IT resources
+	
+Cloud Computing Components : 
+
+1 Hardware : 
+	Processors
+	ROM
+	RAM
+	GPU
+	PSU
+	
+2 OS 
+	
+3 Networking 
+	Internet Drivers
+	
+4 Storage
+	HDD
+	SSD
+	
+Virtualization : 
+
+	virtualization enables creation of virtual machines, which are isolated and independent environments that mimic functionality of physical computer.
+
+	- each VM operates as it is a self-contained system, runs its own OS and apps. (containerization)
+
+	- multiple VMs can co-exist on a single server, allowing more efficient use of h/w resources.
+
+single physical machine turns into multiple isolated and independent machines called as virtualization. 
+
+
+
+Hypervisor : special program that helps divide big computer into smaller parts.
+
+	sits between physical hardware and virtual machine.
+
+	main job is to manage and allocate resources to VMs.
+
+	creates virtual h/w and presents to each VMs, allowing them to have own OS and apps
+
+	each VM operates independently
+	
+
+Type 1 or bare-metal hypervisor : 
+	runs directly on physical machine. 
+	manages the VM
+	directly communicates with RAM / Processors
+	High performance and efficiency
+	
+Type 2 or Hosted Hypervisor
+	
+	Runs on top of existing OS
+	installed as a software
+	creates VM within host OS
+	used as per individual need
+	
+
+Deployment models : 
+
+	1 Public cloud : 
+
+		deployment model for multiple organizations
+		hosted by 3rd party on the internet
+		high scalability
+		Pay-as-you-go
+		accessible over internet
+		
+		ex. Azure, AWS
+		
+		
+	2 private cloud : 
+
+		dedicated deployment model for single organization
+		hosted on-premises or managed by third party
+		more security, customization, as per user complainces
+		ex. VMware vSphere, OpenStack, Azure Stack
+		
+		
+	3 hybrid cloud : 
+
+		mixture of both
+		allows to use both on-premise and public cloud resources
+		data can move freely between public and private cloud
+		ex. AWS outposts, Azure Stack, Google Anthos
+	
+Service Models : 
+
+	1 SaaS : 
+			s/w apps provided on internet
+			Gmail
+			
+	2 PaaS : 
+			platform and dev tools offered as a service
+			appplications run on it
+			Google Colab
+			
+	3 IaaS : 
+			vistualized servers, storage, and networking provided as a service
+			AWS
+
+	4 Faas : Function as a Service
+	
+			cloud computing service, that allows customers to execute code at a specified event without managing the comlpex infrastructure. 
+			
+			associated with building and launching microservices applications.
