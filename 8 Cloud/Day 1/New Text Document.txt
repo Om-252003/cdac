@@ -139,7 +139,7 @@ Deployment models :
 		mixture of both
 		allows to use both on-premise and public cloud resources
 		data can move freely between public and private cloud
-		ex. AWS outposts, Azure Stack, Google Anthos
+		ex. AWS outposts( it will give private cloud access) , Azure Stack, Google Anthos
 	
 Service Models : 
 
@@ -153,7 +153,7 @@ Service Models :
 			Google Colab
 			
 	3 IaaS : 
-			vistualized servers, storage, and networking provided as a service
+			vistualized servers, storage, and networking, security provided as a service
 			AWS
 
 	4 Faas : Function as a Service
@@ -161,3 +161,4 @@ Service Models :
 			cloud computing service, that allows customers to execute code at a specified event without managing the comlpex infrastructure. 
 			
 			associated with building and launching microservices applications.
+			

@@ -1,0 +1,162 @@
+AWS Services : 
+	S3
+	ec2
+	Lambda
+	Athena
+
+	VPC
+	RDS
+	REDSHIFT
+	Glue
+
+
+	EMR : hadoop, pyspark etc big data services are in this
+	Cloud 9 : 
+	IAM : 
+	CFT : Cloud Formation Template
+------------------------------------------------
+
+	** Services **
+
+1 IAM identity access management : 
+	Components : Users, User groups, Roles, Policies
+	
+	Admin can create Users,user groups
+	it can assign roles and policies
+	grant/revoke permissions
+	
+	Lab Role :
+		ARN : Amazon Resource Name, different for differnt policies , roles etc
+		
+		EMR  : elastic map reduce, it assumes role, 
+			It does ETL. 
+			ex. we're using Spark which does transformation. 
+				it will transform some sort of data, ex. raw data
+				the data is in S3 service, extract from it, transformed it, now have to load in REDSHIFT service in a table in structured format.
+			
+			in short : to seamelessly do the data transfer from service to service it assumes the role , means for 2nd service to get the data, EMR mimics the first service to the 2nd service but it's actually getting the data from first service and giving it to the second.
+			
+			EMR is a cluster of EC2, EC2 is a Virtual Machine.
+			
+			EMR is all about distributed computing, it'll happen on VMs which are EC2 instances.
+			
+			
+			Documentation : 
+				web service for securely controlling access to AWS services.
+				
+				With IAM, you can centrally manage users, security credentials such as access keys, and permissions that control which AWS resources users and applications can access.
+				
+				here, applications mean services
+				
+
+4 EC2 : Elastic Compute Cloud
+	
+2 S3 : Simple Storage Services
+		
+	To store your data in Amazon S3, you first create a bucket and specify a bucket name and AWS Region.
+	
+	An object is a file and any metadata that describes the file. A bucket is a container for objects.
+	
+	Each object has a key, each key is a unique identifier for an object.
+	
+	file's name is it's key, 
+	if in a bucket, there is a file, and we upload 2nd file with same name, it will overwrite it.
+	to disable this, we need to enable version control.
+	
+	- even if region is down due to some region, we can access it through different zone, but latency will be a little bit high.
+	
+	According to access frequency S3 is divided into classes : Highest to lowest
+	
+		1. S3 express one zone -> in one zone data will be replicated 3 times
+			
+			- low latency storage of most frequently accessed data
+			- expensive, we don't use due to this
+			- ex. if majority users are in delhi, i'll use this on Delhi region. 
+			
+			
+			
+		2. S3 standard 
+			
+			- general purpose storage for active, frequently accessed data, retrieval in milliseconds
+			- we use this cause cost efficient.
+		
+		3. s3 standard-infrequent Access ( s3 standard IA) 
+		
+			- low cost storage for data which is accessed on monthly basis, that is required in milliseconds retrieval
+			- ex. monthly employee review
+			
+		4. s3 one zone-in-frequent access
+		
+			- infrequently accessed data in a single availability Zone (AZ) for cost saving
+		
+		
+		5. S3 glacier instant retrieval 
+			
+			- low cost storage for long-lived data, with retrieval in milliseconds.
+			
+		
+		6. S3 glacier flexible retrieval 
+		
+			- long-term, low cost storage for backups and archives.
+			- bulk data retrieval time in minutes to hours
+		
+		
+		7. S3 glacier deep archive 
+			
+			- lowest-cost cloud storage for long-term archive data 
+			- retireval in hours
+			
+			
+		8. s3 intelligent-tiering
+		
+			- monitors every object of size > 128 KB.
+			- if an object become obselete, it goes from s3 standard to infrequent then gradually goes to lower access frequency services as per non usage of object.
+			- we pay for no. of objects here, not on it's size
+			- the cost is paid for monitoring and the charges for the time for each service that holded the object .
+			
+		lifecycle policy : can change classes by predifining the date, you can delete, duplicate it and backup it.
+			
+			
+	S3 is 
+		
+AWS claims data durability is 99.99999999999 %
+
+			
+
+3. Lambda. it can only work till 15 minutes
+
+
+
+learn
+subnet 
+
+ip masking 
+	
+	number of subnet in bydefault vpc = no.of availability zone in that region ( default 3)
+	
+
+*********************************************************************************************
+User role : roles given to users
+
+Service role : roles given to services.
+
+
+
+Assignment 1
+create 1 bucket (backup) public access block
+create lambda function
+in bucket 1, any file or folder must be backed up in bucket 2
+
+assignment 2
+in first bucket add 1 jpg file / jpeg file
+now lambda should reduce the file (compress) it.
+in backup bucket, create a folder compresses and then add that file into the compressed folder
+pillow library is not in lambda, pillow is used for image compression. to do this add a layer
+
+hints 
+add destination bucket before try block
+boto3, s3.putoject
+
+inbound : who can access inside the machine
+outbound : 
+port of SSH : 22
