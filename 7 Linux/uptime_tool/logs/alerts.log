@@ -1,0 +1,17 @@
+2025-10-30 17:55:04 | https://example.com | ALERT: DOWN (Status: Time:s)
+2025-10-30 17:55:04 | https://httpbin.org/status/200 | ALERT: DOWN (Status: Time:s)
+2025-10-30 18:06:01 | https://example.com | Status:  | Time: s | DOWN
+2025-10-30 18:06:01 | https://httpbin.org/status/200 | Status:  | Time: s | DOWN
+2025-10-30 18:07:53 | https://example.com | Status:  | Time: s | DOWN
+2025-10-30 18:07:53 | https://httpbin.org/status/200 | Status:  | Time: s | DOWN
+2025-10-30 18:07:53 | https://example.com | Status:  | Time: s | DOWN
+2025-10-30 18:07:53 | https://httpbin.org/status/200 | Status:  | Time: s | DOWN
+2025-10-30 18:09:31 | https://httpbin.org/status/200 | Status: 200 | Time: 3.822003s | SLOW
+2025-10-30 18:09:33 | https://example.com | Status: 200 | Time: 1.123029s | SLOW
+2025-10-30 18:09:59 | https://httpbin.org/status/200 | Status: 200 | Time: 27.563152s | SLOW
+2025-10-30 18:12:51 | https://example.com | Status: 200 | Time: 1.022891s | SLOW
+2025-10-30 18:12:55 | https://httpbin.org/status/200 | Status: 200 | Time: 3.542599s | SLOW
+2025-10-30 18:22:56 | https://example.com | Status: 200 | Time: 1.042777s | SLOW
+2025-10-30 18:23:08 | https://httpbin.org/status/200 | Status: 200 | Time: 11.333592s | SLOW
+2025-10-30 18:31:11 | https://httpbin.org/status/200 | Status: 200 | Time: 2.091790s | SLOW
+2025-10-30 18:35:39 | https://httpbin.org/status/200 | Status: 503 | Time: 1.290813s | DOWN

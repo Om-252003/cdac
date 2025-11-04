@@ -1,0 +1,11 @@
+{
+  "date": "2025-10-30",
+  "total_requests": 2,
+  "ok_responses": 1,
+  "slow_responses": 0,
+  "down_responses": 1,
+  "urls": [
+    {"url": "https://example.com", "status": "200", "time": "1.130449"},
+    {"url": "https://httpbin.org/status/200", "status": "503", "time": "1.212076"},
+  ]
+}

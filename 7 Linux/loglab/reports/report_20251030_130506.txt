@@ -1,0 +1,10 @@
+Total Requests: 1
+Unique IPs: 1
+Top IPs:
+      1 192.168.1.11
+HTTP Status Codes:
+      1 
+Total Bytes Sent: 0
+
+Daily Trend:
+No previous data to compare

@@ -1,0 +1,71 @@
+----- Uptime Check Started: Thursday 30 October 2025 04:38:02 PM IST -----
+2025-10-30 16:38:02 | https://example.com | Status:  | Time: s
+2025-10-30 16:38:02 | https://httpbin.org/status/200 | Status:  | Time: s
+----- Check Completed -----
+----- Uptime Check Started: Thursday 30 October 2025 05:55:04 PM IST -----
+2025-10-30 17:55:04 | https://example.com | Status:  | Time: s
+2025-10-30 17:55:04 | https://example.com | Status:  | Time: s | DOWN
+2025-10-30 17:55:04 | https://httpbin.org/status/200 | Status:  | Time: s
+2025-10-30 17:55:04 | https://httpbin.org/status/200 | Status:  | Time: s | DOWN
+----- Check Completed -----
+----- Uptime Check Started: Thursday 30 October 2025 06:06:01 PM IST -----
+2025-10-30 18:06:01 | https://example.com | Status:  | Time: s | DOWN
+2025-10-30 18:06:01 | https://httpbin.org/status/200 | Status:  | Time: s | DOWN
+----- Uptime Check Started: Thursday 30 October 2025 06:07:53 PM IST -----
+2025-10-30 18:07:53 | https://example.com | Status:  | Time: s | DOWN
+2025-10-30 18:07:53 | https://httpbin.org/status/200 | Status:  | Time: s | DOWN
+----- Check Completed -----
+----- Uptime Check Started: Thursday 30 October 2025 06:07:53 PM IST -----
+2025-10-30 18:07:53 | https://example.com | Status:  | Time: s | DOWN
+2025-10-30 18:07:53 | https://httpbin.org/status/200 | Status:  | Time: s | DOWN
+----- Check Completed -----
+----- Uptime Check Started: Thursday 30 October 2025 06:09:04 PM IST -----
+2025-10-30 18:09:05 | https://example.com | Status: 200 | Time: 0.942661s | OK
+----- Uptime Check Started: Thursday 30 October 2025 06:09:27 PM IST -----
+2025-10-30 18:09:27 | https://example.com | Status: 200 | Time: 0.860217s | OK
+2025-10-30 18:09:31 | https://httpbin.org/status/200 | Status: 200 | Time: 3.822003s | SLOW
+----- Check Completed -----
+----- Uptime Check Started: Thursday 30 October 2025 06:09:31 PM IST -----
+2025-10-30 18:09:33 | https://example.com | Status: 200 | Time: 1.123029s | SLOW
+2025-10-30 18:09:59 | https://httpbin.org/status/200 | Status: 200 | Time: 27.563152s | SLOW
+----- Check Completed -----
+----- Uptime Check Started: Thursday 30 October 2025 06:12:50 PM IST -----
+2025-10-30 18:12:51 | https://example.com | Status: 200 | Time: 1.022891s | SLOW
+2025-10-30 18:12:55 | https://httpbin.org/status/200 | Status: 200 | Time: 3.542599s | SLOW
+----- Check Completed -----
+----- Summary Report -----
+Total URLs Checked: 2
+OK Responses: 0
+SLOW Responses: 2
+DOWN Responses: 0
+----- Uptime Check Started: Thursday 30 October 2025 06:22:55 PM IST -----
+2025-10-30 18:22:56 | https://example.com | Status: 200 | Time: 1.042777s | SLOW
+2025-10-30 18:23:08 | https://httpbin.org/status/200 | Status: 200 | Time: 11.333592s | SLOW
+----- Check Completed -----
+----- Summary Report -----
+Total URLs Checked: 2
+OK Responses: 0
+SLOW Responses: 2
+DOWN Responses: 0
+----- Uptime Check Started: Thursday 30 October 2025 06:31:08 PM IST -----
+2025-10-30 18:31:09 | https://example.com | Status: 200 | Time: 0.929229s | OK
+2025-10-30 18:31:11 | https://httpbin.org/status/200 | Status: 200 | Time: 2.091790s | SLOW
+----- Check Completed -----
+----- Summary Report -----
+Total URLs Checked: 2
+OK Responses: 1
+SLOW Responses: 1
+DOWN Responses: 0
+Daily Trend Comparison:
+No previous data to compare.
+----- Uptime Check Started: Thursday 30 October 2025 06:35:37 PM IST -----
+2025-10-30 18:35:38 | https://example.com | Status: 200 | Time: 0.925124s | OK
+2025-10-30 18:35:39 | https://httpbin.org/status/200 | Status: 503 | Time: 1.290813s | DOWN
+----- Check Completed -----
+----- Summary Report -----
+Total URLs Checked: 2
+OK Responses: 1
+SLOW Responses: 0
+DOWN Responses: 1
+Daily Trend Comparison:
+No previous data to compare.
