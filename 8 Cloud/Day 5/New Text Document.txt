@@ -1,0 +1,121 @@
+
+
+
+	IP address of device on internet
+	32 bits -> 4 octates each contains 8 bits 
+	
+	classful :
+		
+		class A : 1st octate is network id, 3 are host ids
+		class B : 2 octates are network ids, 2 are host ids
+		class C : 3 ocatates are network ids, 1 is host id
+		class D : reserved 
+		class E : for research purposes.		
+		
+		host -> devices
+		
+		
+	classless :	
+		A smarter way to manage IP addreess.
+		we have flexibility to chose the no. of IPs we need.
+		
+		CIDR : Classless Inter-domain routing
+		
+		format of CIDR notation : IP_addr/prefix_length
+			ex. 192.168.1.0/24
+			
+			192.168.1.0 -> network addresses
+			/24         -> number of bits used for the network part/id. 
+			it allows flexible subnetting of the network
+			
+			ex. 192.48.10.4/24
+				network part : 11111111.11111111.11111111
+				host part    : 00000000
+				
+					11111111.11111111.11111111.00000000
+					   255     255      255       0
+					   
+	
+	classful vs classless :
+	
+		classful : 
+			fixed network sizes (A,B,C)
+			Wastes Ip addresses
+		classsless : flexible network sizes
+	
+	Benefits : 
+		
+		Efficient way to manage ip addresses
+		reduces routing table size ( it has src and dest ip addresses )
+		Enables route aggregation
+		Simplifies IP management and reduces wastage
+		
+		
+		
+---------------------------------------------------------------------------------------------------
+
+AWS Sagemaker : For Cloud ML ( hell lot of expensive )
+
+Athena : 
+	optimise serverless experience
+	charges on runtime of query
+	
+	athena runs on Trino sql server.
+	serverless. 
+	can take data from s3 buckets , multicloud architecture and on-premises
+	
+	set query output location, that output location must set lifecycle.
+	choose catalog if exists. then select the database.
+	catalogs have multiple databases.
+	create database, table, set input path.
+	
+	we have to write Schema by ourselves. 
+	
+	so to counter this we use AWS Glue.
+	
+
+AWS Glue : serverless data integration service.
+
+	its the biggest service in AWS, contains so many sub services.
+	Glue manages infrastructure. 
+	Platform as a Service (PaaS)
+	AWS Glue is best described as PaaS because it provides a complete environment for developers and data engineers to build, run, and manage Extract, Transform, and Load (ETL) jobs and data integration pipelines without the burden of managing the underlying infrastructure. 
+	You manage: Your data, the logic of your ETL jobs (using Python or Scala scripts), and the configuration of data sources/targets.
+	AWS manages: The entire platform, including the servers, storage, networking, operating systems, and the managed Apache Spark environment needed to run the jobs. 
+		
+	
+	Glue edit, clone and monitors ETL jobs
+	we can manage resources from background even if Glue is serverless
+	
+	Crawlers
+	A crawler connects to a data store, progresses through a prioritized list of classifiers to determine the schema for your data, and then creates metadata tables in your data catalog.
+	
+	in short : crawlers can 
+
+
+	
+SQS : Simple Queue Service
+
+
+HDFS : hadoop distributed file systems
+
+	
+	Architecture : 		https://phoenixnap.com/kb/wp-content/uploads/2021/04/hdfs-components-namenode-datanode-datanode.png
+	
+	Chunking : File dividing into chunks
+	
+	default size is 128 MB for each chunk in architecture 2nd.
+	
+	master monitors life of slaves from their heart beat. means response codes (200,404, 500 etc)
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+S3 equivalent in Google : GCS Google cloud storage.
+

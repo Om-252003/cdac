@@ -65,6 +65,10 @@ AWS Services :
 	
 	- even if region is down due to some region, we can access it through different zone, but latency will be a little bit high.
 	
+	- folders are also objects.
+	
+	- in s3 we can make 100 buckets, if we want, we can raise a ticket in aws, and then limit is removed, infinite can be created.
+	
 	According to access frequency S3 is divided into classes : Highest to lowest
 	
 		1. S3 express one zone -> in one zone data will be replicated 3 times

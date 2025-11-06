@@ -1,0 +1,90 @@
+**********Lifecycle policy**************** <- IMP for viva
+//////////////////////////////////////////////////////
+
+
+* Cloudwatch - monitors resources and applications
+* CloudTrail - Track user activity and API Usage
+
+* IAM important policy : only give permissions that are needed
+
+* redshiftoverwatch: deleted 3rd cluster rifht after it's creation. event is triggered using the cloudwatch events logs.
+
+* EBS - Elastic block service, like S3, but stored in form of files.
+* KMS - Key management service in EC2
+
+* RRS - Reduced Redundancy Service.
+
+in s3 every obeject is copied 3 times, in RRS, the object is not stored 3 times, hence durability is also less,chances of loss is expected to be 0.001  means 99.99% only. 
+
+* SNS - Simple Notification Service.
+
+* Alarms in Cloudwatch can be triggered by an event, and notification can be sent. 
+whenever the event happens ex. creation of 3rd reshift cluster, the SNS notification is sent to lambda function, and it's code is executed. 
+
+	# topic should be selected, topic is a group of entities which relate to that topic.
+	ex. if topic is cloud, then only cloud enigneeers will get the notification not ML users.
+	
+	subscription of email should be confirmed by the users, services are also added subscriptions ex. lambda service . 
+	
+	users manually need to confirm to the suubscription but services automatically confirm the subscriptions
+	
+	select the lambda function that we want. 
+	
+
+
+instance types in ec2 :
+ - T (e.g., T2, T3 ... i.e. t3 micro, t2 micro , etc): These are General Purpose, burstable instances. They are ideal for workloads with low-to-moderate CPU usage that experience occasional spikes in activity (e.g., low-traffic websites or development environments).
+ 
+ - M (e.g., M5): These are General Purpose instances that provide a consistent, balanced baseline of resources. They are a good "default choice" for typical backend or enterprise applications where you need an equal proportion of CPU and memory.
+ 
+ - HPC (Hpc family): This is a specific instance category designed for High-Performance Computing workloads that require very high CPU performance and network throughput for large-scale, complex computational tasks like scientific modeling and simulations. 
+	
+* in ec2, volume 8GB to 30 GB is free. volume means ROM	
+
+* RDS - Relational Database Service
+	
+	RDS supports 8 database engines 
+
+		- Amazon Aurora
+
+		- MySQL (uses InnoDB as the default storage engine)
+
+		- PostgreSQL
+
+		- MariaDB
+
+		- Oracle
+
+		- Microsoft SQL Server
+
+		Note: Aurora technically has two flavors (Aurora MySQL & Aurora PostgreSQL), but AWS counts them under Aurora.
+		
+	An EC2 instance includes:
+
+		Component	      |                   Explanation
+		Instance Type	  |     Defines CPU (vCPU), memory (RAM), network, and GPU 
+		Storage Volume    |   	EBS (Elastic Block Store) — persistent storage
+		Instance Store    |	Temporary storage (data lost on stop/terminate)
+		(optional)
+		
+		
+	EC2 VM has :
+			- instance  : RAM, Processors, GPU
+			- Volume (ROM) 
+	
+	everytime we stopped and opeened ec2, our ip changes because we're getting new servers assigned. hence we have to repeatedly connect the Database with new IPs
+	
+	elastic ip redirects to correct ip addresses even if connection is stopped and started.
+
+	When you stop and start an EC2 instance:
+
+	Public IP changes (because AWS reassigns networking)
+
+	To keep a static public IP:
+
+	Use Elastic IP
+
+	It maps to your EC2 instance so the IP stays the same even after stop/start
+	
+	
+* VPC : Virtual Private Could (Isolated Cloud Resource)

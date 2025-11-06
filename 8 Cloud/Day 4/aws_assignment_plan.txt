@@ -1,0 +1,343 @@
+AWS Integrated Assignment – End‑to‑End Plan (Ultra‑Detailed, Budget‑Safe)
+Generated: 2025-11-06 17:58 IST
+Author: Your Copilot
+
+Goal
+-----
+Build an end‑to‑end data pipeline in AWS that:
+1) Ingests CSV orders into S3,
+2) Cleans/transforms via Lambda (with pandas),
+3) Stores cleaned rows in RDS MySQL,
+4) Runs analytics from EC2 and uploads a JSON summary to S3 with the date in the filename,
+5) (Bonus) Sends an SNS alert email when sales exceed a threshold,
+6) All resources live inside your custom VPC; use only PUBLIC subnets as required by your teacher,
+7) Stay under $1 cost by running things briefly and tearing down immediately after screenshots.
+
+Hard Constraints (from teacher + your account)
+----------------------------------------------
+• Federated student learner account; you have a LabRole with predefined permissions. We will reuse it where possible.
+• Max spend: $1 for this assignment. We will enforce guardrails and a teardown.
+• Everything must be inside a VPC and within PUBLIC subnets.
+• S3 summary filename MUST include the date → e.g. s3://traya-orders-data/analytics/summary_YYYY-MM-DD.json (one file per day).
+• No extra policy creation required. Use existing LabRole/managed policies if already attached by the lab.
+
+What We Will Build (Architecture)
+---------------------------------
+• VPC: 1 VPC with 2 PUBLIC subnets (required for RDS subnet group across 2 AZs). Attach an Internet Gateway (IGW). Public route table sends 0.0.0.0/0 to IGW.
+• VPC endpoint: Create a Gateway VPC Endpoint for S3 so Lambda in the VPC can reach S3 without NAT (saves cost).
+• Security Groups:
+  - sg-ec2: allow inbound SSH (22) from your IP only; outbound all.
+  - sg-rds: allow inbound MySQL (3306) ONLY from sg-ec2 (reference security group). Outbound all.
+  - sg-lambda: no inbound; outbound all. (Lambda needs outbound to RDS on 3306 and to S3 via the VPC endpoint).
+• S3 bucket: traya-orders-data with prefixes raw/, processed/, analytics/. Lifecycle rule moves objects older than 15 days to Glacier.
+• Lambda (Python 3.12): Triggered by S3 PUT to raw/. Uses pandas (via custom Lambda Layer) to clean data and write cleaned CSV to processed/cleaned_YYYY-MM-DD.csv. Also writes rows to RDS.
+• RDS MySQL (db.t3.micro): Single‑AZ, 20 GB gp3, Publicly Accessible = YES, in PUBLIC subnets (as per assignment), but access restricted by sg-rds to EC2 only (and Lambda if writing from Lambda).
+• EC2 (Amazon Linux 2023, t3.micro or t4g.micro if ARM is allowed): Runs analytics.py that queries RDS, computes stats, writes JSON summary, uploads to S3 at analytics/summary_YYYY-MM-DD.json. Optionally schedule via cron; for budget, run once, take screenshot, then disable.
+• (Bonus) SNS topic with email subscription. Script publishes an alert if total daily sales exceeds 50000 (or teacher’s value).
+
+Cost Guardrails (Stay Under $1)
+-------------------------------
+• Use smallest sizes: RDS db.t3.micro Single‑AZ, 20 GB gp3 (free‑tier eligible in many accounts). Keep it running for the shortest time (≤1 hour).
+• EC2: t3.micro (or t4g.micro if allowed) for ≤1 hour. Stop/terminate immediately after screenshots and uploads.
+• No NAT Gateway (it is expensive). Use S3 Gateway Endpoint and place Lambda in public subnet.
+• Tear down everything after collecting deliverables (bucket can remain with lifecycle to Glacier; you may delete it too).
+• Enable Billing Alerts for spend > $1 (optional but recommended).
+
+SECTION A — VPC and Networking (All Public)
+-------------------------------------------
+A1) Create VPC
+    Name: traya-vpc
+    CIDR: 10.0.0.0/16
+
+A2) Create two PUBLIC subnets (required for RDS subnet group across 2 AZs)
+    Subnet A: 10.0.1.0/24 in AZ-1 (e.g., ap-south-1a) | Auto-assign public IPv4: ENABLED
+    Subnet B: 10.0.2.0/24 in AZ-2 (e.g., ap-south-1b) | Auto-assign public IPv4: ENABLED
+
+A3) Internet Gateway (IGW)
+    Create igw-traya and Attach to traya-vpc.
+
+A4) Route Table
+    Create rt-public; associate with both subnets (A and B).
+    Add route: Destination 0.0.0.0/0 → Target: igw-traya.
+
+A5) VPC Endpoint for S3 (saves NAT cost)
+    Create Gateway endpoint for S3; select traya-vpc and rt-public.
+
+SECTION B — S3 Bucket and Lifecycle
+-----------------------------------
+B1) Create bucket: traya-orders-data (Region: same as VPC; block public access ON).
+B2) Create folders (prefixes): raw/, processed/, analytics/.
+B3) Upload orders_detailed.csv into raw/.
+B4) Lifecycle rule: name “ToGlacier15Days”
+    Filter: entire bucket or raw/ and processed/
+    Transition to Glacier: 15 days after object creation.
+
+SECTION C — Security Groups
+---------------------------
+C1) sg-ec2
+    Inbound: TCP 22 from YOUR_PUBLIC_IP/32 only.
+    Outbound: All.
+
+C2) sg-rds
+    Inbound: TCP 3306 from sg-ec2 (security group reference).
+    (If Lambda writes to RDS, also allow from sg-lambda.)
+    Outbound: All.
+
+C3) sg-lambda
+    Inbound: None
+    Outbound: All
+    (No NAT required because S3 is via VPC Endpoint and RDS is inside VPC.)
+
+SECTION D — RDS MySQL
+---------------------
+D1) Create Subnet Group: rds-sng-public with the two PUBLIC subnets (A and B).
+D2) Create RDS instance:
+    Engine: MySQL 8.x
+    Instance class: db.t3.micro
+    Storage: 20 GB gp3, storage autoscaling OFF
+    Multi-AZ: OFF
+    Public access: YES (assignment requires public subnet; still control via sg-rds)
+    VPC: traya-vpc; Subnet group: rds-sng-public
+    Security group: sg-rds
+    Master username: admin_traya (example)
+    Master password: (store safely)
+D3) After available, note the Endpoint and Port (3306).
+
+D4) Create schema/table
+    Using EC2 (later) or Lambda, run:
+      CREATE DATABASE IF NOT EXISTS traya;
+      USE traya;
+      CREATE TABLE IF NOT EXISTS orders_cleaned (
+        order_id        VARCHAR(64) PRIMARY KEY,
+        order_date      DATE,
+        channel         VARCHAR(50),
+        customer_name   VARCHAR(255),
+        city            VARCHAR(100),
+        product         VARCHAR(255),
+        quantity        INT,
+        price           DECIMAL(10,2),
+        discount        DECIMAL(10,2),
+        total_value     DECIMAL(12,2)
+      );
+
+SECTION E — Lambda Layer (pandas) — built on EC2 to avoid local toolchain issues
+--------------------------------------------------------------------------------
+E1) Launch EC2 first (Section F). Use it to build a Lambda Layer zip for pandas.
+E2) On EC2:
+    sudo dnf update -y
+    sudo dnf install -y python3-pip zip
+    mkdir -p ~/layer/python
+    pip3 install --platform manylinux2014_x86_64 --only-binary=:all:         --target ~/layer/python pandas==2.2.2 PyMySQL==1.1.0 boto3==1.34.0
+    cd ~/layer && zip -r pandas_layer.zip python
+E3) In Lambda console → Layers → Create layer:
+    Name: pandas-pymysql-boto3
+    Upload: pandas_layer.zip
+    Compatible runtimes: Python 3.12
+
+SECTION F — EC2 (for Analytics + Layer build)
+---------------------------------------------
+F1) Launch EC2
+    AMI: Amazon Linux 2023
+    Type: t3.micro (or t4g.micro if allowed; then install arm64 wheels accordingly)
+    Subnet: Public Subnet A
+    Auto-assign Public IP: ENABLED
+    Security group: sg-ec2
+    Key pair: create or use existing (.pem)
+F2) Connect via SSH:
+    chmod 400 key.pem
+    ssh -i key.pem ec2-user@<EC2_PUBLIC_IP>
+F3) Install tools:
+    sudo dnf update -y
+    sudo dnf install -y python3-pip mysql
+    pip3 install boto3 PyMySQL pandas==2.2.2
+
+SECTION G — Lambda Function (Transformation + RDS Load)
+-------------------------------------------------------
+G1) Create Lambda
+    Name: traya-clean-and-load
+    Runtime: Python 3.12
+    Architecture: x86_64 (to match layer)
+    Role: Use your LabRole if it already has S3 + Lambda basic + RDS access.
+    VPC: traya-vpc; Subnets: both PUBLIC subnets; Security group: sg-lambda
+    Add Layer: pandas-pymysql-boto3
+G2) S3 Trigger
+    Add trigger: S3 → traya-orders-data, Event type: PUT, Prefix: raw/
+G3) Environment variables
+    RDS_HOST = <your-rds-endpoint>
+    RDS_PORT = 3306
+    RDS_DB   = traya
+    RDS_USER = admin_traya
+    RDS_PASS = <password>
+    S3_BUCKET = traya-orders-data
+G4) Handler code (high level logic)
+    • Read object from S3 (event).
+    • Load CSV via pandas.
+    • Drop rows with blank customer_name or price <= 0.
+    • total_value = quantity * price.
+    • Normalize city = str.title().strip().
+    • Write cleaned CSV to s3://traya-orders-data/processed/cleaned_YYYY-MM-DD.csv
+      (use Asia/Kolkata date).
+    • Upsert into RDS (INSERT ... ON DUPLICATE KEY UPDATE).
+    • Log counts of input/cleaned/loaded rows.
+G5) Test
+    Upload orders_detailed.csv to raw/. Verify:
+      - processed/cleaned_YYYY-MM-DD.csv exists
+      - rows appear in RDS (orders_cleaned)
+
+SECTION H — EC2 Analytics Script
+--------------------------------
+H1) On EC2, create analytics.py with the following logic:
+    - Read RDS credentials from env or a .env file.
+    - Query SELECT * FROM orders_cleaned.
+    - Compute:
+        a) Top 5 cities by sum(total_value)
+        b) Average order value per channel
+        c) Discount usage rate per product = count(discount>0)/count(*) per product
+    - Create JSON:
+        {
+          "date": "YYYY-MM-DD",
+          "top_cities": [...],
+          "avg_order_value_by_channel": {...},
+          "discount_usage_rate_by_product": {...},
+          "total_sales_today": 12345.67
+        }
+    - Save local file summary_YYYY-MM-DD.json and upload to s3://traya-orders-data/analytics/
+    - If total_sales_today > 50000 → publish SNS alert (bonus)
+H2) Install cronie and schedule (optional; budget friendly: run once):
+    sudo dnf install -y cronie
+    crontab -e
+    # Example (every 12 hours IST). You can keep it commented after one run:
+    0 */12 * * * /usr/bin/python3 /home/ec2-user/analytics.py >> /home/ec2-user/analytics.log 2>&1
+
+SECTION I — SNS Bonus (Optional)
+--------------------------------
+I1) Create SNS topic: traya-sales-alerts
+I2) Create email subscription (confirm from your inbox).
+I3) In analytics.py, if total_sales_today > 50000, publish a message to the topic.
+
+SECTION J — Deliverables Checklist (take screenshots)
+-----------------------------------------------------
+[ ] Architecture diagram (draw.io/Lucidchart/hand‑drawn)
+[ ] S3 console showing raw/, processed/, analytics/ prefixes and dated files
+[ ] Lambda code + layer screenshot
+[ ] RDS schema screenshot + sample SELECT output
+[ ] EC2 cron snippet (or command run output) + S3 analytics file summary_YYYY-MM-DD.json
+[ ] (Bonus) SNS email alert screenshot
+
+SECTION K — Teardown (to keep spend < $1)
+-----------------------------------------
+K1) Terminate EC2 instance.
+K2) Delete RDS instance and subnet group.
+K3) Delete Lambda function + Layer.
+K4) Delete VPC endpoint.
+K5) Detach and delete IGW; delete route table; delete subnets; delete VPC.
+K6) Empty and delete S3 bucket (or keep if you want; but delete to stop any unintended usage).
+K7) Delete SNS topic if created.
+
+Appendix — Minimal Code Skeletons (for reference)
+--------------------------------------------------
+1) Lambda (pseudocode):
+   import os, io, boto3, pymysql, pandas as pd
+   from datetime import datetime, timedelta, timezone
+
+   IST = timezone(timedelta(hours=5, minutes=30))
+   s3 = boto3.client('s3')
+
+   def handler(event, context):
+       bucket = os.environ['S3_BUCKET']
+       key = event['Records'][0]['s3']['object']['key']
+       obj = s3.get_object(Bucket=bucket, Key=key)
+       df = pd.read_csv(io.BytesIO(obj['Body'].read()))
+
+       df = df.dropna(subset=['customer_name','price'])
+       df = df[df['price'] > 0]
+       df['city'] = df['city'].astype(str).str.strip().str.title()
+       df['total_value'] = df['quantity'] * df['price']
+
+       date_str = datetime.now(IST).strftime('%Y-%m-%d')
+       out_key = f'processed/cleaned_{date_str}.csv'
+       csv_buf = io.StringIO()
+       df.to_csv(csv_buf, index=False)
+       s3.put_object(Bucket=bucket, Key=out_key, Body=csv_buf.getvalue())
+
+       conn = pymysql.connect(host=os.environ['RDS_HOST'], user=os.environ['RDS_USER'],
+                              password=os.environ['RDS_PASS'], db=os.environ['RDS_DB'],
+                              port=int(os.environ['RDS_PORT']), autocommit=True)
+       with conn.cursor() as cur:
+           cur.execute('''CREATE TABLE IF NOT EXISTS orders_cleaned (
+                 order_id VARCHAR(64) PRIMARY KEY,
+                 order_date DATE,
+                 channel VARCHAR(50),
+                 customer_name VARCHAR(255),
+                 city VARCHAR(100),
+                 product VARCHAR(255),
+                 quantity INT,
+                 price DECIMAL(10,2),
+                 discount DECIMAL(10,2),
+                 total_value DECIMAL(12,2)
+           )''')
+           # Insert rows
+           for row in df.itertuples(index=False):
+               cur.execute('''INSERT INTO orders_cleaned
+                 (order_id, order_date, channel, customer_name, city, product, quantity, price, discount, total_value)
+                 VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
+                 ON DUPLICATE KEY UPDATE
+                   order_date=VALUES(order_date),
+                   channel=VALUES(channel),
+                   customer_name=VALUES(customer_name),
+                   city=VALUES(city),
+                   product=VALUES(product),
+                   quantity=VALUES(quantity),
+                   price=VALUES(price),
+                   discount=VALUES(discount),
+                   total_value=VALUES(total_value)
+               ''', tuple(row))
+
+2) EC2 analytics.py (pseudocode):
+   import os, json, boto3, pymysql, pandas as pd
+   from datetime import datetime, timedelta, timezone
+   IST = timezone(timedelta(hours=5, minutes=30))
+
+   rds = dict(host=os.environ['RDS_HOST'], user=os.environ['RDS_USER'],
+              password=os.environ['RDS_PASS'], db=os.environ['RDS_DB'], port=int(os.environ['RDS_PORT']))
+
+   conn = pymysql.connect(**rds)
+   df = pd.read_sql('SELECT * FROM orders_cleaned', conn)
+
+   top_cities = (df.groupby('city')['total_value'].sum()
+                   .sort_values(ascending=False).head(5).reset_index().to_dict(orient='records'))
+   aov_by_channel = (df.assign(order_value=df['total_value'])
+                       .groupby('channel')['order_value'].mean().round(2).to_dict())
+   rate_by_product = (df.assign(has_discount=(df['discount'] > 0).astype(int))
+                        .groupby('product')['has_discount'].mean().round(3).to_dict())
+
+   today = datetime.now(IST).strftime('%Y-%m-%d')
+   total_sales_today = float(df[df['order_date'] == today]['total_value'].sum())
+
+   payload = {
+       'date': today,
+       'top_cities': top_cities,
+       'avg_order_value_by_channel': aov_by_channel,
+       'discount_usage_rate_by_product': rate_by_product,
+       'total_sales_today': total_sales_today
+   }
+
+   fn = f'summary_{today}.json'
+   with open(fn, 'w') as f: json.dump(payload, f, indent=2)
+
+   s3 = boto3.client('s3')
+   s3.upload_file(fn, 'traya-orders-data', f'analytics/{fn}')
+
+   # Bonus SNS
+   if total_sales_today > 50000:
+       sns = boto3.client('sns')
+       sns.publish(TopicArn=os.environ['SNS_TOPIC_ARN'],
+                   Subject='Sales Alert',
+                   Message=json.dumps(payload))
+
+Notes
+-----
+• Keep RDS + EC2 running only during testing. Terminate immediately after screenshots to keep cost < $1.
+• If your LabRole already has wide permissions, you won’t need to add policies. If any permission error appears, tell me and I’ll adjust commands to stay within your role set.
+• The Lambda can also write to RDS; if you prefer, do the RDS load from EC2 after Lambda writes the cleaned CSV. Both satisfy the assignment; choose one.
+• The filename requirement is satisfied by using summary_YYYY-MM-DD.json and cleaned_YYYY-MM-DD.csv, computing the date in IST to match your timezone.
