@@ -56,13 +56,15 @@
 
 AWS Sagemaker : For Cloud ML ( hell lot of expensive )
 
-Athena : 
+Athena :  query service
 	optimise serverless experience
 	charges on runtime of query
 	
 	athena runs on Trino sql server.
 	serverless. 
 	can take data from s3 buckets , multicloud architecture and on-premises
+	
+	Platform as a Service (PaaS): This is the most accurate classification. PaaS provides a platform and tools for developers to build, deploy, and manage applications without the complexity of managing the underlying infrastructure (hardware, operating systems, etc.)
 	
 	set query output location, that output location must set lifecycle.
 	choose catalog if exists. then select the database.
