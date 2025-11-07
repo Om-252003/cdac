@@ -1,0 +1,125 @@
+AWS Integrated Assignment – Final Steps Plan (Optimised for low-cost & single Lambda)
+
+Region: us-east-1
+Budget: Keep usage within AWS Learner Account $50 credits (avoid unnecessary EC2/Layers costs)
+
+---------------------------------------------------------------------
+GOAL SUMMARY:
+We must build a pipeline:
+S3 → Lambda (single function) → RDS → EC2 analytics → S3 summary file
+BONUS: SNS alert if total daily sales > 50000
+
+We will NOT use 2 Lambdas.
+We will do everything needed inside one Lambda.
+
+We will NOT manually attach ANY external pandas layers because they caused errors.
+Instead we will use the public Klayers ARNs for pandas + pymysql so lambda never breaks.
+
+We must save summary files with naming format:
+summary_YYYYMMDD.json
+
+---------------------------------------------------------------------
+OVERALL STEPS EXECUTION PLAN:
+---------------------------------------------------------------------
+
+STEP 1 — Create S3
+- bucket name: traya-orders-data
+- inside create 3 folders:
+  raw/
+  processed/
+  analytics/
+- upload orders_detailed.csv to raw/
+
+- Lifecycle rule: move any object older than 15 days to Glacier
+
+---------------------------------------------------------------------
+
+STEP 2 — Create RDS (MySQL free-tier t3.micro)
+- DB instance id: ordersdb
+- master username: admin
+- password: set your own
+- enable PUBLIC ACCESS = YES (teacher did not tell to lock down)
+- VPC: default VPC (we are not modifying policies)
+- wait until it becomes available
+- note down ENDPOINT
+
+---------------------------------------------------------------------
+
+STEP 3 — EC2 setup
+- create Amazon Linux t3.micro free tier
+- connect using MobaXterm
+- install mysql client
+  sudo yum install mariadb105 -y
+- connect to RDS
+- create DB + table orders_cleaned
+
+columns:
+order_id int,
+customer_name varchar(100),
+city varchar(50),
+product varchar(100),
+quantity int,
+price float,
+discount_code varchar(20),
+channel varchar(50),
+payment_mode varchar(50),
+order_date date,
+total_value float
+
+---------------------------------------------------------------------
+
+STEP 4 — Create SNS Topic
+- name: orders-alert-topic
+- subscription email = your email
+- confirm email link
+
+---------------------------------------------------------------------
+
+STEP 5 — Create Lambda
+- runtime: Python 3.12
+- trigger: S3 PUT raw/
+- environment variables:
+  DB_HOST=RDS-endpoint
+  DB_USER=admin
+  DB_PASSWORD=xxxxx
+  DB_NAME=ordersdb
+  SNS_TOPIC_ARN=your-SNS-topic-arn
+  BUCKET=traya-orders-data
+
+- attach layers:
+  pandas klayer ARN
+  pymysql klayer ARN
+
+---------------------------------------------------------------------
+
+LAMBDA LOGIC MUST DO:
+1. read CSV from S3
+2. remove blank customer_name and negative/zero price
+3. normalize city -> title case
+4. calculate total_value = quantity * price
+5. write processed file to processed/
+6. insert cleaned data into RDS
+7. compute total sales of that file
+8. if total_sales > 50000 → send SNS ALERT (bonus)
+9. write summary_YYYYMMDD.json into analytics/
+
+---------------------------------------------------------------------
+
+STEP 6 — EC2 Analytics
+We only need Python analytics script & cron every 12 hours
+
+- script:
+  connect to RDS
+  compute:
+    top 5 cities by total_value
+    avg order value by channel
+    discount usage per product
+  store json → summary_YYYYMMDD.json
+  upload to S3 → analytics/
+
+- cron job:
+  */720 * * * * python3 pipeline.py
+
+---------------------------------------------------------------------
+
+THIS IS THE EXACT PLAN WE WILL IMPLEMENT.

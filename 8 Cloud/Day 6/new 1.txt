@@ -2,3 +2,11 @@ what is github workflow, github actions, github secret, yaml file
 
 spot instance  and reserved instance?
 
+ORC,AVRO,Parquet are compression types of files like zip and tar
+
+partitioning can be done in a full value   ( ex. day/month/year )
+bucketing is done in a range			   ( ex. range, age/marks/price )
+
+means make buckets of salary 10000-20000
+partition the employees by dept.
+this minimizes the number of dearch

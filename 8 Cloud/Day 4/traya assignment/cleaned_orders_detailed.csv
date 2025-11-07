@@ -1,0 +1,89 @@
+order_id,customer_name,city,product,quantity,price,discount_code,channel,payment_mode,order_date,total_value
+ORD1001,Aarav,Hyderabad,Oil,2,748.91,FEST50,Referral,Credit Card,2025-10-14,1497.82
+ORD1002,nan,Pune,Oil,5,621.32,NEW10,Referral,Cash on Delivery,2025-10-15,3106.6000000000004
+ORD1003,Aarav,Bengaluru,Comb,3,313.7,0,Amazon,Credit Card,2025-10-13,941.0999999999999
+ORD1004,Meera,Hyderabad,Comb,5,168.46,0,Website,Wallet,2025-10-20,842.3000000000001
+ORD1005,Meera,Delhi,Shampoo,1,677.54,0,Website,UPI,2025-10-13,677.54
+ORD1006,Meera,Bengaluru,Serum,2,686.0,FEST50,Website,UPI,2025-10-24,1372.0
+ORD1007,Sneha,Chennai,Conditioner,2,699.7,0,Website,UPI,2025-10-26,1399.4
+ORD1008,Kabir,Pune,Conditioner,3,251.78,SAVE5,Flipkart,UPI,2025-10-05,755.34
+ORD1009,Aisha,Hyderabad,Conditioner,4,902.03,FEST50,Instagram,UPI,2025-10-16,3608.12
+ORD1010,Aarav,Pune,Oil,4,615.99,FEST50,Referral,Cash on Delivery,2025-10-09,2463.96
+ORD1011,Aarav,Pune,Conditioner,3,779.4,NEW10,Amazon,Cash on Delivery,2025-10-15,2338.2
+ORD1012,nan,Hyderabad,Oil,5,916.08,NEW10,Amazon,UPI,2025-10-12,4580.400000000001
+ORD1013,Aisha,Mumbai,Serum,4,68.48,0,Amazon,UPI,2025-10-08,273.92
+ORD1014,Diya,Pune,Comb,1,978.11,0,Instagram,UPI,2025-10-16,978.11
+ORD1015,Rohan,Hyderabad,Conditioner,4,965.18,TRAYA20,Instagram,Wallet,2025-10-22,3860.72
+ORD1017,nan,Mumbai,Shampoo,1,865.79,0,Instagram,Wallet,2025-10-16,865.79
+ORD1018,Rohan,Kolkata,Comb,4,230.7,TRAYA20,Flipkart,Wallet,2025-10-14,922.8
+ORD1019,Aarav,Pune,Comb,3,809.76,FEST50,Instagram,UPI,2025-10-15,2429.2799999999997
+ORD1020,Rohan,Hyderabad,Oil,1,470.53,0,Referral,Credit Card,2025-10-21,470.53
+ORD1021,Aarav,Pune,Oil,4,510.87,NEW10,Flipkart,Credit Card,2025-10-13,2043.48
+ORD1022,nan,Chennai,Comb,3,451.43,NEW10,Referral,Cash on Delivery,2025-10-07,1354.29
+ORD1023,Aarav,Mumbai,Serum,1,97.59,0,Referral,UPI,2025-10-31,97.59
+ORD1024,Rohan,Pune,Shampoo,2,433.18,FEST50,Referral,UPI,2025-10-20,866.36
+ORD1025,nan,Pune,Conditioner,5,546.12,NEW10,Instagram,Wallet,2025-10-09,2730.6
+ORD1026,Kabir,Kolkata,Shampoo,1,484.91,FEST50,Website,Credit Card,2025-10-07,484.91
+ORD1027,Rohan,Nagpur,Oil,3,320.45,FEST50,Referral,Wallet,2025-10-26,961.3499999999999
+ORD1028,Aarav,Hyderabad,Shampoo,2,300.98,SAVE5,Referral,UPI,2025-10-10,601.96
+ORD1029,Meera,Delhi,Serum,5,513.62,0,Website,Credit Card,2025-10-14,2568.1
+ORD1030,Aarav,Mumbai,Oil,3,203.34,0,Flipkart,Credit Card,2025-10-03,610.02
+ORD1031,Rohan,Mumbai,Conditioner,5,190.54,0,Amazon,Wallet,2025-10-29,952.6999999999999
+ORD1032,Isha,Pune,Conditioner,4,974.17,NEW10,Instagram,UPI,2025-10-29,3896.68
+ORD1033,Rohan,Nagpur,Oil,3,201.08,TRAYA20,Flipkart,Credit Card,2025-10-08,603.24
+ORD1034,Sneha,Nagpur,Oil,2,72.46,0,Amazon,Wallet,2025-10-31,144.92
+ORD1035,Meera,Chennai,Conditioner,3,941.34,FEST50,Amazon,UPI,2025-10-31,2824.02
+ORD1036,Aarav,Pune,Comb,3,741.39,TRAYA20,Referral,Credit Card,2025-10-29,2224.17
+ORD1037,Kabir,Mumbai,Comb,1,543.4,TRAYA20,Instagram,Wallet,2025-10-03,543.4
+ORD1038,Meera,Nagpur,Shampoo,3,531.26,0,Amazon,Cash on Delivery,2025-10-10,1593.78
+ORD1039,Isha,Chennai,Comb,2,634.12,SAVE5,Referral,Credit Card,2025-10-10,1268.24
+ORD1040,Ritika,Nagpur,Comb,4,691.17,SAVE5,Instagram,Credit Card,2025-10-17,2764.68
+ORD1041,Ritika,Nagpur,Oil,3,263.18,NEW10,Website,Credit Card,2025-10-16,789.54
+ORD1042,Diya,Kolkata,Conditioner,2,731.71,NEW10,Flipkart,UPI,2025-10-21,1463.42
+ORD1043,Diya,Chennai,Oil,5,490.86,NEW10,Website,Cash on Delivery,2025-10-26,2454.3
+ORD1044,Aisha,Nagpur,Conditioner,5,454.98,0,Flipkart,UPI,2025-10-28,2274.9
+ORD1045,Kabir,Delhi,Serum,5,509.88,0,Flipkart,Credit Card,2025-10-10,2549.4
+ORD1046,Meera,Nagpur,Shampoo,2,193.14,0,Instagram,UPI,2025-10-14,386.28
+ORD1047,Aisha,Kolkata,Shampoo,2,840.41,FEST50,Referral,Credit Card,2025-10-13,1680.82
+ORD1048,Meera,Hyderabad,Comb,5,759.39,TRAYA20,Referral,UPI,2025-10-08,3796.95
+ORD1049,Sneha,Mumbai,Serum,4,737.25,TRAYA20,Instagram,Credit Card,2025-10-19,2949.0
+ORD1050,Aarav,Pune,Comb,2,872.64,SAVE5,Amazon,Cash on Delivery,2025-10-07,1745.28
+ORD1051,Meera,Chennai,Comb,3,842.33,SAVE5,Referral,Credit Card,2025-10-08,2526.9900000000002
+ORD1052,Aarav,Mumbai,Oil,1,639.65,FEST50,Flipkart,Credit Card,2025-10-31,639.65
+ORD1053,Kabir,Nagpur,Conditioner,5,964.58,0,Instagram,Wallet,2025-10-19,4822.900000000001
+ORD1054,nan,Hyderabad,Comb,4,943.46,0,Referral,UPI,2025-10-23,3773.84
+ORD1055,Ritika,Pune,Shampoo,3,555.58,0,Website,Wallet,2025-10-28,1666.7400000000002
+ORD1056,Sneha,Pune,Serum,4,721.24,FEST50,Referral,Wallet,2025-10-26,2884.96
+ORD1057,Sneha,Kolkata,Conditioner,3,355.87,TRAYA20,Website,Wallet,2025-10-08,1067.6100000000001
+ORD1058,Ritika,Chennai,Shampoo,4,857.55,SAVE5,Instagram,Wallet,2025-10-11,3430.2
+ORD1059,Ritika,Hyderabad,Shampoo,5,949.71,FEST50,Flipkart,Cash on Delivery,2025-10-25,4748.55
+ORD1060,Sneha,Kolkata,Shampoo,1,329.23,0,Instagram,Wallet,2025-10-19,329.23
+ORD1061,Aisha,Nagpur,Conditioner,3,383.87,NEW10,Amazon,Wallet,2025-10-04,1151.6100000000001
+ORD1062,Meera,Pune,Conditioner,2,231.77,0,Amazon,Wallet,2025-10-27,463.54
+ORD1063,Isha,Nagpur,Serum,1,721.91,FEST50,Website,Credit Card,2025-10-10,721.91
+ORD1064,Rohan,Kolkata,Shampoo,5,319.84,0,Amazon,UPI,2025-10-09,1599.1999999999998
+ORD1065,Sneha,Pune,Comb,4,120.3,NEW10,Website,UPI,2025-10-26,481.2
+ORD1066,Kabir,Pune,Shampoo,5,775.46,FEST50,Referral,UPI,2025-10-13,3877.3
+ORD1067,Sneha,Hyderabad,Comb,3,589.63,0,Website,UPI,2025-10-07,1768.8899999999999
+ORD1069,Kabir,Kolkata,Oil,3,797.65,0,Instagram,Cash on Delivery,2025-10-18,2392.95
+ORD1070,Rohan,Hyderabad,Shampoo,1,207.46,TRAYA20,Referral,Wallet,2025-10-04,207.46
+ORD1071,Kabir,Chennai,Conditioner,5,518.61,0,Website,Cash on Delivery,2025-10-11,2593.05
+ORD1072,Aarav,Pune,Conditioner,5,952.3,NEW10,Amazon,Credit Card,2025-10-16,4761.5
+ORD1073,Sneha,Hyderabad,Conditioner,4,652.41,SAVE5,Website,Cash on Delivery,2025-10-14,2609.64
+ORD1074,Diya,Bengaluru,Comb,4,323.52,TRAYA20,Referral,Credit Card,2025-10-03,1294.08
+ORD1075,Meera,Pune,Conditioner,1,674.12,NEW10,Flipkart,Credit Card,2025-10-17,674.12
+ORD1076,Sneha,Kolkata,Oil,3,571.21,0,Flipkart,Cash on Delivery,2025-10-01,1713.63
+ORD1077,Ritika,Delhi,Oil,3,572.75,0,Website,UPI,2025-10-15,1718.25
+ORD1078,Rohan,Kolkata,Serum,5,719.44,NEW10,Flipkart,Cash on Delivery,2025-10-15,3597.2000000000003
+ORD1079,Raj,Delhi,Conditioner,2,869.96,FEST50,Flipkart,Wallet,2025-10-09,1739.92
+ORD1080,Kabir,Hyderabad,Conditioner,4,871.13,SAVE5,Flipkart,Wallet,2025-10-18,3484.52
+ORD1081,Raj,Kolkata,Oil,2,592.64,SAVE5,Flipkart,Credit Card,2025-10-24,1185.28
+ORD1082,Raj,Chennai,Oil,4,965.62,0,Referral,Wallet,2025-10-28,3862.48
+ORD1083,Diya,Kolkata,Oil,4,876.52,SAVE5,Website,Cash on Delivery,2025-10-11,3506.08
+ORD1084,Raj,Pune,Conditioner,4,955.48,FEST50,Flipkart,Credit Card,2025-10-03,3821.92
+ORD1085,Kabir,Delhi,Shampoo,4,978.44,NEW10,Website,Cash on Delivery,2025-10-23,3913.76
+ORD1086,Aarav,Mumbai,Shampoo,3,390.18,FEST50,Instagram,Cash on Delivery,2025-10-22,1170.54
+ORD1087,Rohan,Bengaluru,Conditioner,4,638.11,NEW10,Referral,UPI,2025-10-15,2552.44
+ORD1088,Sneha,Hyderabad,Shampoo,4,905.25,TRAYA20,Instagram,Credit Card,2025-10-31,3621.0
+ORD1089,Ritika,Hyderabad,Comb,3,483.54,0,Flipkart,Cash on Delivery,2025-10-08,1450.6200000000001
+ORD1090,Meera,Hyderabad,Serum,1,978.07,FEST50,Amazon,Credit Card,2025-10-28,978.07

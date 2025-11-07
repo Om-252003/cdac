@@ -1,0 +1,69 @@
+{
+  "generated_at_utc": "2025-11-07T21:02:39.851665+00:00",
+  "top_5_cities_sales_in_inr": [
+    {
+      "city": "Pune",
+      "total_sales_in_inr": 176837.35974121094
+    },
+    {
+      "city": "Hyderabad",
+      "total_sales_in_inr": 167605.55889892578
+    },
+    {
+      "city": "Chennai",
+      "total_sales_in_inr": 86851.88037109375
+    },
+    {
+      "city": "Kolkata",
+      "total_sales_in_inr": 79772.51977539062
+    },
+    {
+      "city": "Nagpur",
+      "total_sales_in_inr": 64860.43865966797
+    }
+  ],
+  "avg_order_value_per_channel_in_inr": [
+    {
+      "channel": "Referral",
+      "avg_order_value_in_inr": 1970.009038289388
+    },
+    {
+      "channel": "Amazon",
+      "avg_order_value_in_inr": 1739.1599916730609
+    },
+    {
+      "channel": "Website",
+      "avg_order_value_in_inr": 1701.9566735161675
+    },
+    {
+      "channel": "Flipkart",
+      "avg_order_value_in_inr": 1904.3338690863716
+    },
+    {
+      "channel": "Instagram",
+      "avg_order_value_in_inr": 2398.7929364372703
+    }
+  ],
+  "discount_usage_rate_per_product_percent": [
+    {
+      "product": "Oil",
+      "discount_usage_rate_percent": 100.0
+    },
+    {
+      "product": "Comb",
+      "discount_usage_rate_percent": 100.0
+    },
+    {
+      "product": "Shampoo",
+      "discount_usage_rate_percent": 100.0
+    },
+    {
+      "product": "Serum",
+      "discount_usage_rate_percent": 100.0
+    },
+    {
+      "product": "Conditioner",
+      "discount_usage_rate_percent": 100.0
+    }
+  ]
+}
