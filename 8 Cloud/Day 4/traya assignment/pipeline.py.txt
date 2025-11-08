@@ -1,0 +1,87 @@
+import json
+import pymysql
+import boto3
+from datetime import datetime, timezone
+from decimal import Decimal
+
+DB_HOST = "ordersdb.c5bgvvjgyoqm.us-east-1.rds.amazonaws.com"
+DB_USER = "admin"
+DB_PASSWORD = "12345678"   # <-- replace
+DB_NAME = "ordersdb"
+BUCKET = "omsai-traya-bucket"
+
+s3 = boto3.client("s3")
+
+def today_yyyymmdd():
+    return datetime.now(timezone.utc).strftime("%Y%m%d")
+
+def to_float(x):
+    if isinstance(x, Decimal):
+        return float(x)
+    return x
+
+def main():
+    conn = pymysql.connect(
+        host=DB_HOST,
+        user=DB_USER,
+        password=DB_PASSWORD,
+        database=DB_NAME
+    )
+    cur = conn.cursor()
+
+    # 1) top 5 cities by total_value
+    cur.execute("""
+        SELECT city, SUM(total_value) as total_sales
+        FROM orders_cleaned
+        GROUP BY city
+        ORDER BY total_sales DESC
+        LIMIT 5;
+    """)
+    top_cities = [{"city": r[0], "total_sales_in_inr": to_float(r[1])} for r in cur.fetchall()]
+
+    # 2) avg order value per channel
+    cur.execute("""
+        SELECT channel, AVG(total_value) as avg_value
+        FROM orders_cleaned
+        GROUP BY channel;
+    """)
+    avg_channel = [{"channel": r[0], "avg_order_value_in_inr": to_float(r[1])} for r in cur.fetchall()]
+
+    # 3) discount usage rate per product
+    cur.execute("""
+        SELECT product,
+               SUM(CASE WHEN discount_code IS NULL OR discount_code='' THEN 0 ELSE 1 END) AS used,
+               COUNT(*) AS total
+        FROM orders_cleaned
+        GROUP BY product;
+    """)
+    disc_usage = []
+    for row in cur.fetchall():
+        product, used, total = row
+        used = to_float(used)
+        total = to_float(total)
+        rate = (used/total)*100 if total>0 else 0
+        disc_usage.append({
+            "product": product,
+            "discount_usage_rate_percent": round(rate, 2)
+        })
+
+    conn.close()
+
+    summary = {
+        "generated_at_utc": datetime.now(timezone.utc).isoformat(),
+        "top_5_cities_sales_in_inr": top_cities,
+        "avg_order_value_per_channel_in_inr": avg_channel,
+        "discount_usage_rate_per_product_percent": disc_usage
+    }
+
+    filename = f"summary_{today_yyyymmdd()}.json"
+
+    with open(filename, "w") as f:
+        json.dump(summary, f, indent=2)
+
+    s3.upload_file(filename, BUCKET, f"analytics/{filename}")
+    print("uploaded:", filename)
+
+if __name__ == "__main__":
+    main()

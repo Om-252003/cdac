@@ -10,3 +10,7 @@ bucketing is done in a range			   ( ex. range, age/marks/price )
 means make buckets of salary 10000-20000
 partition the employees by dept.
 this minimizes the number of dearch
+
+pre generate URL takes private ip from public access blocked bucket, make public url from it, which can set expiration time ex. in hours/days etc.
+
+spark lazy evaluation, action words

@@ -1,0 +1,290 @@
+AWS ORDERS PIPELINE - FINAL WORKING BUILD (us-east-1)
+======================================================
+
+THIS FILE CONTAINS ONLY CORRECT SUCCESSFUL STEPS.
+FAILED ATTEMPTS ARE NOT INCLUDED.
+
+------------------------------------------------------
+1) REGION + ACCOUNT
+------------------------------------------------------
+Region used: us-east-1
+Budget requirement: keep at least ~$40 remaining
+
+
+
+------------------------------------------------------
+2) S3 BUCKET (DATA LANDING)
+------------------------------------------------------
+Bucket name: omsai-traya-bucket
+Folder structure used:
+  raw/         <-- input CSV uploaded manually by us
+  processed/   <-- cleaned CSV
+  analytics/   <-- summary_YYYYMMDD.json
+
+S3 event trigger:
+  Event Type = s3:ObjectCreated:Put
+  Prefix = raw/
+
+This trigger calls the Lambda.
+
+------------------------------------------------------
+3) CUSTOM VPC CREATED FOR PIPELINE
+------------------------------------------------------
+Name: orders-pipeline-vpc-vpc (auto generated AWS formatted name)
+in 2 AZ
+This gave 2 public + 2 private subnets.
+
+We kept it like that. We did not manually modify subnets.
+
+------------------------------------------------------
+4) RDS MYSQL
+------------------------------------------------------
+Engine: MySQL
+Instance class: db.t3.micro
+Region: us-east-1
+VPC: orders-pipeline-vpc-vpc
+DB name: ordersdb
+Username: admin
+Password: 12345678
+Public access: Disabled
+Security Group attached later (below)
+
+------------------------------------------------------
+5) SECURITY GROUPS
+------------------------------------------------------
+
+SG for Lambda (created manually):
+  Name: lambda-rds-sg
+  VPC: orders-pipeline-vpc-vpc
+  outbound: allow all
+
+SG for EC2 analytics instance:
+  Name: ec2-analytics-sg
+  inbound: SSH 22 from our IP
+  outbound: allow all
+
+RDS security group:
+  inbound rule: MySQL TCP 3306
+    source = lambda-rds-sg
+    AND source = ec2-analytics-sg
+
+This allowed lambda + ec2 to reach MySQL privately via VPC.
+
+following was one of the most IMPORTANT fixes that made Lambda → RDS work.
+
+AWS by default blocks all inbound traffic to RDS until we explicitly allow it.
+
+So we edited security groups like this:
+
+RDS uses security group: lambda-rds-sg
+
+Final inbound rules in lambda-rds-sg:
+
+1) MySQL/Aurora — TCP 3306 — Source: lambda-rds-sg
+   Reason: Lambda ENIs use lambda-rds-sg, so RDS must allow inbound from itself
+
+2) MySQL/Aurora — TCP 3306 — Source: ec2-analytics-sg
+   Reason: allow EC2 analytics instance to run scripts against RDS
+
+3) HTTPS — TCP 443 — Source: lambda-rds-sg
+   Reason: SNS VPC Endpoint communication requires 443
+
+Outbound was kept as default (Allow All).
+
+EXPLANATION:
+Even though Lambda and RDS are inside SAME VPC, communication is NOT automatic.
+RDS requires explicit inbound permission from the calling SG.
+
+So this "add lambda SG into RDS SG" step was the fix that allowed database connectivity.
+
+This is why the connection started working after we did it.
+"""
+
+
+------------------------------------------------------
+6) VPC ENDPOINT FOR SNS
+------------------------------------------------------
+Type: Interface endpoint
+Service: com.amazonaws.us-east-1.sns
+VPC: orders-pipeline-vpc-vpc
+Private DNS enabled: yes
+
+Resulting VPC Endpoint ID was shown as:
+vpce-06e90b79ccb22fcbd
+
+------------------------------------------------------
+7) SNS TOPIC
+------------------------------------------------------
+Topic Name: omsai-traya-alert-topic
+Topic ARN: arn:aws:sns:us-east-1:561406826670:omsai-traya-alert-topic
+
+Email subscription was confirmed.
+
+Lambda uses THIS ARN in environment.
+
+------------------------------------------------------
+8) LAMBDA
+------------------------------------------------------
+Runtime: Python 3.12
+Memory 128 MB
+Timeout 60 sec
+VPC attached: PRIVATE subnets from orders-pipeline-vpc-vpc
+Security group attached: lambda-rds-sg
+
+ENVIRONMENT variables in Lambda:
+DB_HOST = ordersdb.c5bgvvjgyoqm.us-east-1.rds.amazonaws.com
+DB_NAME = ordersdb
+DB_USER = admin
+DB_PASSWORD = 12345678
+SNS_TOPIC_ARN = arn:aws:sns:us-east-1:561406826670:omsai-traya-alert-topic
+
+LAYER:
+We used AWS provided pandas + pymysql compatible layer.
+No external KLayer.
+
+------------------------------------------------------
+9) CONFIRMED WORKING LAMBDA LOGIC SUMMARY
+------------------------------------------------------
+
+Pipeline action sequence triggered by S3 upload to raw/orders_detailed.csv:
+
+1) Lambda reads CSV from S3
+2) Cleans dataframe + calculates total_value
+3) Writes cleaned CSV to processed/
+4) CONNECTS to RDS MySQL via VPC + SG rules
+5) Creates table orders_cleaned if not exists
+6) Replaces NaN with None so MySQL accepts data
+7) Inserts all 88 rows
+8) Performs analytics:
+   - total revenue
+   - top 3 cities
+   - top product category
+   - avg order value
+9) publishes business summary email via SNS
+10) writes summary_YYYYMMDD.json to analytics/
+
+------------------------------------------------------
+10) EC2
+------------------------------------------------------
+
+* Elastic IP allocation + association
+
+we DID create Elastic IP for EC2 (54.146.201.20)
+
+we used it so we don’t lose connection after network change
+
+but this step itself is NOT described in the txt
+
+Instance Name: orders-analytics-instance
+Elastic IP: 54.146.201.20
+AMI: Amazon Linux 2023
+Role: labinstanceprofile auto-attached from Vocareum
+SG: ec2-analytics-sg
+
+From this EC2 we successfully:
+- pip installed pymysql + boto3
+- connected to RDS via mysql -h
+- verified daily pipeline by uploading CSV again
+- created cron for daily run of pipeline.py (EC2 local)
+
+------------------------------------------------------
+11) MYSQL TABLE STRUCTURE
+------------------------------------------------------
+Table: orders_cleaned
+
+Columns:
+order_id (int)
+customer_name (varchar 100)
+city (varchar 50)
+product (varchar 100)
+quantity (int)
+price (float)
+channel (varchar 50)
+payment_mode (varchar 50)
+discount_code (varchar 20)
+order_date (date)
+total_value (float)
+
+------------------------------------------------------
+12) LAMBDA CODE USED WAS THE LAST ONE WITH:
+------------------------------------------------------
+- fmt_inr()
+- sns summary
+- no locale.setlocale()
+- df.fillna(0) + .where(pd.notnull())
+
+------------------------------------------------------
+13) FINAL TEST
+------------------------------------------------------
+We uploaded raw/orders_detailed.csv to S3
+Lambda triggered automatically
+Lambda inserted 88 rows
+Lambda wrote cleaned CSV
+Lambda wrote correct analytics summary JSON
+SNS email delivered after VPC endpoint fix
+
+RESULT: SUCCESS
+
+------------------------------------------------------
+END OF FILE
+------------------------------------------------------
+
+
+------------------------------------------------------
+14) S3 LIFECYCLE POLICY (COST SAVER) — APPLIED
+------------------------------------------------------
+Goal: Move older objects to cheaper storage automatically.
+
+Console steps we did:
+1) S3 → Bucket: omsai-traya-bucket → Management tab → Lifecycle rules → Create rule
+2) Rule name: move-15d-to-glacier
+3) Choose rule scope: This rule applies to all objects in the bucket
+4) Transitions:
+   - Current versions → Transition to Glacier Flexible Retrieval after 15 days
+5) No expiration (we did NOT delete data, only transitioned for cost saving)
+6) Save
+
+Notes:
+- This affects all folders (raw/, processed/, analytics/)
+- It reduces storage cost for files older than 15 days
+- Retrieval from Glacier may incur restore delay and small retrieval fees
+
+------------------------------------------------------
+15) EC2 ANALYTICS PYTHON SCRIPT + CRON EVERY 12 HOURS — CONFIGURED
+------------------------------------------------------
+EC2 instance: orders-analytics-instance (Amazon Linux 2023)
+We used a local script: /home/ec2-user/pipeline.py
+
+One-time package install on EC2:
+  sudo yum update -y
+  sudo yum install python3-pip -y
+  pip3 install pymysql boto3 --user
+
+Cron service on Amazon Linux 2023:
+  sudo dnf install cronie -y
+  sudo systemctl enable --now crond
+
+We avoided using an interactive editor (due to lag) and loaded crontab from a file:
+
+Create a cron file and load it:
+  echo "0 */12 * * * /usr/bin/python3 /home/ec2-user/pipeline.py >> /home/ec2-user/pipeline.log 2>&1" > mycron
+  crontab mycron
+
+Verify:
+  crontab -l
+
+How it works:
+- Runs pipeline.py at minute 0, every 12th hour (00:00, 12:00)
+- Uses full path /usr/bin/python3 to avoid PATH issues
+- Appends stdout/stderr to /home/ec2-user/pipeline.log
+
+Checking logs:
+  tail -n 100 /home/ec2-user/pipeline.log
+
+Disable the schedule:
+  crontab -r   (removes current user's crontab)
+
+Important:
+- EC2 has LabInstanceProfile attached, so boto3 uses instance role credentials automatically
+- Ensure RDS is running (Started) at the cron run time if the script needs DB connectivity
+- If you stop EC2 for cost saving, the cron won’t run while stopped (expected)
