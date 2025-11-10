@@ -9,7 +9,7 @@
 
 * redshiftoverwatch: deleted 3rd cluster rifht after it's creation. event is triggered using the cloudwatch events logs.
 
-* EBS - Elastic block service, like S3, but stored in form of files.
+* EBS - Elastic block service, like S3, but stored in form of files. this is a volume not a service.
 * KMS - Key management service in EC2
 
 * RRS - Reduced Redundancy Service.

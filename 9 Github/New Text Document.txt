@@ -1,0 +1,18 @@
+Git : Git server
+GitHub : Application
+
+
+
+git : shows commands help
+
+git init : initialize empty repository ( creates a hidden folder )
+
+git status : shows status of current branch. default branch is main
+
+git add demo.txt
+
+git commit "message to commit"
+
+vim has 3 modes : command, insert,extended
+default mode is command mode,
+
