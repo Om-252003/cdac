@@ -1,0 +1,48 @@
+stop current process
+net stop postgresql-x64-16
+
+start the process
+net start postgresql-x64-16
+
+Confirm the service is using D:\pgdata
+sc.exe qc postgresql-x64-16
+
+
+if not then delete current process
+sc.exe delete postgresql-x64-16
+
+create a new process
+sc create postgresql-x64-16 binPath= "\"D:\Program Files\PostgreSQL\16\bin\pg_ctl.exe\" runservice -N postgresql-x64-16 -D D:\pgdata -w" start=auto obj= "NT AUTHORITY\NetworkService"
+
+start that new process
+net start postgresql-x64-16
+
+check if it is using D:\pgdata
+sc qc postgresql-x64-16
+
+
+
+check your current PostgreSQL data directory
+"D:\Program Files\PostgreSQL\16\bin\psql.exe" -U postgres -c "SHOW data_directory;"
+
+check if it is using correct database
+"D:\Program Files\PostgreSQL\16\bin\psql.exe" -U postgres -l
+
+
+---------------------------------------------------------------------------------------------------------------
+
+check your current PostgreSQL data directory
+& "D:\Program Files\PostgreSQL\16\bin\psql.exe" -U postgres -c "SHOW data_directory;"
+
+
+
+
+
+
+
+
+
+
+
+
+

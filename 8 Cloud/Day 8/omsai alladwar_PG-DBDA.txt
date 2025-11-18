@@ -1,0 +1,2686 @@
+
+C:\Users\Dell>mongosh
+Current Mongosh Log ID: 69156d5160cdaa563abbc568
+Connecting to:          mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+1.10.6
+Using MongoDB:          7.0.11
+Using Mongosh:          1.10.6
+mongosh 2.5.9 is available for download: https://www.mongodb.com/try/download/shell
+
+For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2025-11-12T08:24:55.505+05:30: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+------
+
+test> use Demo
+switched to db Demo
+Demo>
+
+Demo> { $comment: "Q1. Total revenue (INR) by month" }
+Q1. Total revenue (INR) by month
+Demo> db.orders.aggregate([
+...   { $match: { status: { $ne: "CANCELLED" } } },
+...   {
+...     $group: {
+...       _id: {
+...         year: { $year: { $toDate: "$order_date" } },
+...         month: { $month: { $toDate: "$order_date" } }
+...       },
+...       revenue: { $sum: "$charges.grand_total" }
+...     }
+...   },
+...   {
+...     $project: {
+...       _id: 0,
+...       yearMonth: {
+...         $concat: [
+...           { $toString: "$_id.year" }, "-",
+...           { $toString: "$_id.month" }
+...         ]
+...       },
+...       revenue: 1
+...     }
+...   },
+...   { $sort: { yearMonth: -1 } }
+... ])
+[
+  { revenue: 22484.79, yearMonth: '2025-9' },
+  { revenue: 27481.12, yearMonth: '2025-8' },
+  { revenue: 34115.35, yearMonth: '2025-7' },
+  { revenue: 38548.37, yearMonth: '2025-6' },
+  { revenue: 44307.37, yearMonth: '2025-5' },
+  { revenue: 38268.8, yearMonth: '2025-4' },
+  { revenue: 63939.729999999996, yearMonth: '2025-3' },
+  { revenue: 25301.42, yearMonth: '2025-2' },
+  { revenue: 23227.25, yearMonth: '2025-11' },
+  { revenue: 30820.15, yearMonth: '2025-10' },
+  { revenue: 42863.21, yearMonth: '2025-1' },
+  { revenue: 55341.83, yearMonth: '2024-9' },
+  { revenue: 30617.97, yearMonth: '2024-8' },
+  { revenue: 20526.4, yearMonth: '2024-7' },
+  { revenue: 51300.28, yearMonth: '2024-12' },
+  { revenue: 48748.55, yearMonth: '2024-11' },
+  { revenue: 25853.850000000002, yearMonth: '2024-10' }
+]
+Demo>
+
+Demo> { $comment: "Q2. Top 5 categories by units sold" }
+Q2. Top 5 categories by units sold
+Demo> db.orders.aggregate([
+...   { $unwind: "$items" },
+...   {
+...     $group: {
+...       _id: "$items.category",
+...       units_sold: { $sum: "$items.qty" }
+...     }
+...   },
+...   { $sort: { units_sold: -1 } },
+...   { $limit: 5 }
+... ])
+[
+  { _id: 'Supplements', units_sold: 150 },
+  { _id: 'Haircare', units_sold: 150 },
+  { _id: 'Combos', units_sold: 143 },
+  { _id: 'Devices', units_sold: 143 },
+  { _id: 'Skincare', units_sold: 128 }
+]
+Demo>
+
+Demo> { $comment: "Q3. AOV by loyalty tier" }
+Q3. AOV by loyalty tier
+...   { $match: { status: { $in: ["PAID", "PACKED", "SHIPPED", "DELIVERED", "RETURNED"] } } },
+...   {
+...     $group: {
+...       _id: "$customer.loyalty_tier",
+...       avg_order_value: { $avg: "$charges.grand_total" }
+...     }
+...   },
+...   { $sort: { avg_order_value: -1 } }
+... ])
+[
+  { _id: 'GOLD', avg_order_value: 4948.871875 },
+  { _id: 'BRONZE', avg_order_value: 4725.980909090909 },
+  { _id: 'PLATINUM', avg_order_value: 4053.5867647058826 },
+  { _id: 'SILVER', avg_order_value: 3981.3925 }
+]
+Demo>
+
+Demo> { $comment: "Q4. Return rate by city" }
+Q4. Return rate by city
+...   {
+...     $group: {
+...       _id: "$shipping.address.city",
+...       total_orders: { $sum: 1 },
+...       returns: {
+...         $sum: { $cond: [{ $eq: ["$status", "RETURNED"] }, 1, 0] }
+...       }
+...     }
+...   },
+...   {
+...     $project: {
+...       city: "$_id",
+...       total_orders: 1,
+...       returns: 1,
+...       return_rate: {
+...         $multiply: [{ $divide: ["$returns", "$total_orders"] }, 100]
+...       }
+...     }
+...   }
+... ])
+[
+  {
+    _id: 'Hyderabad',
+    total_orders: 12,
+    returns: 0,
+    city: 'Hyderabad',
+    return_rate: 0
+  },
+  {
+    _id: 'Pune',
+    total_orders: 19,
+    returns: 2,
+    city: 'Pune',
+    return_rate: 10.526315789473683
+  },
+  {
+    _id: 'Kolkata',
+    total_orders: 15,
+    returns: 1,
+    city: 'Kolkata',
+    return_rate: 6.666666666666667
+  },
+  {
+    _id: 'Delhi',
+    total_orders: 17,
+    returns: 1,
+    city: 'Delhi',
+    return_rate: 5.88235294117647
+  },
+  {
+    _id: 'Bengaluru',
+    total_orders: 11,
+    returns: 1,
+    city: 'Bengaluru',
+    return_rate: 9.090909090909092
+  },
+  {
+    _id: 'Jaipur',
+    total_orders: 17,
+    returns: 2,
+    city: 'Jaipur',
+    return_rate: 11.76470588235294
+  },
+  {
+    _id: 'Mumbai',
+    total_orders: 14,
+    returns: 1,
+    city: 'Mumbai',
+    return_rate: 7.142857142857142
+  },
+  {
+    _id: 'Nagpur',
+    total_orders: 12,
+    returns: 2,
+    city: 'Nagpur',
+    return_rate: 16.666666666666664
+  },
+  {
+    _id: 'Chennai',
+    total_orders: 18,
+    returns: 0,
+    city: 'Chennai',
+    return_rate: 0
+  },
+  {
+    _id: 'Ahmedabad',
+    total_orders: 15,
+    returns: 1,
+    city: 'Ahmedabad',
+    return_rate: 6.666666666666667
+  }
+]
+Demo> { $comment: "Q5. Avg delivery time (days) by city" }
+Q5. Avg delivery time (days) by city
+...   { $match: { status: "DELIVERED" } },
+...   {
+...     $addFields: {
+...       deliveryDays: {
+...         $divide: [
+...           { $subtract: [{ $toDate: "$shipping.delivered_at" }, { $toDate: "$order_date" }] },
+...           1000 * 60 * 60 * 24
+...         ]
+...       }
+...     }
+...   },
+...   {
+...     $group: {
+...       _id: "$shipping.address.city",
+...       avg_days: { $avg: "$deliveryDays" }
+...     }
+...   }
+... ])
+[
+  { _id: 'Kolkata', avg_days: 6.333333333333333 },
+  { _id: 'Jaipur', avg_days: 3.8 },
+  { _id: 'Chennai', avg_days: 5.142857142857143 },
+  { _id: 'Mumbai', avg_days: 5.666666666666667 },
+  { _id: 'Hyderabad', avg_days: 7.25 },
+  { _id: 'Pune', avg_days: 5.888888888888889 },
+  { _id: 'Ahmedabad', avg_days: 7.857142857142857 },
+  { _id: 'Nagpur', avg_days: 5 },
+  { _id: 'Delhi', avg_days: 5.714285714285714 },
+  { _id: 'Bengaluru', avg_days: 5.2 }
+]
+Demo>
+
+Demo> { $comment: "Q6. Customers with repeat purchases >=3 orders" }
+Q6. Customers with repeat purchases >=3 orders
+Demo> db.orders.aggregate([
+...   { $match: { status: { $ne: "CANCELLED" } } },
+...   {
+...     $group: {
+...       _id: {
+...         id: "$customer.customer_id",
+...         name: "$customer.name"
+...       },
+...       total_orders: { $sum: 1 },
+...       total_spent: { $sum: "$charges.grand_total" }
+...     }
+...   },
+...   { $match: { total_orders: { $gte: 3 } } }
+... ])
+
+#### No customer with repeat purchase >= 3 orders 
+
+
+Demo> { $comment: "Q7. Orders using coupons but paid COD" }
+Q7. Orders using coupons but paid COD
+Demo> db.orders.aggregate([
+...   {
+...     $match: {
+...       "charges.coupon": { $ne: null },
+...       "payment.method": "COD"
+...     }
+...   }
+... ])
+[
+  {
+    _id: ObjectId("691563108d0b775a31a3f9ca"),
+    order_id: 'cbf8abc1-defc-4bb5-8bda-a2d5a020e9ae',
+    order_date: '2024-09-22T11:22:00',
+    status: 'PACKED',
+    customer: {
+      customer_id: 'C89840',
+      name: 'Krishna Patel',
+      email: 'krishna.patel945@yahoo.com',
+      age: 54,
+      loyalty_tier: 'GOLD'
+    },
+    shipping: {
+      address: {
+        line1: '55, Charminar Rd',
+        city: 'Hyderabad',
+        state: 'Telangana',
+        country: 'India',
+        pincode: '500001'
+      },
+      geo: {
+        type: 'Point',
+        coordinates: [ 78.48662312594922, 17.42346831538867 ]
+      },
+      carrier: 'EcomExpress',
+      status: 'CREATED',
+      delivered_at: null
+    },
+    items: [
+      {
+        sku: 'COM-5010',
+        name: 'Combos Product 10',
+        category: 'Combos',
+        qty: 2,
+        price: 399,
+        discount: null
+      },
+      {
+        sku: 'SUP-4598',
+        name: 'Supplements Product 98',
+        category: 'Supplements',
+        qty: 1,
+        price: 799,
+        discount: { type: 'FLAT', value: 50 }
+      }
+    ],
+    charges: {
+      subtotal: 1547,
+      shipping_fee: 0,
+      taxes: 278.46,
+      coupon: 'FESTIVE15',
+      coupon_discount: 200,
+      grand_total: 1625.46,
+      currency: 'INR'
+    },
+    payment: {
+      method: 'COD',
+      transactions: [
+        {
+          tx_id: 'TXN-377746',
+          amount: 1625.46,
+          status: 'SUCCESS',
+          ts: '2024-09-22T11:40:00'
+        }
+      ]
+    },
+    tags: [ 'priority' ],
+    events: [
+      { ts: '2024-09-22T11:22:00', type: 'ORDER_CREATED' },
+      {
+        ts: '2024-09-22T13:22:00',
+        type: 'PAYMENT_INITIATED',
+        meta: { method: 'COD' }
+      }
+    ]
+  },
+  {
+    _id: ObjectId("691563108d0b775a31a3f9ce"),
+    order_id: '4073a762-c34c-4d33-b26b-222d22c4fdec',
+    order_date: '2024-12-29T13:26:00',
+    status: 'PAID',
+    customer: {
+      customer_id: 'C17944',
+      name: 'Vihaan Shah',
+      email: 'vihaan.shah934@proton.me',
+      age: 21,
+      loyalty_tier: 'SILVER'
+    },
+    shipping: {
+      address: {
+        line1: '98, MG Road',
+        city: 'Jaipur',
+        state: 'Rajasthan',
+        country: 'India',
+        pincode: '302001'
+      },
+      geo: {
+        type: 'Point',
+        coordinates: [ 75.83583088437797, 26.888920305817216 ]
+      },
+      carrier: 'EcomExpress',
+      status: 'IN_TRANSIT',
+      delivered_at: null
+    },
+    items: [
+      {
+        sku: 'SUP-2790',
+        name: 'Supplements Product 90',
+        category: 'Supplements',
+        qty: 1,
+        price: 499,
+        discount: { type: 'FLAT', value: 200 }
+      },
+      {
+        sku: 'DEV-3296',
+        name: 'Devices Product 96',
+        category: 'Devices',
+        qty: 1,
+        price: 999,
+        discount: null
+      },
+      {
+        sku: 'DEV-5092',
+        name: 'Devices Product 92',
+        category: 'Devices',
+        qty: 2,
+        price: 299,
+        discount: { type: 'PCT', value: 5 }
+      },
+      {
+        sku: 'COM-1241',
+        name: 'Combos Product 41',
+        category: 'Combos',
+        qty: 1,
+        price: 299,
+        discount: { type: 'FLAT', value: 150 }
+      }
+    ],
+    charges: {
+      subtotal: 2015.1,
+      shipping_fee: 0,
+      taxes: 362.72,
+      coupon: 'FLASH50',
+      coupon_discount: 50,
+      grand_total: 2327.82,
+      currency: 'INR'
+    },
+    payment: {
+      method: 'COD',
+      transactions: [
+        {
+          tx_id: 'TXN-543555',
+          amount: 2327.82,
+          status: 'SUCCESS',
+          ts: '2024-12-29T14:56:00'
+        }
+      ]
+    },
+    tags: [ 'repeat', 'gift', 'high-value' ],
+    events: [
+      { ts: '2024-12-29T13:26:00', type: 'ORDER_CREATED' },
+      {
+        ts: '2024-12-29T15:26:00',
+        type: 'PAYMENT_INITIATED',
+        meta: { method: 'COD' }
+      }
+    ],
+    review: { rating: 1, comment: 'Amazing' }
+  },
+  {
+    _id: ObjectId("691563108d0b775a31a3f9d7"),
+    order_id: '5cc9ca80-4bc9-4004-a930-a4e094dac94a',
+    order_date: '2025-02-26T00:47:00',
+    status: 'DELIVERED',
+    customer: {
+      customer_id: 'C39389',
+      name: 'Vihaan Singh',
+      email: 'vihaan.singh486@yahoo.com',
+      age: 62,
+      loyalty_tier: 'GOLD'
+    },
+    shipping: {
+      address: {
+        line1: '197, Linking Road',
+        city: 'Ahmedabad',
+        state: 'Gujarat',
+        country: 'India',
+        pincode: '380001'
+      },
+      geo: {
+        type: 'Point',
+        coordinates: [ 72.53817891433678, 23.033224749389095 ]
+      },
+      carrier: 'Delhivery',
+      status: 'DELIVERED',
+      delivered_at: '2025-03-08T00:47:00'
+    },
+    items: [
+      {
+        sku: 'HAI-1508',
+        name: 'Haircare Product 08',
+        category: 'Haircare',
+        qty: 1,
+        price: 499,
+        discount: { type: 'PCT', value: 10 }
+      }
+    ],
+    charges: {
+      subtotal: 449.1,
+      shipping_fee: 25,
+      taxes: 80.84,
+      coupon: 'WELCOME10',
+      coupon_discount: 44.91,
+      grand_total: 510.03,
+      currency: 'INR'
+    },
+    payment: {
+      method: 'COD',
+      transactions: [
+        {
+          tx_id: 'TXN-915573',
+          amount: 510.03,
+          status: 'SUCCESS',
+          ts: '2025-02-26T02:32:00'
+        }
+      ]
+    },
+    tags: [ 'high-value' ],
+    events: [
+      { ts: '2025-02-26T00:47:00', type: 'ORDER_CREATED' },
+      {
+        ts: '2025-02-26T02:47:00',
+        type: 'PAYMENT_INITIATED',
+        meta: { method: 'COD' }
+      }
+    ],
+    review: { rating: 1, comment: 'Not satisfied' }
+  },
+  {
+    _id: ObjectId("691563108d0b775a31a3f9da"),
+    order_id: '0c12036c-d94d-4f70-8bf2-505f4b3e13ec',
+    order_date: '2024-12-28T22:29:00',
+    status: 'PACKED',
+    customer: {
+      customer_id: 'C40217',
+      name: 'Ishaan Reddy',
+      email: 'ishaan.reddy112@outlook.com',
+      age: 30,
+      loyalty_tier: 'GOLD'
+    },
+    shipping: {
+      address: {
+        line1: '59, Linking Road',
+        city: 'Chennai',
+        state: 'Tamil Nadu',
+        country: 'India',
+        pincode: '600001'
+      },
+      geo: {
+        type: 'Point',
+        coordinates: [ 80.23864415436854, 13.034114836725607 ]
+      },
+      carrier: 'Shadowfax',
+      status: 'CREATED',
+      delivered_at: null
+    },
+    items: [
+      {
+        sku: 'SKI-6169',
+        name: 'Skincare Product 69',
+        category: 'Skincare',
+        qty: 3,
+        price: 299,
+        discount: { type: 'FLAT', value: 75 }
+      }
+    ],
+    charges: {
+      subtotal: 822,
+      shipping_fee: 0,
+      taxes: 147.96,
+      coupon: 'WELCOME10',
+      coupon_discount: 82.2,
+      grand_total: 887.76,
+      currency: 'INR'
+    },
+    payment: {
+      method: 'COD',
+      transactions: [
+        {
+          tx_id: 'TXN-387636',
+          amount: 887.76,
+          status: 'SUCCESS',
+          ts: '2024-12-28T22:35:00'
+        }
+      ]
+    },
+    tags: [],
+    events: [
+      { ts: '2024-12-28T22:29:00', type: 'ORDER_CREATED' },
+      {
+        ts: '2024-12-29T00:29:00',
+        type: 'PAYMENT_INITIATED',
+        meta: { method: 'COD' }
+      }
+    ]
+  },
+  {
+    _id: ObjectId("691563108d0b775a31a3f9e5"),
+    order_id: '80a578ab-154d-473d-8ccc-03ad1ac55a43',
+    order_date: '2025-02-23T22:19:00',
+    status: 'SHIPPED',
+    customer: {
+      customer_id: 'C15943',
+      name: 'Vivaan Gupta',
+      email: 'vivaan.gupta611@proton.me',
+      age: 65,
+      loyalty_tier: 'SILVER'
+    },
+    shipping: {
+      address: {
+        line1: '107, Charminar Rd',
+        city: 'Kolkata',
+        state: 'West Bengal',
+        country: 'India',
+        pincode: '700001'
+      },
+      geo: {
+        type: 'Point',
+        coordinates: [ 88.32380216347106, 22.571534703778962 ]
+      },
+      carrier: 'EcomExpress',
+      status: 'IN_TRANSIT',
+      delivered_at: null
+    },
+    items: [
+      {
+        sku: 'SUP-9071',
+        name: 'Supplements Product 71',
+        category: 'Supplements',
+        qty: 1,
+        price: 299,
+        discount: { type: 'FLAT', value: 200 }
+      }
+    ],
+    charges: {
+      subtotal: 99,
+      shipping_fee: 25,
+      taxes: 17.82,
+      coupon: 'FLASH50',
+      coupon_discount: 50,
+      grand_total: 91.82,
+      currency: 'INR'
+    },
+    payment: {
+      method: 'COD',
+      transactions: [
+        {
+          tx_id: 'TXN-134305',
+          amount: 91.82,
+          status: 'SUCCESS',
+          ts: '2025-02-23T23:48:00'
+        }
+      ]
+    },
+    tags: [ 'repeat', 'cod' ],
+    events: [
+      { ts: '2025-02-23T22:19:00', type: 'ORDER_CREATED' },
+      {
+        ts: '2025-02-24T00:19:00',
+        type: 'PAYMENT_INITIATED',
+        meta: { method: 'COD' }
+      }
+    ]
+  },
+  {
+    _id: ObjectId("691563108d0b775a31a3f9f4"),
+    order_id: 'ed3115c8-ee1a-4663-b112-67198a83c51b',
+    order_date: '2025-10-02T12:21:00',
+    status: 'SHIPPED',
+    customer: {
+      customer_id: 'C58148',
+      name: 'Rohan Das',
+      email: 'rohan.das754@gmail.com',
+      age: 40,
+      loyalty_tier: 'PLATINUM'
+    },
+    shipping: {
+      address: {
+        line1: '71, Charminar Rd',
+        city: 'Bengaluru',
+        state: 'Karnataka',
+        country: 'India',
+        pincode: '560001'
+      },
+      geo: {
+        type: 'Point',
+        coordinates: [ 77.64260272791942, 13.01639043786031 ]
+      },
+      carrier: 'Delhivery',
+      status: 'OUT_FOR_DELIVERY',
+      delivered_at: null
+    },
+    items: [
+      {
+        sku: 'HAI-7955',
+        name: 'Haircare Product 55',
+        category: 'Haircare',
+        qty: 2,
+        price: 299,
+        discount: { type: 'FLAT', value: 200 }
+      },
+      {
+        sku: 'SUP-6262',
+        name: 'Supplements Product 62',
+        category: 'Supplements',
+        qty: 1,
+        price: 299,
+        discount: null
+      },
+      {
+        sku: 'SUP-6021',
+        name: 'Supplements Product 21',
+        category: 'Supplements',
+        qty: 3,
+        price: 1299,
+        discount: null
+      }
+    ],
+    charges: {
+      subtotal: 4594,
+      shipping_fee: 0,
+      taxes: 826.92,
+      coupon: 'WELCOME10',
+      coupon_discount: 459.4,
+      grand_total: 4961.52,
+      currency: 'INR'
+    },
+    payment: {
+      method: 'COD',
+      transactions: [
+        {
+          tx_id: 'TXN-768480',
+          amount: 4961.52,
+          status: 'SUCCESS',
+          ts: '2025-10-02T13:13:00'
+        }
+      ]
+    },
+    tags: [ 'promo', 'priority' ],
+    events: [
+      { ts: '2025-10-02T12:21:00', type: 'ORDER_CREATED' },
+      {
+        ts: '2025-10-02T14:21:00',
+        type: 'PAYMENT_INITIATED',
+        meta: { method: 'COD' }
+      }
+    ]
+  },
+  {
+    _id: ObjectId("691563108d0b775a31a3fa02"),
+    order_id: 'd0425548-f11b-4c24-9d59-c0695da08f2c',
+    order_date: '2025-04-23T02:02:00',
+    status: 'SHIPPED',
+    customer: {
+      customer_id: 'C80931',
+      name: 'Laksh Patel',
+      email: 'laksh.patel469@proton.me',
+      age: 42,
+      loyalty_tier: 'PLATINUM'
+    },
+    shipping: {
+      address: {
+        line1: '21, Charminar Rd',
+        city: 'Kolkata',
+        state: 'West Bengal',
+        country: 'India',
+        pincode: '700001'
+      },
+      geo: {
+        type: 'Point',
+        coordinates: [ 88.41031443763806, 22.610055372169093 ]
+      },
+      carrier: 'BlueDart',
+      status: 'OUT_FOR_DELIVERY',
+      delivered_at: null
+    },
+    items: [
+      {
+        sku: 'HAI-8734',
+        name: 'Haircare Product 34',
+        category: 'Haircare',
+        qty: 2,
+        price: 199,
+        discount: null
+      }
+    ],
+    charges: {
+      subtotal: 398,
+      shipping_fee: 25,
+      taxes: 71.64,
+      coupon: 'WELCOME10',
+      coupon_discount: 39.8,
+      grand_total: 454.84,
+      currency: 'INR'
+    },
+    payment: {
+      method: 'COD',
+      transactions: [
+        {
+          tx_id: 'TXN-464663',
+          amount: 454.84,
+          status: 'SUCCESS',
+          ts: '2025-04-23T02:18:00'
+        }
+      ]
+    },
+    tags: [ 'promo' ],
+    events: [
+      { ts: '2025-04-23T02:02:00', type: 'ORDER_CREATED' },
+      {
+        ts: '2025-04-23T04:02:00',
+        type: 'PAYMENT_INITIATED',
+        meta: { method: 'COD' }
+      }
+    ]
+  },
+  {
+    _id: ObjectId("691563108d0b775a31a3fa0b"),
+    order_id: 'a87ce651-32a5-4490-97a0-75c07bb69dfa',
+    order_date: '2025-08-03T02:46:00',
+    status: 'PACKED',
+    customer: {
+      customer_id: 'C78302',
+      name: 'Muhammad Jadhav',
+      email: 'muhammad.jadhav379@gmail.com',
+      age: 34,
+      loyalty_tier: 'SILVER'
+    },
+    shipping: {
+      address: {
+        line1: '185, Charminar Rd',
+        city: 'Ahmedabad',
+        state: 'Gujarat',
+        country: 'India',
+        pincode: '380001'
+      },
+      geo: {
+        type: 'Point',
+        coordinates: [ 72.57098024367228, 23.03416687920358 ]
+      },
+      carrier: 'EcomExpress',
+      status: 'CREATED',
+      delivered_at: null
+    },
+    items: [
+      {
+        sku: 'DEV-3777',
+        name: 'Devices Product 77',
+        category: 'Devices',
+        qty: 2,
+        price: 399,
+        discount: null
+      },
+      {
+        sku: 'SUP-9079',
+        name: 'Supplements Product 79',
+        category: 'Supplements',
+        qty: 1,
+        price: 399,
+        discount: { type: 'FLAT', value: 150 }
+      }
+    ],
+    charges: {
+      subtotal: 1047,
+      shipping_fee: 0,
+      taxes: 188.46,
+      coupon: 'FESTIVE15',
+      coupon_discount: 157.05,
+      grand_total: 1078.41,
+      currency: 'INR'
+    },
+    payment: {
+      method: 'COD',
+      transactions: [
+        {
+          tx_id: 'TXN-242071',
+          amount: 1078.41,
+          status: 'SUCCESS',
+          ts: '2025-08-03T03:25:00'
+        }
+      ]
+    },
+    tags: [],
+    events: [
+      { ts: '2025-08-03T02:46:00', type: 'ORDER_CREATED' },
+      {
+        ts: '2025-08-03T04:46:00',
+        type: 'PAYMENT_INITIATED',
+        meta: { method: 'COD' }
+      }
+    ]
+  },
+  {
+    _id: ObjectId("691563108d0b775a31a3fa10"),
+    order_id: 'ffbf3dce-09bd-4caf-9412-09483e2fb3a9',
+    order_date: '2024-12-08T03:15:00',
+    status: 'PACKED',
+    customer: {
+      customer_id: 'C58929',
+      name: 'Vivaan Kulkarni',
+      email: 'vivaan.kulkarni332@yahoo.com',
+      age: 46,
+      loyalty_tier: 'BRONZE'
+    },
+    shipping: {
+      address: {
+        line1: '92, MG Road',
+        city: 'Chennai',
+        state: 'Tamil Nadu',
+        country: 'India',
+        pincode: '600001'
+      },
+      geo: {
+        type: 'Point',
+        coordinates: [ 80.26916089194458, 13.052212849163427 ]
+      },
+      carrier: 'EcomExpress',
+      status: 'OUT_FOR_DELIVERY',
+      delivered_at: null
+    },
+    items: [
+      {
+        sku: 'COM-7364',
+        name: 'Combos Product 64',
+        category: 'Combos',
+        qty: 3,
+        price: 999,
+        discount: { type: 'FLAT', value: 200 }
+      },
+      {
+        sku: 'DEV-7931',
+        name: 'Devices Product 31',
+        category: 'Devices',
+        qty: 2,
+        price: 399,
+        discount: { type: 'FLAT', value: 200 }
+      }
+    ],
+    charges: {
+      subtotal: 3395,
+      shipping_fee: 0,
+      taxes: 611.1,
+      coupon: 'WELCOME10',
+      coupon_discount: 339.5,
+      grand_total: 3666.6,
+      currency: 'INR'
+    },
+    payment: {
+      method: 'COD',
+      transactions: [
+        {
+          tx_id: 'TXN-629990',
+          amount: 3666.6,
+          status: 'SUCCESS',
+          ts: '2024-12-08T04:39:00'
+        }
+      ]
+    },
+    tags: [ 'cod', 'priority', 'gift' ],
+    events: [
+      { ts: '2024-12-08T03:15:00', type: 'ORDER_CREATED' },
+      {
+        ts: '2024-12-08T05:15:00',
+        type: 'PAYMENT_INITIATED',
+        meta: { method: 'COD' }
+      }
+    ]
+  },
+  {
+    _id: ObjectId("691563108d0b775a31a3fa2f"),
+    order_id: '8562d56d-1245-4e53-a41a-e4d29376dd42',
+    order_date: '2025-10-08T03:53:00',
+    status: 'PLACED',
+    customer: {
+      customer_id: 'C21807',
+      name: 'Rohan Gupta',
+      email: 'rohan.gupta905@yahoo.com',
+      age: 20,
+      loyalty_tier: 'GOLD'
+    },
+    shipping: {
+      address: {
+        line1: '93, Charminar Rd',
+        city: 'Nagpur',
+        state: 'Maharashtra',
+        country: 'India',
+        pincode: '440001'
+      },
+      geo: {
+        type: 'Point',
+        coordinates: [ 79.06947071069628, 21.16965401957922 ]
+      },
+      carrier: 'Delhivery',
+      status: 'CREATED',
+      delivered_at: null
+    },
+    items: [
+      {
+        sku: 'HAI-5192',
+        name: 'Haircare Product 92',
+        category: 'Haircare',
+        qty: 2,
+        price: 499,
+        discount: null
+      }
+    ],
+    charges: {
+      subtotal: 998,
+      shipping_fee: 0,
+      taxes: 179.64,
+      coupon: 'FESTIVE15',
+      coupon_discount: 149.7,
+      grand_total: 1027.94,
+      currency: 'INR'
+    },
+    payment: {
+      method: 'COD',
+      transactions: [
+        {
+          tx_id: 'TXN-110142',
+          amount: 1027.94,
+          status: 'PENDING',
+          ts: '2025-10-08T05:18:00'
+        }
+      ]
+    },
+    tags: [ 'high-value' ],
+    events: [
+      { ts: '2025-10-08T03:53:00', type: 'ORDER_CREATED' },
+      {
+        ts: '2025-10-08T05:53:00',
+        type: 'PAYMENT_INITIATED',
+        meta: { method: 'COD' }
+      }
+    ]
+  },
+  {
+    _id: ObjectId("691563108d0b775a31a3fa3a"),
+    order_id: '238725ab-3178-4a05-985d-c343e0d7cd10',
+    order_date: '2025-10-12T23:41:00',
+    status: 'RETURNED',
+    customer: {
+      customer_id: 'C82754',
+      name: 'Aarav Kapoor',
+      email: 'aarav.kapoor174@yahoo.com',
+      age: 29,
+      loyalty_tier: 'SILVER'
+    },
+    shipping: {
+      address: {
+        line1: '158, Linking Road',
+        city: 'Delhi',
+        state: 'Delhi',
+        country: 'India',
+        pincode: '110001'
+      },
+      geo: {
+        type: 'Point',
+        coordinates: [ 77.07193262153464, 28.672235798477367 ]
+      },
+      carrier: 'Shadowfax',
+      status: 'DELIVERED',
+      delivered_at: '2025-10-21T23:41:00'
+    },
+    items: [
+      {
+        sku: 'HAI-1684',
+        name: 'Haircare Product 84',
+        category: 'Haircare',
+        qty: 3,
+        price: 199,
+        discount: null
+      },
+      {
+        sku: 'COM-9970',
+        name: 'Combos Product 70',
+        category: 'Combos',
+        qty: 2,
+        price: 299,
+        discount: { type: 'FLAT', value: 100 }
+      }
+    ],
+    charges: {
+      subtotal: 1095,
+      shipping_fee: 0,
+      taxes: 197.1,
+      coupon: 'WELCOME10',
+      coupon_discount: 109.5,
+      grand_total: 1182.6,
+      currency: 'INR'
+    },
+    payment: {
+      method: 'COD',
+      transactions: [
+        {
+          tx_id: 'TXN-993650',
+          amount: 1182.6,
+          status: 'SUCCESS',
+          ts: '2025-10-12T23:48:00'
+        }
+      ]
+    },
+    tags: [ 'priority', 'promo', 'new-user' ],
+    events: [
+      { ts: '2025-10-12T23:41:00', type: 'ORDER_CREATED' },
+      {
+        ts: '2025-10-13T01:41:00',
+        type: 'PAYMENT_INITIATED',
+        meta: { method: 'COD' }
+      },
+      {
+        ts: '2025-10-24T23:41:00',
+        type: 'RETURN_REQUESTED',
+        meta: { reason: 'Quality Issues' }
+      }
+    ],
+    return: { reason: 'Damaged', refunded: false },
+    review: { rating: 5, comment: 'Value for money' }
+  },
+  {
+    _id: ObjectId("691563108d0b775a31a3fa43"),
+    order_id: '6f433605-3459-4ce7-9e2e-003fb158cf81',
+    order_date: '2025-06-27T12:47:00',
+    status: 'RETURNED',
+    customer: {
+      customer_id: 'C68536',
+      name: 'Vivaan Banerjee',
+      email: 'vivaan.banerjee75@gmail.com',
+      age: 34,
+      loyalty_tier: 'SILVER'
+    },
+    shipping: {
+      address: {
+        line1: '95, MG Road',
+        city: 'Bengaluru',
+        state: 'Karnataka',
+        country: 'India',
+        pincode: '560001'
+      },
+      geo: {
+        type: 'Point',
+        coordinates: [ 77.60550288612079, 12.994049471342807 ]
+      },
+      carrier: 'EcomExpress',
+      status: 'DELIVERED',
+      delivered_at: '2025-07-04T12:47:00'
+    },
+    items: [
+      {
+        sku: 'HAI-4513',
+        name: 'Haircare Product 13',
+        category: 'Haircare',
+        qty: 2,
+        price: 1499,
+        discount: null
+      },
+      {
+        sku: 'COM-1852',
+        name: 'Combos Product 52',
+        category: 'Combos',
+        qty: 2,
+        price: 399,
+        discount: { type: 'PCT', value: 5 }
+      }
+    ],
+    charges: {
+      subtotal: 3756.1,
+      shipping_fee: 0,
+      taxes: 676.1,
+      coupon: 'WELCOME10',
+      coupon_discount: 375.61,
+      grand_total: 4056.59,
+      currency: 'INR'
+    },
+    payment: {
+      method: 'COD',
+      transactions: [
+        {
+          tx_id: 'TXN-743789',
+          amount: 4056.59,
+          status: 'SUCCESS',
+          ts: '2025-06-27T14:11:00'
+        }
+      ]
+    },
+    tags: [ 'priority', 'promo' ],
+    events: [
+      { ts: '2025-06-27T12:47:00', type: 'ORDER_CREATED' },
+      {
+        ts: '2025-06-27T14:47:00',
+        type: 'PAYMENT_INITIATED',
+        meta: { method: 'COD' }
+      },
+      {
+        ts: '2025-07-07T12:47:00',
+        type: 'RETURN_REQUESTED',
+        meta: { reason: 'Damaged' }
+      }
+    ],
+    return: { reason: 'Wrong Item', refunded: false }
+  },
+  {
+    _id: ObjectId("691563108d0b775a31a3fa5c"),
+    order_id: 'f21babd9-e67c-42e1-a100-ae86ee394937',
+    order_date: '2025-07-30T04:41:00',
+    status: 'PACKED',
+    customer: {
+      customer_id: 'C18888',
+      name: 'Sai Khan',
+      email: 'sai.khan165@outlook.com',
+      age: 30,
+      loyalty_tier: 'BRONZE'
+    },
+    shipping: {
+      address: {
+        line1: '34, FC Road',
+        city: 'Nagpur',
+        state: 'Maharashtra',
+        country: 'India',
+        pincode: '440001'
+      },
+      geo: {
+        type: 'Point',
+        coordinates: [ 79.04081982214633, 21.19439555930792 ]
+      },
+      carrier: 'Shadowfax',
+      status: 'IN_TRANSIT',
+      delivered_at: null
+    },
+    items: [
+      {
+        sku: 'SKI-6203',
+        name: 'Skincare Product 03',
+        category: 'Skincare',
+        qty: 3,
+        price: 399,
+        discount: { type: 'PCT', value: 15 }
+      }
+    ],
+    charges: {
+      subtotal: 1017.45,
+      shipping_fee: 0,
+      taxes: 183.14,
+      coupon: 'FLASH50',
+      coupon_discount: 50,
+      grand_total: 1150.59,
+      currency: 'INR'
+    },
+    payment: {
+      method: 'COD',
+      transactions: [
+        {
+          tx_id: 'TXN-735022',
+          amount: 1150.59,
+          status: 'SUCCESS',
+          ts: '2025-07-30T05:54:00'
+        }
+      ]
+    },
+    tags: [ 'promo' ],
+    events: [
+      { ts: '2025-07-30T04:41:00', type: 'ORDER_CREATED' },
+      {
+        ts: '2025-07-30T06:41:00',
+        type: 'PAYMENT_INITIATED',
+        meta: { method: 'COD' }
+      }
+    ],
+    review: { rating: 1, comment: 'Not satisfied' }
+  }
+]
+Demo>
+
+Demo> { $comment: "Q8. Top 10 high value orders" }
+Q8. Top 10 high value orders
+Demo> db.orders.aggregate([
+...   {
+...     $project: {
+...       order_id: 1,
+...       customer: "$customer.name",
+...       city: "$shipping.address.city",
+...       total: "$charges.grand_total"
+...     }
+...   },
+...   { $sort: { total: -1 } },
+...   { $limit: 10 }
+... ])
+[
+  {
+    _id: ObjectId("691563108d0b775a31a3f9fd"),
+    order_id: '930e5106-2723-42a6-99af-63a751ad2570',
+    customer: 'Ishaan Nair',
+    city: 'Hyderabad',
+    total: 15303.77
+  },
+  {
+    _id: ObjectId("691563108d0b775a31a3f9ea"),
+    order_id: 'e3100b16-3517-40b6-ad76-ac1b803f5364',
+    customer: 'Aditya Mehta',
+    city: 'Mumbai',
+    total: 14218.91
+  },
+  {
+    _id: ObjectId("691563108d0b775a31a3f9f0"),
+    order_id: '8a8cc449-20f5-4b2f-895d-b591d05218ef',
+    customer: 'Dhruv Pillai',
+    city: 'Hyderabad',
+    total: 13560.56
+  },
+  {
+    _id: ObjectId("691563108d0b775a31a3fa49"),
+    order_id: '81d961f1-13b4-4b69-973a-3652e8676a76',
+    customer: 'Rohan Sharma',
+    city: 'Bengaluru',
+    total: 11777.71
+  },
+  {
+    _id: ObjectId("691563108d0b775a31a3fa31"),
+    order_id: '3e22aec0-6337-4838-9657-42bcbb683401',
+    customer: 'Rohan Das',
+    city: 'Bengaluru',
+    total: 11762.28
+  },
+  {
+    _id: ObjectId("691563108d0b775a31a3fa0d"),
+    order_id: '7a24d80e-30e8-4348-8367-eda387618198',
+    customer: 'Rohan Gupta',
+    city: 'Kolkata',
+    total: 11317.38
+  },
+  {
+    _id: ObjectId("691563108d0b775a31a3f9f2"),
+    order_id: '61893a9e-3ebf-4c67-89c3-effa10047c58',
+    customer: 'Muhammad Chatterjee',
+    city: 'Mumbai',
+    total: 10713.19
+  },
+  {
+    _id: ObjectId("691563108d0b775a31a3fa54"),
+    order_id: '5b9dd22b-e3da-4eb1-a491-ef9c2074f02c',
+    customer: 'Rudransh Bose',
+    city: 'Ahmedabad',
+    total: 10620.74
+  },
+  {
+    _id: ObjectId("691563108d0b775a31a3f9d9"),
+    order_id: '44771466-2a60-4ebf-a92b-cd12ae449094',
+    customer: 'Ryan Pillai',
+    city: 'Jaipur',
+    total: 10551.56
+  },
+  {
+    _id: ObjectId("691563108d0b775a31a3f9e9"),
+    order_id: 'e1573b7a-5075-4183-a67f-a96150ce10eb',
+    customer: 'Atharv Singh',
+    city: 'Pune',
+    total: 10493.74
+  }
+]
+Demo>
+
+Demo> { $comment: "Q9. Basket mix per order" }
+Q9. Basket mix per order
+Demo> db.orders.aggregate([
+...   { $unwind: "$items" },
+...   {
+...     $group: {
+...       _id: "$order_id",
+...       category_mix: {
+...         $push: {
+...           category: "$items.category",
+...           qty: "$items.qty"
+...         }
+...       }
+...     }
+...   },
+...   { $limit: 10 }
+... ])
+[
+  {
+    _id: 'c6fc2bbb-54f9-4727-ac32-ab5e6af429ed',
+    category_mix: [ { category: 'Haircare', qty: 2 } ]
+  },
+  {
+    _id: 'ed3115c8-ee1a-4663-b112-67198a83c51b',
+    category_mix: [
+      { category: 'Haircare', qty: 2 },
+      { category: 'Supplements', qty: 1 },
+      { category: 'Supplements', qty: 3 }
+    ]
+  },
+  {
+    _id: 'e9352560-ef33-482a-b7fc-fef7544967ab',
+    category_mix: [
+      { category: 'Devices', qty: 1 },
+      { category: 'Devices', qty: 2 },
+      { category: 'Combos', qty: 2 }
+    ]
+  },
+  {
+    _id: '79aec713-f007-4c82-8899-70148763daef',
+    category_mix: [
+      { category: 'Devices', qty: 2 },
+      { category: 'Haircare', qty: 1 },
+      { category: 'Supplements', qty: 2 },
+      { category: 'Devices', qty: 1 }
+    ]
+  },
+  {
+    _id: '5cf5f08a-1077-44cd-a91f-273707b6fb06',
+    category_mix: [
+      { category: 'Supplements', qty: 2 },
+      { category: 'Skincare', qty: 1 },
+      { category: 'Haircare', qty: 1 },
+      { category: 'Haircare', qty: 3 }
+    ]
+  },
+  {
+    _id: '1627f67f-9c95-4e00-a86c-c4e2dbd2c5cb',
+    category_mix: [ { category: 'Devices', qty: 1 } ]
+  },
+  {
+    _id: '25d4941f-0bd8-4485-8b7c-829c6805545d',
+    category_mix: [ { category: 'Skincare', qty: 3 } ]
+  },
+  {
+    _id: '5b9dd22b-e3da-4eb1-a491-ef9c2074f02c',
+    category_mix: [
+      { category: 'Combos', qty: 2 },
+      { category: 'Supplements', qty: 3 },
+      { category: 'Combos', qty: 2 }
+    ]
+  },
+  {
+    _id: 'f21babd9-e67c-42e1-a100-ae86ee394937',
+    category_mix: [ { category: 'Skincare', qty: 3 } ]
+  },
+  {
+    _id: '0191f354-b2f1-49c6-9262-9ff73ee4bb3d',
+    category_mix: [ { category: 'Haircare', qty: 3 } ]
+  }
+]
+Demo>
+
+Demo> { $comment: "Q10. Geo query: orders near Mumbai" }
+Q10. Geo query: orders near Mumbai
+Demo> db.orders.aggregate([
+...   {
+...     $geoNear: {
+...       near: { type: "Point", coordinates: [72.8777, 19.0760] },
+...       distanceField: "dist",
+...       maxDistance: 5000,
+...       spherical: true,
+...       key: "shipping.geo"
+...     }
+...   }
+... ])
+Uncaught:
+MongoServerError: error processing query: ns=Demo.ordersTree: GEONEAR  field=shipping.geo maxdist=5000 isNearSphere=1
+Sort: {}
+Proj: {}
+Collation: { locale: "simple" }
+ planner returned error :: caused by :: unable to find index for $geoNear query
+Demo>
+shipping.geo_2dsphere
+Demo> db.orders.createIndex({ "shipping.geo": "2dsphere" })
+shipping.geo_2dsphere
+Demo>
+
+Demo> { $comment: "Q10. Geo query: orders near Mumbai" }
+Q10. Geo query: orders near Mumbai
+Demo> db.orders.aggregate([
+...   {
+...     $geoNear: {
+...       near: { type: "Point", coordinates: [72.8777, 19.0760] },
+...       distanceField: "dist",
+...       maxDistance: 5000,
+...       spherical: true,
+...       key: "shipping.geo"
+...     }
+...   }
+... ])
+[
+  {
+    _id: ObjectId("691563108d0b775a31a3f9ea"),
+    order_id: 'e3100b16-3517-40b6-ad76-ac1b803f5364',
+    order_date: '2024-09-11T23:40:00',
+    status: 'PAID',
+    customer: {
+      customer_id: 'C38197',
+      name: 'Aditya Mehta',
+      email: 'aditya.mehta363@gmail.com',
+      age: 45,
+      loyalty_tier: 'BRONZE'
+    },
+    shipping: {
+      address: {
+        line1: '73, Charminar Rd',
+        city: 'Mumbai',
+        state: 'Maharashtra',
+        country: 'India',
+        pincode: '400001'
+      },
+      geo: {
+        type: 'Point',
+        coordinates: [ 72.89554862547602, 19.074663275336427 ]
+      },
+      carrier: 'XpressBees',
+      status: 'CREATED',
+      delivered_at: null
+    },
+    items: [
+      {
+        sku: 'DEV-8432',
+        name: 'Devices Product 32',
+        category: 'Devices',
+        qty: 1,
+        price: 799,
+        discount: null
+      },
+      {
+        sku: 'SUP-6314',
+        name: 'Supplements Product 14',
+        category: 'Supplements',
+        qty: 3,
+        price: 1999,
+        discount: { type: 'PCT', value: 5 }
+      },
+      {
+        sku: 'SKI-3579',
+        name: 'Skincare Product 79',
+        category: 'Skincare',
+        qty: 1,
+        price: 1999,
+        discount: { type: 'PCT', value: 15 }
+      },
+      {
+        sku: 'DEV-7947',
+        name: 'Devices Product 47',
+        category: 'Devices',
+        qty: 3,
+        price: 1299,
+        discount: null
+      }
+    ],
+    charges: {
+      subtotal: 12092.3,
+      shipping_fee: 0,
+      taxes: 2176.61,
+      coupon: 'FLASH50',
+      coupon_discount: 50,
+      grand_total: 14218.91,
+      currency: 'INR'
+    },
+    payment: {
+      method: 'NETBANKING',
+      transactions: [
+        {
+          tx_id: 'TXN-331230',
+          amount: 14218.91,
+          status: 'SUCCESS',
+          ts: '2024-09-12T00:31:00'
+        }
+      ]
+    },
+    tags: [],
+    events: [
+      { ts: '2024-09-11T23:40:00', type: 'ORDER_CREATED' },
+      {
+        ts: '2024-09-12T01:40:00',
+        type: 'PAYMENT_INITIATED',
+        meta: { method: 'NETBANKING' }
+      }
+    ],
+    review: { rating: 3, comment: 'Okayish' },
+    dist: 1883.6743494773855
+  },
+  {
+    _id: ObjectId("691563108d0b775a31a3fa38"),
+    order_id: '79b88990-761e-40e9-bc54-4603737231a7',
+    order_date: '2025-04-03T23:18:00',
+    status: 'PLACED',
+    customer: {
+      customer_id: 'C77411',
+      name: 'Ayaan Singh',
+      email: 'ayaan.singh65@gmail.com',
+      age: 29,
+      loyalty_tier: 'GOLD'
+    },
+    shipping: {
+      address: {
+        line1: '143, MG Road',
+        city: 'Mumbai',
+        state: 'Maharashtra',
+        country: 'India',
+        pincode: '400001'
+      },
+      geo: {
+        type: 'Point',
+        coordinates: [ 72.88519622942628, 19.048764563494167 ]
+      },
+      carrier: 'XpressBees',
+      status: 'IN_TRANSIT',
+      delivered_at: null
+    },
+    items: [
+      {
+        sku: 'DEV-1718',
+        name: 'Devices Product 18',
+        category: 'Devices',
+        qty: 3,
+        price: 649,
+        discount: { type: 'FLAT', value: 100 }
+      },
+      {
+        sku: 'COM-2349',
+        name: 'Combos Product 49',
+        category: 'Combos',
+        qty: 1,
+        price: 299,
+        discount: { type: 'PCT', value: 5 }
+      },
+      {
+        sku: 'SKI-4492',
+        name: 'Skincare Product 92',
+        category: 'Skincare',
+        qty: 1,
+        price: 999,
+        discount: { type: 'FLAT', value: 200 }
+      },
+      {
+        sku: 'DEV-2181',
+        name: 'Devices Product 81',
+        category: 'Devices',
+        qty: 1,
+        price: 399,
+        discount: null
+      }
+    ],
+    charges: {
+      subtotal: 3329.05,
+      shipping_fee: 0,
+      taxes: 599.23,
+      coupon: null,
+      coupon_discount: 0,
+      grand_total: 3928.28,
+      currency: 'INR'
+    },
+    payment: {
+      method: 'NETBANKING',
+      transactions: [
+        {
+          tx_id: 'TXN-506881',
+          amount: 3928.28,
+          status: 'FAILED',
+          ts: '2025-04-04T00:39:00'
+        }
+      ]
+    },
+    tags: [ 'cod', 'high-value', 'new-user' ],
+    events: [
+      { ts: '2025-04-03T23:18:00', type: 'ORDER_CREATED' },
+      {
+        ts: '2025-04-04T01:18:00',
+        type: 'PAYMENT_INITIATED',
+        meta: { method: 'NETBANKING' }
+      }
+    ],
+    dist: 3132.727753007968
+  },
+  {
+    _id: ObjectId("691563108d0b775a31a3f9f2"),
+    order_id: '61893a9e-3ebf-4c67-89c3-effa10047c58',
+    order_date: '2024-10-30T09:07:00',
+    status: 'DELIVERED',
+    customer: {
+      customer_id: 'C93748',
+      name: 'Muhammad Chatterjee',
+      email: 'muhammad.chatterjee775@outlook.com',
+      age: 19,
+      loyalty_tier: 'GOLD'
+    },
+    shipping: {
+      address: {
+        line1: '18, Linking Road',
+        city: 'Mumbai',
+        state: 'Maharashtra',
+        country: 'India',
+        pincode: '400001'
+      },
+      geo: {
+        type: 'Point',
+        coordinates: [ 72.85181259243856, 19.091710440001084 ]
+      },
+      carrier: 'Delhivery',
+      status: 'DELIVERED',
+      delivered_at: '2024-11-05T09:07:00'
+    },
+    items: [
+      {
+        sku: 'HAI-2816',
+        name: 'Haircare Product 16',
+        category: 'Haircare',
+        qty: 3,
+        price: 1299,
+        discount: { type: 'PCT', value: 10 }
+      },
+      {
+        sku: 'SKI-5772',
+        name: 'Skincare Product 72',
+        category: 'Skincare',
+        qty: 1,
+        price: 999,
+        discount: null
+      },
+      {
+        sku: 'SKI-7825',
+        name: 'Skincare Product 25',
+        category: 'Skincare',
+        qty: 3,
+        price: 399,
+        discount: { type: 'PCT', value: 15 }
+      },
+      {
+        sku: 'HAI-9618',
+        name: 'Haircare Product 18',
+        category: 'Haircare',
+        qty: 3,
+        price: 1499,
+        discount: { type: 'PCT', value: 20 }
+      }
+    ],
+    charges: {
+      subtotal: 9121.35,
+      shipping_fee: 0,
+      taxes: 1641.84,
+      coupon: 'FLASH50',
+      coupon_discount: 50,
+      grand_total: 10713.19,
+      currency: 'INR'
+    },
+    payment: {
+      method: 'UPI',
+      transactions: [
+        {
+          tx_id: 'TXN-908977',
+          amount: 10713.19,
+          status: 'SUCCESS',
+          ts: '2024-10-30T10:22:00'
+        }
+      ]
+    },
+    tags: [ 'repeat', 'new-user' ],
+    events: [
+      { ts: '2024-10-30T09:07:00', type: 'ORDER_CREATED' },
+      {
+        ts: '2024-10-30T11:07:00',
+        type: 'PAYMENT_INITIATED',
+        meta: { method: 'UPI' }
+      }
+    ],
+    dist: 3236.5610685459314
+  },
+  {
+    _id: ObjectId("691563108d0b775a31a3fa40"),
+    order_id: 'c34f1b89-75ea-4d27-b5e5-bb9d4d65c5b1',
+    order_date: '2024-09-07T20:32:00',
+    status: 'PAID',
+    customer: {
+      customer_id: 'C17328',
+      name: 'Ryan Gupta',
+      email: 'ryan.gupta625@proton.me',
+      age: 27,
+      loyalty_tier: 'SILVER'
+    },
+    shipping: {
+      address: {
+        line1: '160, Charminar Rd',
+        city: 'Mumbai',
+        state: 'Maharashtra',
+        country: 'India',
+        pincode: '400001'
+      },
+      geo: {
+        type: 'Point',
+        coordinates: [ 72.87878049084584, 19.04277217015936 ]
+      },
+      carrier: 'XpressBees',
+      status: 'IN_TRANSIT',
+      delivered_at: null
+    },
+    items: [
+      {
+        sku: 'SUP-3949',
+        name: 'Supplements Product 49',
+        category: 'Supplements',
+        qty: 2,
+        price: 1499,
+        discount: { type: 'PCT', value: 15 }
+      },
+      {
+        sku: 'HAI-4548',
+        name: 'Haircare Product 48',
+        category: 'Haircare',
+        qty: 3,
+        price: 1299,
+        discount: null
+      }
+    ],
+    charges: {
+      subtotal: 6445.3,
+      shipping_fee: 0,
+      taxes: 1160.15,
+      coupon: 'FLASH50',
+      coupon_discount: 50,
+      grand_total: 7555.45,
+      currency: 'INR'
+    },
+    payment: {
+      method: 'CARD',
+      transactions: [
+        {
+          tx_id: 'TXN-725510',
+          amount: 7555.45,
+          status: 'SUCCESS',
+          ts: '2024-09-07T21:48:00'
+        }
+      ]
+    },
+    tags: [],
+    events: [
+      { ts: '2024-09-07T20:32:00', type: 'ORDER_CREATED' },
+      {
+        ts: '2024-09-07T22:32:00',
+        type: 'PAYMENT_INITIATED',
+        meta: { method: 'CARD' }
+      }
+    ],
+    review: { rating: 4, comment: 'Okayish' },
+    dist: 3700.630290784915
+  },
+  {
+    _id: ObjectId("691563108d0b775a31a3fa28"),
+    order_id: '3edeb28d-f01a-4a12-a14b-efdf3a62c8bd',
+    order_date: '2025-06-18T02:18:00',
+    status: 'PAID',
+    customer: {
+      customer_id: 'C31352',
+      name: 'Rudra Verma',
+      email: 'rudra.verma739@outlook.com',
+      age: 63,
+      loyalty_tier: 'GOLD'
+    },
+    shipping: {
+      address: {
+        line1: '109, Park Street',
+        city: 'Mumbai',
+        state: 'Maharashtra',
+        country: 'India',
+        pincode: '400001'
+      },
+      geo: {
+        type: 'Point',
+        coordinates: [ 72.91285861730927, 19.07189980188906 ]
+      },
+      carrier: 'BlueDart',
+      status: 'IN_TRANSIT',
+      delivered_at: null
+    },
+    items: [
+      {
+        sku: 'SKI-4688',
+        name: 'Skincare Product 88',
+        category: 'Skincare',
+        qty: 2,
+        price: 499,
+        discount: null
+      },
+      {
+        sku: 'COM-1328',
+        name: 'Combos Product 28',
+        category: 'Combos',
+        qty: 2,
+        price: 199,
+        discount: { type: 'FLAT', value: 75 }
+      }
+    ],
+    charges: {
+      subtotal: 1321,
+      shipping_fee: 0,
+      taxes: 237.78,
+      coupon: null,
+      coupon_discount: 0,
+      grand_total: 1558.78,
+      currency: 'INR'
+    },
+    payment: {
+      method: 'UPI',
+      transactions: [
+        {
+          tx_id: 'TXN-416822',
+          amount: 1558.78,
+          status: 'SUCCESS',
+          ts: '2025-06-18T03:45:00'
+        }
+      ]
+    },
+    tags: [ 'promo', 'new-user', 'priority' ],
+    events: [
+      { ts: '2025-06-18T02:18:00', type: 'ORDER_CREATED' },
+      {
+        ts: '2025-06-18T04:18:00',
+        type: 'PAYMENT_INITIATED',
+        meta: { method: 'UPI' }
+      }
+    ],
+    dist: 3726.9927726639885
+  },
+  {
+    _id: ObjectId("691563108d0b775a31a3fa5b"),
+    order_id: 'ddd4592c-1e34-4240-b840-397d1a9a1ca5',
+    order_date: '2025-09-23T12:56:00',
+    status: 'PACKED',
+    customer: {
+      customer_id: 'C39567',
+      name: 'Kian Reddy',
+      email: 'kian.reddy221@yahoo.com',
+      age: 59,
+      loyalty_tier: 'SILVER'
+    },
+    shipping: {
+      address: {
+        line1: '149, Brigade Road',
+        city: 'Mumbai',
+        state: 'Maharashtra',
+        country: 'India',
+        pincode: '400001'
+      },
+      geo: {
+        type: 'Point',
+        coordinates: [ 72.89610486362585, 19.046231023328446 ]
+      },
+      carrier: 'BlueDart',
+      status: 'IN_TRANSIT',
+      delivered_at: null
+    },
+    items: [
+      {
+        sku: 'SUP-7436',
+        name: 'Supplements Product 36',
+        category: 'Supplements',
+        qty: 1,
+        price: 399,
+        discount: null
+      },
+      {
+        sku: 'COM-4726',
+        name: 'Combos Product 26',
+        category: 'Combos',
+        qty: 1,
+        price: 999,
+        discount: { type: 'FLAT', value: 150 }
+      }
+    ],
+    charges: {
+      subtotal: 1248,
+      shipping_fee: 0,
+      taxes: 224.64,
+      coupon: 'FESTIVE15',
+      coupon_discount: 187.2,
+      grand_total: 1285.44,
+      currency: 'INR'
+    },
+    payment: {
+      method: 'WALLET',
+      transactions: [
+        {
+          tx_id: 'TXN-821978',
+          amount: 1285.44,
+          status: 'SUCCESS',
+          ts: '2025-09-23T14:27:00'
+        }
+      ]
+    },
+    tags: [ 'cod' ],
+    events: [
+      { ts: '2025-09-23T12:56:00', type: 'ORDER_CREATED' },
+      {
+        ts: '2025-09-23T14:56:00',
+        type: 'PAYMENT_INITIATED',
+        meta: { method: 'WALLET' }
+      }
+    ],
+    dist: 3838.1661026577494
+  },
+  {
+    _id: ObjectId("691563108d0b775a31a3fa5a"),
+    order_id: '91789af7-0236-4b5d-8497-204dac33f5e6',
+    order_date: '2024-07-28T14:41:00',
+    status: 'RETURNED',
+    customer: {
+      customer_id: 'C96556',
+      name: 'Aditya Yadav',
+      email: 'aditya.yadav263@gmail.com',
+      age: 51,
+      loyalty_tier: 'GOLD'
+    },
+    shipping: {
+      address: {
+        line1: '86, Park Street',
+        city: 'Mumbai',
+        state: 'Maharashtra',
+        country: 'India',
+        pincode: '400001'
+      },
+      geo: {
+        type: 'Point',
+        coordinates: [ 72.86703998178274, 19.041700525059085 ]
+      },
+      carrier: 'XpressBees',
+      status: 'DELIVERED',
+      delivered_at: '2024-07-29T14:41:00'
+    },
+    items: [
+      {
+        sku: 'SUP-2767',
+        name: 'Supplements Product 67',
+        category: 'Supplements',
+        qty: 2,
+        price: 199,
+        discount: null
+      },
+      {
+        sku: 'SKI-7237',
+        name: 'Skincare Product 37',
+        category: 'Skincare',
+        qty: 3,
+        price: 1499,
+        discount: { type: 'PCT', value: 15 }
+      },
+      {
+        sku: 'DEV-9709',
+        name: 'Devices Product 09',
+        category: 'Devices',
+        qty: 1,
+        price: 299,
+        discount: { type: 'FLAT', value: 200 }
+      }
+    ],
+    charges: {
+      subtotal: 4319.45,
+      shipping_fee: 0,
+      taxes: 777.5,
+      coupon: 'FLASH50',
+      coupon_discount: 50,
+      grand_total: 5046.95,
+      currency: 'INR'
+    },
+    payment: {
+      method: 'WALLET',
+      transactions: [
+        {
+          tx_id: 'TXN-817552',
+          amount: 5046.95,
+          status: 'SUCCESS',
+          ts: '2024-07-28T15:27:00'
+        }
+      ]
+    },
+    tags: [ 'priority', 'high-value' ],
+    events: [
+      { ts: '2024-07-28T14:41:00', type: 'ORDER_CREATED' },
+      {
+        ts: '2024-07-28T16:41:00',
+        type: 'PAYMENT_INITIATED',
+        meta: { method: 'WALLET' }
+      },
+      {
+        ts: '2024-08-01T14:41:00',
+        type: 'RETURN_REQUESTED',
+        meta: { reason: 'Wrong Item' }
+      }
+    ],
+    return: { reason: 'Quality Issues', refunded: true },
+    dist: 3979.5096875458826
+  },
+  {
+    _id: ObjectId("691563108d0b775a31a3fa45"),
+    order_id: '8225bbd4-a12f-404d-a576-ff29198bc433',
+    order_date: '2025-02-18T12:36:00',
+    status: 'CANCELLED',
+    customer: {
+      customer_id: 'C63363',
+      name: 'Krishna Kulkarni',
+      email: 'krishna.kulkarni720@outlook.com',
+      age: 46,
+      loyalty_tier: 'PLATINUM'
+    },
+    shipping: {
+      address: {
+        line1: '145, Park Street',
+        city: 'Mumbai',
+        state: 'Maharashtra',
+        country: 'India',
+        pincode: '400001'
+      },
+      geo: {
+        type: 'Point',
+        coordinates: [ 72.90469671927339, 19.10174732850467 ]
+      },
+      carrier: 'EcomExpress',
+      status: 'OUT_FOR_DELIVERY',
+      delivered_at: null
+    },
+    items: [
+      {
+        sku: 'COM-2185',
+        name: 'Combos Product 85',
+        category: 'Combos',
+        qty: 2,
+        price: 1499,
+        discount: null
+      }
+    ],
+    charges: {
+      subtotal: 2998,
+      shipping_fee: 0,
+      taxes: 539.64,
+      coupon: null,
+      coupon_discount: 0,
+      grand_total: 3537.64,
+      currency: 'INR'
+    },
+    payment: {
+      method: 'WALLET',
+      transactions: [
+        {
+          tx_id: 'TXN-583100',
+          amount: 0,
+          status: 'PENDING',
+          ts: '2025-02-18T13:38:00'
+        }
+      ]
+    },
+    tags: [],
+    events: [
+      { ts: '2025-02-18T12:36:00', type: 'ORDER_CREATED' },
+      {
+        ts: '2025-02-18T14:36:00',
+        type: 'PAYMENT_INITIATED',
+        meta: { method: 'WALLET' }
+      }
+    ],
+    review: { rating: 4, comment: 'Okayish' },
+    dist: 4034.9036296569993
+  },
+  {
+    _id: ObjectId("691563108d0b775a31a3f9f1"),
+    order_id: 'df8d1661-47db-47c5-9f3a-49dc246466aa',
+    order_date: '2025-10-20T00:26:00',
+    status: 'DELIVERED',
+    customer: {
+      customer_id: 'C59015',
+      name: 'Rudra Mehta',
+      email: 'rudra.mehta640@proton.me',
+      age: 18,
+      loyalty_tier: 'BRONZE'
+    },
+    shipping: {
+      address: {
+        line1: '5, Linking Road',
+        city: 'Mumbai',
+        state: 'Maharashtra',
+        country: 'India',
+        pincode: '400001'
+      },
+      geo: {
+        type: 'Point',
+        coordinates: [ 72.84926547444684, 19.040951961896422 ]
+      },
+      carrier: 'Shadowfax',
+      status: 'DELIVERED',
+      delivered_at: '2025-10-28T00:26:00'
+    },
+    items: [
+      {
+        sku: 'DEV-2337',
+        name: 'Devices Product 37',
+        category: 'Devices',
+        qty: 1,
+        price: 799,
+        discount: { type: 'PCT', value: 15 }
+      },
+      {
+        sku: 'HAI-6493',
+        name: 'Haircare Product 93',
+        category: 'Haircare',
+        qty: 1,
+        price: 399,
+        discount: { type: 'PCT', value: 15 }
+      }
+    ],
+    charges: {
+      subtotal: 1018.3,
+      shipping_fee: 0,
+      taxes: 183.29,
+      coupon: 'FLASH50',
+      coupon_discount: 50,
+      grand_total: 1151.59,
+      currency: 'INR'
+    },
+    payment: {
+      method: 'CARD',
+      transactions: [
+        {
+          tx_id: 'TXN-653408',
+          amount: 1151.59,
+          status: 'SUCCESS',
+          ts: '2025-10-20T01:21:00'
+        }
+      ]
+    },
+    tags: [],
+    events: [
+      { ts: '2025-10-20T00:26:00', type: 'ORDER_CREATED' },
+      {
+        ts: '2025-10-20T02:26:00',
+        type: 'PAYMENT_INITIATED',
+        meta: { method: 'CARD' }
+      }
+    ],
+    dist: 4916.563467083202
+  }
+]
+Demo> { $comment: "Q11. Item-level discount analytics" }
+Q11. Item-level discount analytics
+Demo> db.orders.aggregate([
+...   { $unwind: "$items" },
+...   {
+...     $group: {
+...       _id: null,
+...       discounted_items: {
+...         $sum: { $cond: [{ $ne: ["$items.discount", null] }, 1, 0] }
+...       },
+...       total_items: { $sum: 1 },
+...       avg_discount_value: {
+...         $avg: {
+...           $cond: [
+...             { $ne: ["$items.discount", null] },
+...             "$items.discount.value",
+...             null
+...           ]
+...         }
+...       }
+...     }
+...   },
+...   {
+...     $project: {
+...       discount_rate: {
+...         $multiply: [{ $divide: ["$discounted_items", "$total_items"] }, 100]
+...       },
+...       avg_discount_value: 1
+...     }
+...   }
+... ])
+[
+  {
+    _id: null,
+    avg_discount_value: 65.90163934426229,
+    discount_rate: 50.69252077562327
+  }
+]
+Demo>
+
+Demo> { $comment: "Q12. Coupon effectiveness by tier" }
+Q12. Coupon effectiveness by tier
+Demo> db.orders.aggregate([
+...   {
+...     $group: {
+...       _id: "$customer.loyalty_tier",
+...       coupon_usage: {
+...         $sum: { $cond: [{ $ne: ["$charges.coupon", null] }, 1, 0] }
+...       },
+...       total: { $sum: 1 },
+...       avg_discount: { $avg: "$charges.coupon_discount" }
+...     }
+...   },
+...   {
+...     $project: {
+...       coupon_usage_rate: {
+...         $multiply: [{ $divide: ["$coupon_usage", "$total"] }, 100]
+...       },
+...       avg_discount: 1
+...     }
+...   }
+... ])
+[
+  {
+    _id: 'PLATINUM',
+    avg_discount: 90.87342105263158,
+    coupon_usage_rate: 44.73684210526316
+  },
+  {
+    _id: 'GOLD',
+    avg_discount: 45.05243243243243,
+    coupon_usage_rate: 40.54054054054054
+  },
+  {
+    _id: 'BRONZE',
+    avg_discount: 62.450487804878044,
+    coupon_usage_rate: 41.46341463414634
+  },
+  {
+    _id: 'SILVER',
+    avg_discount: 109.38058823529411,
+    coupon_usage_rate: 55.88235294117647
+  }
+]
+Demo>
+
+Demo> { $comment: "Q13. Payment funnel counts from events" }
+Q13. Payment funnel counts from events
+Demo> db.orders.aggregate([
+...   { $unwind: "$events" },
+...   {
+...     $group: {
+...       _id: "$events.type",
+...       count: { $sum: 1 }
+...     }
+...   }
+... ])
+[
+  { _id: 'ORDER_CREATED', count: 150 },
+  { _id: 'PAYMENT_INITIATED', count: 150 },
+  { _id: 'RETURN_REQUESTED', count: 11 }
+]
+Demo>
+
+Demo> { $comment: "Q14. Review sentiment by category" }
+Q14. Review sentiment by category
+Demo> db.orders.aggregate([
+...   { $match: { review: { $exists: true } } },
+...   { $unwind: "$items" },
+...   {
+...     $group: {
+...       _id: "$items.category",
+...       avg_rating: { $avg: "$review.rating" }
+...     }
+...   }
+... ])
+[
+  { _id: 'Supplements', avg_rating: 2.933333333333333 },
+  { _id: 'Combos', avg_rating: 3.2222222222222223 },
+  { _id: 'Skincare', avg_rating: 3.3 },
+  { _id: 'Devices', avg_rating: 3.230769230769231 },
+  { _id: 'Haircare', avg_rating: 3.3157894736842106 }
+]
+Demo>
+
+Demo> { $comment: "Q15. Abandoned or failed payments" }
+Q15. Abandoned or failed payments
+Demo> db.orders.aggregate([
+...   {
+...     $match: {
+...       status: "PLACED",
+...       "payment.transactions": {
+...         $elemMatch: { status: { $ne: "SUCCESS" } }
+...       }
+...     }
+...   },
+...   {
+...     $project: {
+...       order_id: 1,
+...       customer: "$customer.name",
+...       last_tx: { $last: "$payment.transactions" }
+...     }
+...   }
+... ])
+[
+  {
+    _id: ObjectId("691563108d0b775a31a3f9cd"),
+    order_id: '2659fd1d-193e-4b6a-8db2-d1f85b794ba7',
+    customer: 'Dhruv Mehta',
+    last_tx: {
+      tx_id: 'TXN-665427',
+      amount: 635.08,
+      status: 'PENDING',
+      ts: '2025-01-21T23:14:00'
+    }
+  },
+  {
+    _id: ObjectId("691563108d0b775a31a3f9e7"),
+    order_id: '181ad314-47c7-4381-8329-d1acc7b10c93',
+    customer: 'Rohan Bose',
+    last_tx: {
+      tx_id: 'TXN-437758',
+      amount: 1451.49,
+      status: 'PENDING',
+      ts: '2025-03-27T03:56:00'
+    }
+  },
+  {
+    _id: ObjectId("691563108d0b775a31a3f9ed"),
+    order_id: '21d7c65d-e6b0-4fd9-92c1-c20298606c27',
+    customer: 'Ishaan Reddy',
+    last_tx: {
+      tx_id: 'TXN-143015',
+      amount: 655.64,
+      status: 'FAILED',
+      ts: '2025-02-11T04:27:00'
+    }
+  },
+  {
+    _id: ObjectId("691563108d0b775a31a3f9ee"),
+    order_id: '3b7c7126-cf67-40a1-b553-531d9c700e5f',
+    customer: 'Vivaan Khan',
+    last_tx: {
+      tx_id: 'TXN-449555',
+      amount: 5305.28,
+      status: 'PENDING',
+      ts: '2025-03-14T05:18:00'
+    }
+  },
+  {
+    _id: ObjectId("691563108d0b775a31a3f9ef"),
+    order_id: '88c439e0-be57-4351-894d-695f9bd2d534',
+    customer: 'Arjun Pillai',
+    last_tx: {
+      tx_id: 'TXN-261745',
+      amount: 2765.02,
+      status: 'PENDING',
+      ts: '2025-06-01T23:06:00'
+    }
+  },
+  {
+    _id: ObjectId("691563108d0b775a31a3f9fa"),
+    order_id: 'f5509140-0cc4-4667-8fd0-d9cb13334044',
+    customer: 'Rohan Sharma',
+    last_tx: {
+      tx_id: 'TXN-813449',
+      amount: 4240.92,
+      status: 'PENDING',
+      ts: '2025-03-21T14:48:00'
+    }
+  },
+  {
+    _id: ObjectId("691563108d0b775a31a3fa07"),
+    order_id: '571af485-73f8-4731-af88-b9a964997293',
+    customer: 'Aditya Verma',
+    last_tx: {
+      tx_id: 'TXN-954814',
+      amount: 9462.89,
+      status: 'FAILED',
+      ts: '2025-11-03T02:08:00'
+    }
+  },
+  {
+    _id: ObjectId("691563108d0b775a31a3fa18"),
+    order_id: 'f09c7dc6-1806-4fd1-a560-8fcdf869f58e',
+    customer: 'Krishna Mehta',
+    last_tx: {
+      tx_id: 'TXN-942127',
+      amount: 6377.07,
+      status: 'FAILED',
+      ts: '2025-07-30T00:50:00'
+    }
+  },
+  {
+    _id: ObjectId("691563108d0b775a31a3fa23"),
+    order_id: 'dc226c5f-cb75-4a52-ab56-fcae28a258b5',
+    customer: 'Kian Reddy',
+    last_tx: {
+      tx_id: 'TXN-377877',
+      amount: 1399.68,
+      status: 'PENDING',
+      ts: '2024-10-06T15:07:00'
+    }
+  },
+  {
+    _id: ObjectId("691563108d0b775a31a3fa2d"),
+    order_id: 'f24b0147-64ab-4786-981b-04de25825366',
+    customer: 'Sai Yadav',
+    last_tx: {
+      tx_id: 'TXN-365015',
+      amount: 2059.45,
+      status: 'FAILED',
+      ts: '2025-03-08T13:18:00'
+    }
+  },
+  {
+    _id: ObjectId("691563108d0b775a31a3fa2f"),
+    order_id: '8562d56d-1245-4e53-a41a-e4d29376dd42',
+    customer: 'Rohan Gupta',
+    last_tx: {
+      tx_id: 'TXN-110142',
+      amount: 1027.94,
+      status: 'PENDING',
+      ts: '2025-10-08T05:18:00'
+    }
+  },
+  {
+    _id: ObjectId("691563108d0b775a31a3fa36"),
+    order_id: '09f73d83-d79b-4ece-bfa7-82de6743aa7e',
+    customer: 'Kian Verma',
+    last_tx: {
+      tx_id: 'TXN-262325',
+      amount: 4124.1,
+      status: 'PENDING',
+      ts: '2025-01-15T14:10:00'
+    }
+  },
+  {
+    _id: ObjectId("691563108d0b775a31a3fa38"),
+    order_id: '79b88990-761e-40e9-bc54-4603737231a7',
+    customer: 'Ayaan Singh',
+    last_tx: {
+      tx_id: 'TXN-506881',
+      amount: 3928.28,
+      status: 'FAILED',
+      ts: '2025-04-04T00:39:00'
+    }
+  },
+  {
+    _id: ObjectId("691563108d0b775a31a3fa46"),
+    order_id: '47612f0f-3914-4886-846e-df59254de9ee',
+    customer: 'Atharv Singh',
+    last_tx: {
+      tx_id: 'TXN-872918',
+      amount: 765.82,
+      status: 'PENDING',
+      ts: '2025-06-12T22:45:00'
+    }
+  }
+]
+Demo> db.orders.aggregate([
+...   {
+...     $match: {
+...       status: "PLACED",
+...       "payment.transactions": {
+...         $elemMatch: { status: { $ne: "SUCCESS" } }
+...       }
+...     }
+...   },
+...   {
+...     $project: {
+...       order_id: 1,
+...       customer: "$customer.name",
+...       last_tx: { $last: "$payment.transactions" }
+...     }
+...   }
+... ])
+[
+  {
+    _id: ObjectId("691563108d0b775a31a3f9cd"),
+    order_id: '2659fd1d-193e-4b6a-8db2-d1f85b794ba7',
+    customer: 'Dhruv Mehta',
+    last_tx: {
+      tx_id: 'TXN-665427',
+      amount: 635.08,
+      status: 'PENDING',
+      ts: '2025-01-21T23:14:00'
+    }
+  },
+  {
+    _id: ObjectId("691563108d0b775a31a3f9e7"),
+    order_id: '181ad314-47c7-4381-8329-d1acc7b10c93',
+    customer: 'Rohan Bose',
+    last_tx: {
+      tx_id: 'TXN-437758',
+      amount: 1451.49,
+      status: 'PENDING',
+      ts: '2025-03-27T03:56:00'
+    }
+  },
+  {
+    _id: ObjectId("691563108d0b775a31a3f9ed"),
+    order_id: '21d7c65d-e6b0-4fd9-92c1-c20298606c27',
+    customer: 'Ishaan Reddy',
+    last_tx: {
+      tx_id: 'TXN-143015',
+      amount: 655.64,
+      status: 'FAILED',
+      ts: '2025-02-11T04:27:00'
+    }
+  },
+  {
+    _id: ObjectId("691563108d0b775a31a3f9ee"),
+    order_id: '3b7c7126-cf67-40a1-b553-531d9c700e5f',
+    customer: 'Vivaan Khan',
+    last_tx: {
+      tx_id: 'TXN-449555',
+      amount: 5305.28,
+      status: 'PENDING',
+      ts: '2025-03-14T05:18:00'
+    }
+  },
+  {
+    _id: ObjectId("691563108d0b775a31a3f9ef"),
+    order_id: '88c439e0-be57-4351-894d-695f9bd2d534',
+    customer: 'Arjun Pillai',
+    last_tx: {
+      tx_id: 'TXN-261745',
+      amount: 2765.02,
+      status: 'PENDING',
+      ts: '2025-06-01T23:06:00'
+    }
+  },
+  {
+    _id: ObjectId("691563108d0b775a31a3f9fa"),
+    order_id: 'f5509140-0cc4-4667-8fd0-d9cb13334044',
+    customer: 'Rohan Sharma',
+    last_tx: {
+      tx_id: 'TXN-813449',
+      amount: 4240.92,
+      status: 'PENDING',
+      ts: '2025-03-21T14:48:00'
+    }
+  },
+  {
+    _id: ObjectId("691563108d0b775a31a3fa07"),
+    order_id: '571af485-73f8-4731-af88-b9a964997293',
+    customer: 'Aditya Verma',
+    last_tx: {
+      tx_id: 'TXN-954814',
+      amount: 9462.89,
+      status: 'FAILED',
+      ts: '2025-11-03T02:08:00'
+    }
+  },
+  {
+    _id: ObjectId("691563108d0b775a31a3fa18"),
+    order_id: 'f09c7dc6-1806-4fd1-a560-8fcdf869f58e',
+    customer: 'Krishna Mehta',
+    last_tx: {
+      tx_id: 'TXN-942127',
+      amount: 6377.07,
+      status: 'FAILED',
+      ts: '2025-07-30T00:50:00'
+    }
+  },
+  {
+    _id: ObjectId("691563108d0b775a31a3fa23"),
+    order_id: 'dc226c5f-cb75-4a52-ab56-fcae28a258b5',
+    customer: 'Kian Reddy',
+    last_tx: {
+      tx_id: 'TXN-377877',
+      amount: 1399.68,
+      status: 'PENDING',
+      ts: '2024-10-06T15:07:00'
+    }
+  },
+  {
+    _id: ObjectId("691563108d0b775a31a3fa2d"),
+    order_id: 'f24b0147-64ab-4786-981b-04de25825366',
+    customer: 'Sai Yadav',
+    last_tx: {
+      tx_id: 'TXN-365015',
+      amount: 2059.45,
+      status: 'FAILED',
+      ts: '2025-03-08T13:18:00'
+    }
+  },
+  {
+    _id: ObjectId("691563108d0b775a31a3fa2f"),
+    order_id: '8562d56d-1245-4e53-a41a-e4d29376dd42',
+    customer: 'Rohan Gupta',
+    last_tx: {
+      tx_id: 'TXN-110142',
+      amount: 1027.94,
+      status: 'PENDING',
+      ts: '2025-10-08T05:18:00'
+    }
+  },
+  {
+    _id: ObjectId("691563108d0b775a31a3fa36"),
+    order_id: '09f73d83-d79b-4ece-bfa7-82de6743aa7e',
+    customer: 'Kian Verma',
+    last_tx: {
+      tx_id: 'TXN-262325',
+      amount: 4124.1,
+      status: 'PENDING',
+      ts: '2025-01-15T14:10:00'
+    }
+  },
+  {
+    _id: ObjectId("691563108d0b775a31a3fa38"),
+    order_id: '79b88990-761e-40e9-bc54-4603737231a7',
+    customer: 'Ayaan Singh',
+    last_tx: {
+      tx_id: 'TXN-506881',
+      amount: 3928.28,
+      status: 'FAILED',
+      ts: '2025-04-04T00:39:00'
+    }
+  },
+  {
+    _id: ObjectId("691563108d0b775a31a3fa46"),
+    order_id: '47612f0f-3914-4886-846e-df59254de9ee',
+    customer: 'Atharv Singh',
+    last_tx: {
+      tx_id: 'TXN-872918',
+      amount: 765.82,
+      status: 'PENDING',
+      ts: '2025-06-12T22:45:00'
+    }
+  }
+]
+Demo>
+

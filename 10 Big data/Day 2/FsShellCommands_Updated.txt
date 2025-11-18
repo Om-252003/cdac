@@ -1,0 +1,56 @@
+$ hdfs dfs 
+
+$ hdfs dfs -ls /user/hadoop -> prints directory
+
+$ hdfs dfs -ls -R /user/hadoop/
+
+$ hdfs dfs -mkdir /user/hadoop/StocksDir
+
+$ hdfs dfs -ls           -> shows what is in home directory
+
+$ hdfs dfs -put /usr/share/dict/words /user/hadoop/StocksDir
+
+$ hdfs dfs -tail /user/hadoop/StocksDir/words
+
+$ hdfs dfs -mkdir /user/hadoop/AnotherStocksDir
+
+$ hdfs dfs -ls -R /user/hadoop/
+
+$ hdfs dfs -mkdir /user/hadoop/ThirdStocksDir
+
+$ hdfs dfs -ls -R /user/hadoop/
+
+$ hdfs dfs -cp /user/hadoop/StocksDir/words /user/hadoop/AnotherStocksDir/newfile1.txt
+
+$ hdfs dfs -cp /user/hadoop/StocksDir/words  /user/hadoop/AnotherStocksDir/newfile2.txt
+
+$ hdfs dfs -cp /user/hadoop/StocksDir/words  /user/hadoop/AnotherStocksDir/newfile3.txt
+
+$ hdfs dfs -ls -R /user/hadoop/
+
+$ hdfs dfs -cp /user/hadoop/StocksDir/NYSE_Data.txt /user/hadoop/ThirdStocksDir/
+
+$ hdfs dfs -ls -R /user/hadoop/
+
+$ hdfs dfs -rm /user/hadoop/StocksDir/NYSE_Data.txt
+
+$ hdfs dfs -rmdir /user/hadoop/ThirdStocksDir
+
+$ hadoop fs -ls -R /user/hadoop/
+
+$ hadoop fs -rmdir /user/hadoop/AnotherStocksDir --> Will not work
+
+$ hdfs dfs -rm -R /user/hadoop/AnotherStocksDir
+
+
+
+
+
+
+
+
+
+
+
+
+.

@@ -1,0 +1,620 @@
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+Try the new cross-platform PowerShell https://aka.ms/pscore6
+
+PS C:\Windows\system32> net stop postgresql-x64-16
+>>
+The postgresql-x64-16 service is stopping.
+The postgresql-x64-16 service was stopped successfully.
+
+PS C:\Windows\system32> mkdir D:\pgdata
+>>
+
+
+    Directory: D:\
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----        03-11-2025     13:15                pgdata
+
+
+PS C:\Windows\system32> mkdir D:\pgdata
+>>
+mkdir : An item with the specified name D:\pgdata already exists.
+At line:1 char:1
++ mkdir D:\pgdata
++ ~~~~~~~~~~~~~~~
+    + CategoryInfo          : ResourceExists: (D:\pgdata:String) [New-Item], IOException
+    + FullyQualifiedErrorId : DirectoryExist,Microsoft.PowerShell.Commands.NewItemCommand
+
+PS C:\Windows\system32> "D:\Program Files\PostgreSQL\16\bin\initdb.exe" -D "D:\pgdata" -U postgres -W
+>>
+At line:1 char:49
++ "D:\Program Files\PostgreSQL\16\bin\initdb.exe" -D "D:\pgdata" -U pos ...
++                                                 ~~
+Unexpected token '-D' in expression or statement.
+At line:1 char:52
++ ... D:\Program Files\PostgreSQL\16\bin\initdb.exe" -D "D:\pgdata" -U post ...
++                                                       ~~~~~~~~~~~
+Unexpected token '"D:\pgdata"' in expression or statement.
+At line:1 char:64
++ ... Program Files\PostgreSQL\16\bin\initdb.exe" -D "D:\pgdata" -U postgre ...
++                                                                ~~
+Unexpected token '-U' in expression or statement.
+At line:1 char:67
++ ... ram Files\PostgreSQL\16\bin\initdb.exe" -D "D:\pgdata" -U postgres -W
++                                                               ~~~~~~~~
+Unexpected token 'postgres' in expression or statement.
+    + CategoryInfo          : ParserError: (:) [], ParentContainsErrorRecordException
+    + FullyQualifiedErrorId : UnexpectedToken
+
+PS C:\Windows\system32> & "D:\Program Files\PostgreSQL\16\bin\initdb.exe" -D "D:\pgdata" -U postgres -W
+>>
+The files belonging to this database system will be owned by user "Dell".
+This user must also own the server process.
+
+The database cluster will be initialized with locale "English_India.1252".
+The default database encoding has accordingly been set to "WIN1252".
+The default text search configuration will be set to "english".
+
+Data page checksums are disabled.
+
+Enter new superuser password:
+Enter it again:
+
+fixing permissions on existing directory D:/pgdata ... ok
+creating subdirectories ... ok
+selecting dynamic shared memory implementation ... windows
+selecting default max_connections ... 100
+selecting default shared_buffers ... 128MB
+selecting default time zone ... Asia/Calcutta
+creating configuration files ... ok
+running bootstrap script ... ok
+performing post-bootstrap initialization ... ok
+syncing data to disk ... ok
+
+initdb: warning: enabling "trust" authentication for local connections
+initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
+
+Success. You can now start the database server using:
+
+    ^"D^:^\Program^ Files^\PostgreSQL^\16^\bin^\pg^_ctl^" -D ^"D^:^\pgdata^" -l logfile start
+
+PS C:\Windows\system32> sc config postgresql-x64-16 binPath= "\"D:\Program Files\PostgreSQL\16\bin\pg_ctl.exe\" runservice -D \"D:\pgdata\""
+>>
+Set-Content : A positional parameter cannot be found that accepts argument 'binPath='.
+At line:1 char:1
++ sc config postgresql-x64-16 binPath= "\"D:\Program Files\PostgreSQL\1 ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidArgument: (:) [Set-Content], ParameterBindingException
+    + FullyQualifiedErrorId : PositionalParameterNotFound,Microsoft.PowerShell.Commands.SetContentCommand
+
+PS C:\Windows\system32> net stop postgresql-x64-16
+>>
+The postgresql-x64-16 service is not started.
+
+More help is available by typing NET HELPMSG 3521.
+
+PS C:\Windows\system32> sc config postgresql-x64-16 binPath= "\"D:\Program Files\PostgreSQL\16\bin\pg_ctl.exe\" runservice -D \"D:\pgdata\""
+>>
+Set-Content : A positional parameter cannot be found that accepts argument 'binPath='.
+At line:1 char:1
++ sc config postgresql-x64-16 binPath= "\"D:\Program Files\PostgreSQL\1 ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidArgument: (:) [Set-Content], ParameterBindingException
+    + FullyQualifiedErrorId : PositionalParameterNotFound,Microsoft.PowerShell.Commands.SetContentCommand
+
+PS C:\Windows\system32> & sc.exe config postgresql-x64-16 binPath= "\"D:\Program Files\PostgreSQL\16\bin\pg_ctl.exe\" runservice -D \"D:\pgdata\""
+>>
+DESCRIPTION:
+        Modifies a service entry in the registry and Service Database.
+USAGE:
+        sc <server> config [service name] <option1> <option2>...
+
+OPTIONS:
+NOTE: The option name includes the equal sign.
+      A space is required between the equal sign and the value.
+      To remove the dependency, use a single / as dependency value.
+ type= <own|share|interact|kernel|filesys|rec|adapt|userown|usershare>
+ start= <boot|system|auto|demand|disabled|delayed-auto>
+ error= <normal|severe|critical|ignore>
+ binPath= <BinaryPathName to the .exe file>
+ group= <LoadOrderGroup>
+ tag= <yes|no>
+ depend= <Dependencies(separated by / (forward slash))>
+ obj= <AccountName|ObjectName>
+ DisplayName= <display name>
+ password= <password>
+PS C:\Windows\system32> & sc.exe config postgresql-x64-16 binPath= "\"D:\Program Files\PostgreSQL\16\bin\pg_ctl.exe\" runservice -D \"D:\pgdata\""
+>>
+DESCRIPTION:
+        Modifies a service entry in the registry and Service Database.
+USAGE:
+        sc <server> config [service name] <option1> <option2>...
+
+OPTIONS:
+NOTE: The option name includes the equal sign.
+      A space is required between the equal sign and the value.
+      To remove the dependency, use a single / as dependency value.
+ type= <own|share|interact|kernel|filesys|rec|adapt|userown|usershare>
+ start= <boot|system|auto|demand|disabled|delayed-auto>
+ error= <normal|severe|critical|ignore>
+ binPath= <BinaryPathName to the .exe file>
+ group= <LoadOrderGroup>
+ tag= <yes|no>
+ depend= <Dependencies(separated by / (forward slash))>
+ obj= <AccountName|ObjectName>
+ DisplayName= <display name>
+ password= <password>
+PS C:\Windows\system32> Get-Service | findstr postgres
+>>
+Stopped  postgresql-x64-16  postgresql-x64-16
+PS C:\Windows\system32> & "D:\Program Files\PostgreSQL\16\bin\pg_ctl.exe" -D "D:\pgdata" -l "D:\pgdata\logfile.txt" start
+>>
+waiting for server to start.... done
+server started
+PS C:\Windows\system32> & "D:\Program Files\PostgreSQL\16\bin\psql.exe" -U postgres -c "SELECT version();"
+>>
+                           version
+-------------------------------------------------------------
+ PostgreSQL 16.10, compiled by Visual C++ build 1944, 64-bit
+(1 row)
+
+
+PS C:\Windows\system32> & "D:\Program Files\PostgreSQL\16\bin\createdb.exe" -U postgres steam_full
+>>
+PS C:\Windows\system32> & "D:\Program Files\PostgreSQL\16\bin\pg_restore.exe" -U postgres -d steam_full --jobs=4 "D:\dataset\steam_dataset_2025_power_users_dump_v1\steam_dataset_2025_power_users\steam_dataset_20250929.dump"
+>>
+pg_restore: error: could not execute query: ERROR:  role "steam_user" does not exist
+Command was: ALTER SCHEMA public OWNER TO steam_user;
+
+pg_restore: error: could not execute query: ERROR:  extension "vector" has no installation script nor update path for version "0.8.1"
+Command was: CREATE EXTENSION IF NOT EXISTS vector WITH SCHEMA public;
+
+
+pg_restore: error: could not execute query: ERROR:  extension "vector" does not exist
+Command was: COMMENT ON EXTENSION vector IS 'vector data type and ivfflat and hnsw access methods';
+
+
+pg_restore: error: could not execute query: ERROR:  role "clusteradmin_pg01" does not exist
+Command was: ALTER TYPE public.app_type OWNER TO clusteradmin_pg01;
+
+pg_restore: error: could not execute query: ERROR:  role "clusteradmin_pg01" does not exist
+Command was: ALTER TYPE public.platform_type OWNER TO clusteradmin_pg01;
+
+pg_restore: error: could not execute query: ERROR:  role "steam_user" does not exist
+Command was: ALTER FUNCTION public.get_database_stats() OWNER TO steam_user;
+
+pg_restore: error: could not execute query: ERROR:  role "steam_user" does not exist
+Command was: ALTER FUNCTION public.update_updated_at_column() OWNER TO steam_user;
+
+pg_restore: error: could not execute query: ERROR:  role "steam_user" does not exist
+Command was: ALTER TABLE public.application_categories OWNER TO steam_user;
+
+pg_restore: error: could not execute query: ERROR:  role "steam_user" does not exist
+Command was: ALTER TABLE public.application_developers OWNER TO steam_user;
+
+pg_restore: error: could not execute query: ERROR:  role "steam_user" does not exist
+Command was: ALTER TABLE public.application_genres OWNER TO steam_user;
+
+pg_restore: error: could not execute query: ERROR:  role "steam_user" does not exist
+Command was: ALTER TABLE public.application_platforms OWNER TO steam_user;
+
+pg_restore: error: could not execute query: ERROR:  type "public.vector" does not exist
+LINE 43:     description_embedding public.vector(1024),
+                                   ^
+Command was: CREATE TABLE public.applications (
+    appid bigint NOT NULL,
+    steam_appid bigint,
+    name_from_applist text NOT NULL,
+    name text,
+    type public.app_type,
+    is_free boolean DEFAULT false,
+    release_date date,
+    required_age text,
+    metacritic_score integer,
+    recommendations_total integer,
+    header_image text,
+    background text,
+    detailed_description text,
+    short_description text,
+    about_the_game text,
+    supported_languages text,
+    combined_text text GENERATED ALWAYS AS (((((COALESCE(name, ''::text) || ' '::text) || COALESCE(short_description, ''::text)) || ' '::text) || COALESCE(about_the_game, ''::text))) STORED,
+    price_overview jsonb,
+    pc_requirements jsonb,
+    mac_requirements jsonb,
+    linux_requirements jsonb,
+    content_descriptors jsonb,
+    package_groups jsonb,
+    achievements jsonb,
+    screenshots jsonb,
+    movies jsonb,
+    ratings jsonb,
+    base_app_id bigint,
+    success boolean DEFAULT false NOT NULL,
+    fetched_at timestamp with time zone,
+    created_at timestamp with time zone DEFAULT now(),
+    updated_at timestamp with time zone DEFAULT now(),
+    supports_windows boolean DEFAULT false,
+    supports_mac boolean DEFAULT false,
+    supports_linux boolean DEFAULT false,
+    initial_price integer,
+    final_price integer,
+    discount_percent integer,
+    currency text,
+    achievement_count integer,
+    embedding_run_id bigint,
+    description_embedding public.vector(1024),
+    mat_supports_windows boolean,
+    mat_supports_mac boolean,
+    mat_supports_linux boolean,
+    mat_initial_price integer,
+    mat_final_price integer,
+    mat_discount_percent integer,
+    mat_currency text,
+    mat_achievement_count integer,
+    mat_pc_os_min text,
+    mat_pc_processor_min text,
+    mat_pc_memory_min text,
+    mat_pc_graphics_min text,
+    mat_pc_os_rec text,
+    mat_pc_processor_rec text,
+    mat_pc_memory_rec text,
+    mat_pc_graphics_rec text,
+    CONSTRAINT valid_metacritic_score CHECK (((metacritic_score IS NULL) OR ((metacritic_score >= 0) AND (metacritic_score <= 100))))
+);
+
+
+pg_restore: error: could not execute query: ERROR:  relation "public.applications" does not exist
+Command was: ALTER TABLE public.applications OWNER TO steam_user;
+
+pg_restore: error: could not execute query: ERROR:  relation "public.applications" does not exist
+Command was: COMMENT ON COLUMN public.applications.mat_supports_windows IS 'Materialized: Derived from pc_requirements JSONB. TRUE if non-null and non-empty object exists. Source of truth: pc_requirements column. Coverage: 99.997% of applications.';
+
+
+pg_restore: error: could not execute query: ERROR:  relation "public.applications" does not exist
+Command was: COMMENT ON COLUMN public.applications.mat_supports_mac IS 'Materialized: Derived from mac_requirements JSONB. TRUE if non-null and non-empty object exists. Source of truth: mac_requirements column. Coverage: 99.996% of applications.';
+
+
+pg_restore: error: could not execute query: ERROR:  relation "public.applications" does not exist
+Command was: COMMENT ON COLUMN public.applications.mat_supports_linux IS 'Materialized: Derived from linux_requirements JSONB. TRUE if non-null and non-empty object exists. Source of truth: linux_requirements column. Coverage: 99.875% of applications.';
+
+
+pg_restore: error: could not execute query: ERROR:  relation "public.applications" does not exist
+Command was: COMMENT ON COLUMN public.applications.mat_initial_price IS 'Materialized: Derived from price_overview->>''initial''. Price in cents (INTEGER). Divide by 100.0 for dollar amount. NULL indicates no pricing data or free game. Source of truth: price_overview JSONB column. Currency bias: 59.5% USD due to API query origin.';
+
+
+pg_restore: error: could not execute query: ERROR:  relation "public.applications" does not exist
+Command was: COMMENT ON COLUMN public.applications.mat_final_price IS 'Materialized: Derived from price_overview->>''final''. Discounted price in cents (INTEGER). NULL if no price data or game is free. Source of truth: price_overview JSONB column.';
+
+
+pg_restore: error: could not execute query: ERROR:  relation "public.applications" does not exist
+Command was: COMMENT ON COLUMN public.applications.mat_discount_percent IS 'Materialized: Derived from price_overview->>''discount_percent''. Percentage discount (0-100). NULL indicates no pricing data. 0 indicates no active discount. Source of truth: price_overview JSONB column.';
+
+
+pg_restore: error: could not execute query: ERROR:  relation "public.applications" does not exist
+Command was: COMMENT ON COLUMN public.applications.mat_currency IS 'Materialized: Derived from price_overview->>''currency''. ISO 4217 currency code (e.g., USD, EUR, GBP). NULL if no pricing data. Heavy USD bias (59.5%) due to API query origin. Source of truth: price_overview JSONB column.';
+
+
+pg_restore: error: could not execute query: ERROR:  relation "public.applications" does not exist
+Command was: COMMENT ON COLUMN public.applications.mat_achievement_count IS 'Materialized: Derived from achievements->>''total''. Total number of achievements available for this application. NULL if no achievements. Valid range includes edge cases with 5,000+ achievements. Source of truth: achievements JSONB column.';
+
+
+pg_restore: error: could not execute query: ERROR:  relation "public.applications" does not exist
+Command was: COMMENT ON COLUMN public.applications.mat_pc_os_min IS 'Materialized: Parsed OS from pc_requirements->>''minimum''. Source of truth: pc_requirements JSONB.';
+
+
+pg_restore: error: could not execute query: ERROR:  relation "public.applications" does not exist
+Command was: COMMENT ON COLUMN public.applications.mat_pc_processor_min IS 'Materialized: Parsed Processor from pc_requirements->>''minimum''. Source of truth: pc_requirements JSONB.';
+
+
+pg_restore: error: could not execute query: ERROR:  relation "public.applications" does not exist
+Command was: COMMENT ON COLUMN public.applications.mat_pc_memory_min IS 'Materialized: Parsed Memory from pc_requirements->>''minimum''. Source of truth: pc_requirements JSONB.';
+
+
+pg_restore: error: could not execute query: ERROR:  relation "public.applications" does not exist
+Command was: COMMENT ON COLUMN public.applications.mat_pc_graphics_min IS 'Materialized: Parsed Graphics from pc_requirements->>''minimum''. Source of truth: pc_requirements JSONB.';
+
+
+pg_restore: error: could not execute query: ERROR:  relation "public.applications" does not exist
+Command was: COMMENT ON COLUMN public.applications.mat_pc_os_rec IS 'Materialized: Parsed OS from pc_requirements->>''recommended''. Source of truth: pc_requirements JSONB.';
+
+
+pg_restore: error: could not execute query: ERROR:  relation "public.applications" does not exist
+Command was: COMMENT ON COLUMN public.applications.mat_pc_processor_rec IS 'Materialized: Parsed Processor from pc_requirements->>''recommended''. Source of truth: pc_requirements JSONB.';
+
+
+pg_restore: error: could not execute query: ERROR:  relation "public.applications" does not exist
+Command was: COMMENT ON COLUMN public.applications.mat_pc_memory_rec IS 'Materialized: Parsed Memory from pc_requirements->>''recommended''. Source of truth: pc_requirements JSONB.';
+
+
+pg_restore: error: could not execute query: ERROR:  relation "public.applications" does not exist
+Command was: COMMENT ON COLUMN public.applications.mat_pc_graphics_rec IS 'Materialized: Parsed Graphics from pc_requirements->>''recommended''. Source of truth: pc_requirements JSONB.';
+
+
+pg_restore: error: could not execute query: ERROR:  role "steam_user" does not exist
+Command was: ALTER TABLE public.platforms OWNER TO steam_user;
+
+pg_restore: error: could not execute query: ERROR:  relation "public.applications" does not exist
+LINE 5:    FROM ((public.applications a
+                  ^
+Command was: CREATE VIEW public.application_platforms_view AS
+ SELECT a.appid,
+    a.name,
+    array_agg(p.name ORDER BY p.name) AS platforms
+   FROM ((public.applications a
+     LEFT JOIN public.application_platforms ap ON ((ap.appid = a.appid)))
+     LEFT JOIN public.platforms p ON ((p.id = ap.platform_id)))
+  GROUP BY a.appid, a.name;
+
+
+pg_restore: error: could not execute query: ERROR:  relation "public.application_platforms_view" does not exist
+Command was: ALTER VIEW public.application_platforms_view OWNER TO postgres;
+
+pg_restore: error: could not execute query: ERROR:  role "steam_user" does not exist
+Command was: ALTER TABLE public.application_publishers OWNER TO steam_user;
+
+pg_restore: error: could not execute query: ERROR:  role "steam_user" does not exist
+Command was: ALTER TABLE public.categories OWNER TO steam_user;
+
+pg_restore: error: could not execute query: ERROR:  role "steam_user" does not exist
+Command was: ALTER SEQUENCE public.categories_id_seq OWNER TO steam_user;
+
+pg_restore: error: could not execute query: ERROR:  role "steam_user" does not exist
+Command was: ALTER TABLE public.developers OWNER TO steam_user;
+
+pg_restore: error: could not execute query: ERROR:  role "steam_user" does not exist
+Command was: ALTER SEQUENCE public.developers_id_seq OWNER TO steam_user;
+
+pg_restore: error: could not execute query: ERROR:  role "steam_user" does not exist
+Command was: ALTER TABLE public.embedding_runs OWNER TO steam_user;
+
+pg_restore: error: could not execute query: ERROR:  role "steam_user" does not exist
+Command was: ALTER SEQUENCE public.embedding_runs_run_id_seq OWNER TO steam_user;
+
+pg_restore: error: could not execute query: ERROR:  type "public.vector" does not exist
+LINE 26:     review_embedding public.vector(1024),
+                              ^
+Command was: CREATE TABLE public.reviews (
+    recommendationid text NOT NULL,
+    appid bigint NOT NULL,
+    author_steamid text,
+    author_num_games_owned bigint,
+    author_num_reviews bigint,
+    author_playtime_forever bigint DEFAULT 0,
+    author_playtime_last_two_weeks bigint DEFAULT 0,
+    author_playtime_at_review bigint DEFAULT 0,
+    author_last_played bigint,
+    language text DEFAULT 'english'::text,
+    review_text text,
+    timestamp_created bigint,
+    timestamp_updated bigint,
+    voted_up boolean,
+    votes_up bigint DEFAULT 0,
+    votes_funny bigint DEFAULT 0,
+    weighted_vote_score numeric(10,8),
+    comment_count bigint DEFAULT 0,
+    steam_purchase boolean DEFAULT true,
+    received_for_free boolean DEFAULT false,
+    written_during_early_access boolean DEFAULT false,
+    created_at timestamp with time zone DEFAULT now(),
+    updated_at timestamp with time zone DEFAULT now(),
+    embedding_run_id bigint,
+    review_embedding public.vector(1024),
+    CONSTRAINT reviews_comment_count_check CHECK ((comment_count >= 0)),
+    CONSTRAINT reviews_votes_funny_check CHECK ((votes_funny >= 0)),
+    CONSTRAINT reviews_votes_up_check CHECK ((votes_up >= 0))
+);
+
+
+pg_restore: error: could not execute query: ERROR:  relation "public.reviews" does not exist
+Command was: ALTER TABLE public.reviews OWNER TO steam_user;
+
+pg_restore: error: could not execute query: ERROR:  relation "public.reviews" does not exist
+LINE 14:            FROM public.reviews
+                         ^
+Command was: CREATE MATERIALIZED VIEW public.game_features_view AS
+ WITH review_agg AS (
+         SELECT reviews.appid,
+            (sum(
+                CASE
+                    WHEN reviews.voted_up THEN 1
+                    ELSE 0
+                END))::integer AS positive_ratings,
+            (sum(
+                CASE
+                    WHEN (NOT reviews.voted_up) THEN 1
+                    ELSE 0
+                END))::integer AS negative_ratings
+           FROM public.reviews
+          GROUP BY reviews.appid
+        ), dlc_agg AS (
+         SELECT applications.base_app_id,
+            count(*) AS dlc_count
+           FROM public.applications
+          WHERE (applications.base_app_id IS NOT NULL)
+          GROUP BY applications.base_app_id
+        ), dev_agg AS (
+         SELECT application_developers.appid,
+            count(*) AS developer_count
+           FROM public.application_developers
+          GROUP BY application_developers.appid
+        )
+ SELECT a.appid,
+    a.name,
+        CASE
+            WHEN ((r.positive_ratings + r.negative_ratings) > 0) THEN ((r.positive_ratings)::double precision / ((r.positive_ratings + r.negative_ratings))::double precision)
+            ELSE (0)::double precision
+        END AS review_score,
+    ((a.price_overview ->> 'final'::text))::integer AS price,
+    COALESCE(dev.developer_count, (0)::bigint) AS developer_count,
+    COALESCE(dlc.dlc_count, (0)::bigint) AS dlc_count
+   FROM (((public.applications a
+     LEFT JOIN review_agg r ON ((a.appid = r.appid)))
+     LEFT JOIN dlc_agg dlc ON ((a.appid = dlc.base_app_id)))
+     LEFT JOIN dev_agg dev ON ((a.appid = dev.appid)))
+  WHERE ((a.type = 'game'::public.app_type) AND ((r.positive_ratings + r.negative_ratings) >= 50) AND ((a.price_overview ->> 'final'::text) IS NOT NULL))
+  WITH NO DATA;
+
+
+pg_restore: error: could not execute query: ERROR:  relation "public.game_features_view" does not exist
+Command was: ALTER MATERIALIZED VIEW public.game_features_view OWNER TO postgres;
+
+pg_restore: error: could not execute query: ERROR:  role "steam_user" does not exist
+Command was: ALTER TABLE public.genres OWNER TO steam_user;
+
+pg_restore: error: could not execute query: ERROR:  role "steam_user" does not exist
+Command was: ALTER SEQUENCE public.genres_id_seq OWNER TO steam_user;
+
+pg_restore: error: could not execute query: ERROR:  role "steam_user" does not exist
+Command was: ALTER SEQUENCE public.platforms_id_seq OWNER TO steam_user;
+
+pg_restore: error: could not execute query: ERROR:  role "steam_user" does not exist
+Command was: ALTER TABLE public.publishers OWNER TO steam_user;
+
+pg_restore: error: could not execute query: ERROR:  role "steam_user" does not exist
+Command was: ALTER SEQUENCE public.publishers_id_seq OWNER TO steam_user;
+
+pg_restore: error: could not execute query: ERROR:  relation "public.applications" does not exist
+Command was: COPY public.applications (appid, steam_appid, name_from_applist, name, type, is_free, release_date, required_age, metacritic_score, recommendations_total, header_image, background, detailed_description, short_description, about_the_game, supported_languages, price_overview, pc_requirements, mac_requirements, linux_requirements, content_descriptors, package_groups, achievements, screenshots, movies, ratings, base_app_id, success, fetched_at, created_at, updated_at, supports_windows, supports_mac, supports_linux, initial_price, final_price, discount_percent, currency, achievement_count, embedding_run_id, description_embedding, mat_supports_windows, mat_supports_mac, mat_supports_linux, mat_initial_price, mat_final_price, mat_discount_percent, mat_currency, mat_achievement_count, mat_pc_os_min, mat_pc_processor_min, mat_pc_memory_min, mat_pc_graphics_min, mat_pc_os_rec, mat_pc_processor_rec, mat_pc_memory_rec, mat_pc_graphics_rec) FROM stdin;
+pg_restore: error: could not execute query: ERROR:  relation "public.reviews" does not exist
+Command was: COPY public.reviews (recommendationid, appid, author_steamid, author_num_games_owned, author_num_reviews, author_playtime_forever, author_playtime_last_two_weeks, author_playtime_at_review, author_last_played, language, review_text, timestamp_created, timestamp_updated, voted_up, votes_up, votes_funny, weighted_vote_score, comment_count, steam_purchase, received_for_free, written_during_early_access, created_at, updated_at, embedding_run_id, review_embedding) FROM stdin;
+pg_restore: error: COPY failed for table "developers": ERROR:  character with byte sequence 0xe4 0xb8 0x80 in encoding "UTF8" has no equivalent in encoding "WIN1252"
+CONTEXT:  COPY developers, line 19
+pg_restore: error: COPY failed for table "publishers": ERROR:  character with byte sequence 0xe4 0xb8 0x80 in encoding "UTF8" has no equivalent in encoding "WIN1252"
+CONTEXT:  COPY publishers, line 15
+pg_restore: error: could not execute query: ERROR:  insert or update on table "application_developers" violates foreign key constraint "application_developers_developer_id_fkey"
+DETAIL:  Key (developer_id)=(18998) is not present in table "developers".
+Command was: ALTER TABLE ONLY public.application_developers
+    ADD CONSTRAINT application_developers_developer_id_fkey FOREIGN KEY (developer_id) REFERENCES public.developers(id) ON DELETE CASCADE;
+
+
+pg_restore: error: could not execute query: ERROR:  insert or update on table "application_publishers" violates foreign key constraint "application_publishers_publisher_id_fkey"
+DETAIL:  Key (publisher_id)=(16050) is not present in table "publishers".
+Command was: ALTER TABLE ONLY public.application_publishers
+    ADD CONSTRAINT application_publishers_publisher_id_fkey FOREIGN KEY (publisher_id) REFERENCES public.publishers(id) ON DELETE CASCADE;
+
+
+pg_restore: error: COPY failed for table "categories": ERROR:  character with byte sequence 0xd0 0xa2 in encoding "UTF8" has no equivalent in encoding "WIN1252"
+CONTEXT:  COPY categories, line 5
+pg_restore: error: could not execute query: ERROR:  insert or update on table "application_categories" violates foreign key constraint "application_categories_category_id_fkey"
+DETAIL:  Key (category_id)=(133) is not present in table "categories".
+Command was: ALTER TABLE ONLY public.application_categories
+    ADD CONSTRAINT application_categories_category_id_fkey FOREIGN KEY (category_id) REFERENCES public.categories(id) ON DELETE CASCADE;
+
+
+pg_restore: error: COPY failed for table "genres": ERROR:  character with byte sequence 0xc4 0x83 in encoding "UTF8" has no equivalent in encoding "WIN1252"
+CONTEXT:  COPY genres, line 1
+pg_restore: pg_restore: pg_restore: pg_restore: error: error: could not execute query: ERROR:  relation "public.game_features_view" does not exist
+Command was: CREATE UNIQUE INDEX idx_game_features_appid ON public.game_features_view USING btree (appid);
+
+
+error: could not execute query: ERROR:  relation "public.reviews" does not exist
+Command was: CREATE INDEX idx_reviews_appid ON public.reviews USING btree (appid);
+
+
+error: could not execute query: ERROR:  relation "public.applications" does not exist
+Command was: ALTER TABLE ONLY public.applications
+    ADD CONSTRAINT applications_pkey PRIMARY KEY (appid);
+
+
+pg_restore: pg_restore: error: could not execute query: ERROR:  relation "public.reviews" does not exist
+Command was: CREATE INDEX idx_reviews_review_embedding_hnsw ON public.reviews USING hnsw (review_embedding public.vector_cosine_ops);
+
+
+pg_restore: could not execute query: ERROR:  insert or update on table "application_genres" violates foreign key constraint "application_genres_genre_id_fkey"
+DETAIL:  Key (genre_id)=(122) is not present in table "genres".
+Command was: ALTER TABLE ONLY public.application_genres
+    ADD CONSTRAINT application_genres_genre_id_fkey FOREIGN KEY (genre_id) REFERENCES public.genres(id) ON DELETE CASCADE;
+
+
+error: could not execute query: ERROR:  relation "public.reviews" does not exist
+Command was: CREATE INDEX idx_reviews_voted_up ON public.reviews USING btree (voted_up);
+
+
+pg_restore: pg_restore: error: could not execute query: ERROR:  relation "public.applications" does not exist
+Command was: CREATE INDEX idx_applications_final_price ON public.applications USING btree (final_price);
+
+
+error: error: could not execute query: ERROR:  relation "public.applications" does not exist
+Command was: CREATE INDEX idx_applications_name ON public.applications USING btree (name);
+
+
+could not execute query: ERROR:  relation "public.applications" does not exist
+Command was: CREATE INDEX idx_applications_description_embedding_hnsw ON public.applications USING hnsw (description_embedding public.vector_cosine_ops);
+
+
+pg_restore:pg_restore:  pg_restore: error: could not execute query: ERROR:  relation "public.applications" does not exist
+Command was: CREATE INDEX idx_applications_release_date ON public.applications USING btree (release_date);
+
+
+error: error: could not execute query: ERROR:  relation "public.applications" does not exist
+Command was: CREATE INDEX idx_applications_type ON public.applications USING btree (type);
+
+
+could not execute query: ERROR:  relation "public.reviews" does not exist
+Command was: ALTER TABLE ONLY public.reviews
+    ADD CONSTRAINT reviews_pkey PRIMARY KEY (recommendationid);
+
+
+pg_restore: error: could not execute query: ERROR:  relation "public.applications" does not exist
+Command was: ALTER TABLE ONLY public.applications
+    ADD CONSTRAINT applications_embedding_run_id_fkey FOREIGN KEY (embedding_run_id) REFERENCES public.embedding_runs(run_id);
+
+
+pg_restore: pg_restore: error: error: could not execute query: ERROR:  relation "public.reviews" does not exist
+Command was: CREATE TRIGGER update_reviews_updated_at BEFORE UPDATE ON public.reviews FOR EACH ROW EXECUTE FUNCTION public.update_updated_at_column();
+
+
+could not execute query: ERROR:  relation "public.applications" does not exist
+Command was: ALTER TABLE ONLY public.application_developers
+    ADD CONSTRAINT application_developers_appid_fkey FOREIGN KEY (appid) REFERENCES public.applications(appid) ON DELETE CASCADE;
+
+
+pg_restore: error: could not execute query: ERROR:  relation "public.reviews" does not exist
+Command was: ALTER TABLE ONLY public.reviews
+    ADD CONSTRAINT reviews_embedding_run_id_fkey FOREIGN KEY (embedding_run_id) REFERENCES public.embedding_runs(run_id);
+
+
+pg_restore: error: could not execute query: ERROR:  relation "public.applications" does not exist
+Command was: ALTER TABLE ONLY public.application_publishers
+    ADD CONSTRAINT application_publishers_appid_fkey FOREIGN KEY (appid) REFERENCES public.applications(appid) ON DELETE CASCADE;
+
+
+pg_restore: error: could not execute query: ERROR:  relation "public.reviews" does not exist
+Command was: ALTER TABLE ONLY public.reviews
+    ADD CONSTRAINT reviews_appid_fkey FOREIGN KEY (appid) REFERENCES public.applications(appid) ON DELETE CASCADE;
+
+
+pg_restore: error: could not execute query: ERROR:  relation "public.applications" does not exist
+Command was: ALTER TABLE ONLY public.application_genres
+    ADD CONSTRAINT application_genres_appid_fkey FOREIGN KEY (appid) REFERENCES public.applications(appid) ON DELETE CASCADE;
+
+
+pg_restore: error: could not execute query: ERROR:  relation "public.applications" does not exist
+Command was: ALTER TABLE ONLY public.application_categories
+    ADD CONSTRAINT application_categories_appid_fkey FOREIGN KEY (appid) REFERENCES public.applications(appid) ON DELETE CASCADE;
+
+
+pg_restore: error: could not execute query: ERROR:  relation "public.applications" does not exist
+Command was: ALTER TABLE ONLY public.application_platforms
+    ADD CONSTRAINT application_platforms_appid_fkey FOREIGN KEY (appid) REFERENCES public.applications(appid) ON DELETE CASCADE;
+
+
+pg_restore: error: could not execute query: ERROR:  relation "public.applications" does not exist
+Command was: CREATE TRIGGER trg_sync_application_platforms AFTER INSERT OR UPDATE OF supports_windows, supports_mac, supports_linux ON public.applications FOR EACH ROW EXECUTE FUNCTION public.sync_application_platforms();
+
+
+pg_restore: error: could not execute query: ERROR:  relation "public.applications" does not exist
+Command was: CREATE TRIGGER update_applications_updated_at BEFORE UPDATE ON public.applications FOR EACH ROW EXECUTE FUNCTION public.update_updated_at_column();
+
+
+pg_restore: error: could not execute query: ERROR:  relation "public.game_features_view" does not exist
+Command was: REFRESH MATERIALIZED VIEW public.game_features_view;
+
+
+pg_restore: warning: errors ignored on restore: 114
+PS C:\Windows\system32>

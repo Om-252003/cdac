@@ -40,7 +40,7 @@ ex5. icloud
 ex6. AWS
 
 	- services : different types of services
-	- hosting : want to run website but don't want to manage backend, just develope it and AWS can maintain
+	- static hosting : want to run website but don't want to manage backend, just develope it and AWS can maintain
 	- Scalability : add/remove resources
 	- security : encrypted 
 	- personalization : recommend relative services that we already used

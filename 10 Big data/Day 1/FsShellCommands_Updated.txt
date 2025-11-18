@@ -1,0 +1,56 @@
+$ hdfs dfs
+
+$ hdfs dfs -ls /user/itv001895
+
+$ hdfs dfs -ls -R /user/itv001895/
+
+$ hdfs dfs -mkdir /user/itv001895/StocksDir
+
+Make sure that NYSE_data.txt file is uploaded to Gateway machine.
+
+$ hdfs dfs -put NYSE_Data.txt /user/itv001895/StocksDir
+
+$ hdfs dfs -tail /user/itv001895/StocksDir/NYSE_Data.txt
+
+$ hdfs dfs -mkdir /user/itv001895/AnotherStocksDir
+
+$ hdfs dfs -ls -R /user/itv001895/
+
+$ hdfs dfs -mkdir /user/itv001895/ThirdStocksDir
+
+$ hdfs dfs -ls -R /user/itv001895/
+
+$ hdfs dfs -cp /user/itv001895/StocksDir/NYSE_Data.txt /user/itv001895/AnotherStocksDir/newfile1.txt
+
+$ hdfs dfs -cp /user/itv001895/StocksDir/NYSE_Data.txt /user/itv001895/AnotherStocksDir/newfile2.txt
+
+$ hdfs dfs -cp /user/itv001895/StocksDir/NYSE_Data.txt /user/itv001895/AnotherStocksDir/newfile3.txt
+
+$ hdfs dfs -ls -R /user/itv001895/
+
+$ hdfs dfs -cp /user/itv001895/StocksDir/NYSE_Data.txt /user/itv001895/ThirdStocksDir/
+
+$ hdfs dfs -ls -R /user/itv001895/
+
+$ hdfs dfs -rm /user/itv001895/StocksDir/NYSE_Data.txt
+
+$ hdfs dfs -rmdir /user/itv001895/ThirdStocksDir
+
+$ hadoop fs -ls -R /user/hadoop/
+
+$ hadoop fs -rmdir /user/hadoop/AnotherStocksDir --> Will not work
+
+$ hdfs dfs -rm -R /user/itv001895/AnotherStocksDir
+
+
+
+
+
+
+
+
+
+
+
+
+.

@@ -1,0 +1,90 @@
+Objective
+
+This assignment aims to build your skills in working with HDFS on an Amazon EMR cluster. You will perform tasks such as setting up directories, transferring files, copying files within HDFS, and cleaning up your work, using both a terminal interface and the HUE web interface.
+
+Instructions
+Read each step thoroughly to understand the required actions.
+Use the tools and methods discussed in class to complete the tasks.
+Capture screenshots at the specified steps for submission.
+
+
+Steps
+
+
+Configure and launch an EMR cluster using the settings we reviewed in class.
+Ensure the cluster is fully operational before proceeding.
+
+
+
+Use a terminal emulator like MobaXterm to securely connect to the master node of your EMR cluster.
+Verify your connection by displaying the master node’s hostname.
+
+
+
+If you face connection problems, modify the cluster’s security group to permit SSH access from your IP address.
+
+
+
+Use a secure file transfer method (e.g., SFTP via MobaXterm) to upload a text file named sample.txt to the master node’s home directory.
+
+
+
+Create a text file called sample.txt and upload it to local file system of Master node ( Upload it to HUE, then download using hdfs dfs -get command)
+Check the master node’s home directory to ensure sample.txt is present.
+
+
+
+Create a new directory called test in the root of HDFS using the appropriate HDFS tools.
+
+
+
+Transfer sample.txt from the master node’s home directory to the test directory in HDFS.
+
+
+
+Log in to the HUE web interface for your EMR cluster.
+If needed, set up a new user account in HUE.
+Use HUE to create a directory named new_test in HDFS.
+
+
+
+Use the HUE interface to upload a text file named another_sample.txt into the new_test directory.
+
+
+
+Create three subdirectories—test1, test2, and test3—inside the test directory in HDFS.
+
+
+
+Duplicate sample.txt from the test directory to the new_test directory in HDFS.
+
+
+
+Delete the copy of sample.txt from the new_test directory.
+
+
+
+Remove all directories you created in HDFS, including test, new_test, and the subdirectories inside test.
+
+
+
+
+Screenshots
+
+Document your progress by taking screenshots at these steps:
+: Show the terminal displaying the master node’s hostname after connecting.
+: Capture the terminal listing the home directory contents with sample.txt visible.
+: Use HUE to display the test directory in the HDFS root.
+: In HUE, show sample.txt inside the /test directory.
+: Capture the HUE interface showing the new_test directory in HDFS.
+: Use HUE to display another_sample.txt in the new_test directory.
+: In HUE, navigate to /test and show the subdirectories test1, test2, and test3.
+: After copying, use HUE to show sample.txt in /new_test.
+: After deletion, use HUE to confirm sample.txt is no longer in /new_test.
+: Use HUE to verify that test and new_test are no longer in the HDFS root.
+
+
+Submission
+Combine all screenshots into one document (e.g., PDF or Word).
+Label each screenshot with its corresponding step number.
+Submit your document through the assigned platform.

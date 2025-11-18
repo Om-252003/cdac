@@ -1,0 +1,255 @@
+# Writing three TXT files with the full guide including tree commands and examples.
+from pathlib import Path
+
+part1 = r"""POSTGRESQL FULL GUIDE – PART 1
+--------------------------------
+PART 1 — FULL SETUP GUIDE
+
+This document explains exactly how PostgreSQL was set up on Windows, 
+how the Steam dataset dump was restored, and how the service was correctly fixed.
+Everything below is confirmed working on your system.
+
+1. CHECK IF POSTGRES SERVICE IS RUNNING
+--------------------------------------
+Open PowerShell as Administrator and run:
+net stop postgresql-x64-16
+net start postgresql-x64-16
+
+2. INITIALIZE YOUR NEW DATA DIRECTORY
+-------------------------------------
+We created a new directory on D drive (because it has more space):
+D:\pgdata
+
+Initialize PostgreSQL cluster there:
+& "D:\Program Files\PostgreSQL\16\bin\initdb.exe" -D "D:\pgdata" -U postgres -W -E UTF8 --locale=en_US.UTF-8
+
+Notes:
+- UTF8 is required for multilingual Steam reviews.
+- en_US.UTF-8 locale avoids Windows encoding problems.
+
+3. START POSTGRES MANUALLY FOR RESTORE
+--------------------------------------
+& "D:\Program Files\PostgreSQL\16\bin\pg_ctl.exe" -D "D:\pgdata" -l "D:\pgdata\logfile.txt" start
+
+4. CREATE ROLES REQUIRED BY THE DUMP
+-----------------------------------
+& "D:\Program Files\PostgreSQL\16\bin\psql.exe" -U postgres -c "CREATE ROLE steam_user LOGIN SUPERUSER;"
+& "D:\Program Files\PostgreSQL\16\bin\psql.exe" -U postgres -c "CREATE ROLE clusteradmin_pg01 LOGIN SUPERUSER;"
+
+5. CREATE THE DATABASE
+----------------------
+& "D:\Program Files\PostgreSQL\16\bin\createdb.exe" -U postgres steam_full
+
+6. FIX PGVECTOR VERSION AND ENABLE EXTENSION
+-------------------------------------------
+&D "D:\Program Files\PostgreSQL\16\bin\psql.exe" -U postgres -d steam_full -c "CREATE EXTENSION vector;"
+
+7. RESTORE THE STEAM DUMP FILE (this is the big step)
+-----------------------------------------------------
+Dump file path:
+D:\dataset\steam_dataset_2025_power_users_dump_v1\steam_dataset_2025_power_users\steam_dataset_20250929.dump
+
+Restore command used:
+& "D:\Program Files\PostgreSQL\16\bin\pg_restore.exe" -U postgres -d steam_full --clean --if-exists --jobs=4 "D:\dataset\steam_dataset_2025_power_users_dump_v1\steam_dataset_2025_power_users\steam_dataset_20250929.dump"
+
+Notes:
+- This produced a lot of WAL/checkpoint logs and took long time.
+- Final extracted data size observed: ~17 GB in the pgdata cluster.
+
+8. CONFIRM TABLES ARE LOADED
+----------------------------
+& "D:\Program Files\PostgreSQL\16\bin\psql.exe" -U postgres -d steam_full -c "\dt public.*"
+
+You should see tables like:
+applications, reviews, developers, publishers, categories, genres, platforms, embedding_runs, and join tables.
+
+9. FIX WINDOWS SERVICE TO ALWAYS USE D:\pgdata
+----------------------------------------------
+We deleted the old service and recreated it to point to D:\pgdata.
+
+Delete old service (if present):
+sc.exe delete postgresql-x64-16
+
+Create service (run this from CMD as administrator):
+sc.exe create postgresql-x64-16 binPath= "\"D:\Program Files\PostgreSQL\16\bin\pg_ctl.exe\" runservice -N postgresql-x64-16 -D D:\pgdata -w" start=auto obj= "NT AUTHORITY\NetworkService"
+
+Start service:
+net start postgresql-x64-16
+
+10. CONFIRM POSTGRES IS USING D:\PGDATA
+--------------------------------------
+& "D:\Program Files\PostgreSQL\16\bin\psql.exe" -U postgres -c "SHOW data_directory;"
+Expected output: D:/pgdata
+
+END OF PART 1
+"""
+
+part2 = r"""POSTGRESQL FULL GUIDE – PART 2
+--------------------------------
+PART 2 — DATA EXPLORATION, SCHEMA, AND DIRECTORY TREE
+
+1. TREE COMMANDS — how to show directory structure and save to a file
+--------------------------------------------------------------------
+To inspect folder contents and save them (run in PowerShell or CMD):
+
+Example — show pgdata structure and save:
+tree "D:\pgdata" /F /A > "D:\pgdata_structure.txt"
+
+Example — show dump folder structure and save:
+tree "D:\dataset\steam_dataset_2025_power_users_dump_v1\steam_dataset_2025_power_users" /F /A > "D:\dataset_structure.txt"
+
+Notes:
+- /F = list files in each folder
+- /A = use ASCII characters (good for text files and cross-platform viewing)
+- The resulting text file can be opened in Notepad.
+
+If you want to view the saved file in PowerShell:
+Get-Content "D:\pgdata_structure.txt" -Tail 200   # shows last 200 lines
+or
+notepad "D:\pgdata_structure.txt"               # opens in Notepad
+
+IMPORTANT: When you ran the `tree` earlier, you produced and shared a file named pgdata_structure.txt which shows the file/folder layout. Include that file alongside this guide for reference.
+
+2. LIST ALL TABLES
+------------------
+From psql:
+\dt public.*
+
+Expected list (13 tables):
+applications
+reviews
+developers
+publishers
+genres
+platforms
+categories
+application_categories
+application_developers
+application_genres
+application_platforms
+application_publishers
+embedding_runs
+
+3. VIEW STRUCTURE OF APPLICATIONS TABLE
+--------------------------------------
+\d applications
+
+Key columns:
+- appid (bigint) PRIMARY KEY
+- name, name_from_applist (text)
+- release_date (date)
+- price_overview (jsonb)
+- description_embedding (vector(1024))
+- many jsonb fields like screenshots, ratings, etc.
+
+4. VIEW STRUCTURE OF REVIEWS TABLE
+----------------------------------
+\d reviews
+
+Key columns:
+- recommendationid (text) PRIMARY KEY
+- appid (bigint)
+- author_playtime_forever (bigint)
+- language (text)
+- review_text (text)
+- review_embedding (vector(1024))
+
+5. SAMPLE QUERIES (safe, non-destructive)
+-----------------------------------------
+Sample: get 10 reviews with short snippet
+chcp 65001
+& "D:\Program Files\PostgreSQL\16\bin\psql.exe" -U postgres -d steam_full -c "SELECT recommendationid, appid, voted_up, author_playtime_forever, language, LEFT(review_text, 120) AS review_snippet FROM reviews LIMIT 10;"
+
+Sample: count rows
+& "D:\Program Files\PostgreSQL\16\bin\psql.exe" -U postgres -d steam_full -c "SELECT COUNT(*) FROM reviews;"
+& "D:\Program Files\PostgreSQL\16\bin\psql.exe" -U postgres -d steam_full -c "SELECT COUNT(*) FROM applications;"
+
+Sample: null counts per column (applications)
+& "D:\Program Files\PostgreSQL\16\bin\psql.exe" -U postgres -d steam_full -c "SELECT SUM(CASE WHEN name IS NULL THEN 1 ELSE 0 END) AS name_nulls, SUM(CASE WHEN release_date IS NULL THEN 1 ELSE 0 END) AS rd_nulls, SUM(CASE WHEN combined_text IS NULL THEN 1 ELSE 0 END) AS combined_nulls FROM applications;"
+
+6. JOINS & BASIC ANALYTICS SAMPLES
+---------------------------------
+Top apps by number of reviews (example)
+& "D:\Program Files\PostgreSQL\16\bin\psql.exe" -U postgres -d steam_full -c "SELECT a.appid, a.name, COUNT(r.*) AS reviews FROM applications a JOIN reviews r ON a.appid = r.appid GROUP BY a.appid, a.name ORDER BY reviews DESC LIMIT 20;"
+
+7. Saving query output to CSV
+-----------------------------
+& "D:\Program Files\PostgreSQL\16\bin\psql.exe" -U postgres -d steam_full -c "\COPY (SELECT appid, name, release_date FROM applications LIMIT 10000) TO 'D:\\temp\\applications_sample.csv' CSV HEADER;"
+
+END OF PART 2
+"""
+
+part3 = r"""POSTGRESQL FULL GUIDE – PART 3
+--------------------------------
+PART 3 — DAILY ROUTINE, TROUBLESHOOTING, AND SAFE OPERATIONS
+
+1. DAILY STARTUP (after boot)
+-----------------------------
+Usually nothing to do: service is auto-started.
+If not running, run:
+net start postgresql-x64-16
+
+Verify service:
+sc.exe query postgresql-x64-16
+
+Verify data directory:
+& "D:\Program Files\PostgreSQL\16\bin\psql.exe" -U postgres -c "SHOW data_directory;"
+
+2. CONNECT TO DB (psql)
+------------------------
+& "D:\Program Files\PostgreSQL\16\bin\psql.exe" -U postgres -d steam_full
+
+3. OPEN PGADMIN 4 (GUI)
+-----------------------
+Start pgAdmin 4 from Start Menu -> Expand Servers -> Connect to postgresql-x64-16 -> Databases -> steam_full -> Schemas -> public -> Tables
+
+4. SAFE SHUTDOWN STEPS (optional)
+---------------------------------
+If you plan to do disk work or backup:
+net stop postgresql-x64-16
+-- do backups / copy files / maintenance --
+net start postgresql-x64-16
+
+5. TROUBLESHOOT: DB NOT FOUND (common)
+--------------------------------------
+Symptom: psql says FATAL: database "steam_full" does not exist
+
+Check the service data directory:
+& "D:\Program Files\PostgreSQL\16\bin\psql.exe" -U postgres -c "SHOW data_directory;"
+
+If it shows D:/Program Files/PostgreSQL/16/data then the service is pointing to the wrong cluster.
+Fix by recreating the service to point to D:\pgdata (use CMD as Admin):
+sc.exe delete postgresql-x64-16
+sc.exe create postgresql-x64-16 binPath= "\"D:\Program Files\PostgreSQL\16\bin\pg_ctl.exe\" runservice -N postgresql-x64-16 -D D:\pgdata -w" start=auto obj= "NT AUTHORITY\NetworkService"
+net start postgresql-x64-16
+
+6. PORT CONFLICTS
+-----------------
+If pg_ctl cannot start because permission denied / socket in use:
+netstat -ano | findstr 5432
+If PID is the postgres service, stop it via service, otherwise investigate the PID process.
+
+7. BACKUP TIPS
+--------------
+To export a schema-only file:
+& "D:\Program Files\PostgreSQL\16\bin\pg_dump.exe" -U postgres -d steam_full -s -f "D:\backups\steam_schema.sql"
+
+To export a smaller table sample:
+& "D:\Program Files\PostgreSQL\16\bin\pg_dump.exe" -U postgres -d steam_full -t reviews --data-only -f "D:\backups\reviews_sample.sql"
+
+8. ADDITIONAL NOTES
+-------------------
+- Keep a copy of D:\pgdata until you are 100% sure everything is working and backed up.
+- Use /F /A with tree to create readable directory trees in text files.
+- Use chcp 65001 in PowerShell to enable UTF-8 for psql output preview.
+
+END OF PART 3
+"""
+
+Path("/mnt/data/postgres_guide_part1.txt").write_text(part1, encoding="utf-8")
+Path("/mnt/data/postgres_guide_part2.txt").write_text(part2, encoding="utf-8")
+Path("/mnt/data/postgres_guide_part3.txt").write_text(part3, encoding="utf-8")
+
+print("/mnt/data/postgres_guide_part1.txt")
+print("/mnt/data/postgres_guide_part2.txt")
+print("/mnt/data/postgres_guide_part3.txt")
