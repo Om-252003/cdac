@@ -1,0 +1,200 @@
+Objective
+
+
+Learn to
+manage tables in Apache Hive and practice writing medium-complexity queries
+using a real-world dataset. This assignment should take about 2 hours.
+
+
+Dataset
+
+
+You will use the "Adult" census dataset from the UCI Machine Learning
+Repository. It contains demographic and income data with the following columns:
+age
+workclass
+fnlwgt
+education
+education_num
+marital_status
+occupation
+relationship
+race
+sex
+capital_gain
+capital_loss
+hours_per_week
+native_country
+income
+
+
+
+Download the dataset here:
+https://archive.ics.uci.edu/ml/machine-learning-databases/adult/adult.data
+
+
+ 
+
+
+Steps
+
+
+1. Download and Upload Data
+Download the adult.data file.
+Upload it to HDFS in a folder called data
+
+
+
+2. Create a Managed Table
+
+
+         Create a managed table named adult_managed in Hive
+
+
+3. Create an External Table
+Create an external table named adult_external
+pointing to the same data:
+
+
+
+4. Drop Tables and Observe
+
+Drop
+the managed table:
+Check
+HDFS  to confirm the data is
+deleted.
+
+Drop
+the external table:
+
+
+
+Check HDFS
+again to confirm the data remains.
+
+
+5. Recreate the Managed Table
+
+Re-upload
+the adult.data file
+to /user/hive/data/adult.data.
+Recreate
+the adult_managed table
+and load the data as in Step 2.
+
+
+
+6. Write Queries
+
+
+Write and
+execute the following 15 queries on the adult_managed table.
+These queries are of medium difficulty and explore various HiveQL features.
+
+
+Average
+Age
+Calculate
+the average age of all individuals.
+
+Workclass
+Distribution
+Count
+individuals in each workclass, excluding missing values (' ?').
+
+Age
+Range
+Find
+the maximum and minimum age.
+
+
+
+
+ 
+
+
+Income
+Percentage
+Calculate
+the percentage of individuals with income ' >50K'.
+
+Top
+Occupations by Hours
+Find
+the top 5 occupations with the highest average hours-per-week, excluding
+' ?'.
+
+Most
+Common Education
+Determine
+the education level with the highest number of individuals.
+
+Married
+with Bachelor’s
+Count
+individuals who are married (marital_status starts with ' Married') and
+have a bachelor’s degree.
+
+Age by
+Race and Sex
+Calculate
+the average age for each race and sex combination.
+
+Occupation
+with Highest Income
+Find
+the occupation with the highest percentage of individuals earning '
+>50K', excluding ' ?'.
+
+Rank
+Occupations
+Use a
+window function to rank occupations by number of individuals, excluding '
+?'.
+
+90th Percentile
+Age
+Find
+the 90th percentile of age.
+
+Overworked
+Low Earners
+Count
+individuals working over 40 hours per week with income ' <=50K'.
+
+Above
+Average Age
+Use a
+subquery to count individuals older than the average age.
+
+Sex
+and Income Breakdown
+Show
+the count of individuals by sex and income level.
+
+Top
+Education by Age
+Use a
+CTE to find the top 3 education levels with the highest average age.
+
+
+
+
+Notes
+
+Missing
+Values: Some fields contain ' ?' for missing
+data. Exclude these where specified using != '
+?'.
+Income
+Format: Use ' >50K' and ' <=50K' (with a
+space) in queries as they appear in the dataset.
+Environment:
+Ensure Hive and HDFS are set up and accessible.
+
+
+
+This
+assignment covers table creation, data management, and query writing, providing
+a solid hands-on experience with Apache Hive.
