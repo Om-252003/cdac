@@ -1,0 +1,141 @@
+> show dbs
+
+> use inventory
+
+> db.createCollection('inventory')
+
+> show collections
+
+> db.inventory.insertMany([
+{ _id: 1, item: { name: "ab", code: "123" }, qty: 15, tags: [ "A", "B", "C" ] },
+{ _id: 2, item: { name: "cd", code: "123" }, qty: 20, tags: [ "B" ] },
+{ _id: 3, item: { name: "ij", code: "456" }, qty: 25, tags: [ "A", "B" ] },
+{ _id: 4, item: { name: "xy", code: "456" }, qty: 30, tags: [ "B", "A" ] },
+{ _id: 5, item: { name: "mn", code: "000" }, qty: 20, tags: [ [ "A", "B" ], "C" ] }
+])
+
+> db.inventory.find().pretty()
+
+// -------------------------------------------------------------------
+// Comparison Operators - $eq, $gt, $gte, $lt, $lte, $ne $in, $nin
+// -------------------------------------------------------------------
+
+// Find documents having quantity 20
+> db.inventory.find({qty: {$eq: 20}})
+> db.inventory.find({'qty': {$eq: 20}})
+> db.inventory.find({"qty": {$eq: 20}})
+
+
+//Find documents having name "ab"
+> db.inventory.find({"item.name" : {$eq: "ab"}})
+> db.inventory.find({'item.name' : {$eq: "ab"}})
+// > db.inventory.find({item.name : {$eq: "ab"}})  // SyntaxError - Enclose single / double quotes to refer a field in an Embedded document
+
+//Find documents having code 123
+> db.inventory.find({"item.code" : {$eq: "123"}})
+
+//Find documents having tags "B"
+> db.inventory.find({tags: {$eq: "B"}})
+> db.inventory.find({tags: {$eq: [ "A", "B" ] }  })
+
+> db.inventory.find({qty: {$eq: 20}})
+> db.inventory.find({qty: {$gt: 20}})
+> db.inventory.find({qty: {$gte: 20}})
+> db.inventory.find({qty: {$lt: 20}})
+> db.inventory.find({qty: {$lte: 20}})
+> db.inventory.find({qty: {$ne: 20}})
+> db.inventory.find({qty: {$in: [15, 20]}})
+> db.inventory.find({qty: {$nin: [15, 20]}})
+
+// -------------------------------------------------------------------
+
+
+// -------------------------------------------------------------------
+// Logical Operators - $and, $or, $not
+// -------------------------------------------------------------------
+//  Find documents with quantity 15 and name "ab"
+> db.inventory.find({$and: [{qty: {$eq: 15}}, {"item.name": {$eq: "ab"}}]})
+
+//  Find documents with quantity 20 or name "ab"
+> db.inventory.find({$or: [{qty: {$eq: 20}}, {"item.name": {$eq: "ab"}}]})
+
+// Find documents with quantity not 20
+> db.inventory.find({qty:{$not:{$eq: 20}}})
+// -------------------------------------------------------------------
+
+
+// -------------------------------------------------------------------
+// Element Operators - $exist
+// -------------------------------------------------------------------
+// Insert 2 more documents into the inventory collection
+> db.inventory.insertMany([
+{ _id: 6, item: { name: "cd", code: "123" }, tags: [ "B" ] },
+{ _id: 7, item: { name: "xy", code: "456" }, tags: [ "B", "A" ] }
+])
+
+> db.inventory.find()
+
+// Find documents with quantity field missing
+> db.inventory.find({qty: {$exists: false}})
+
+> db.inventory.find({$and: [{qty: {$exists: true} }, {tags: {$eq: "B"}} ]  })
+
+> db.inventory.find({qty: {$mod: [2,0]}})
+> db.inventory.find({qty: {$mod: [2,1]}})
+// -------------------------------------------------------------------
+
+
+
+
+// -------------------------------------------------------------------
+
+// Compare Two Fields from A Single Document
+
+// Consider an monthlyBudget collection:
+
+> db.createCollection('monthlyBudget')
+
+> db.monthlyBudget.insertMany([
+{ "_id" : 1, "category" : "food", "budget": 400, "spent": 450 },
+{ "_id" : 2, "category" : "drinks", "budget": 100, "spent": 150 },
+{ "_id" : 3, "category" : "clothes", "budget": 100, "spent": 50 },
+{ "_id" : 4, "category" : "misc", "budget": 500, "spent": 300 },
+{ "_id" : 5, "category" : "travel", "budget": 200, "spent": 650 }
+])
+
+// Find documents where spent is greater than budget
+
+// $expr Operator
+> db.monthlyBudget.find({$expr: {$gt: ["$spent", "$budget"]}})
+
+
+// -------------------------------------------------------------------
+
+
+// -------------------------------------------------------------------
+$text index
+
+> db.createCollection('articles')
+
+> db.articles.insertMany([
+{ _id: 1, subject: "coffee", author: "xyz", views: 50 },
+{ _id: 2, subject: "Coffee Shopping", author: "efg", views: 5 },
+{ _id: 3, subject: "Baking a cake", author: "abc", views: 90  },
+{ _id: 4, subject: "baking", author: "xyz", views: 100 },
+{ _id: 5, subject: "Café Con Leche", author: "abc", views: 200 },
+{ _id: 6, subject: "Сырники", author: "jkl", views: 80 },
+{ _id: 7, subject: "coffee and cream", author: "efg", views: 10 },
+{ _id: 8, subject: "Cafe con Leche", author: "xyz", views: 10 }
+])
+
+> db.articles.createIndex({subject: "text"})
+> db.articles.find({$text: {$search: "coffee"}})
+
+// Make search results case sensitive
+> db.articles.find({$text: {$search: "coffee", $caseSensitive: true}})
+
+// Find a complete string match
+> db.articles.find({$text: {$search: "\"coffee shopping\""}})
+
+> db.articles.find({$text: {$search: "coffee shopping baking"}})
+// -------------------------------------------------------------------
