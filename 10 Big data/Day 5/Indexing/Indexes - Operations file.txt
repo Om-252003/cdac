@@ -7,7 +7,7 @@ db.persons.findOne({ "_id" : ObjectId("61de9c199876e0cc4c35437e")})
 ####Using Pearsons collections data
 > db.persons.createIndex({yearOfBirth : 1})
 
-> db.persons.find().pretty()
+> db.persons.find({"livesIn":"Mumbai"},{name:1})
 
 > db.persons.getIndexes()
 
