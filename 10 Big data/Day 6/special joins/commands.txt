@@ -1,0 +1,72 @@
+create table emp(
+id INT,
+name STRING,
+salary INT)
+ROW FORMAT DELIMITED FIELDS TERMINATED BY ',';
+
+LOAD DATA INPATH '/user/hadoop/data/emp.txt' INTO TABLE emp;
+
+create table dept(
+id INT,
+dept_name STRING)
+ROW FORMAT DELIMITED FIELDS TERMINATED BY ',';
+
+Loading the data to table ‘dept’:
+
+LOAD DATA INPATH '/user/hadoop/data/dept.txt' INTO TABLE dept;
+
+
+auto join is map-side join
+disable auto join (map-side) and now it will do normal join
+
+set hive.auto.convert.join=false;
+set hive.execution.engine=mr;
+
+select emp.id,name,salary,dept_name from dept JOIN emp ON (dept.id = emp.id);
+
+set hive.auto.convert.join=true;
+
+
+Perform same join again
+
+SMB JOIN
+
+hive> set hive.enforce.bucketing=true;
+hive> set hive.enforce.sorting=true;
+
+create table buck_emp(
+    id int,
+    name string,
+    salary int)
+CLUSTERED BY (id)
+SORTED BY (id)
+INTO 4 BUCKETS;
+
+We need to use regular INSERT statement to insert into bucketed table.
+INSERT into buck_emp select * from emp;
+insert overwrite table buck_emp select * from emp; -- only if we want to overwrite the file
+
+create table buck_dept(
+id int,
+dept_name string)
+CLUSTERED BY (id)
+SORTED BY (id)
+INTO 4 BUCKETS;
+
+INSERT into buck_dept select * from dept;
+insert overwrite table buck_dept select * from dept;  -- only if we want to overwrite the file
+
+ 
+set hive.enforce.sortmergebucketmapjoin=false;
+set hive.auto.convert.sortmerge.join=true;
+set hive.optimize.bucketmapjoin = true;
+set hive.optimize.bucketmapjoin.sortedmerge = true;
+set hive.auto.convert.join=false;  // if we do not do this, automatically Map-Side Join will happen
+SELECT u.name,u.salary FROM buck_dept d  INNER JOIN buck_emp u ON d.id = u.id;
+
+It used 4 mappers, 1 for each bucket.
+
+
+
+
+

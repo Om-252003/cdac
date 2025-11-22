@@ -1,0 +1,34 @@
+# Prerequisites:
+1)create database
+2)create table
+3)Load the data from provided CSV files
+
+
+#####Queries
+
+Question 1: - We need to find out the total visits to all restaurants under all alcohol categories
+available.
+
+Question 2: -Let's find out the average rating according to alcohol and price so that we can
+understand the rating in respective prices categories as well.
+
+Question 3: -Though the number of total visits are less in full bar because of high price but the
+overall rating is being highest at this end. They are expensive as their food and service is being
+excellent. Can we right a query to quantify that what are the parking availability as well in different
+alcohol category along with total number of restaurants.
+
+Question 4: -Also take out the percentage of different cuisine in each alcohol type.
+
+Questions 5: - Lets take out the average rating of each state.
+
+Questions 6: -'Tamaulipas' Being lowest average rated state. Quantify the reason because of which it
+is lowest rated by providing the summary on the basis of State, alcohol and Cuisine.
+
+Question 7: - 'Tamaulipas' Being lowest average rated state. Quantify the reason because of which it
+is lowest rated by providing the summary on the basis of State, alcohol and parking_lot.
+
+Question 8: -Find out those restaurants who have 'valet parking'
+
+Question 9  - Find those restaurants which serves Fast Food cuisine.
+
+Question 10 - Find out those cuisine's for which users made payment by their bank debit cards.

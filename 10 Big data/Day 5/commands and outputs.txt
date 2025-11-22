@@ -1,0 +1,559 @@
+Microsoft Windows [Version 10.0.19045.6466]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\Dell>mongosh
+Current Mongosh Log ID: 691fdf1328f3da7b7f851a4a
+Connecting to:          mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+1.10.6
+Using MongoDB:          7.0.11
+Using Mongosh:          1.10.6
+mongosh 2.5.9 is available for download: https://www.mongodb.com/try/download/shell
+
+For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2025-11-21T08:51:27.279+05:30: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+------
+
+test> show databases;
+Demo                    160.00 KiB
+Expense-Tracker          72.00 KiB
+Warshap                  88.00 KiB
+admin                    40.00 KiB
+config                   72.00 KiB
+course-selling-app      232.00 KiB
+daily-breeze            180.00 KiB
+interview-prep-tracker  220.00 KiB
+library                 144.00 KiB
+local                   304.00 KiB
+mern-ecommerce          240.00 KiB
+test                     72.00 KiB
+test> use Demo;
+switched to db Demo
+Demo> db.persons.getIndexes();
+[ { v: 2, key: { _id: 1 }, name: '_id_' } ]
+Demo> db.persons.createIndex({yearOfBirth : 1})
+yearOfBirth_1
+Demo> db.persons.findOne()
+{
+  _id: ObjectId("691eb47d938e8b406d399d7d"),
+  name: { first: 'Harish', last: 'Chandra' },
+  gender: 'M',
+  yearOfBirth: 1962,
+  livesIn: 'Mumbai',
+  countriesVisited: [
+    'India',
+    'Singapore',
+    'Thailand',
+    'United Kingdom',
+    'Spain',
+    'Denmark',
+    'United States of America'
+  ],
+  languages: [
+    { name: 'Hindi', proficiency: 'Fluent' },
+    { name: 'English', proficiency: 'Fluent' },
+    { name: 'Sanskrit', proficiency: 'Intermediate' }
+  ],
+  married: 'Yes',
+  nationality: 'Indian'
+}
+Demo> db.persons.find({"livesIn":"Mumbai"}, {"name":1})
+[
+  {
+    _id: ObjectId("691eb47d938e8b406d399d7d"),
+    name: { first: 'Harish', last: 'Chandra' }
+  },
+  {
+    _id: ObjectId("691eb47e938e8b406d399d82"),
+    name: { first: 'Rita', last: 'Chauhan' }
+  }
+]
+Demo> db.persons.find({"livesIn":"Mumbai"}, {"name":1}).explain()
+{
+  explainVersion: '1',
+  queryPlanner: {
+    namespace: 'Demo.persons',
+    indexFilterSet: false,
+    parsedQuery: { livesIn: { '$eq': 'Mumbai' } },
+    queryHash: '71AF6033',
+    planCacheKey: '71AF6033',
+    maxIndexedOrSolutionsReached: false,
+    maxIndexedAndSolutionsReached: false,
+    maxScansToExplodeReached: false,
+    winningPlan: {
+      stage: 'PROJECTION_SIMPLE',
+      transformBy: { name: 1 },
+      inputStage: {
+        stage: 'COLLSCAN',
+        filter: { livesIn: { '$eq': 'Mumbai' } },
+        direction: 'forward'
+      }
+    },
+    rejectedPlans: []
+  },
+  command: {
+    find: 'persons',
+    filter: { livesIn: 'Mumbai' },
+    projection: { name: 1 },
+    '$db': 'Demo'
+  },
+  serverInfo: {
+    host: 'DESKTOP-CVAKOTP',
+    port: 27017,
+    version: '7.0.11',
+    gitVersion: 'f451220f0df2b9dfe073f1521837f8ec5c208a8c'
+  },
+  serverParameters: {
+    internalQueryFacetBufferSizeBytes: 104857600,
+    internalQueryFacetMaxOutputDocSizeBytes: 104857600,
+    internalLookupStageIntermediateDocumentMaxSizeBytes: 104857600,
+    internalDocumentSourceGroupMaxMemoryBytes: 104857600,
+    internalQueryMaxBlockingSortMemoryUsageBytes: 104857600,
+    internalQueryProhibitBlockingMergeOnMongoS: 0,
+    internalQueryMaxAddToSetBytes: 104857600,
+    internalDocumentSourceSetWindowFieldsMaxMemoryBytes: 104857600,
+    internalQueryFrameworkControl: 'trySbeRestricted'
+  },
+  ok: 1
+}
+Demo> db.persons.createIndex({"livesIn"})
+Uncaught:
+SyntaxError: Unexpected token (1:33)
+
+> 1 | db.persons.createIndex({"livesIn"})
+    |                                  ^
+  2 |
+
+Demo> db.persons.createIndex({"livesIn":1})
+livesIn_1
+Demo> db.persons.getIndexes()
+[
+  { v: 2, key: { _id: 1 }, name: '_id_' },
+  { v: 2, key: { yearOfBirth: 1 }, name: 'yearOfBirth_1' },
+  { v: 2, key: { livesIn: 1 }, name: 'livesIn_1' }
+]
+Demo>
+
+Demo> db.persons.find({"livesIn":"Mumbai"}, {"name":1}).explain()
+{
+  explainVersion: '1',
+  queryPlanner: {
+    namespace: 'Demo.persons',
+    indexFilterSet: false,
+    parsedQuery: { livesIn: { '$eq': 'Mumbai' } },
+    queryHash: '71AF6033',
+    planCacheKey: 'D8503AB8',
+    maxIndexedOrSolutionsReached: false,
+    maxIndexedAndSolutionsReached: false,
+    maxScansToExplodeReached: false,
+    winningPlan: {
+      stage: 'PROJECTION_SIMPLE',
+      transformBy: { name: 1 },
+      inputStage: {
+        stage: 'FETCH',
+        inputStage: {
+          stage: 'IXSCAN',
+          keyPattern: { livesIn: 1 },
+          indexName: 'livesIn_1',
+          isMultiKey: false,
+          multiKeyPaths: { livesIn: [] },
+          isUnique: false,
+          isSparse: false,
+          isPartial: false,
+          indexVersion: 2,
+          direction: 'forward',
+          indexBounds: { livesIn: [ '["Mumbai", "Mumbai"]' ] }
+        }
+      }
+    },
+    rejectedPlans: []
+  },
+  command: {
+    find: 'persons',
+    filter: { livesIn: 'Mumbai' },
+    projection: { name: 1 },
+    '$db': 'Demo'
+  },
+  serverInfo: {
+    host: 'DESKTOP-CVAKOTP',
+    port: 27017,
+    version: '7.0.11',
+    gitVersion: 'f451220f0df2b9dfe073f1521837f8ec5c208a8c'
+  },
+  serverParameters: {
+    internalQueryFacetBufferSizeBytes: 104857600,
+    internalQueryFacetMaxOutputDocSizeBytes: 104857600,
+    internalLookupStageIntermediateDocumentMaxSizeBytes: 104857600,
+    internalDocumentSourceGroupMaxMemoryBytes: 104857600,
+    internalQueryMaxBlockingSortMemoryUsageBytes: 104857600,
+    internalQueryProhibitBlockingMergeOnMongoS: 0,
+    internalQueryMaxAddToSetBytes: 104857600,
+    internalDocumentSourceSetWindowFieldsMaxMemoryBytes: 104857600,
+    internalQueryFrameworkControl: 'trySbeRestricted'
+  },
+  ok: 1
+}
+Demo> db.persons.createIndex({livesIn:1,yearOfBirth:1})
+livesIn_1_yearOfBirth_1
+Demo>
+
+Demo> db.persons.find({"livesIn":"Mumbai"},{yearOfBirth:1})
+[
+  { _id: ObjectId("691eb47d938e8b406d399d7d"), yearOfBirth: 1962 },
+  { _id: ObjectId("691eb47e938e8b406d399d82"), yearOfBirth: 1989 }
+]
+Demo> db.persons.find({"livesIn":"Mumbai", "yearOfBirth":1989},{name:1})
+[
+  {
+    _id: ObjectId("691eb47e938e8b406d399d82"),
+    name: { first: 'Rita', last: 'Chauhan' }
+  }
+]
+Demo> db.persons.find({$and:[{livesIn:"Mumbai"}, {yearOfBirth:1989}]},{name:1})
+[
+  {
+    _id: ObjectId("691eb47e938e8b406d399d82"),
+    name: { first: 'Rita', last: 'Chauhan' }
+  }
+]
+Demo> db.persons.find({$and:[{livesIn:"Mumbai"}, {yearOfBirth:1989}]},{name:1}).explain()
+{
+  explainVersion: '1',
+  queryPlanner: {
+    namespace: 'Demo.persons',
+    indexFilterSet: false,
+    parsedQuery: {
+      '$and': [
+        { livesIn: { '$eq': 'Mumbai' } },
+        { yearOfBirth: { '$eq': 1989 } }
+      ]
+    },
+    queryHash: '2BADAC2E',
+    planCacheKey: '8613FC41',
+    maxIndexedOrSolutionsReached: false,
+    maxIndexedAndSolutionsReached: false,
+    maxScansToExplodeReached: false,
+    winningPlan: {
+      stage: 'PROJECTION_SIMPLE',
+      transformBy: { name: 1 },
+      inputStage: {
+        stage: 'FETCH',
+        inputStage: {
+          stage: 'IXSCAN',
+          keyPattern: { livesIn: 1, yearOfBirth: 1 },
+          indexName: 'livesIn_1_yearOfBirth_1',
+          isMultiKey: false,
+          multiKeyPaths: { livesIn: [], yearOfBirth: [] },
+          isUnique: false,
+          isSparse: false,
+          isPartial: false,
+          indexVersion: 2,
+          direction: 'forward',
+          indexBounds: {
+            livesIn: [ '["Mumbai", "Mumbai"]' ],
+            yearOfBirth: [ '[1989, 1989]' ]
+          }
+        }
+      }
+    },
+    rejectedPlans: [
+      {
+        stage: 'PROJECTION_SIMPLE',
+        transformBy: { name: 1 },
+        inputStage: {
+          stage: 'FETCH',
+          filter: { yearOfBirth: { '$eq': 1989 } },
+          inputStage: {
+            stage: 'IXSCAN',
+            keyPattern: { livesIn: 1 },
+            indexName: 'livesIn_1',
+            isMultiKey: false,
+            multiKeyPaths: { livesIn: [] },
+            isUnique: false,
+            isSparse: false,
+            isPartial: false,
+            indexVersion: 2,
+            direction: 'forward',
+            indexBounds: { livesIn: [ '["Mumbai", "Mumbai"]' ] }
+          }
+        }
+      },
+      {
+        stage: 'PROJECTION_SIMPLE',
+        transformBy: { name: 1 },
+        inputStage: {
+          stage: 'FETCH',
+          filter: { livesIn: { '$eq': 'Mumbai' } },
+          inputStage: {
+            stage: 'IXSCAN',
+            keyPattern: { yearOfBirth: 1 },
+            indexName: 'yearOfBirth_1',
+            isMultiKey: false,
+            multiKeyPaths: { yearOfBirth: [] },
+            isUnique: false,
+            isSparse: false,
+            isPartial: false,
+            indexVersion: 2,
+            direction: 'forward',
+            indexBounds: { yearOfBirth: [ '[1989, 1989]' ] }
+          }
+        }
+      }
+    ]
+  },
+  command: {
+    find: 'persons',
+    filter: { '$and': [ { livesIn: 'Mumbai' }, { yearOfBirth: 1989 } ] },
+    projection: { name: 1 },
+    '$db': 'Demo'
+  },
+  serverInfo: {
+    host: 'DESKTOP-CVAKOTP',
+    port: 27017,
+    version: '7.0.11',
+    gitVersion: 'f451220f0df2b9dfe073f1521837f8ec5c208a8c'
+  },
+  serverParameters: {
+    internalQueryFacetBufferSizeBytes: 104857600,
+    internalQueryFacetMaxOutputDocSizeBytes: 104857600,
+    internalLookupStageIntermediateDocumentMaxSizeBytes: 104857600,
+    internalDocumentSourceGroupMaxMemoryBytes: 104857600,
+    internalQueryMaxBlockingSortMemoryUsageBytes: 104857600,
+    internalQueryProhibitBlockingMergeOnMongoS: 0,
+    internalQueryMaxAddToSetBytes: 104857600,
+    internalDocumentSourceSetWindowFieldsMaxMemoryBytes: 104857600,
+    internalQueryFrameworkControl: 'trySbeRestricted'
+  },
+  ok: 1
+}
+Demo>
+
+Demo> db.persons.createIndex({countriesVisited:1})
+countriesVisited_1
+Demo>
+
+Demo> db.persons.find({"countryVisited.0":"India"},{name:1}).explain()
+{
+  explainVersion: '1',
+  queryPlanner: {
+    namespace: 'Demo.persons',
+    indexFilterSet: false,
+    parsedQuery: { 'countryVisited.0': { '$eq': 'India' } },
+    queryHash: 'A1DEF49F',
+    planCacheKey: 'A1DEF49F',
+    maxIndexedOrSolutionsReached: false,
+    maxIndexedAndSolutionsReached: false,
+    maxScansToExplodeReached: false,
+    winningPlan: {
+      stage: 'PROJECTION_SIMPLE',
+      transformBy: { name: 1 },
+      inputStage: {
+        stage: 'COLLSCAN',
+        filter: { 'countryVisited.0': { '$eq': 'India' } },
+        direction: 'forward'
+      }
+    },
+    rejectedPlans: []
+  },
+  command: {
+    find: 'persons',
+    filter: { 'countryVisited.0': 'India' },
+    projection: { name: 1 },
+    '$db': 'Demo'
+  },
+  serverInfo: {
+    host: 'DESKTOP-CVAKOTP',
+    port: 27017,
+    version: '7.0.11',
+    gitVersion: 'f451220f0df2b9dfe073f1521837f8ec5c208a8c'
+  },
+  serverParameters: {
+    internalQueryFacetBufferSizeBytes: 104857600,
+    internalQueryFacetMaxOutputDocSizeBytes: 104857600,
+    internalLookupStageIntermediateDocumentMaxSizeBytes: 104857600,
+    internalDocumentSourceGroupMaxMemoryBytes: 104857600,
+    internalQueryMaxBlockingSortMemoryUsageBytes: 104857600,
+    internalQueryProhibitBlockingMergeOnMongoS: 0,
+    internalQueryMaxAddToSetBytes: 104857600,
+    internalDocumentSourceSetWindowFieldsMaxMemoryBytes: 104857600,
+    internalQueryFrameworkControl: 'trySbeRestricted'
+  },
+  ok: 1
+}
+Demo>
+
+
+Demo> db.persons.createIndex({countriesVisited:"text"})
+countriesVisited_text
+Demo> db.persons.find({$text:{$search: "America"}}).pretty()
+[
+  {
+    _id: ObjectId("691eb47f938e8b406d399d8a"),
+    name: { first: 'Nancy', last: 'Karin' },
+    gender: 'F',
+    yearOfBirth: 1992,
+    livesIn: 'Montreal',
+    countriesVisited: [ 'Canada', 'United States of America' ],
+    languages: [
+      { name: 'English', proficiency: 'Fluent' },
+      { name: 'French', proficiency: 'Fluent' },
+      { name: 'German', proficiency: 'Intermediate' },
+      { name: 'Greek', proficiency: 'Intermediate' },
+      { name: 'Latin', proficiency: 'Intermediate' },
+      { name: 'Sanskrit', proficiency: 'Beginner' }
+    ]
+  },
+  {
+    _id: ObjectId("691eb47f938e8b406d399d88"),
+    name: { first: 'Anita', last: 'Gogia' },
+    gender: 'F',
+    yearOfBirth: 1965,
+    livesIn: 'New Delhi',
+    countriesVisited: [ 'India', 'United Kingdom', 'Canada', 'United States of America' ],
+    languages: [
+      { name: 'Hindi', proficiency: 'Fluent' },
+      { name: 'Punjabi', proficiency: 'Fluent' },
+      { name: 'English', proficiency: 'Fluent' }
+    ],
+    married: 'Yes',
+    nationality: 'Indian'
+  },
+  {
+    _id: ObjectId("691eb47e938e8b406d399d83"),
+    name: { first: 'Liza', last: 'Bordelon' },
+    gender: 'F',
+    yearOfBirth: 1971,
+    livesIn: 'Minneapolis',
+    countriesVisited: [ 'United States of America', 'Canada' ],
+    languages: [yFacetMaxOutputDocSizeBytes: 104857600,
+      { name: 'English', proficiency: 'Fluent' },eBytes: 104857600,
+      { name: 'French', proficiency: 'Fluent' },04857600,
+      { name: 'German', proficiency: 'Intermediate' },57600,
+      { name: 'Greek', proficiency: 'Intermediate' },
+      { name: 'Latin', proficiency: 'Intermediate' },
+      { name: 'Sanskrit', proficiency: 'Beginner' }ytes: 104857600,
+    ]nternalQueryFrameworkControl: 'trySbeRestricted'
+  },
+  {k: 1
+    _id: ObjectId("691eb47e938e8b406d399d81"),
+    name: { first: 'Mark', last: 'Smith' },ted:"text"})
+    gender: 'M',_text
+    livesIn: 'Chicago',
+    countriesVisited: [
+      'United States of America',
+      'Canada',
+      'France',
+      'Spain',
+      'India',
+      'Australia'
+    ],
+    languages: [ { name: 'English', proficiency: 'Fluent' } ]
+  },
+  {
+    _id: ObjectId("691eb47e938e8b406d399d80"),
+    name: { first: 'Shailesh', last: 'Sharma' },
+    gender: 'M',
+    yearOfBirth: 1962,
+    livesIn: 'Singapore',
+    countriesVisited: [
+      'India',
+      'Singapore',
+      'China',
+      'Taiwan',
+      'United States of America',
+      'Sri Lanka',
+      'Mayalsia',
+      'Australia'
+    ],
+    languages: [
+      { name: 'Hindi', proficiency: 'Fluent' },
+      { name: 'English', proficiency: 'Fluent' }
+    ],
+    nationality: 'Indian'
+  },
+  {
+    _id: ObjectId("691eb47e938e8b406d399d7f"),
+    name: { first: 'Narayan', last: 'Sundaram' },
+    gender: 'M',
+    yearOfBirth: 1960,
+    livesIn: 'Jaipur',
+    countriesVisited: [ 'India', 'United States of America', 'Netherlands', 'China' ],
+    languages: [
+      { name: 'Tamil', proficiency: 'Fluent' },
+      { name: 'English', proficiency: 'Fluent' },
+      { name: 'Hindi', proficiency: 'Intermediate' },
+      { name: 'Chinese', proficiency: 'Intermediate' }
+    ],
+    married: 'Yes',
+    nationality: 'Indian'
+  },
+  {
+    _id: ObjectId("691eb47d938e8b406d399d7d"),
+    name: { first: 'Harish', last: 'Chandra' },
+    gender: 'M',
+    yearOfBirth: 1962,
+    livesIn: 'Mumbai',
+    countriesVisited: [
+      'India',
+      'Singapore',
+      'Thailand',
+      'United Kingdom',
+      'Spain',
+      'Denmark',
+      'United States of America'
+    ],
+    languages: [
+      { name: 'Hindi', proficiency: 'Fluent' },
+      { name: 'English', proficiency: 'Fluent' },
+      { name: 'Sanskrit', proficiency: 'Intermediate' }
+    ],
+    married: 'Yes',
+    nationality: 'Indian'
+  }
+]
+Demo>
+
+Demo> db.office.insert ( {
+...     name: "Bhabha Park",
+...     officeType: 'Accounts Office',
+...     location: {type : "Point", coordinates : [-73.9375, 40.8303]}
+... } )
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId("691ff02828f3da7b7f851a4d") }
+}
+Demo>
+
+Demo> db.office.insert ( {
+...     name: "Science City",
+...     officeType: 'IT Office',
+...     location: {type : "Point", coordinates : [-73.99948, 40.4323]}
+... } )
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId("691ff02828f3da7b7f851a4e") }
+}
+Demo>
+
+Demo> db.office.find(
+...   {
+...       location:
+...           {$near:
+...               {
+...                   $geometry:{type: "Point", coordinates:[-73.9667, 40.78]},
+...                   $minDistance:1000,
+...                   $maxDistance: 5000
+...               }
+...           }
+...       }
+...   ).pretty()
+[
+  {
+    _id: ObjectId("691ff02828f3da7b7f851a4b"),
+    name: 'IT Office',
+    officeType: 'Adminstration Office',
+    location: { type: 'Point', coordinates: [ -73.97, 40.77 ] }
+  }
+]
+D

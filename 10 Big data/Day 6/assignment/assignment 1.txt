@@ -1,0 +1,42 @@
+There are two files required for this
+exercise. They are called custs and txns1.txt. custs file contains customer
+information in a comma separated file. The individual columns represent
+
+
+Customer ID, First Name, Last Name, Age,
+Profession
+
+
+The transaction data is present in the file
+txns1.txt. This contains transactions which happened in a Sports retail store.
+The columns represent
+
+
+TransactionID, Date, Customer No, Amount,
+Category, Item, City, State, Transaction Type.
+
+
+Given these two set of data find out the
+total amount spent by each age group in the store.  You may classify the age group of the
+customers into three.
+
+
+Customers with age less than 30
+
+
+Customers with age between 30 and 50
+
+
+Customers with age higher than 50
+
+
+You may use a managed table to solve this
+problem.
+
+
+Now, create a table where the data is
+partitioned by Category and bucketed by TransactionID(into 4 buckets)
+
+
+Insert the data into this table and
+validate the same

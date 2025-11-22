@@ -1,0 +1,84 @@
+
+db.persons.getIndexes()
+
+db.persons.findOne({ "_id" : ObjectId("61de9c199876e0cc4c35437e")})
+
+####-----Single field indexes-----####
+####Using Pearsons collections data
+> db.persons.createIndex({yearOfBirth : 1})
+
+> db.persons.find().pretty()
+
+> db.persons.getIndexes()
+
+####-----Creating a compound index-----#####
+####Using pearsons collections data
+
+> db.persons.createIndex({	})
+
+> db.persons.find().pretty()
+
+> db.persons.getIndexes()
+
+####-----Creating a multikey indexes-----#####
+####Using pearsons collections data
+
+> db.persons.createIndex({countriesVisited:1})
+
+> db.persons.find({countriesVisited:['India', 'United Kingdom', 'Canada', 'United States of America']}).pretty()
+
+> db.persons.getIndexes()
+
+####----- Creating Geospatial Indexes------#####
+####geoSpatial Data
+> db.office.createIndex({location:"2dsphere"})
+
+> db.office.getIndexes()
+
+> db.office.find(
+... {
+...     location:
+...         {$near:
+...             {
+...                 $geometry:{type: "Point", coordinates:[-73.9667, 40.78]},
+...                 $minDistance:1000,
+...                 $maxDistance: 5000
+...             }
+...         }
+...     }
+... ).pretty()
+
+####-----Text Indexes-------#####
+####Using pearsons collections data
+
+> db.persons.createIndex({countriesVisited:"text"})
+
+> db.persons.find({$text:{$search: "America"}}).pretty()
+
+
+####-----Unique Indexes-------#####
+####Using pearsons collections data
+
+> db.persons.createIndex( {livesIn:1}, { unique: true } )
+
+> db.persons.getIndexes()
+
+--------------Dropping an index---------------------------
+
+> db.persons.dropIndex({livesIn:1})
+
+####-----Hashed Indexes-------#####
+####Using pearsons collections data
+
+> db.persons.createIndex( { yearOfBirth: "hashed" } )
+
+> db.persons.getIndexes()
+
+####-----Sparse Indexes-------#####
+####Using pearsons collections data
+
+> db.persons.createIndex( { yearOfBirth: 1 } , { sparse: true } )  
+
+> db.persons.find( { yearOfBirth:{$lt: 1980}})     ---------------> Query uses the sparse index to return result
+
+> db.persons.getIndexes()

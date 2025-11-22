@@ -9,12 +9,14 @@ db.persons.findOne({ "_id" : ObjectId("61de9c199876e0cc4c35437e")})
 
 > db.persons.find({"livesIn":"Mumbai"},{name:1})
 
+> db.persons.find({"livesIn":"Mumbai"},{name:1}).explain()
+
 > db.persons.getIndexes()
 
 ####-----Creating a compound index-----#####
 ####Using pearsons collections data
 
-> db.persons.createIndex({	})
+> db.persons.createIndex({livesIn:1,yearOfBirth:1})
 
 > db.persons.find().pretty()
 
@@ -36,17 +38,17 @@ db.persons.findOne({ "_id" : ObjectId("61de9c199876e0cc4c35437e")})
 > db.office.getIndexes()
 
 > db.office.find(
-... {
-...     location:
-...         {$near:
-...             {
-...                 $geometry:{type: "Point", coordinates:[-73.9667, 40.78]},
-...                 $minDistance:1000,
-...                 $maxDistance: 5000
-...             }
-...         }
-...     }
-... ).pretty()
+  {
+      location:
+          {$near:
+              {
+                  $geometry:{type: "Point", coordinates:[-73.9667, 40.78]},
+                  $minDistance:1000,
+                  $maxDistance: 5000
+              }
+          }
+      }
+  ).pretty()
 
 ####-----Text Indexes-------#####
 ####Using pearsons collections data

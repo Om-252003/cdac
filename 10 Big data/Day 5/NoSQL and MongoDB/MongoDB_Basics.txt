@@ -1,0 +1,47 @@
+To launch MongoDB client on a Windows PC, launch a command prompt and run the following commands
+
+C:\WINDOWS\system32> cd C:\Program Files\MongoDB\Server\4.4\bin
+
+C:\Program Files\MongoDB\Server\4.4\bin> mongo
+
+# Mongo Shell
+
+> show dbs
+
+> cls
+
+> use retail_db
+
+> db.orders.insertOne(
+{
+	"order_id":1,
+	"order_date":"2013-07-25 00:00:00.0",
+	"order_customer_id":11599,
+	"order_status":"CLOSED"
+})
+
+> db.orders.find()
+
+> db.orders.find().pretty()
+
+> db.orders.insertOne(
+{
+  
+	"order_id":2,
+	"order_date":"2013-09-25 00:00:00.0",
+	"order_customer_id":12349,
+	"order_status":"PENDING",
+  "additional key": "additional value"
+})
+
+> db.orders.find().pretty()
+
+> exit
+
+
+
+
+
+
+
+.
