@@ -1,0 +1,117 @@
+Microsoft Windows [Version 10.0.19045.6466]
+(c) Microsoft Corporation. All rights reserved.
+
+D:\confluent>confluent --version
+confluent version v4.45.1
+
+D:\confluent>confluent login --save
+Enter your Confluent Cloud credentials:
+Email: omsaialladwar@gmail.com
+Logged in as "omsaialladwar@gmail.com" for organization "370717da-6adb-4f20-b5f0-93427138a436" ("CDAC").
+Free credits: $676.00 USD remaining
+You are currently using a free trial version of Confluent Cloud. Add a payment method with confluent billing payment update to avoid an interruption in service once your trial ends.
+
+D:\confluent>
+D:\confluent>confluent environment create vitaenv
++---------------------------+------------+
+| Current                   | false      |
+| ID                        | env-10mwpv |
+| Name                      | vitaenv    |
+| Stream Governance Package | ESSENTIALS |
++---------------------------+------------+
+
+D:\confluent>
+D:\confluent>confluent environment use vitaenv
+Error: Resource Not Found
+
+Suggestions:
+    List available environments with confluent environment list.
+
+D:\confluent>confluent environment use env-10mwpv
+Using environment env-10mwpv.
+
+
+
+D:\confluent>confluent kafka cluster create vita --cloud AWS --region us-west-2
+It may take up to 5 minutes for the Kafka cluster to be ready.
++----------------------+---------------------------------------------------------+
+| Current              | false                                                   |
+| ID                   | lkc-3zm2gw                                              |
+| Name                 | vita                                                    |
+| Type                 | BASIC                                                   |
+| Ingress Limit (MB/s) | 250                                                     |
+| Egress Limit (MB/s)  | 750                                                     |
+| Storage              | 5000 GB                                                 |
+| Cloud                | aws                                                     |
+| Region               | us-west-2                                               |
+| Availability         | single-zone                                             |
+| Status               | PROVISIONING                                            |
+| Endpoint             | SASL_SSL://pkc-n98pk.us-west-2.aws.confluent.cloud:9092 |
+| REST Endpoint        | https://pkc-n98pk.us-west-2.aws.confluent.cloud:443     |
++----------------------+---------------------------------------------------------+
+
+D:\confluent>confluent kafka cluster use lkc-3zm2gw
+Set Kafka cluster lkc-3zm2gw as the active cluster for environment env-10mwpv.
+
+D:\confluent>confluent kafka cluster list
+  Current |     ID     | Name | Type  | Cloud |  Region   | Availability | Network | Status |                        Endpoint
+----------+------------+------+-------+-------+-----------+--------------+---------+--------+----------------------------------------------------------
+  *       | lkc-3zm2gw | vita | BASIC | aws   | us-west-2 | single-zone  |         | UP     | SASL_SSL://pkc-n98pk.us-west-2.aws.confluent.cloud:9092
+
+D:\confluent>confluent api-key create --resource lkc-3zm2gw --description "My Credentials"
+It may take a couple of minutes for the API key to be ready.
+Save the API key and secret. The secret is not retrievable later.
++------------+------------------------------------------------------------------+
+| API Key    | 4ZXD5BX7OFKQFYQH                                                 |
+| API Secret | cfltFhzEUePcMAJVO+YPKEX5U2Xh9/PGkmycVSHm4Dwys6kUeOycQUVBw3BDmBwA |
++------------+------------------------------------------------------------------+
+
+D:\confluent>
+
+D:\confluent>confluent api-key use 4ZXD5BX7OFKQFYQH --resource lkc-3zm2gw
+Using API Key "4ZXD5BX7OFKQFYQH".
+
+D:\confluent>
+
+
+D:\confluent>confluent kafka topic create my-topic
+Created topic "my-topic".
+
+D:\confluent>confluent kafka topic list
+    Name   | Internal | Replication Factor | Partition Count
+-----------+----------+--------------------+------------------
+  my-topic | false    |                  3 |               6
+
+D:\confluent>confluent kafka topic delete my-topic
+Are you sure you want to delete topic "my-topic"? (y/n): y
+Deleted topic "my-topic".
+
+D:\confluent>confluent kafka topic list
+None found.
+
+D:\confluent>confluent kafka topic create myTopic
+Created topic "myTopic".
+
+
+D:\confluent>confluent kafka topic produce myTopic                -- open a new cmd now --
+Starting Kafka Producer. Use Ctrl-C to exit.
+Hello
+How are ?
+khana khake jana haa..
+
+-----------------------------------------------------Open this cmd parallely-------------------------------------------------------------------
+
+Microsoft Windows [Version 10.0.19045.6466]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\Dell>D:
+
+D:\>cd confluent
+
+D:\confluent>confluent kafka topic consume myTopic --from-beginning
+Starting Kafka Consumer. Use Ctrl-C to exit.
+Hello
+How are ?
+khana khake jana haa..
+
+

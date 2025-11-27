@@ -1,0 +1,20 @@
+import pyspark
+
+myrdd=sc.textFile('/user/hadoop/book.txt')
+
+myrdd.cache()
+
+myrdd.collect
+
+myrdd.count()
+
+myrdd.iscache()
+
+myrdd.unpersist()
+
+from pyspark import StorageLevel
+
+myrdd.persist(StorageLevel.DISK_ONLY) 
+
+
+

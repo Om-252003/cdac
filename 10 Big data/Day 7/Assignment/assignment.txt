@@ -1,0 +1,62 @@
+NOTE: YOU CAN TRY TO ATTEMPT AS MANY QUESTIONS AS YOU CAN. IT IS NOT MANDATORY THAT EVERYONE WILL BE ABLE TO ANSWER ALL THE QUESTIONS. THE IDEA IS TO GET FAMILIAR WITH RDD OPERATIONS
+
+Objective: Analyze real-world datasets
+
+using Apache Spark RDDs and demonstrate understanding of core RDD operations.
+
+Datasets
+
+Choose one or both of the following datasets for your analysis:
+
+1. Text Book: Pride and Prejudice
+https://www.gutenberg.org/files/1342/1342-0.txt
+
+2. Web Server Log File: NASA Access Logs (July 1995 sample)
+https://ita.ee.lbl.gov/html/contrib/NASA-HTTP.html
+
+You may download and place these in your working directory or HDFS as instructed.
+
+Section A – RDD Creation and Partitioning
+
+1. Create an RDD from a list of integers from 1 to 10 using multiple partitions.
+2. Load the dataset(s) and display the number of partitions created.
+3. Experiment with partitioning by specifying the number of partitions when loading data.
+
+Section B – Text Analysis
+(Use the book text dataset)
+
+4. Load the dataset and perform word-level analysis.
+5. Remove irrelevant or uninformative tokens (e.g., very short words).
+6. Normalize the text for consistent processing.
+7. Generate a frequency count of all valid words.
+8. Display sample outputs from the processed data.
+9. Explore the resulting key-value dataset and retrieve meaningful subsets.
+
+Section C – Log File Analysis
+(Use the NASA access log dataset)
+
+10. Extract client identifiers (such as IP addresses) from the dataset.
+11. Count the number of requests made by each unique client.
+12. Display a small sample of the result.
+
+Section D – Set Operations
+
+13. Create two RDDs containing a few overlapping numerical values.
+14. Perform union and intersection operations on them.
+15. Print the results.
+
+Section E – Data Storage and Retrieval
+
+16. Save the processed outputs (e.g., word frequencies, client request counts) to appropriate output folders.
+17. Retrieve and display a few entries from the saved files.
+
+Deliverables
+
+Submit the following:
+
+- Source code (.py or .ipynb)
+- Output directories with result files
+- Screenshots or console output of:
+  - Number of partitions
+  - Sample word frequencies
+  - Client request counts (if applicable)

@@ -1,28 +1,16 @@
-var = 100
-username = "User1"
+import requests
 
-def login(uname):
-    if uname == "admin" or "Admin":
-        var = 200
-        print("Login Successful")
-        print("var = ", var)
-    else:
-        var = 300
-        print("Invalid Username")
-        print("var = ", var)
+API_KEY = "579b464db66ec23bdd000001c544515bbb374d9a7324c4353ba6822e"
+RESOURCE_ID = "98c433b1-9c86-40c7-baf4-d4eca5385698"
 
-login(username)
-print("var = ", var)
+url = f"https://api.data.gov.in/resource/{RESOURCE_ID}"
+params = {
+    "api-key": API_KEY,
+    "format": "json",
+    "limit": 0
+}
 
-# what will be the output of this program?
-# Login Successful
-# var = 200
-#
-# Login Successful
-# error message : global variable can not be accessed without using global
-#
-# Invalid Username
-# var = 300
-#
-# Invalid Username
-# error message : global variable can not be accessed without using globals
+res = requests.get(url, params=params).json()
+
+# this part depends on the API response structure
+print(res)
