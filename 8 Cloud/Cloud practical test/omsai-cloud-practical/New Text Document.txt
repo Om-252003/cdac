@@ -1,0 +1,31 @@
+
+
+CREATE TABLE public.fact_sales (
+  sale_id        BIGINT,
+  store_id       VARCHAR(20) NOT NULL,
+  product_id     VARCHAR(20) NOT NULL,
+  quantity       INT         NOT NULL,
+  unit_price     NUMERIC(10,2) NOT NULL,
+  sale_timestamp TIMESTAMP   NOT NULL,
+  channel        VARCHAR(10) NOT NULL
+)
+DISTSTYLE KEY
+DISTKEY(store_id)
+SORTKEY(sale_timestamp);
+
+TRUNCATE TABLE public.fact_sales;
+
+COPY public.fact_sales
+FROM 's3://practical-4-omsai/redshift_sales_data.csv'
+IAM_ROLE 'arn:aws:iam::561406826670:role/LabRole'
+REGION 'us-east-1'
+FORMAT CSV
+IGNOREHEADER 1
+TIMEFORMAT 'auto';
+
+
+
+
+
+
+
