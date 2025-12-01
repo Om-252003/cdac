@@ -1,0 +1,192 @@
+* Open a session in mobaxterm and type :  
+
+nc -lk 2222  # you can use whichever port > 1024 <= 9999
+
+* Open another session and follow
+
+
+pyspark --master local --conf "spark.sql.shuffle.partitions=2"
+from pyspark.sql.functions import explode
+from pyspark.sql.functions import split
+
+
+
+host = "localhost"
+port = 2222
+
+
+# Create DataFrame representing the stream of input lines from connection to host:port
+# make sure there are no spaces after \
+
+lines = spark \
+    .readStream \
+    .format("socket") \
+    .option("host", host) \
+    .option("port", port) \
+    .load()
+
+
+
+# create new column 'words' which will have values from the 'lines' RDD
+
+words = lines.select(
+   explode(
+       split(lines.value, " ")
+   ).alias("word")
+)
+
+
+
+# Generate running wordCount
+wordCounts = words.groupBy("word").count()
+
+
+
+# Start running the query that prints the running counts to the console
+# make sure there are no spaces after \
+
+query = wordCounts \
+    .writeStream \
+    .outputMode("complete") \
+    .format("console") \
+    .start()
+    
+    # here start() is an 'Action'. and now it is constantly running ( Realtime )
+
+
+Go to first session , In that we can send any string.
+
+and the wordcount of that string will be printed in second session.
+
+Stop spark process using ctrl+c
+
+start again that spark process but instead of using outputmode('complete') now try with other two modes.
+# make sure there are no spaces after \
+
+query = wordCounts \
+    .writeStream \
+    .outputMode("update") \
+    .format("console") \
+    .start()
+
+
+
+Three Output Modes
+
+1. COMPLETE
+
+2. UPDATE
+
+3. APPEND  # not supported
+
+The output modes will have an impact depending on whether your query is with Aggregation or without Aggregation
+
+With Aggregation
+----------------
+
+Example - > Wordcount program
+
+COMPLETE mode is supported
+
+UPDATE mode is supported
+
+APPEND - Not supported
+
+Run the same wordcount program and change the output mode to Append
+
+query = wordCounts \
+    .writeStream \
+    .outputMode("append") \
+    .format("console") \
+    .start()
+
+
+Now try queries without Aggregation
+-----------------------------------
+
+COMPLETE - Not supported
+
+UPDATE and APPEND mode are the same
+
+
+from pyspark.sql.functions import explode
+from pyspark.sql.functions import split
+
+
+
+host = "localhost"
+port = 9999
+
+
+# Create DataFrame representing the stream of input lines from connection to host:port
+lines = spark \
+    .readStream \
+    .format("socket") \
+    .option("host", host) \
+    .option("port", port) \
+    .load()
+
+
+
+
+words = lines.select(
+   explode(
+       split(lines.value, " ")
+   ).alias("word")
+)
+
+
+
+# Start running the query that prints the running counts to the console
+query = words \
+    .writeStream \
+    .outputMode("complete") \
+    .format("console") \
+    .start()
+
+
+UPDATE MODE
+
+
+
+
+
+from pyspark.sql.functions import explode
+from pyspark.sql.functions import split
+
+
+
+host = "localhost"
+port = 9999
+
+
+# Create DataFrame representing the stream of input lines from connection to host:port
+lines = spark \
+    .readStream \
+    .format("socket") \
+    .option("host", host) \
+    .option("port", port) \
+    .load()
+
+
+
+
+words = lines.select(
+   explode(
+       split(lines.value, " ")
+   ).alias("word")
+)
+
+
+
+# Start running the query that prints the running counts to the console
+query = words \
+    .writeStream \
+    .outputMode("update") \
+    .format("console") \
+    .start()
+
+
+
+
+
