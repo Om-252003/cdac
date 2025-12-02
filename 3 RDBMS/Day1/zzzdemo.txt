@@ -1,0 +1,2 @@
+
+49. Write a query that joins the Customer table to itself to find all pairs of customers served by a single salesperson.
