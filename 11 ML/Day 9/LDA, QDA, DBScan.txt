@@ -1,0 +1,116 @@
+📘 MACHINE LEARNING NOTES – LDA, QDA & DBSCAN
+────────────────────────────────────────────
+
+────────────────────────────
+🔷 LDA – Linear Discriminant Analysis
+────────────────────────────
+
+🎯 Goal:
+• Classify data using a LINEAR decision boundary
+
+📌 Assumptions:
+• Each class follows a Gaussian distribution
+• All classes share the SAME covariance matrix
+• Classes differ only in their MEAN
+
+📌 Important Formulas:
+• Mean of class k:
+      μ_k = (1 / N_k) * Σ (x ∈ class_k) x
+
+• Pooled covariance (common Σ):
+      Σ = (1 / (N − K)) * Σ_k Σ_(x ∈ class_k) (x − μ_k)(x − μ_k)^T
+
+• Linear decision boundary:
+      wᵀx + b = 0
+
+📌 Algorithm Steps:
+1️⃣ Compute the mean of each class
+2️⃣ Compute the pooled covariance matrix
+3️⃣ Form the discriminant function using mean and covariance
+4️⃣ Assign the sample to the class with the highest score
+
+📌 Key line:
+→ Same covariance ⇒ Linear boundary
+
+────────────────────────────
+🔶 QDA – Quadratic Discriminant Analysis
+────────────────────────────
+
+🎯 Goal:
+• Classify data using a CURVED (quadratic) decision boundary
+
+📌 Assumptions:
+• Each class follows a Gaussian distribution
+• Each class has its OWN covariance matrix
+• Classes differ in both mean and shape (spread)
+
+📌 Important Formulas:
+• Class-wise covariance:
+      Σ_k = (1 / (N_k − 1)) * Σ_(x ∈ class_k) (x − μ_k)(x − μ_k)^T
+
+• Quadratic decision boundary:
+      xᵀ A x + Bᵀ x + C = 0
+
+📌 Algorithm Steps:
+1️⃣ Compute the mean of each class
+2️⃣ Compute covariance matrices separately for each class
+3️⃣ Calculate Gaussian likelihood for each class
+4️⃣ Assign to the class with maximum probability
+
+📌 Key line:
+→ Different covariance ⇒ Quadratic (curved) boundary
+
+────────────────────────────
+🔷 DBSCAN – Density-Based Spatial Clustering of Applications with Noise
+────────────────────────────
+
+🎯 Goal:
+• Form clusters where data is dense
+• Mark isolated points as NOISE (outliers)
+
+📌 Parameters:
+• eps → radius for neighbourhood
+• minPts → minimum required points inside eps
+
+📌 Types of Points:
+• Core point → ≥ minPts neighbours inside eps
+• Border point → near core point but not dense enough itself
+• Noise point → does not belong to any cluster
+
+📌 Algorithm Steps:
+1️⃣ Pick any unvisited point
+2️⃣ Count neighbours inside eps
+3️⃣ If ≥ minPts → mark as Core → Start a cluster
+4️⃣ Expand the cluster by exploring neighbours
+5️⃣ If < minPts → mark as Noise or Border
+6️⃣ Repeat until all points are visited
+
+📌 Advantages:
+• Detects outliers
+• Can form any shaped clusters (not only spherical)
+• No need to pre-specify number of clusters
+
+📌 Disadvantages:
+• Choosing eps & minPts is difficult
+• Struggles with varying density clusters
+
+────────────────────────────
+🔥 Quick Revision Table (Perfect for Viva)
+────────────────────────────
+
+| Technique | Type           | Boundary | Covariance         | Outliers | Clusters count |
+|----------|----------------|----------|-------------------|----------|----------------|
+| LDA      | Classification  | Linear   | Same for all       | ✘        | Given          |
+| QDA      | Classification  | Curved   | Different for each | ✘        | Given          |
+| DBSCAN   | Clustering      | Any shape| N/A                | ✔        | Not required   |
+
+────────────────────────────
+🧠 Summary Strip (Viva Dialogue)
+────────────────────────────
+• LDA: Same covariance ⇒ Linear decision boundary  
+• QDA: Different covariance ⇒ Quadratic decision boundary  
+• DBSCAN: High-density region ⇒ Cluster, Low-density ⇒ Noise
+
+────────────────────────────────────────────
+ END OF NOTES ✔️
+────────────────────────────────────────────
