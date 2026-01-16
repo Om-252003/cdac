@@ -1,0 +1,4 @@
+kafka
+kafka-python
+
+# pip install -r requirements.txt

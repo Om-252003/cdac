@@ -1,0 +1,80 @@
+1. Machine Learning
+
+   1.1 Introduction to machine learning  
+   1.2 Formal learning model – PAC learning  
+   1.3 Bias complexity trade off  
+   1.4 The VC Dimension  
+   1.5 Non-uniform learnability  
+       - Structural risk minimization  
+       - Occam’s Razor  
+       - No Free Lunch Theorem  
+   1.6 Regularization and Stability  
+   1.7 Model Selection and Validation  
+   1.8 Machine Learning taxonomy  
+       - Supervised Learning  
+       - Unsupervised Learning  
+       - Semi-supervised Learning  
+   1.9 Practical use cases of Machine learning  
+
+   1.10 Unsupervised Learning  
+        - Clustering  
+          - K-Means and its variants  
+          - Hierarchical Clustering  
+        - Dimension Reduction  
+          - PCA  
+          - Kernel PCA  
+          - LDA  
+          - Random Projections  
+
+   1.11 Fundamentals of information theory  
+
+   1.12 Supervised Learning with simple and ensemble learning  
+        - Classification and Regression  
+          - KNN  
+          - Decision Trees  
+          - Bayesian analysis and Naïve Bayes classifier  
+          - Random Forest  
+          - Gradient Boosting Machines  
+          - SVM  
+          - XGBoost  
+          - CatBoost  
+          - Linear Regression  
+          - Non-linear Regression  
+
+   1.13 Time series Forecasting  
+
+
+2. Deep Learning
+
+   2.1 Introduction to neural networks  
+       - Neurons  
+       - Construction of networks  
+       - Backpropagation  
+
+   2.2 Introducing Modern Practical Deep Networks  
+       - Deep Feedforward Networks  
+       - Regularization for Deep Learning  
+       - Optimization for Training Deep Models  
+
+   2.3 Convolutional Neural Networks  
+   2.4 Sequence modelling using recurrent neural networks  
+   2.5 Transfer Learning  
+   2.6 Autoencoders  
+   2.7 Object Detection  
+   2.8 Object Segmentation and Tracking  
+   2.9 Concepts of NLP  
+
+
+3. Generative AI
+
+   3.1 Introduction to transformers  
+   3.2 Difference between encoder, decoder and encoder-decoder architectures  
+   3.3 Attention Mechanisms  
+   3.4 Overview of BERT  
+   3.5 Application of transformers  
+   3.6 Introduction to LARGE LANGUAGE MODELS  
+   3.7 Understanding and handling TEXT DATA  
+   3.8 Understand the concept of fine-tuning pre-trained model  
+   3.9 Reward Models and Alignment Strategies  
+   3.10 Practical case studies using SLMs and LLMs  
+   3.11 Deployment of LLMs

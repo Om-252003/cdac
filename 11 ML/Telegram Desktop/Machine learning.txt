@@ -1,0 +1,922 @@
+# 📘 CDAC – Previous Year Questions (PYQ)
+## Machine Learning & AI  
+### PART 1 : Questions 1–25
+
+---
+
+### 1.
+Elbow method is used in which machine learning model to see best value of K?
+A) Linear Regression  
+B) K-Means Clustering  
+C) Decision Tree  
+D) Naive Bayes  
+
+---
+
+### 2.
+Which distance measure is used in KNN algorithm?
+A) Euclidean distance  
+B) Manhattan distance  
+C) Minkowski distance  
+D) All of the above  
+
+---
+
+### 3.
+PCA is a:
+A) Forward feature selection  
+B) Backward feature selection  
+C) Feature extraction  
+D) None of the above  
+
+---
+
+### 4.
+The cost parameter in SVM means:
+A) Tradeoff between misclassification and simplicity of the model  
+B) Learning rate  
+C) Kernel selection  
+D) Distance measure  
+
+---
+
+### 5.
+The target feature to be predicted is a categorical feature known as ______ and is divided into categories called ______.
+A) Class, attributes  
+B) Label, classes  
+C) Feature, values  
+D) Variable, range  
+
+---
+
+### 6.
+Which learning paradigm uses labeled data?
+A) Unsupervised learning  
+B) Reinforcement learning  
+C) Supervised learning  
+D) Semi-supervised learning  
+
+---
+
+### 7.
+Which learning paradigm uses unlabeled data?
+A) Supervised learning  
+B) Unsupervised learning  
+C) Reinforcement learning  
+D) Deep learning  
+
+---
+
+### 8.
+Robot learning to pick objects using reward and penalty is an example of:
+A) Supervised learning  
+B) Unsupervised learning  
+C) Reinforcement learning  
+D) Semi-supervised learning  
+
+---
+
+### 9.
+A newborn baby learning to walk is an example of:
+A) Supervised learning  
+B) Unsupervised learning  
+C) Reinforcement learning  
+D) Transfer learning  
+
+---
+
+### 10.
+Slack variables in SVM are used for:
+A) Increasing margin  
+B) Handling non-linearity  
+C) Allowing misclassification  
+D) Kernel transformation  
+
+---
+
+### 11.
+Random Forest is based on which concept?
+A) Boosting  
+B) Bagging  
+C) Gradient descent  
+D) Regularization  
+
+---
+
+### 12.
+Which NLP challenge deals with words having multiple meanings?
+A) Tokenization  
+B) Ambiguity  
+C) Lemmatization  
+D) Stemming  
+
+---
+
+### 13.
+How many bigrams are possible for a sentence having 6 words?
+A) 4  
+B) 5  
+C) 6  
+D) 7  
+
+---
+
+### 14.
+Which of the following is NOT a component of CNN?
+A) Convolution  
+B) Pooling  
+C) Fully connected layer  
+D) Relish  
+
+---
+
+### 15.
+Which time series model uses exponential smoothing?
+A) AR  
+B) MA  
+C) ARMA  
+D) Holt-Winters  
+
+---
+
+### 16.
+Autocovariance measures:
+A) Covariance between two variables  
+B) Covariance of a variable with itself at different time lags  
+C) Correlation between two datasets  
+D) Distance between time series  
+
+---
+
+### 17.
+Which dataset is used to test the performance of a trained model?
+A) Training dataset  
+B) Validation dataset  
+C) Test dataset  
+D) Sample dataset  
+
+---
+
+### 18.
+Which clustering algorithm is most sensitive to outliers?
+A) K-means  
+B) K-medoids  
+C) Hierarchical clustering  
+D) DBSCAN  
+
+---
+
+### 19.
+Which of the following is NOT a supervised learning algorithm?
+A) Linear Regression  
+B) Logistic Regression  
+C) K-Means  
+D) Decision Tree  
+
+---
+
+### 20.
+Which learning method requires target output?
+A) Unsupervised learning  
+B) Reinforcement learning  
+C) Supervised learning  
+D) Clustering  
+
+---
+
+### 21.
+Which metric is used to evaluate clustering results?
+A) Accuracy  
+B) Precision  
+C) Silhouette score  
+D) Confusion matrix  
+
+---
+
+### 22.
+Which of the following algorithms can be used for both classification and regression?
+A) Naive Bayes  
+B) Decision Tree  
+C) K-Means  
+D) Apriori  
+
+---
+
+### 23.
+Which technique reduces dimensionality while preserving variance?
+A) Feature selection  
+B) PCA  
+C) Normalization  
+D) Sampling  
+
+---
+
+### 24.
+Which evaluation metric is used for probabilistic classifiers?
+A) Accuracy  
+B) Log Loss  
+C) RMSE  
+D) MAE  
+
+---
+
+### 25.
+Which term refers to the ability of a model to perform well on unseen data?
+A) Bias  
+B) Variance  
+C) Generalization  
+D) Overfitting  
+
+---
+# 📘 CDAC – Previous Year Questions (PYQ)
+## Machine Learning & AI  
+### PART 2 : Questions 26–50
+
+---
+
+### 26.
+Which neural network problem occurs due to repeated multiplication of gradients less than one?
+A) Overfitting  
+B) Exploding Gradient  
+C) Vanishing Gradient  
+D) Bias problem  
+
+---
+
+### 27.
+Which of the following is NOT a preprocessing step in NLP?
+A) Tokenization  
+B) Lemmatization  
+C) Stemming  
+D) spaCy  
+
+---
+
+### 28.
+Hierarchical clustering represents clusters in the form of:
+A) Graph  
+B) Tree  
+C) Matrix  
+D) Network  
+
+---
+
+### 29.
+What is the minimum number of features required to perform clustering?
+A) Zero  
+B) One  
+C) Two  
+D) Three  
+
+---
+
+### 30.
+Which algorithm takes more time during prediction phase?
+A) Decision Tree  
+B) KNN  
+C) Naive Bayes  
+D) Logistic Regression  
+
+---
+
+### 31.
+Which type of cross-validation uses one observation as test set and remaining as training set?
+A) K-Fold Cross Validation  
+B) Stratified Cross Validation  
+C) Leave-One-Out Cross Validation  
+D) Random Sampling  
+
+---
+
+### 32.
+Which algorithm is most suitable for speech recognition?
+A) CNN  
+B) RNN  
+C) Decision Tree  
+D) Linear Regression  
+
+---
+
+### 33.
+Which of the following is an advantage of neural networks?
+A) Easy interpretability  
+B) Requires less data  
+C) Learns by example  
+D) No computational cost  
+
+---
+
+### 34.
+Which regression algorithm is used for binary classification?
+A) Linear Regression  
+B) Polynomial Regression  
+C) Logistic Regression  
+D) Ridge Regression  
+
+---
+
+### 35.
+Which feature selection technique starts with no features and adds one at a time?
+A) Backward elimination  
+B) Forward selection  
+C) Recursive elimination  
+D) Random selection  
+
+---
+
+### 36.
+Which algorithm is best suited for imputation of missing values?
+A) Linear Regression  
+B) KNN  
+C) K-Means  
+D) Apriori  
+
+---
+
+### 37.
+Which learning method is used when data has no labels but hidden patterns exist?
+A) Supervised learning  
+B) Reinforcement learning  
+C) Unsupervised learning  
+D) Semi-supervised learning  
+
+---
+
+### 38.
+Which distance measure is most suitable for categorical data?
+A) Euclidean  
+B) Manhattan  
+C) Hamming  
+D) Minkowski  
+
+---
+
+### 39.
+Which of the following statements is TRUE?
+A) KNN requires training time  
+B) KNN performs dimensionality reduction  
+C) KNN stores training data  
+D) KNN assumes linear separability  
+
+---
+
+### 40.
+Which of the following is NOT a neural network application?
+A) Image recognition  
+B) Speech recognition  
+C) Stock market prediction  
+D) Sorting numbers  
+
+---
+
+### 41.
+Which metric is used to evaluate binary classifiers?
+A) Confusion Matrix  
+B) Silhouette Score  
+C) RMSE  
+D) MAE  
+
+---
+
+### 42.
+Which type of model describes patterns but does not predict future outcomes?
+A) Predictive  
+B) Descriptive  
+C) Prescriptive  
+D) Causal  
+
+---
+
+### 43.
+Which Naive Bayes classifier is suitable for continuous data?
+A) Bernoulli  
+B) Multinomial  
+C) Gaussian  
+D) Binary  
+
+---
+
+### 44.
+Which of the following is an ordinal feature?
+A) Gender  
+B) Blood Group  
+C) Education Level  
+D) Country  
+
+---
+
+### 45.
+Which algorithm is most suitable for stock market prediction?
+A) Linear Regression  
+B) Decision Tree  
+C) Neural Network  
+D) Naive Bayes  
+
+---
+
+### 46.
+Which of the following is a predictor variable?
+A) Target  
+B) Label  
+C) Feature  
+D) Output  
+
+---
+
+### 47.
+Which metric is used to evaluate probabilistic predictions?
+A) Accuracy  
+B) Log Loss  
+C) Precision  
+D) Recall  
+
+---
+
+### 48.
+Which algorithm is NOT suitable for categorical output?
+A) Logistic Regression  
+B) Naive Bayes  
+C) Linear Regression  
+D) Decision Tree  
+
+---
+
+### 49.
+Which of the following problems occurs when model performs well on training data but poorly on test data?
+A) Underfitting  
+B) Overfitting  
+C) Bias  
+D) Variance  
+
+---
+
+### 50.
+Which technique is used to prevent overfitting in deep learning?
+A) Pooling  
+B) Padding  
+C) Dropout  
+D) Convolution  
+
+---
+# 📘 CDAC – Previous Year Questions (PYQ)
+## Machine Learning & AI  
+### PART 3 : Questions 51–75
+
+---
+
+### 51.
+Which learning method is used when the system learns by trial and error?
+A) Supervised learning  
+B) Unsupervised learning  
+C) Reinforcement learning  
+D) Deep learning  
+
+---
+
+### 52.
+Which feature selection technique removes features one by one starting with all features?
+A) Forward selection  
+B) Backward elimination  
+C) Recursive selection  
+D) Random selection  
+
+---
+
+### 53.
+Which of the following is a library and NOT a preprocessing technique in NLP?
+A) Tokenization  
+B) Lemmatization  
+C) Stemming  
+D) spaCy  
+
+---
+
+### 54.
+In hierarchical clustering, the diagram that shows cluster merging is called:
+A) Scatter plot  
+B) Histogram  
+C) Dendrogram  
+D) Box plot  
+
+---
+
+### 55.
+What is the minimum number of dimensions required to perform clustering?
+A) Zero  
+B) One  
+C) Two  
+D) Three  
+
+---
+
+### 56.
+Which algorithm is computationally expensive at prediction time?
+A) Decision Tree  
+B) Naive Bayes  
+C) Logistic Regression  
+D) KNN  
+
+---
+
+### 57.
+Leave-One-Out Cross Validation generally results in:
+A) Low variance and fast computation  
+B) High variance and slow computation  
+C) Low bias and fast computation  
+D) High bias and fast computation  
+
+---
+
+### 58.
+Which machine learning algorithm is most suitable for sequence data?
+A) CNN  
+B) Decision Tree  
+C) RNN  
+D) K-Means  
+
+---
+
+### 59.
+Which of the following is NOT an advantage of neural networks?
+A) Fault tolerance  
+B) Learning by example  
+C) High interpretability  
+D) Ability to model non-linear data  
+
+---
+
+### 60.
+Which regression technique is used when the target variable is categorical?
+A) Linear Regression  
+B) Ridge Regression  
+C) Logistic Regression  
+D) Polynomial Regression  
+
+---
+
+### 61.
+Which algorithm starts with an empty model and adds features incrementally?
+A) Backward elimination  
+B) Forward selection  
+C) Stepwise regression  
+D) Ridge regression  
+
+---
+
+### 62.
+Which algorithm is commonly used for missing value imputation?
+A) Decision Tree  
+B) KNN  
+C) Apriori  
+D) PCA  
+
+---
+
+### 63.
+Which distance metric is most appropriate for binary attributes?
+A) Euclidean  
+B) Manhattan  
+C) Hamming  
+D) Cosine  
+
+---
+
+### 64.
+Which statement about KNN is TRUE?
+A) KNN builds a model during training  
+B) KNN performs feature selection  
+C) KNN stores all training instances  
+D) KNN assumes normal distribution  
+
+---
+
+### 65.
+Which of the following is NOT a typical application of neural networks?
+A) Image recognition  
+B) Speech recognition  
+C) Sorting numbers  
+D) Pattern recognition  
+
+---
+
+### 66.
+Which evaluation tool is commonly used for classification problems?
+A) Silhouette score  
+B) Confusion matrix  
+C) RMSE  
+D) MAE  
+
+---
+
+### 67.
+Which model type focuses on discovering hidden structures in data?
+A) Predictive  
+B) Descriptive  
+C) Prescriptive  
+D) Causal  
+
+---
+
+### 68.
+Which Naive Bayes variant is used for continuous-valued features?
+A) Multinomial  
+B) Bernoulli  
+C) Gaussian  
+D) Binary  
+
+---
+
+### 69.
+Which feature type represents grades such as A, B, C?
+A) Nominal  
+B) Ordinal  
+C) Binary  
+D) Continuous  
+
+---
+
+### 70.
+Which algorithm is generally NOT suitable for stock market prediction?
+A) Decision Tree  
+B) Neural Network  
+C) Linear Regression  
+D) Naive Bayes  
+
+---
+
+### 71.
+Which term refers to the independent variable in machine learning?
+A) Target  
+B) Label  
+C) Feature  
+D) Output  
+
+---
+
+### 72.
+Which metric evaluates probabilistic predictions?
+A) Accuracy  
+B) Precision  
+C) Log Loss  
+D) Recall  
+
+---
+
+### 73.
+Which learning problem occurs when a model fits training data too well?
+A) Underfitting  
+B) Overfitting  
+C) Bias  
+D) Noise  
+
+---
+
+### 74.
+Which regularization technique randomly disables neurons during training?
+A) L1 Regularization  
+B) L2 Regularization  
+C) Dropout  
+D) Early stopping  
+
+---
+
+### 75.
+Which deep learning problem arises due to gradients becoming extremely small?
+A) Exploding gradient  
+B) Vanishing gradient  
+C) Overfitting  
+D) Bias  
+
+---
+
+# 📘 CDAC – Previous Year Questions (PYQ)
+## Machine Learning & AI  
+### PART 4 : Questions 76–100
+
+---
+
+### 76.
+Which concept represents an (n−1) dimensional surface that separates data points of different classes?
+A) Decision boundary  
+B) Hyperplane  
+C) Kernel  
+D) Margin  
+
+---
+
+### 77.
+Euclidean distance is used to measure:
+A) Error rate  
+B) Similarity between documents  
+C) Distance between two points in space  
+D) Classification accuracy  
+
+---
+
+### 78.
+A model that performs extremely well on training data but poorly on unseen data is said to have:
+A) High bias  
+B) High variance  
+C) Low complexity  
+D) Underfitting  
+
+---
+
+### 79.
+Which of the following measures are used in association rule mining?
+A) Support  
+B) Confidence  
+C) Lift  
+D) All of the above  
+
+---
+
+### 80.
+Outliers in a dataset should be:
+A) Always removed  
+B) Always kept  
+C) Treated based on business context  
+D) Ignored  
+
+---
+
+### 81.
+Discriminant analysis is mainly used for:
+A) Regression  
+B) Clustering  
+C) Classification into groups  
+D) Feature extraction  
+
+---
+
+### 82.
+Dimensionality reduction helps to:
+A) Increase entropy  
+B) Reduce multicollinearity  
+C) Increase variance  
+D) Increase noise  
+
+---
+
+### 83.
+Which of the following methods is used to select the number of clusters?
+A) Elbow method  
+B) Silhouette method  
+C) Dendrogram  
+D) All of the above  
+
+---
+
+### 84.
+TF-IDF assigns higher weight to:
+A) Frequently occurring words  
+B) Rare but informative words  
+C) Stop words  
+D) Random words  
+
+---
+
+### 85.
+Which of the following is NOT a word embedding technique?
+A) Word2Vec  
+B) GloVe  
+C) FastText  
+D) Stemming  
+
+---
+
+### 86.
+Sensitivity is also known as:
+A) Precision  
+B) Recall  
+C) Accuracy  
+D) Specificity  
+
+---
+
+### 87.
+Which of the following models are descriptive in nature?
+A) Linear regression  
+B) Classification  
+C) Association rules  
+D) Logistic regression  
+
+---
+
+### 88.
+A perceptron is a:
+A) Multi-layer neural network  
+B) Single-layer feedforward network  
+C) Recurrent neural network  
+D) Convolutional neural network  
+
+---
+
+### 89.
+Which of the following techniques is NOT dimensionality reduction?
+A) PCA  
+B) Kernel PCA  
+C) Removing a column  
+D) Autoencoders  
+
+---
+
+### 90.
+Spam filtering is an example of:
+A) Unsupervised learning  
+B) Reinforcement learning  
+C) Supervised learning  
+D) Semi-supervised learning  
+
+---
+
+### 91.
+A feature in machine learning is defined as:
+A) Target variable  
+B) Measurable property of data  
+C) Output label  
+D) Prediction result  
+
+---
+
+### 92.
+Which learning method includes deduction, memorization and analogy?
+A) Supervised learning  
+B) Unsupervised learning  
+C) Reinforcement learning  
+D) Machine learning  
+
+---
+
+### 93.
+Which evaluation metric is suitable for binary classification?
+A) Silhouette score  
+B) Confusion matrix  
+C) RMSE  
+D) MAE  
+
+---
+
+### 94.
+Which Naive Bayes classifier is suitable for text classification?
+A) Gaussian  
+B) Bernoulli  
+C) Multinomial  
+D) Binary  
+
+---
+
+### 95.
+Which feature type represents grading systems like Excellent, Good, Average?
+A) Nominal  
+B) Ordinal  
+C) Binary  
+D) Continuous  
+
+---
+
+### 96.
+Which algorithm is most suitable for categorical output prediction?
+A) Linear regression  
+B) Logistic regression  
+C) K-Means  
+D) PCA  
+
+---
+
+### 97.
+Which term refers to a model that explains data patterns without predicting outcomes?
+A) Predictive model  
+B) Descriptive model  
+C) Prescriptive model  
+D) Causal model  
+
+---
+
+### 98.
+Which metric is commonly used to evaluate probabilistic classifiers?
+A) Accuracy  
+B) Precision  
+C) Log Loss  
+D) Recall  
+
+---
+
+### 99.
+Which deep learning issue arises when gradients become extremely large?
+A) Vanishing gradient  
+B) Exploding gradient  
+C) Underfitting  
+D) Bias  
+
+---
+
+### 100.
+Which technique randomly drops neurons during training to prevent overfitting?
+A) Early stopping  
+B) Dropout  
+C) L2 regularization  
+D) Batch normalization  
+
+---
+

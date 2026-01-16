@@ -454,9 +454,10 @@ d
 
 srnos = seq(1, 20)
 srnos
-names = c(paste("Student ", 1:20))
+names = c(paste("Student", 1:20, sep = "_"))
 names
 depts = sample(c('CS', 'IT', 'ML', 'AI'), 20, replace = TRUE)
+
 marks = sample(0:400, 20, replace = TRUE)
 
 df = data.frame(srnos, names, depts, marks)

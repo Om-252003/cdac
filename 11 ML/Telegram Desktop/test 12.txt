@@ -1,0 +1,692 @@
+# 📘 CDAC MOCK TEST – 12
+## Machine Learning, Deep Learning & AI
+
+---
+
+## 📝 QUESTIONS (MCQs ONLY)
+
+### **1. A model with low bias and high variance is most likely to:**
+A) Underfit the data  
+B) Generalize perfectly  
+C) Overfit the training data  
+D) Be unaffected by noise  
+
+---
+
+### **2. In PAC learning, the confidence parameter δ represents:**
+A) Allowed training error  
+B) Probability that hypothesis is approximately correct  
+C) Model complexity  
+D) Size of hypothesis space  
+
+---
+
+### **3. Occam’s Razor helps reduce overfitting by favoring:**
+A) Complex hypothesis spaces  
+B) High VC dimension models  
+C) Simpler hypotheses with similar error  
+D) Larger datasets  
+
+---
+
+### **4. A higher VC dimension implies:**
+A) Better generalization always  
+B) Lower sample complexity  
+C) Higher model capacity  
+D) Faster convergence  
+
+---
+
+### **5. Structural Risk Minimization differs from ERM because SRM:**
+A) Uses validation data  
+B) Minimizes empirical error only  
+C) Considers hypothesis complexity  
+D) Requires ensemble learning  
+
+---
+
+### **6. Which distance metric is best for binary categorical features?**
+A) Euclidean  
+B) Manhattan  
+C) Cosine  
+D) Hamming  
+
+---
+
+### **7. K-means clustering is most sensitive to:**
+A) Noise and outliers  
+B) Feature scaling  
+C) Cluster labels  
+D) Data ordering  
+
+---
+
+### **8. Which clustering technique produces a dendrogram?**
+A) DBSCAN  
+B) K-means  
+C) Hierarchical clustering  
+D) Spectral clustering  
+
+---
+
+### **9. PCA reduces dimensionality by:**
+A) Removing correlated samples  
+B) Selecting original features  
+C) Creating orthogonal components  
+D) Clustering features  
+
+---
+
+### **10. Kernel PCA differs from PCA because it:**
+A) Uses labeled data  
+B) Works only on images  
+C) Captures non-linear structure  
+D) Reduces variance  
+
+---
+
+### **11. Which evaluation metric is most misleading for imbalanced datasets?**
+A) Precision  
+B) Recall  
+C) Accuracy  
+D) F1-score  
+
+---
+
+### **12. Which metric is suitable for probabilistic classification outputs?**
+A) Accuracy  
+B) F1-score  
+C) Log Loss  
+D) Recall  
+
+---
+
+### **13. Gini index is minimum when:**
+A) Classes are equally distributed  
+B) Node is pure  
+C) Tree depth is high  
+D) Dataset is large  
+
+---
+
+### **14. Which ensemble method reduces variance but not bias significantly?**
+A) Boosting  
+B) Bagging  
+C) AdaBoost  
+D) Gradient Boosting  
+
+---
+
+### **15. Random Forest differs from Bagging because Random Forest:**
+A) Uses boosting  
+B) Uses weighted samples  
+C) Randomly selects features  
+D) Trains sequentially  
+
+---
+
+### **16. XGBoost improves generalization mainly by:**
+A) Using linear models  
+B) Ignoring weak learners  
+C) Adding regularization terms  
+D) Reducing dataset size  
+
+---
+
+### **17. Naive Bayes performs well on text data mainly because:**
+A) Text features are independent  
+B) High dimensional sparse features reduce dependency impact  
+C) It uses embeddings  
+D) It performs dimensionality reduction  
+
+---
+
+### **18. KNN suffers from curse of dimensionality because:**
+A) Training time increases  
+B) Distances lose meaning  
+C) Memory usage increases  
+D) Labels become noisy  
+
+---
+
+### **19. Increasing K in KNN generally:**
+A) Reduces bias and variance  
+B) Increases bias and reduces variance  
+C) Reduces bias and increases variance  
+D) Increases both bias and variance  
+
+---
+
+### **20. LDA assumes:**
+A) Independent features  
+B) Non-linear boundaries  
+C) Equal covariance matrices  
+D) Sparse data  
+
+---
+
+### **21. Ridge regression penalty term is proportional to:**
+A) Sum of absolute coefficients  
+B) Sum of squared coefficients  
+C) Number of features  
+D) Training error  
+
+---
+
+### **22. Elastic Net is preferred over Lasso when:**
+A) Features are independent  
+B) Only one feature matters  
+C) Features are highly correlated  
+D) Dataset is noise-free  
+
+---
+
+### **23. Logistic regression decision boundary is:**
+A) Non-linear  
+B) Quadratic  
+C) Linear in feature space  
+D) Tree-based  
+
+---
+
+### **24. In SVM, kernel trick allows:**
+A) Faster training  
+B) Explicit feature mapping  
+C) Implicit high-dimensional mapping  
+D) Feature selection  
+
+---
+
+### **25. Which kernel has infinite-dimensional feature space?**
+A) Linear  
+B) Polynomial  
+C) RBF  
+D) Sigmoid  
+
+---
+
+### **26. Stationarity in time series means:**
+A) Constant variance and mean  
+B) Constant trend  
+C) Constant seasonality  
+D) No noise  
+
+---
+
+### **27. Which plot helps identify MA(q) order?**
+A) PACF  
+B) Histogram  
+C) ACF  
+D) Box plot  
+
+---
+
+### **28. Collaborative filtering relies primarily on:**
+A) Item metadata  
+B) User–item interaction matrix  
+C) Domain knowledge  
+D) Rule sets  
+
+---
+
+### **29. Which metric emphasizes early correct recommendations?**
+A) RMSE  
+B) Precision  
+C) MAP@K  
+D) Accuracy  
+
+---
+
+### **30. Vanishing gradient problem is mitigated in RNNs by:**
+A) Increasing learning rate  
+B) Using sigmoid activation  
+C) LSTM/GRU architectures  
+D) Removing recurrence  
+
+---
+
+### **31. Which optimizer uses first and second moment estimates?**
+A) SGD  
+B) Momentum  
+C) RMSProp  
+D) Adam  
+
+---
+
+### **32. Dropout reduces overfitting by:**
+A) Penalizing weights  
+B) Randomly disabling neurons  
+C) Increasing batch size  
+D) Feature normalization  
+
+---
+
+### **33. CNN weight sharing reduces:**
+A) Model accuracy  
+B) Training data size  
+C) Number of parameters  
+D) Network depth  
+
+---
+
+### **34. Pooling layers provide:**
+A) Feature extraction  
+B) Translation invariance  
+C) More parameters  
+D) Faster convergence only  
+
+---
+
+### **35. Transfer learning is least effective when:**
+A) Target dataset is small  
+B) Source and target domains are similar  
+C) Source and target domains are unrelated  
+D) Pretrained model is deep  
+
+---
+
+### **36. GRU has fewer parameters than LSTM because it:**
+A) Uses fewer gates  
+B) Has no recurrence  
+C) Uses convolution  
+D) Has no memory  
+
+---
+
+### **37. Transformers process sequences primarily using:**
+A) Recurrence  
+B) Convolution  
+C) Attention  
+D) Pooling  
+
+---
+
+### **38. Positional encoding is required in transformers because:**
+A) Tokens have no embeddings  
+B) Attention ignores sequence order  
+C) Vocabulary is fixed  
+D) Models are shallow  
+
+---
+
+### **39. One major ethical concern with LLMs is:**
+A) Slow inference  
+B) Over-regularization  
+C) Bias amplification  
+D) Limited vocabulary  
+
+---
+
+### **40. Responsible AI deployment includes:**
+A) Maximizing parameters  
+B) Ignoring minority groups  
+C) Monitoring, evaluation, and alignment  
+D) Removing constraints  
+
+---
+
+# 📘 CDAC MOCK TEST – 12 (Full Elimination Notes)
+
+## ✅ ANSWERS & FULL ELIMINATION
+
+---
+
+### **1. A model with low bias and high variance is most likely to:**  
+**Correct Answer: C**  
+- **A) Underfit the data** – ❌ High bias issue  
+- **B) Generalize perfectly** – ❌ High variance prevents this  
+- **C) Overfit the training data** – ✅ Memorizes noise  
+- **D) Be unaffected by noise** – ❌ Highly sensitive  
+
+---
+
+### **2. In PAC learning, the confidence parameter δ represents:**  
+**Correct Answer: B**  
+- **A) Allowed training error** – ❌ That is ε  
+- **B) Probability that hypothesis is approximately correct** – ✅ Confidence bound  
+- **C) Model complexity** – ❌ VC-related  
+- **D) Size of hypothesis space** – ❌ Fixed beforehand  
+
+---
+
+### **3. Occam’s Razor helps reduce overfitting by favoring:**  
+**Correct Answer: C**  
+- **A) Complex hypothesis spaces** – ❌ Overfitting risk  
+- **B) High VC dimension models** – ❌ More capacity  
+- **C) Simpler hypotheses with similar error** – ✅ Principle of simplicity  
+- **D) Larger datasets** – ❌ Data issue  
+
+---
+
+### **4. A higher VC dimension implies:**  
+**Correct Answer: C**  
+- **A) Better generalization always** – ❌ Can overfit  
+- **B) Lower sample complexity** – ❌ Needs more samples  
+- **C) Higher model capacity** – ✅ Shattering power  
+- **D) Faster convergence** – ❌ Optimization-related  
+
+---
+
+### **5. Structural Risk Minimization differs from ERM because SRM:**  
+**Correct Answer: C**  
+- **A) Uses validation data** – ❌ Optional  
+- **B) Minimizes empirical error only** – ❌ ERM does this  
+- **C) Considers hypothesis complexity** – ✅ SRM core  
+- **D) Requires ensemble learning** – ❌ Not required  
+
+---
+
+### **6. Which distance metric is best for binary categorical features?**  
+**Correct Answer: D**  
+- **A) Euclidean** – ❌ Continuous  
+- **B) Manhattan** – ❌ Continuous  
+- **C) Cosine** – ❌ Direction-based  
+- **D) Hamming** – ✅ Binary mismatch count  
+
+---
+
+### **7. K-means clustering is most sensitive to:**  
+**Correct Answer: B**  
+- **A) Noise and outliers** – ❌ Secondary  
+- **B) Feature scaling** – ✅ Distance-based  
+- **C) Cluster labels** – ❌ Unlabeled  
+- **D) Data ordering** – ❌ Order-invariant  
+
+---
+
+### **8. Which clustering technique produces a dendrogram?**  
+**Correct Answer: C**  
+- **A) DBSCAN** – ❌ Density-based  
+- **B) K-means** – ❌ Flat clustering  
+- **C) Hierarchical clustering** – ✅ Tree structure  
+- **D) Spectral clustering** – ❌ Graph-based  
+
+---
+
+### **9. PCA reduces dimensionality by:**  
+**Correct Answer: C**  
+- **A) Removing correlated samples** – ❌ Samples unchanged  
+- **B) Selecting original features** – ❌ Feature selection  
+- **C) Creating orthogonal components** – ✅ Eigenvectors  
+- **D) Clustering features** – ❌ Not clustering  
+
+---
+
+### **10. Kernel PCA differs from PCA because it:**  
+**Correct Answer: C**  
+- **A) Uses labeled data** – ❌ Unsupervised  
+- **B) Works only on images** – ❌ General  
+- **C) Captures non-linear structure** – ✅ Kernel trick  
+- **D) Reduces variance** – ❌ Both reduce variance  
+
+---
+
+### **11. Which evaluation metric is most misleading for imbalanced datasets?**  
+**Correct Answer: C**  
+- **A) Precision** – ❌ Focuses on positive predictions only  
+- **B) Recall** – ❌ Focuses on false negatives  
+- **C) Accuracy** – ✅ Majority class dominance hides poor minority performance  
+- **D) F1-score** – ❌ Balances precision & recall  
+
+---
+
+### **12. Which metric is suitable for probabilistic classification outputs?**  
+**Correct Answer: C**  
+- **A) Accuracy** – ❌ Threshold-dependent  
+- **B) F1-score** – ❌ Requires class labels  
+- **C) Log Loss** – ✅ Penalizes confident wrong probabilities  
+- **D) Recall** – ❌ Ignores probability confidence  
+
+---
+
+### **13. Gini index is minimum when:**  
+**Correct Answer: B**  
+- **A) Classes are equally distributed** – ❌ Maximum impurity  
+- **B) Node is pure** – ✅ Zero impurity  
+- **C) Tree depth is high** – ❌ Depth irrelevant  
+- **D) Dataset is large** – ❌ Size irrelevant  
+
+---
+
+### **14. Which ensemble method reduces variance but not bias significantly?**  
+**Correct Answer: B**  
+- **A) Boosting** – ❌ Mainly reduces bias  
+- **B) Bagging** – ✅ Variance reduction via averaging  
+- **C) AdaBoost** – ❌ Bias-focused  
+- **D) Gradient Boosting** – ❌ Bias + variance  
+
+---
+
+### **15. Random Forest differs from Bagging because Random Forest:**  
+**Correct Answer: C**  
+- **A) Uses boosting** – ❌ Parallel method  
+- **B) Uses weighted samples** – ❌ Uniform sampling  
+- **C) Randomly selects features** – ✅ Decorrelates trees  
+- **D) Trains sequentially** – ❌ Parallel training  
+
+---
+
+### **16. XGBoost improves generalization mainly by:**  
+**Correct Answer: C**  
+- **A) Using linear models** – ❌ Tree-based  
+- **B) Ignoring weak learners** – ❌ Combines weak learners  
+- **C) Adding regularization terms** – ✅ Penalizes complexity  
+- **D) Reducing dataset size** – ❌ Data unchanged  
+
+---
+
+### **17. Naive Bayes performs well on text data mainly because:**  
+**Correct Answer: B**  
+- **A) Text features are independent** – ❌ Rarely true  
+- **B) High dimensional sparse features reduce dependency impact** – ✅ Independence assumption tolerable  
+- **C) It uses embeddings** – ❌ Classic NB does not  
+- **D) It performs dimensionality reduction** – ❌ No reduction  
+
+---
+
+### **18. KNN suffers from curse of dimensionality because:**  
+**Correct Answer: B**  
+- **A) Training time increases** – ❌ Prediction-time issue  
+- **B) Distances lose meaning** – ✅ Distance concentration  
+- **C) Memory usage increases** – ❌ Storage issue  
+- **D) Labels become noisy** – ❌ Data issue  
+
+---
+
+### **19. Increasing K in KNN generally:**  
+**Correct Answer: B**  
+- **A) Reduces bias and variance** – ❌ Tradeoff exists  
+- **B) Increases bias and reduces variance** – ✅ Smoother decision boundary  
+- **C) Reduces bias and increases variance** – ❌ Opposite  
+- **D) Increases both bias and variance** – ❌ Incorrect  
+
+---
+
+### **20. LDA assumes:**  
+**Correct Answer: C**  
+- **A) Independent features** – ❌ Naive Bayes  
+- **B) Non-linear boundaries** – ❌ Linear classifier  
+- **C) Equal covariance matrices** – ✅ LDA assumption  
+- **D) Sparse data** – ❌ Not required  
+
+---
+
+### **21. Ridge regression penalty term is proportional to:**  
+**Correct Answer: B**  
+- **A) Sum of absolute coefficients** – ❌ L1 penalty  
+- **B) Sum of squared coefficients** – ✅ L2 regularization  
+- **C) Number of features** – ❌ Indirect  
+- **D) Training error** – ❌ Loss term  
+
+---
+
+### **22. Elastic Net is preferred over Lasso when:**  
+**Correct Answer: C**  
+- **A) Features are independent** – ❌ Lasso sufficient  
+- **B) Only one feature matters** – ❌ Lasso ideal  
+- **C) Features are highly correlated** – ✅ Grouping effect  
+- **D) Dataset is noise-free** – ❌ Not decisive  
+
+---
+
+### **23. Logistic regression decision boundary is:**  
+**Correct Answer: C**  
+- **A) Non-linear** – ❌ Linear classifier  
+- **B) Quadratic** – ❌ Polynomial models  
+- **C) Linear in feature space** – ✅ Linear logit  
+- **D) Tree-based** – ❌ Ensemble methods  
+
+---
+
+### **24. In SVM, kernel trick allows:**  
+**Correct Answer: C**  
+- **A) Faster training** – ❌ Often slower  
+- **B) Explicit feature mapping** – ❌ Implicit mapping  
+- **C) Implicit high-dimensional mapping** – ✅ Core idea  
+- **D) Feature selection** – ❌ No selection  
+
+---
+
+### **25. Which kernel has infinite-dimensional feature space?**  
+**Correct Answer: C**  
+- **A) Linear** – ❌ Finite  
+- **B) Polynomial** – ❌ Finite degree  
+- **C) RBF** – ✅ Infinite-dimensional  
+- **D) Sigmoid** – ❌ Finite  
+
+---
+
+### **26. Stationarity in time series means:**  
+**Correct Answer: A**  
+- **A) Constant variance and mean** – ✅ Weak stationarity  
+- **B) Constant trend** – ❌ Trend removed  
+- **C) Constant seasonality** – ❌ Seasonal component  
+- **D) No noise** – ❌ Noise allowed  
+
+---
+
+### **27. Which plot helps identify MA(q) order?**  
+**Correct Answer: C**  
+- **A) PACF** – ❌ Identifies AR  
+- **B) Histogram** – ❌ Distribution only  
+- **C) ACF** – ✅ MA cutoff  
+- **D) Box plot** – ❌ Summary stats  
+
+---
+
+### **28. Collaborative filtering relies primarily on:**  
+**Correct Answer: B**  
+- **A) Item metadata** – ❌ Content-based  
+- **B) User–item interaction matrix** – ✅ Ratings/interactions  
+- **C) Domain knowledge** – ❌ Knowledge-based  
+- **D) Rule sets** – ❌ Rule-based  
+
+---
+
+### **29. Which metric emphasizes early correct recommendations?**  
+**Correct Answer: C**  
+- **A) RMSE** – ❌ Rating error  
+- **B) Precision** – ❌ Ignores order  
+- **C) MAP@K** – ✅ Ranking-aware  
+- **D) Accuracy** – ❌ Not ranking-based  
+
+---
+
+### **30. Vanishing gradient problem is mitigated in RNNs by:**  
+**Correct Answer: C**  
+- **A) Increasing learning rate** – ❌ Instability  
+- **B) Using sigmoid activation** – ❌ Worsens issue  
+- **C) LSTM/GRU architectures** – ✅ Gating mechanisms  
+- **D) Removing recurrence** – ❌ No RNN then  
+
+---
+
+### **31. Which optimizer uses first and second moment estimates?**  
+**Correct Answer: D**  
+- **A) SGD** – ❌ No memory  
+- **B) Momentum** – ❌ First moment only  
+- **C) RMSProp** – ❌ Second moment only  
+- **D) Adam** – ✅ Mean + variance  
+
+---
+
+### **32. Dropout reduces overfitting by:**  
+**Correct Answer: B**  
+- **A) Penalizing weights** – ❌ L2 regularization  
+- **B) Randomly disabling neurons** – ✅ Prevents co-adaptation  
+- **C) Increasing batch size** – ❌ Training strategy  
+- **D) Feature normalization** – ❌ Preprocessing  
+
+---
+
+### **33. CNN weight sharing reduces:**  
+**Correct Answer: C**  
+- **A) Model accuracy** – ❌ Usually improves  
+- **B) Training data size** – ❌ Data unchanged  
+- **C) Number of parameters** – ✅ Fewer parameters  
+- **D) Network depth** – ❌ Architecture unchanged  
+
+---
+
+### **34. Pooling layers provide:**  
+**Correct Answer: B**  
+- **A) Feature extraction** – ❌ Done by convolution  
+- **B) Translation invariance** – ✅ Small shifts tolerated  
+- **C) More parameters** – ❌ Reduces parameters  
+- **D) Faster convergence only** – ❌ Secondary effect  
+
+---
+
+### **35. Transfer learning is least effective when:**  
+**Correct Answer: C**  
+- **A) Target dataset is small** – ❌ Ideal case  
+- **B) Source and target domains are similar** – ❌ Best case  
+- **C) Source and target domains are unrelated** – ✅ Negative transfer  
+- **D) Pretrained model is deep** – ❌ Depth helps  
+
+---
+
+### **36. GRU has fewer parameters than LSTM because it:**  
+**Correct Answer: A**  
+- **A) Uses fewer gates** – ✅ Reset & update only  
+- **B) Has no recurrence** – ❌ Still recurrent  
+- **C) Uses convolution** – ❌ Not CNN  
+- **D) Has no memory** – ❌ Has hidden state  
+
+---
+
+### **37. Transformers process sequences primarily using:**  
+**Correct Answer: C**  
+- **A) Recurrence** – ❌ Removed  
+- **B) Convolution** – ❌ CNN-based  
+- **C) Attention** – ✅ Core mechanism  
+- **D) Pooling** – ❌ Downsampling  
+
+---
+
+### **38. Positional encoding is required in transformers because:**  
+**Correct Answer: B**  
+- **A) Tokens have no embeddings** – ❌ Embeddings exist  
+- **B) Attention ignores sequence order** – ✅ Order not inherent  
+- **C) Vocabulary is fixed** – ❌ Unrelated  
+- **D) Models are shallow** – ❌ Depth irrelevant  
+
+---
+
+### **39. One major ethical concern with LLMs is:**  
+**Correct Answer: C**  
+- **A) Slow inference** – ❌ Engineering issue  
+- **B) Over-regularization** – ❌ Training choice  
+- **C) Bias amplification** – ✅ Social risk  
+- **D) Limited vocabulary** – ❌ Large vocab  
+
+---
+
+### **40. Responsible AI deployment includes:**  
+**Correct Answer: C**  
+- **A) Maximizing parameters** – ❌ Size ≠ responsibility  
+- **B) Ignoring minority groups** – ❌ Harmful  
+- **C) Monitoring, evaluation, and alignment** – ✅ Best practice  
+- **D) Removing constraints** – ❌ Increases risk  
+
+---

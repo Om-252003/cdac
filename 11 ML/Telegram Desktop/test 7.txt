@@ -1,0 +1,695 @@
+# 📘 CDAC MOCK TEST – 7
+## Machine Learning, Deep Learning & AI
+
+---
+
+## 📝 QUESTIONS (MCQs ONLY)
+
+### **1. Which statement best explains overfitting?**
+A) Model performs well on unseen data  
+B) Model captures noise instead of signal  
+C) Model has high bias  
+D) Model is too simple  
+
+---
+
+### **2. Empirical Risk Minimization (ERM) focuses on minimizing:**  
+A) Test error  
+B) Structural risk  
+C) Training error  
+D) Model complexity  
+
+---
+
+### **3. Which factor directly controls hypothesis space size?**  
+A) Learning rate  
+B) VC dimension  
+C) Dataset size  
+D) Loss function  
+
+---
+
+### **4. Which ML algorithm is most robust to irrelevant features?**  
+A) KNN  
+B) Linear Regression  
+C) Decision Tree  
+D) K-means  
+
+---
+
+### **5. Which distance metric is best for text vectors (TF-IDF)?**  
+A) Euclidean  
+B) Manhattan  
+C) Cosine similarity  
+D) Hamming  
+
+---
+
+### **6. In hierarchical clustering, single linkage suffers from:**  
+A) Curse of dimensionality  
+B) Chaining effect  
+C) Overfitting  
+D) Bias  
+
+---
+
+### **7. Silhouette score measures:**  
+A) Cluster density  
+B) Inter-cluster distance only  
+C) Cluster separation and cohesion  
+D) Number of clusters  
+
+---
+
+### **8. PCA components are orthogonal because:**  
+A) They are normalized  
+B) They maximize variance independently  
+C) Covariance matrix is diagonal  
+D) Eigenvectors are orthogonal  
+
+---
+
+### **9. Kernel trick allows algorithms to:**  
+A) Reduce training data  
+B) Work in high-dimensional feature space implicitly  
+C) Speed up gradient descent  
+D) Remove non-linearity  
+
+---
+
+### **10. Which metric should be used for probabilistic classifiers?**  
+A) Accuracy  
+B) Log Loss  
+C) Recall  
+D) Precision  
+
+---
+
+### **11. Decision tree depth increase mainly causes:**  
+A) Higher bias  
+B) Lower variance  
+C) Overfitting  
+D) Underfitting  
+
+---
+
+### **12. Which ensemble method is sensitive to noisy data?**  
+A) Bagging  
+B) Random Forest  
+C) AdaBoost  
+D) Stacking  
+
+---
+
+### **13. Gradient Boosting fits new models on:**  
+A) Original labels  
+B) Random samples  
+C) Residual errors  
+D) Feature importance  
+
+---
+
+### **14. Random Forest randomness comes from:**  
+A) Random labels  
+B) Random loss  
+C) Random feature selection & bootstrapping  
+D) Random learning rate  
+
+---
+
+### **15. Naive Bayes works well for text because:**  
+A) It models word order  
+B) It handles correlated features  
+C) Independence works reasonably in practice  
+D) It performs feature scaling  
+
+---
+
+### **16. KNN fails badly when:**  
+A) Data is normalized  
+B) Dimensionality is high  
+C) Dataset is small  
+D) Classes are balanced  
+
+---
+
+### **17. LDA differs from logistic regression because LDA is:**  
+A) Discriminative  
+B) Non-linear  
+C) Generative  
+D) Distance-based  
+
+---
+
+### **18. Logistic regression cost function is:**  
+A) Mean Squared Error  
+B) Hinge loss  
+C) Cross-entropy loss  
+D) Absolute error  
+
+---
+
+### **19. Ridge regression shrinks coefficients by:**  
+A) Forcing zeros  
+B) Absolute penalty  
+C) Squared penalty  
+D) Early stopping  
+
+---
+
+### **20. Elastic Net combines:**  
+A) PCA + LDA  
+B) L1 + L2 penalties  
+C) Ridge + PCA  
+D) Lasso + Dropout  
+
+---
+
+### **21. Support vectors are data points that:**  
+A) Are misclassified  
+B) Lie far from margin  
+C) Lie closest to decision boundary  
+D) Are randomly selected  
+
+---
+
+### **22. Kernel parameter γ in RBF controls:**  
+A) Margin width  
+B) Model complexity  
+C) Learning rate  
+D) Number of support vectors  
+
+---
+
+### **23. Which time-series model handles trend and seasonality?**  
+A) ARIMA  
+B) Holt  
+C) Holt-Winters  
+D) Moving Average  
+
+---
+
+### **24. Differencing is mainly used to:**  
+A) Remove noise  
+B) Remove trend  
+C) Increase variance  
+D) Add seasonality  
+
+---
+
+### **25. ACF is mainly used to identify:**  
+A) AR order  
+B) MA order  
+C) Differencing order  
+D) Trend  
+
+---
+
+### **26. Recommendation systems using SVD belong to:**  
+A) Content-based filtering  
+B) Knowledge-based systems  
+C) Collaborative filtering  
+D) Rule-based systems  
+
+---
+
+### **27. Recall@K measures:**  
+A) Rating error  
+B) Relevance in top-K results  
+C) Ranking order  
+D) Model accuracy  
+
+---
+
+### **28. Vanishing gradient problem is reduced by:**  
+A) Sigmoid  
+B) Tanh  
+C) ReLU  
+D) Softmax  
+
+---
+
+### **29. Dropout works by:**  
+A) Removing features permanently  
+B) Randomly deactivating neurons during training  
+C) Increasing learning rate  
+D) Adding noise to labels  
+
+---
+
+### **30. Mini-batch size too small causes:**  
+A) Slow convergence  
+B) High variance updates  
+C) Underfitting  
+D) Deterministic gradients  
+
+---
+
+### **31. CNN pooling layers mainly provide:**  
+A) Feature extraction  
+B) Translation invariance  
+C) Non-linearity  
+D) Classification  
+
+---
+
+### **32. Transfer learning usually freezes:**  
+A) Output layer  
+B) Loss function  
+C) Early layers  
+D) Optimizer  
+
+---
+
+### **33. LSTM solves vanishing gradient using:**  
+A) Higher learning rate  
+B) Gates and cell state  
+C) Dropout  
+D) ReLU  
+
+---
+
+### **34. Transformer attention complexity is:**  
+A) O(n)  
+B) O(n log n)  
+C) O(n²)  
+D) O(1)  
+
+---
+
+### **35. Positional encoding is required because transformers:**  
+A) Use CNNs  
+B) Lack recurrence  
+C) Cannot tokenize text  
+D) Cannot use embeddings  
+
+---
+
+### **36. BERT differs from GPT because BERT is:**  
+A) Decoder-only  
+B) Unidirectional  
+C) Encoder-only  
+D) Reinforcement-based  
+
+---
+
+### **37. Fine-tuning BERT means:**  
+A) Training from scratch  
+B) Changing tokenizer  
+C) Updating pretrained weights for a task  
+D) Freezing all layers  
+
+---
+
+### **38. Hallucination risk increases when:**  
+A) Model is small  
+B) Prompt is vague  
+C) Dataset is small  
+D) Training is supervised  
+
+---
+
+### **39. Model alignment mainly addresses:**  
+A) Speed  
+B) Memory  
+C) Ethical behavior  
+D) Accuracy  
+
+---
+
+### **40. Which is NOT a core ML evaluation metric?**  
+A) Accuracy  
+B) Precision  
+C) Entropy  
+D) Recall  
+
+---
+
+# 📘 CDAC MOCK TEST – 7 (Full Elimination Notes)
+
+## ✅ ANSWERS & FULL ELIMINATION
+
+---
+
+### **1. Which statement best explains overfitting?**  
+**Correct Answer: B**  
+- **A) Model performs well on unseen data** – ❌ That indicates good generalization  
+- **B) Model captures noise instead of signal** – ✅ Core definition of overfitting  
+- **C) Model has high bias** – ❌ Overfitting relates to high variance  
+- **D) Model is too simple** – ❌ Leads to underfitting  
+
+---
+
+### **2. Empirical Risk Minimization (ERM) focuses on minimizing:**  
+**Correct Answer: C**  
+- **A) Test error** – ❌ Not available during training  
+- **B) Structural risk** – ❌ SRM concept  
+- **C) Training error** – ✅ ERM definition  
+- **D) Model complexity** – ❌ Ignored in ERM  
+
+---
+
+### **3. Which factor directly controls hypothesis space size?**  
+**Correct Answer: B**  
+- **A) Learning rate** – ❌ Optimization parameter  
+- **B) VC dimension** – ✅ Capacity measure  
+- **C) Dataset size** – ❌ Data quantity  
+- **D) Loss function** – ❌ Optimization criterion  
+
+---
+
+### **4. Which ML algorithm is most robust to irrelevant features?**  
+**Correct Answer: C**  
+- **A) KNN** – ❌ Distance polluted by irrelevant features  
+- **B) Linear Regression** – ❌ Coefficients affected  
+- **C) Decision Tree** – ✅ Feature selection via splits  
+- **D) K-means** – ❌ Distance-based  
+
+---
+
+### **5. Which distance metric is best for text vectors (TF-IDF)?**  
+**Correct Answer: C**  
+- **A) Euclidean** – ❌ Magnitude sensitive  
+- **B) Manhattan** – ❌ Scale sensitive  
+- **C) Cosine similarity** – ✅ Direction-based  
+- **D) Hamming** – ❌ Binary only  
+
+---
+
+### **6. In hierarchical clustering, single linkage suffers from:**  
+**Correct Answer: B**  
+- **A) Curse of dimensionality** – ❌ General issue  
+- **B) Chaining effect** – ✅ Long thin clusters  
+- **C) Overfitting** – ❌ Supervised issue  
+- **D) Bias** – ❌ Model assumption  
+
+---
+
+### **7. Silhouette score measures:**  
+**Correct Answer: C**  
+- **A) Cluster density** – ❌ Partial  
+- **B) Inter-cluster distance only** – ❌ Incomplete  
+- **C) Cluster separation and cohesion** – ✅ Both aspects  
+- **D) Number of clusters** – ❌ Not a metric  
+
+---
+
+### **8. PCA components are orthogonal because:**  
+**Correct Answer: D**  
+- **A) They are normalized** – ❌ Normalization ≠ orthogonality  
+- **B) They maximize variance independently** – ❌ Consequence, not reason  
+- **C) Covariance matrix is diagonal** – ❌ After PCA  
+- **D) Eigenvectors are orthogonal** – ✅ Linear algebra property  
+
+---
+
+### **9. Kernel trick allows algorithms to:**  
+**Correct Answer: B**  
+- **A) Reduce training data** – ❌ Data unchanged  
+- **B) Work in high-dimensional feature space implicitly** – ✅ Core idea  
+- **C) Speed up gradient descent** – ❌ Often slower  
+- **D) Remove non-linearity** – ❌ Adds non-linearity  
+
+---
+
+### **10. Which metric should be used for probabilistic classifiers?**  
+**Correct Answer: B**  
+- **A) Accuracy** – ❌ Ignores confidence  
+- **B) Log Loss** – ✅ Penalizes wrong confidence  
+- **C) Recall** – ❌ Class-specific  
+- **D) Precision** – ❌ Threshold dependent  
+
+---
+
+---
+
+### **11. Decision tree depth increase mainly causes:**  
+**Correct Answer: C**  
+- **A) Higher bias** – ❌ Bias decreases with depth  
+- **B) Lower variance** – ❌ Variance increases  
+- **C) Overfitting** – ✅ Deeper trees memorize noise  
+- **D) Underfitting** – ❌ Shallow trees underfit  
+
+---
+
+### **12. Which ensemble method is sensitive to noisy data?**  
+**Correct Answer: C**  
+- **A) Bagging** – ❌ Robust via averaging  
+- **B) Random Forest** – ❌ Handles noise well  
+- **C) AdaBoost** – ✅ Over-weights noisy samples  
+- **D) Stacking** – ❌ Depends on meta-model  
+
+---
+
+### **13. Gradient Boosting fits new models on:**  
+**Correct Answer: C**  
+- **A) Original labels** – ❌ First model only  
+- **B) Random samples** – ❌ Bagging approach  
+- **C) Residual errors** – ✅ Core boosting idea  
+- **D) Feature importance** – ❌ Output metric  
+
+---
+
+### **14. Random Forest randomness comes from:**  
+**Correct Answer: C**  
+- **A) Random labels** – ❌ Labels fixed  
+- **B) Random loss** – ❌ Loss unchanged  
+- **C) Random feature selection & bootstrapping** – ✅ Two randomness sources  
+- **D) Random learning rate** – ❌ Optimization parameter  
+
+---
+
+### **15. Naive Bayes works well for text because:**  
+**Correct Answer: C**  
+- **A) It models word order** – ❌ Bag-of-words ignores order  
+- **B) It handles correlated features** – ❌ Assumes independence  
+- **C) Independence works reasonably in practice** – ✅ Empirical success  
+- **D) It performs feature scaling** – ❌ Not required  
+
+---
+
+### **16. KNN fails badly when:**  
+**Correct Answer: B**  
+- **A) Data is normalized** – ❌ Helps KNN  
+- **B) Dimensionality is high** – ✅ Curse of dimensionality  
+- **C) Dataset is small** – ❌ Often works  
+- **D) Classes are balanced** – ❌ Ideal scenario  
+
+---
+
+### **17. LDA differs from logistic regression because LDA is:**  
+**Correct Answer: C**  
+- **A) Discriminative** – ❌ Logistic regression is  
+- **B) Non-linear** – ❌ LDA is linear  
+- **C) Generative** – ✅ Models class distributions  
+- **D) Distance-based** – ❌ KNN property  
+
+---
+
+### **18. Logistic regression cost function is:**  
+**Correct Answer: C**  
+- **A) Mean Squared Error** – ❌ Regression loss  
+- **B) Hinge loss** – ❌ SVM loss  
+- **C) Cross-entropy loss** – ✅ Log loss  
+- **D) Absolute error** – ❌ Regression metric  
+
+---
+
+### **19. Ridge regression shrinks coefficients by:**  
+**Correct Answer: C**  
+- **A) Forcing zeros** – ❌ Lasso does this  
+- **B) Absolute penalty** – ❌ L1 penalty  
+- **C) Squared penalty** – ✅ L2 regularization  
+- **D) Early stopping** – ❌ Training control  
+
+---
+
+### **20. Elastic Net combines:**  
+**Correct Answer: B**  
+- **A) PCA + LDA** – ❌ Dimensionality methods  
+- **B) L1 + L2 penalties** – ✅ Elastic Net definition  
+- **C) Ridge + PCA** – ❌ Incorrect mix  
+- **D) Lasso + Dropout** – ❌ NN concept  
+
+---
+
+### **21. Support vectors are data points that:**  
+**Correct Answer: C**  
+- **A) Are misclassified** – ❌ Not necessary  
+- **B) Lie far from margin** – ❌ Irrelevant points  
+- **C) Lie closest to decision boundary** – ✅ Define margin  
+- **D) Are randomly selected** – ❌ Deterministic  
+
+---
+
+### **22. Kernel parameter γ in RBF controls:**  
+**Correct Answer: B**  
+- **A) Margin width** – ❌ Controlled by C  
+- **B) Model complexity** – ✅ Local vs global influence  
+- **C) Learning rate** – ❌ Optimizer parameter  
+- **D) Number of support vectors** – ❌ Indirect effect  
+
+---
+
+### **23. Which time-series model handles trend and seasonality?**  
+**Correct Answer: C**  
+- **A) ARIMA** – ❌ Needs seasonal extension  
+- **B) Holt** – ❌ Trend only  
+- **C) Holt-Winters** – ✅ Trend + seasonality  
+- **D) Moving Average** – ❌ No explicit modeling  
+
+---
+
+### **24. Differencing is mainly used to:**  
+**Correct Answer: B**  
+- **A) Remove noise** – ❌ Noise remains  
+- **B) Remove trend** – ✅ Make series stationary  
+- **C) Increase variance** – ❌ Opposite  
+- **D) Add seasonality** – ❌ Removes patterns  
+
+---
+
+### **25. ACF is mainly used to identify:**  
+**Correct Answer: B**  
+- **A) AR order** – ❌ PACF does this  
+- **B) MA order** – ✅ ACF cutoff  
+- **C) Differencing order** – ❌ Identified separately  
+- **D) Trend** – ❌ Visual inspection  
+
+---
+
+### **26. Recommendation systems using SVD belong to:**  
+**Correct Answer: C**  
+- **A) Content-based filtering** – ❌ Uses item features  
+- **B) Knowledge-based systems** – ❌ Rule-based  
+- **C) Collaborative filtering** – ✅ Matrix factorization  
+- **D) Rule-based systems** – ❌ No learning  
+
+---
+
+### **27. Recall@K measures:**  
+**Correct Answer: B**  
+- **A) Rating error** – ❌ Regression metric  
+- **B) Relevance in top-K results** – ✅ Coverage of relevant items  
+- **C) Ranking order** – ❌ NDCG/MAP  
+- **D) Model accuracy** – ❌ Classification metric  
+
+---
+
+### **28. Vanishing gradient problem is reduced by:**  
+**Correct Answer: C**  
+- **A) Sigmoid** – ❌ Saturates  
+- **B) Tanh** – ❌ Still saturates  
+- **C) ReLU** – ✅ Non-saturating  
+- **D) Softmax** – ❌ Output layer  
+
+---
+
+### **29. Dropout works by:**  
+**Correct Answer: B**  
+- **A) Removing features permanently** – ❌ Temporary  
+- **B) Randomly deactivating neurons during training** – ✅ Prevents co-adaptation  
+- **C) Increasing learning rate** – ❌ Unrelated  
+- **D) Adding noise to labels** – ❌ Different regularization  
+
+---
+
+### **30. Mini-batch size too small causes:**  
+**Correct Answer: B**  
+- **A) Slow convergence** – ❌ Often faster  
+- **B) High variance updates** – ✅ Noisy gradients  
+- **C) Underfitting** – ❌ Data still used  
+- **D) Deterministic gradients** – ❌ Opposite  
+
+---
+
+### **31. CNN pooling layers mainly provide:**  
+**Correct Answer: B**  
+- **A) Feature extraction** – ❌ Convolution does this  
+- **B) Translation invariance** – ✅ Robust to shifts  
+- **C) Non-linearity** – ❌ Activation functions  
+- **D) Classification** – ❌ Fully connected layers  
+
+---
+
+### **32. Transfer learning usually freezes:**  
+**Correct Answer: C**  
+- **A) Output layer** – ❌ Task-specific  
+- **B) Loss function** – ❌ Always defined  
+- **C) Early layers** – ✅ Generic feature extractors  
+- **D) Optimizer** – ❌ Tunable  
+
+---
+
+### **33. LSTM solves vanishing gradient using:**  
+**Correct Answer: B**  
+- **A) Higher learning rate** – ❌ Unstable  
+- **B) Gates and cell state** – ✅ Controlled memory  
+- **C) Dropout** – ❌ Regularization only  
+- **D) ReLU** – ❌ Not sufficient  
+
+---
+
+### **34. Transformer attention complexity is:**  
+**Correct Answer: C**  
+- **A) O(n)** – ❌ Linear models  
+- **B) O(n log n)** – ❌ FFT-based  
+- **C) O(n²)** – ✅ Pairwise attention  
+- **D) O(1)** – ❌ Impossible  
+
+---
+
+### **35. Positional encoding is required because transformers:**  
+**Correct Answer: B**  
+- **A) Use CNNs** – ❌ Not true  
+- **B) Lack recurrence** – ✅ No inherent order  
+- **C) Cannot tokenize text** – ❌ Tokenizers exist  
+- **D) Cannot use embeddings** – ❌ They do  
+
+---
+
+### **36. BERT differs from GPT because BERT is:**  
+**Correct Answer: C**  
+- **A) Decoder-only** – ❌ GPT is  
+- **B) Unidirectional** – ❌ BERT is bidirectional  
+- **C) Encoder-only** – ✅ BERT architecture  
+- **D) Reinforcement-based** – ❌ Pretrained via MLM  
+
+---
+
+### **37. Fine-tuning BERT means:**  
+**Correct Answer: C**  
+- **A) Training from scratch** – ❌ Pretrained already  
+- **B) Changing tokenizer** – ❌ Usually fixed  
+- **C) Updating pretrained weights for a task** – ✅ Fine-tuning  
+- **D) Freezing all layers** – ❌ Partial freezing only  
+
+---
+
+### **38. Hallucination risk increases when:**  
+**Correct Answer: B**  
+- **A) Model is small** – ❌ Often less confident  
+- **B) Prompt is vague** – ✅ Lack of constraints  
+- **C) Dataset is small** – ❌ Training-related  
+- **D) Training is supervised** – ❌ Reduces hallucination  
+
+---
+
+### **39. Model alignment mainly addresses:**  
+**Correct Answer: C**  
+- **A) Speed** – ❌ Performance metric  
+- **B) Memory** – ❌ Infrastructure issue  
+- **C) Ethical behavior** – ✅ Safety & values  
+- **D) Accuracy** – ❌ Secondary goal  
+
+---
+
+### **40. Which is NOT a core ML evaluation metric?**  
+**Correct Answer: C**  
+- **A) Accuracy** – ❌ Evaluation metric  
+- **B) Precision** – ❌ Evaluation metric  
+- **C) Entropy** – ✅ Split criterion, not evaluation  
+- **D) Recall** – ❌ Evaluation metric  
+
+---
+

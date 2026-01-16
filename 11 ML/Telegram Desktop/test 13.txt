@@ -1,0 +1,693 @@
+# 📘 CDAC MOCK TEST – 13 (FINAL)
+## Machine Learning, Deep Learning & AI
+
+---
+
+## 📝 QUESTIONS (MCQs ONLY)
+
+### **1. A model that performs poorly on both training and test data suffers from:**
+A) High variance  
+B) High bias  
+C) Overfitting  
+D) Data leakage  
+
+---
+
+### **2. In PAC learning, a hypothesis is considered good if it is:**
+A) Exactly correct  
+B) Correct on training data  
+C) Approximately correct with high probability  
+D) Deterministic  
+
+---
+
+### **3. The No Free Lunch theorem implies that:**
+A) Deep learning always outperforms ML  
+B) One algorithm is best for all datasets  
+C) Algorithm performance depends on the problem  
+D) More data removes model bias  
+
+---
+
+### **4. VC dimension is a measure of a model’s:**
+A) Training accuracy  
+B) Capacity  
+C) Optimization efficiency  
+D) Dataset size  
+
+---
+
+### **5. Structural Risk Minimization aims to minimize:**
+A) Training error only  
+B) Validation error only  
+C) Empirical error + model complexity  
+D) Number of features  
+
+---
+
+### **6. Which distance measure is most appropriate for text similarity?**
+A) Euclidean  
+B) Manhattan  
+C) Cosine similarity  
+D) Hamming distance  
+
+---
+
+### **7. Which clustering algorithm is most sensitive to initialization?**
+A) DBSCAN  
+B) Hierarchical clustering  
+C) K-means  
+D) Spectral clustering  
+
+---
+
+### **8. Which clustering method does NOT require specifying number of clusters beforehand?**
+A) K-means  
+B) DBSCAN  
+C) Spectral clustering  
+D) K-medoids  
+
+---
+
+### **9. PCA primarily transforms data by:**
+A) Removing noisy samples  
+B) Selecting important features  
+C) Rotating feature space  
+D) Normalizing features  
+
+---
+
+### **10. Kernel PCA is preferred when data is:**
+A) Linearly separable  
+B) Low dimensional  
+C) Non-linearly separable  
+D) Perfectly clustered  
+
+---
+
+### **11. Which evaluation metric is invariant to class imbalance?**
+A) Accuracy  
+B) Precision  
+C) Recall  
+D) ROC-AUC  
+
+---
+
+### **12. Which metric penalizes confident wrong predictions the most?**
+A) Accuracy  
+B) Recall  
+C) Log Loss  
+D) F1-score  
+
+---
+
+### **13. Entropy in decision trees measures:**
+A) Depth of tree  
+B) Node purity  
+C) Feature importance  
+D) Dataset size  
+
+---
+
+### **14. CART algorithm uses which split criterion?**
+A) Entropy  
+B) Information Gain  
+C) Gini Index  
+D) Chi-square  
+
+---
+
+### **15. Which ensemble method mainly reduces variance?**
+A) Boosting  
+B) Bagging  
+C) AdaBoost  
+D) Gradient Boosting  
+
+---
+
+### **16. XGBoost improves performance mainly by:**
+A) Ignoring weak learners  
+B) Parallel tree construction and regularization  
+C) Using linear classifiers  
+D) Reducing training data  
+
+---
+
+### **17. Naive Bayes assumes features are:**
+A) Fully independent  
+B) Conditionally independent given the class  
+C) Linearly independent  
+D) Orthogonal  
+
+---
+
+### **18. Which algorithm’s prediction time grows with dataset size?**
+A) Logistic Regression  
+B) Decision Tree  
+C) KNN  
+D) Linear SVM  
+
+---
+
+### **19. Increasing K in KNN leads to:**
+A) Lower bias, higher variance  
+B) Higher bias, lower variance  
+C) Lower bias, lower variance  
+D) Higher bias, higher variance  
+
+---
+
+### **20. LDA assumes which of the following?**
+A) Non-linear decision boundary  
+B) Equal class covariance matrices  
+C) Independent features  
+D) Sparse feature space  
+
+---
+
+### **21. Which regression method is most robust to multicollinearity?**
+A) Linear Regression  
+B) Lasso Regression  
+C) Ridge Regression  
+D) Polynomial Regression  
+
+---
+
+### **22. Elastic Net combines:**
+A) L1 and L2 regularization  
+B) Linear and Logistic regression  
+C) PCA and Regression  
+D) Decision Trees and Regression  
+
+---
+
+### **23. Logistic regression models a linear relationship between predictors and:**
+A) Output labels  
+B) Probabilities  
+C) Log-odds  
+D) Errors  
+
+---
+
+### **24. In SVM, decreasing C will:**
+A) Reduce margin  
+B) Increase margin  
+C) Eliminate support vectors  
+D) Force hard margin  
+
+---
+
+### **25. Which kernel maps data to infinite-dimensional space?**
+A) Linear  
+B) Polynomial  
+C) RBF  
+D) Sigmoid  
+
+---
+
+### **26. A stationary time series has:**
+A) Constant mean and variance  
+B) Increasing trend  
+C) Changing seasonality  
+D) No noise  
+
+---
+
+### **27. PACF is mainly used to identify:**
+A) MA order  
+B) AR order  
+C) Differencing order  
+D) Seasonal frequency  
+
+---
+
+### **28. Cold start problem mainly affects:**
+A) Content-based recommender  
+B) Collaborative filtering  
+C) Rule-based system  
+D) Knowledge-based system  
+
+---
+
+### **29. Which ranking metric emphasizes position of relevant items?**
+A) Precision  
+B) Recall  
+C) NDCG  
+D) RMSE  
+
+---
+
+### **30. Vanishing gradients are common in:**
+A) CNNs  
+B) Shallow networks  
+C) RNNs  
+D) Decision Trees  
+
+---
+
+### **31. Which optimizer uses both momentum and adaptive learning rates?**
+A) SGD  
+B) RMSProp  
+C) Adam  
+D) Adagrad  
+
+---
+
+### **32. Dropout helps prevent overfitting by:**
+A) Penalizing large weights  
+B) Randomly deactivating neurons  
+C) Increasing learning rate  
+D) Feature scaling  
+
+---
+
+### **33. CNNs reduce parameters mainly due to:**
+A) Pooling  
+B) Weight sharing  
+C) Activation functions  
+D) Backpropagation  
+
+---
+
+### **34. Pooling layers provide robustness to:**
+A) Color changes  
+B) Small translations  
+C) Rotation invariance  
+D) Scaling only  
+
+---
+
+### **35. Transfer learning is most useful when:**
+A) Target dataset is small and similar to source  
+B) Target dataset is very large  
+C) Tasks are unrelated  
+D) Labels are unavailable  
+
+---
+
+### **36. GRU differs from LSTM because GRU:**
+A) Has more gates  
+B) Has fewer parameters  
+C) Uses output gate  
+D) Is feedforward  
+
+---
+
+### **37. Transformers avoid recurrence by using:**
+A) Convolution  
+B) Pooling  
+C) Attention  
+D) Recursion  
+
+---
+
+### **38. Encoder–decoder architecture is best suited for:**
+A) Classification  
+B) Regression  
+C) Sequence-to-sequence tasks  
+D) Clustering  
+
+---
+
+### **39. Hallucination in LLMs refers to:**
+A) Overfitting  
+B) Incorrect but fluent outputs  
+C) Model compression  
+D) Bias removal  
+
+---
+
+### **40. Responsible AI primarily focuses on:**
+A) Maximizing model size  
+B) Speed and scalability only  
+C) Fairness, safety, transparency  
+D) Removing human oversight  
+
+---
+
+# 📘 CDAC MOCK TEST – 13 (Full Elimination Notes)
+
+## ✅ ANSWERS & FULL ELIMINATION
+
+---
+
+### **1. A model that performs poorly on both training and test data suffers from:**  
+**Correct Answer: B**  
+- **A) High variance** – ❌ Would fit training well  
+- **B) High bias** – ✅ Underfitting  
+- **C) Overfitting** – ❌ Training accuracy high  
+- **D) Data leakage** – ❌ Different issue  
+
+---
+
+### **2. In PAC learning, a hypothesis is considered good if it is:**  
+**Correct Answer: C**  
+- **A) Exactly correct** – ❌ Unrealistic  
+- **B) Correct on training data** – ❌ Overfitting risk  
+- **C) Approximately correct with high probability** – ✅ PAC definition  
+- **D) Deterministic** – ❌ Not required  
+
+---
+
+### **3. The No Free Lunch theorem implies that:**  
+**Correct Answer: C**  
+- **A) Deep learning always outperforms ML** – ❌ False  
+- **B) One algorithm is best for all datasets** – ❌ Opposite  
+- **C) Algorithm performance depends on the problem** – ✅ Core idea  
+- **D) More data removes model bias** – ❌ Not guaranteed  
+
+---
+
+### **4. VC dimension is a measure of a model’s:**  
+**Correct Answer: B**  
+- **A) Training accuracy** – ❌ Performance metric  
+- **B) Capacity** – ✅ Shattering ability  
+- **C) Optimization efficiency** – ❌ Algorithm-dependent  
+- **D) Dataset size** – ❌ Data property  
+
+---
+
+### **5. Structural Risk Minimization aims to minimize:**  
+**Correct Answer: C**  
+- **A) Training error only** – ❌ ERM  
+- **B) Validation error only** – ❌ Partial  
+- **C) Empirical error + model complexity** – ✅ SRM  
+- **D) Number of features** – ❌ Indirect  
+
+---
+
+### **6. Which distance measure is most appropriate for text similarity?**  
+**Correct Answer: C**  
+- **A) Euclidean** – ❌ Magnitude-based, sensitive to document length  
+- **B) Manhattan** – ❌ Scale dependent  
+- **C) Cosine similarity** – ✅ Measures angle, ideal for sparse TF-IDF vectors  
+- **D) Hamming distance** – ❌ Binary mismatch only  
+
+---
+
+### **7. Which clustering algorithm is most sensitive to initialization?**  
+**Correct Answer: C**  
+- **A) DBSCAN** – ❌ Density-based, no random init  
+- **B) Hierarchical clustering** – ❌ Deterministic  
+- **C) K-means** – ✅ Random centroid initialization  
+- **D) Spectral clustering** – ❌ Graph-based  
+
+---
+
+### **8. Which clustering method does NOT require specifying number of clusters beforehand?**  
+**Correct Answer: B**  
+- **A) K-means** – ❌ K must be given  
+- **B) DBSCAN** – ✅ Uses density parameters  
+- **C) Spectral clustering** – ❌ K needed  
+- **D) K-medoids** – ❌ K required  
+
+---
+
+### **9. PCA primarily transforms data by:**  
+**Correct Answer: C**  
+- **A) Removing noisy samples** – ❌ Samples unchanged  
+- **B) Selecting important features** – ❌ Feature selection, not extraction  
+- **C) Rotating feature space** – ✅ Orthogonal transformation  
+- **D) Normalizing features** – ❌ Preprocessing step  
+
+---
+
+### **10. Kernel PCA is preferred when data is:**  
+**Correct Answer: C**  
+- **A) Linearly separable** – ❌ PCA sufficient  
+- **B) Low dimensional** – ❌ No advantage  
+- **C) Non-linearly separable** – ✅ Kernel trick  
+- **D) Perfectly clustered** – ❌ Clustering irrelevant  
+
+---
+
+### **11. Which evaluation metric is invariant to class imbalance?**  
+**Correct Answer: D**  
+- **A) Accuracy** – ❌ Majority class dominates  
+- **B) Precision** – ❌ Depends on positives  
+- **C) Recall** – ❌ Depends on positives  
+- **D) ROC-AUC** – ✅ Threshold-independent ranking  
+
+---
+
+### **12. Which metric penalizes confident wrong predictions the most?**  
+**Correct Answer: C**  
+- **A) Accuracy** – ❌ Binary outcome  
+- **B) Recall** – ❌ Ignores probability confidence  
+- **C) Log Loss** – ✅ Heavy penalty for confident errors  
+- **D) F1-score** – ❌ Threshold-based  
+
+---
+
+### **13. Entropy in decision trees measures:**  
+**Correct Answer: B**  
+- **A) Depth of tree** – ❌ Structural  
+- **B) Node purity** – ✅ Uncertainty measure  
+- **C) Feature importance** – ❌ Derived later  
+- **D) Dataset size** – ❌ Size-independent  
+
+---
+
+### **14. CART algorithm uses which split criterion?**  
+**Correct Answer: C**  
+- **A) Entropy** – ❌ ID3  
+- **B) Information Gain** – ❌ ID3/C4.5  
+- **C) Gini Index** – ✅ CART standard  
+- **D) Chi-square** – ❌ Statistical test  
+
+---
+
+### **15. Which ensemble method mainly reduces variance?**  
+**Correct Answer: B**  
+- **A) Boosting** – ❌ Mainly reduces bias  
+- **B) Bagging** – ✅ Averaging decorrelates errors  
+- **C) AdaBoost** – ❌ Bias-focused  
+- **D) Gradient Boosting** – ❌ Bias + variance  
+
+---
+
+### **16. XGBoost improves performance mainly by:**  
+**Correct Answer: B**  
+- **A) Ignoring weak learners** – ❌ Combines them  
+- **B) Parallel tree construction and regularization** – ✅ Speed + generalization  
+- **C) Using linear classifiers** – ❌ Tree-based  
+- **D) Reducing training data** – ❌ Data unchanged  
+
+---
+
+### **17. Naive Bayes assumes features are:**  
+**Correct Answer: B**  
+- **A) Fully independent** – ❌ Too strong  
+- **B) Conditionally independent given the class** – ✅ NB assumption  
+- **C) Linearly independent** – ❌ Linear algebra term  
+- **D) Orthogonal** – ❌ Geometry concept  
+
+---
+
+### **18. Which algorithm’s prediction time grows with dataset size?**  
+**Correct Answer: C**  
+- **A) Logistic Regression** – ❌ Fixed-time inference  
+- **B) Decision Tree** – ❌ Depth-based  
+- **C) KNN** – ✅ Lazy learner  
+- **D) Linear SVM** – ❌ Depends on support vectors  
+
+---
+
+### **19. Increasing K in KNN leads to:**  
+**Correct Answer: B**  
+- **A) Lower bias, higher variance** – ❌ Opposite  
+- **B) Higher bias, lower variance** – ✅ Smoother boundary  
+- **C) Lower bias, lower variance** – ❌ Tradeoff exists  
+- **D) Higher bias, higher variance** – ❌ Incorrect  
+
+---
+
+### **20. LDA assumes which of the following?**  
+**Correct Answer: B**  
+- **A) Non-linear decision boundary** – ❌ Linear classifier  
+- **B) Equal class covariance matrices** – ✅ LDA assumption  
+- **C) Independent features** – ❌ Naive Bayes  
+- **D) Sparse feature space** – ❌ Not required  
+
+---
+
+### **21. Which regression method is most robust to multicollinearity?**  
+**Correct Answer: C**  
+- **A) Linear Regression** – ❌ Coefficient instability  
+- **B) Lasso Regression** – ❌ Arbitrary feature selection  
+- **C) Ridge Regression** – ✅ Shrinks correlated coefficients  
+- **D) Polynomial Regression** – ❌ Worsens collinearity  
+
+---
+
+### **22. Elastic Net combines:**  
+**Correct Answer: A**  
+- **A) L1 and L2 regularization** – ✅ Lasso + Ridge  
+- **B) Linear and Logistic regression** – ❌ Different tasks  
+- **C) PCA and Regression** – ❌ Dimensionality reduction  
+- **D) Decision Trees and Regression** – ❌ Ensemble idea  
+
+---
+
+### **23. Logistic regression models a linear relationship between predictors and:**  
+**Correct Answer: C**  
+- **A) Output labels** – ❌ Discrete  
+- **B) Probabilities** – ❌ Non-linear mapping  
+- **C) Log-odds** – ✅ Logit link  
+- **D) Errors** – ❌ Residual concept  
+
+---
+
+### **24. In SVM, decreasing C will:**  
+**Correct Answer: B**  
+- **A) Reduce margin** – ❌ Opposite  
+- **B) Increase margin** – ✅ More regularization  
+- **C) Eliminate support vectors** – ❌ Always exist  
+- **D) Force hard margin** – ❌ Large C does that  
+
+---
+
+### **25. Which kernel maps data to infinite-dimensional space?**  
+**Correct Answer: C**  
+- **A) Linear** – ❌ Finite  
+- **B) Polynomial** – ❌ Finite degree  
+- **C) RBF** – ✅ Infinite-dimensional  
+- **D) Sigmoid** – ❌ Finite  
+
+---
+
+### **26. A stationary time series has:**  
+**Correct Answer: A**  
+- **A) Constant mean and variance** – ✅ Weak stationarity  
+- **B) Increasing trend** – ❌ Non-stationary  
+- **C) Changing seasonality** – ❌ Non-stationary  
+- **D) No noise** – ❌ Noise allowed  
+
+---
+
+### **27. PACF is mainly used to identify:**  
+**Correct Answer: B**  
+- **A) MA order** – ❌ ACF  
+- **B) AR order** – ✅ PACF cutoff  
+- **C) Differencing order** – ❌ Stationarity  
+- **D) Seasonal frequency** – ❌ Periodogram  
+
+---
+
+### **28. Cold start problem mainly affects:**  
+**Correct Answer: B**  
+- **A) Content-based recommender** – ❌ Uses metadata  
+- **B) Collaborative filtering** – ✅ Needs history  
+- **C) Rule-based system** – ❌ Predefined rules  
+- **D) Knowledge-based system** – ❌ Expert-driven  
+
+---
+
+### **29. Which ranking metric emphasizes position of relevant items?**  
+**Correct Answer: C**  
+- **A) Precision** – ❌ Ignores order  
+- **B) Recall** – ❌ Coverage only  
+- **C) NDCG** – ✅ Position-weighted relevance  
+- **D) RMSE** – ❌ Rating error  
+
+---
+
+### **30. Vanishing gradients are common in:**  
+**Correct Answer: C**  
+- **A) CNNs** – ❌ Less affected  
+- **B) Shallow networks** – ❌ Few layers  
+- **C) RNNs** – ✅ Long dependency chains  
+- **D) Decision Trees** – ❌ No gradients  
+
+---
+
+### **31. Which optimizer uses both momentum and adaptive learning rates?**  
+**Correct Answer: C**  
+- **A) SGD** – ❌ Fixed LR  
+- **B) RMSProp** – ❌ No momentum  
+- **C) Adam** – ✅ Momentum + RMSProp  
+- **D) Adagrad** – ❌ Aggressive decay  
+
+---
+
+### **32. Dropout helps prevent overfitting by:**  
+**Correct Answer: B**  
+- **A) Penalizing large weights** – ❌ L2 regularization  
+- **B) Randomly deactivating neurons** – ✅ Prevents co-adaptation  
+- **C) Increasing learning rate** – ❌ Instability  
+- **D) Feature scaling** – ❌ Preprocessing  
+
+---
+
+### **33. CNNs reduce parameters mainly due to:**  
+**Correct Answer: B**  
+- **A) Pooling** – ❌ Downsampling  
+- **B) Weight sharing** – ✅ Same filter across space  
+- **C) Activation functions** – ❌ Non-linearity  
+- **D) Backpropagation** – ❌ Training method  
+
+---
+
+### **34. Pooling layers provide robustness to:**  
+**Correct Answer: B**  
+- **A) Color changes** – ❌ Data augmentation  
+- **B) Small translations** – ✅ Translation invariance  
+- **C) Rotation invariance** – ❌ Needs augmentation  
+- **D) Scaling only** – ❌ Partial  
+
+---
+
+### **35. Transfer learning is most useful when:**  
+**Correct Answer: A**  
+- **A) Target dataset is small and similar to source** – ✅ Ideal case  
+- **B) Target dataset is very large** – ❌ Train from scratch  
+- **C) Tasks are unrelated** – ❌ Negative transfer  
+- **D) Labels are unavailable** – ❌ Fine-tuning needs labels  
+
+---
+
+### **36. GRU differs from LSTM because GRU:**  
+**Correct Answer: B**  
+- **A) Has more gates** – ❌ Fewer  
+- **B) Has fewer parameters** – ✅ Simpler architecture  
+- **C) Uses output gate** – ❌ LSTM only  
+- **D) Is feedforward** – ❌ Still recurrent  
+
+---
+
+### **37. Transformers avoid recurrence by using:**  
+**Correct Answer: C**  
+- **A) Convolution** – ❌ CNNs  
+- **B) Pooling** – ❌ Downsampling  
+- **C) Attention** – ✅ Core mechanism  
+- **D) Recursion** – ❌ Programming term  
+
+---
+
+### **38. Encoder–decoder architecture is best suited for:**  
+**Correct Answer: C**  
+- **A) Classification** – ❌ Single output  
+- **B) Regression** – ❌ Single value  
+- **C) Sequence-to-sequence tasks** – ✅ Translation, summarization  
+- **D) Clustering** – ❌ Unsupervised  
+
+---
+
+### **39. Hallucination in LLMs refers to:**  
+**Correct Answer: B**  
+- **A) Overfitting** – ❌ Training issue  
+- **B) Incorrect but fluent outputs** – ✅ Hallucination  
+- **C) Model compression** – ❌ Deployment technique  
+- **D) Bias removal** – ❌ Opposite  
+
+---
+
+### **40. Responsible AI primarily focuses on:**  
+**Correct Answer: C**  
+- **A) Maximizing model size** – ❌ Not a goal  
+- **B) Speed and scalability only** – ❌ Incomplete  
+- **C) Fairness, safety, transparency** – ✅ Core principles  
+- **D) Removing human oversight** – ❌ Risky  
+
+---
+

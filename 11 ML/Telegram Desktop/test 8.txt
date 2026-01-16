@@ -1,0 +1,694 @@
+# 📘 CDAC MOCK TEST – 8
+## Machine Learning, Deep Learning & AI
+
+---
+
+## 📝 QUESTIONS (MCQs ONLY)
+
+### **1. Which concept explains why a model with very low training error can still perform poorly on test data?**
+A) PAC Learning  
+B) Overfitting  
+C) Regularization  
+D) Cross Validation  
+
+---
+
+### **2. In PAC learning, ε represents:**  
+A) Confidence level  
+B) Sample size  
+C) Acceptable error  
+D) Hypothesis complexity  
+
+---
+
+### **3. No Free Lunch theorem implies that:**  
+A) Deep learning always outperforms classical ML  
+B) One algorithm is optimal for all problems  
+C) Algorithm performance depends on problem distribution  
+D) Simpler models always generalize better  
+
+---
+
+### **4. Which method explicitly balances training error and model complexity?**
+A) ERM  
+B) Cross Validation  
+C) Structural Risk Minimization  
+D) Bagging  
+
+---
+
+### **5. Increasing regularization strength generally:**  
+A) Decreases bias and variance  
+B) Decreases bias and increases variance  
+C) Increases bias and decreases variance  
+D) Increases both bias and variance  
+
+---
+
+### **6. Which distance metric is best for binary vectors?**
+A) Euclidean  
+B) Manhattan  
+C) Cosine similarity  
+D) Hamming distance  
+
+---
+
+### **7. Which clustering method is density-based?**
+A) K-means  
+B) Hierarchical clustering  
+C) DBSCAN  
+D) Spectral clustering  
+
+---
+
+### **8. DBSCAN fails mainly when:**  
+A) Data is high dimensional  
+B) Clusters are spherical  
+C) Density varies significantly  
+D) Data is scaled  
+
+---
+
+### **9. PCA assumes that important structure lies in directions of:**  
+A) Minimum variance  
+B) Maximum variance  
+C) Maximum correlation  
+D) Minimum error  
+
+---
+
+### **10. Kernel PCA differs from PCA because it:**  
+A) Is supervised  
+B) Handles categorical data  
+C) Captures non-linear structure  
+D) Uses fewer components  
+
+---
+
+### **11. Which metric is best when class imbalance is high?**
+A) Accuracy  
+B) Precision  
+C) Recall  
+D) F1-score  
+
+---
+
+### **12. ROC-AUC value of 0.5 indicates:**  
+A) Perfect classifier  
+B) Random guessing  
+C) Overfitting  
+D) Underfitting  
+
+---
+
+### **13. CART uses which criterion for splitting?**
+A) Entropy  
+B) Information Gain  
+C) Gini Index  
+D) Chi-square  
+
+---
+
+### **14. Which ensemble method mainly reduces variance?**
+A) Boosting  
+B) Bagging  
+C) Gradient Descent  
+D) AdaBoost  
+
+---
+
+### **15. Gradient Boosting builds trees:**  
+A) Independently  
+B) In parallel  
+C) Sequentially  
+D) Randomly  
+
+---
+
+### **16. Naive Bayes assumes features are:**  
+A) Normally distributed  
+B) Linearly separable  
+C) Conditionally independent  
+D) Sparse  
+
+---
+
+### **17. Which algorithm is called a “lazy learner”?**
+A) Logistic Regression  
+B) Decision Tree  
+C) KNN  
+D) SVM  
+
+---
+
+### **18. Increasing dimensionality mainly affects KNN because:**  
+A) Training time increases  
+B) Distance measures lose meaning  
+C) Model retraining is required  
+D) Bias increases  
+
+---
+
+### **19. Logistic regression decision boundary is:**  
+A) Non-linear  
+B) Piecewise linear  
+C) Linear in feature space  
+D) Tree-based  
+
+---
+
+### **20. Which regression technique forces some coefficients to exactly zero?**
+A) Ridge  
+B) Lasso  
+C) Elastic Net  
+D) Polynomial Regression  
+
+---
+
+### **21. Which SVM kernel is most suitable for non-linear separation?**
+A) Linear  
+B) Polynomial  
+C) RBF  
+D) Sigmoid  
+
+---
+
+### **22. Soft margin SVM is useful when:**  
+A) Data is perfectly separable  
+B) No noise exists  
+C) Some misclassification is acceptable  
+D) Kernel is linear  
+
+---
+
+### **23. Which time series component repeats at fixed intervals?**
+A) Trend  
+B) Noise  
+C) Seasonality  
+D) Irregularity  
+
+---
+
+### **24. ARIMA model requires data to be:**  
+A) Normally distributed  
+B) Stationary  
+C) Linearly separable  
+D) Noise-free  
+
+---
+
+### **25. ACF plot that cuts off sharply indicates:**  
+A) AR process  
+B) MA process  
+C) ARMA process  
+D) Non-stationarity  
+
+---
+
+### **26. Which recommender system uses user–item interaction matrix?**
+A) Content-based  
+B) Collaborative filtering  
+C) Knowledge-based  
+D) Rule-based  
+
+---
+
+### **27. NDCG is preferred over Precision@K because it:**  
+A) Penalizes false negatives more  
+B) Considers ranking position  
+C) Works only for binary relevance  
+D) Is threshold-independent  
+
+---
+
+### **28. Vanishing gradient problem is most severe in:**  
+A) CNNs  
+B) Shallow networks  
+C) RNNs  
+D) Decision Trees  
+
+---
+
+### **29. Which activation function helps mitigate vanishing gradients?**
+A) Sigmoid  
+B) Tanh  
+C) ReLU  
+D) Softmax  
+
+---
+
+### **30. Dropout reduces overfitting by:**  
+A) Increasing training data  
+B) Penalizing large weights  
+C) Randomly deactivating neurons  
+D) Early stopping  
+
+---
+
+### **31. CNN convolution layers mainly learn:**  
+A) Global patterns  
+B) Local spatial features  
+C) Class probabilities  
+D) Noise patterns  
+
+---
+
+### **32. Transfer learning is most beneficial when:**  
+A) Dataset is huge  
+B) Domains are unrelated  
+C) Dataset is small and similar  
+D) Labels are unavailable  
+
+---
+
+### **33. LSTM differs from simple RNN because it:**  
+A) Uses ReLU  
+B) Has memory cell and gates  
+C) Is feedforward  
+D) Removes recurrence  
+
+---
+
+### **34. Transformer models remove recurrence by using:**  
+A) Pooling  
+B) Convolution  
+C) Self-attention  
+D) Dropout  
+
+---
+
+### **35. Attention mechanism helps models to:**  
+A) Reduce parameters  
+B) Focus on relevant input parts  
+C) Remove embeddings  
+D) Avoid training  
+
+---
+
+### **36. BERT is pretrained using:**  
+A) Auto-regressive modeling  
+B) Masked Language Modeling  
+C) Image classification  
+D) Reinforcement learning  
+
+---
+
+### **37. Fine-tuning a transformer means:**  
+A) Training from scratch  
+B) Freezing all layers  
+C) Updating pretrained weights for a task  
+D) Changing model architecture  
+
+---
+
+### **38. Hallucination in LLMs refers to:**  
+A) Overfitting  
+B) Generating fluent but incorrect outputs  
+C) High bias  
+D) Training instability  
+
+---
+
+### **39. Responsible AI primarily focuses on:**  
+A) Model speed  
+B) Model size  
+C) Fairness and safety  
+D) Training accuracy  
+
+---
+
+### **40. Which is NOT a challenge in deploying LLMs?**
+A) High computational cost  
+B) Latency  
+C) Bias mitigation  
+D) Lack of applications  
+
+---
+
+# 📘 CDAC MOCK TEST – 8 (Full Elimination Notes)
+
+## ✅ ANSWERS & FULL ELIMINATION
+
+---
+
+### **1. Which concept explains why a model with very low training error can still perform poorly on test data?**  
+**Correct Answer: B**  
+- **A) PAC Learning** – ❌ Learning framework, not error behavior  
+- **B) Overfitting** – ✅ Model memorizes noise  
+- **C) Regularization** – ❌ Technique to prevent overfitting  
+- **D) Cross Validation** – ❌ Evaluation method  
+
+---
+
+### **2. In PAC learning, ε represents:**  
+**Correct Answer: C**  
+- **A) Confidence level** – ❌ That is δ  
+- **B) Sample size** – ❌ Derived, not parameter  
+- **C) Acceptable error** – ✅ Error tolerance  
+- **D) Hypothesis complexity** – ❌ Not PAC parameter  
+
+---
+
+### **3. No Free Lunch theorem implies that:**  
+**Correct Answer: C**  
+- **A) Deep learning always outperforms classical ML** – ❌ Not guaranteed  
+- **B) One algorithm is optimal for all problems** – ❌ Opposite of NFL  
+- **C) Algorithm performance depends on problem distribution** – ✅ Core idea  
+- **D) Simpler models always generalize better** – ❌ Not universal  
+
+---
+
+### **4. Which method explicitly balances training error and model complexity?**  
+**Correct Answer: C**  
+- **A) ERM** – ❌ Ignores complexity  
+- **B) Cross Validation** – ❌ Evaluation only  
+- **C) Structural Risk Minimization** – ✅ Error + complexity  
+- **D) Bagging** – ❌ Variance reduction  
+
+---
+
+### **5. Increasing regularization strength generally:**  
+**Correct Answer: C**  
+- **A) Decreases bias and variance** – ❌ Tradeoff exists  
+- **B) Decreases bias and increases variance** – ❌ Opposite  
+- **C) Increases bias and decreases variance** – ✅ Regularization effect  
+- **D) Increases both bias and variance** – ❌ Incorrect  
+
+---
+
+### **6. Which distance metric is best for binary vectors?**  
+**Correct Answer: D**  
+- **A) Euclidean** – ❌ Magnitude-based  
+- **B) Manhattan** – ❌ Magnitude-based  
+- **C) Cosine similarity** – ❌ Direction-based  
+- **D) Hamming distance** – ✅ Counts mismatches  
+
+---
+
+### **7. Which clustering method is density-based?**  
+**Correct Answer: C**  
+- **A) K-means** – ❌ Centroid-based  
+- **B) Hierarchical clustering** – ❌ Distance-based  
+- **C) DBSCAN** – ✅ Density-based  
+- **D) Spectral clustering** – ❌ Graph-based  
+
+---
+
+### **8. DBSCAN fails mainly when:**  
+**Correct Answer: C**  
+- **A) Data is high dimensional** – ❌ General issue  
+- **B) Clusters are spherical** – ❌ Works fine  
+- **C) Density varies significantly** – ✅ Single ε fails  
+- **D) Data is scaled** – ❌ Scaling helps  
+
+---
+
+### **9. PCA assumes that important structure lies in directions of:**  
+**Correct Answer: B**  
+- **A) Minimum variance** – ❌ Noise directions  
+- **B) Maximum variance** – ✅ PCA principle  
+- **C) Maximum correlation** – ❌ Side effect  
+- **D) Minimum error** – ❌ Not supervised  
+
+---
+
+### **10. Kernel PCA differs from PCA because it:**  
+**Correct Answer: C**  
+- **A) Is supervised** – ❌ Unsupervised  
+- **B) Handles categorical data** – ❌ Needs encoding  
+- **C) Captures non-linear structure** – ✅ Kernel trick  
+- **D) Uses fewer components** – ❌ Not guaranteed  
+
+---
+---
+
+### **11. Which metric is best when class imbalance is high?**  
+**Correct Answer: D**  
+- **A) Accuracy** – ❌ Misleading with imbalance  
+- **B) Precision** – ❌ Ignores false negatives  
+- **C) Recall** – ❌ Ignores false positives  
+- **D) F1-score** – ✅ Balances precision & recall  
+
+---
+
+### **12. ROC-AUC value of 0.5 indicates:**  
+**Correct Answer: B**  
+- **A) Perfect classifier** – ❌ Would be 1.0  
+- **B) Random guessing** – ✅ No discriminative power  
+- **C) Overfitting** – ❌ Not inferred directly  
+- **D) Underfitting** – ❌ Not necessarily  
+
+---
+
+### **13. CART uses which criterion for splitting?**  
+**Correct Answer: C**  
+- **A) Entropy** – ❌ Used in ID3  
+- **B) Information Gain** – ❌ Entropy-based  
+- **C) Gini Index** – ✅ CART standard  
+- **D) Chi-square** – ❌ Statistical test  
+
+---
+
+### **14. Which ensemble method mainly reduces variance?**  
+**Correct Answer: B**  
+- **A) Boosting** – ❌ Primarily reduces bias  
+- **B) Bagging** – ✅ Variance reduction via averaging  
+- **C) Gradient Descent** – ❌ Optimization algorithm  
+- **D) AdaBoost** – ❌ Boosting method  
+
+---
+
+### **15. Gradient Boosting builds trees:**  
+**Correct Answer: C**  
+- **A) Independently** – ❌ Random Forest behavior  
+- **B) In parallel** – ❌ Bagging style  
+- **C) Sequentially** – ✅ Each tree corrects previous errors  
+- **D) Randomly** – ❌ Deterministic process  
+
+---
+
+### **16. Naive Bayes assumes features are:**  
+**Correct Answer: C**  
+- **A) Normally distributed** – ❌ Only Gaussian NB  
+- **B) Linearly separable** – ❌ Not required  
+- **C) Conditionally independent** – ✅ Core assumption  
+- **D) Sparse** – ❌ Property of data, not assumption  
+
+---
+
+### **17. Which algorithm is called a “lazy learner”?**  
+**Correct Answer: C**  
+- **A) Logistic Regression** – ❌ Eager learner  
+- **B) Decision Tree** – ❌ Trained upfront  
+- **C) KNN** – ✅ Learns at prediction time  
+- **D) SVM** – ❌ Stores model parameters  
+
+---
+
+### **18. Increasing dimensionality mainly affects KNN because:**  
+**Correct Answer: B**  
+- **A) Training time increases** – ❌ Training is trivial  
+- **B) Distance measures lose meaning** – ✅ Curse of dimensionality  
+- **C) Model retraining is required** – ❌ Lazy learner  
+- **D) Bias increases** – ❌ Variance issue dominates  
+
+---
+
+### **19. Logistic regression decision boundary is:**  
+**Correct Answer: C**  
+- **A) Non-linear** – ❌ Linear in feature space  
+- **B) Piecewise linear** – ❌ Tree-based  
+- **C) Linear in feature space** – ✅ Linear separator  
+- **D) Tree-based** – ❌ Decision tree property  
+
+---
+
+### **20. Which regression technique forces some coefficients to exactly zero?**  
+**Correct Answer: B**  
+- **A) Ridge** – ❌ Shrinks but not zero  
+- **B) Lasso** – ✅ L1 penalty causes sparsity  
+- **C) Elastic Net** – ❌ Combination, not pure sparsity  
+- **D) Polynomial Regression** – ❌ Feature expansion  
+
+---
+
+### **21. Which SVM kernel is most suitable for non-linear separation?**  
+**Correct Answer: C**  
+- **A) Linear** – ❌ Only linear boundaries  
+- **B) Polynomial** – ❌ Degree-limited  
+- **C) RBF** – ✅ Flexible non-linear boundary  
+- **D) Sigmoid** – ❌ Rarely stable  
+
+---
+
+### **22. Soft margin SVM is useful when:**  
+**Correct Answer: C**  
+- **A) Data is perfectly separable** – ❌ Hard margin enough  
+- **B) No noise exists** – ❌ Ideal condition  
+- **C) Some misclassification is acceptable** – ✅ Real-world data  
+- **D) Kernel is linear** – ❌ Kernel independent  
+
+---
+
+### **23. Which time series component repeats at fixed intervals?**  
+**Correct Answer: C**  
+- **A) Trend** – ❌ Long-term movement  
+- **B) Noise** – ❌ Random  
+- **C) Seasonality** – ✅ Periodic pattern  
+- **D) Irregularity** – ❌ Unstructured  
+
+---
+
+### **24. ARIMA model requires data to be:**  
+**Correct Answer: B**  
+- **A) Normally distributed** – ❌ Not mandatory  
+- **B) Stationary** – ✅ Core assumption  
+- **C) Linearly separable** – ❌ Classification term  
+- **D) Noise-free** – ❌ Noise allowed  
+
+---
+
+### **25. ACF plot that cuts off sharply indicates:**  
+**Correct Answer: B**  
+- **A) AR process** – ❌ Identified via PACF  
+- **B) MA process** – ✅ ACF cutoff  
+- **C) ARMA process** – ❌ Mixed behavior  
+- **D) Non-stationarity** – ❌ Slow decay  
+
+---
+
+### **26. Which recommender system uses user–item interaction matrix?**  
+**Correct Answer: B**  
+- **A) Content-based** – ❌ Uses item features  
+- **B) Collaborative filtering** – ✅ Interaction-driven  
+- **C) Knowledge-based** – ❌ Rule-based  
+- **D) Rule-based** – ❌ No learning  
+
+---
+
+### **27. NDCG is preferred over Precision@K because it:**  
+**Correct Answer: B**  
+- **A) Penalizes false negatives more** – ❌ Recall-related  
+- **B) Considers ranking position** – ✅ Higher rank = higher gain  
+- **C) Works only for binary relevance** – ❌ Handles graded relevance  
+- **D) Is threshold-independent** – ❌ Ranking metric  
+
+---
+
+### **28. Vanishing gradient problem is most severe in:**  
+**Correct Answer: C**  
+- **A) CNNs** – ❌ Less affected  
+- **B) Shallow networks** – ❌ Few layers  
+- **C) RNNs** – ✅ Long dependency chains  
+- **D) Decision Trees** – ❌ No gradients  
+
+---
+
+### **29. Which activation function helps mitigate vanishing gradients?**  
+**Correct Answer: C**  
+- **A) Sigmoid** – ❌ Saturates  
+- **B) Tanh** – ❌ Still saturates  
+- **C) ReLU** – ✅ Non-saturating for positive inputs  
+- **D) Softmax** – ❌ Output layer  
+
+---
+
+### **30. Dropout reduces overfitting by:**  
+**Correct Answer: C**  
+- **A) Increasing training data** – ❌ Data unchanged  
+- **B) Penalizing large weights** – ❌ L2 regularization  
+- **C) Randomly deactivating neurons** – ✅ Prevents co-adaptation  
+- **D) Early stopping** – ❌ Different technique  
+
+---
+
+### **31. CNN convolution layers mainly learn:**  
+**Correct Answer: B**  
+- **A) Global patterns** – ❌ Learned later  
+- **B) Local spatial features** – ✅ Edges, textures  
+- **C) Class probabilities** – ❌ Output layer  
+- **D) Noise patterns** – ❌ Not intentional  
+
+---
+
+### **32. Transfer learning is most beneficial when:**  
+**Correct Answer: C**  
+- **A) Dataset is huge** – ❌ Train from scratch possible  
+- **B) Domains are unrelated** – ❌ Negative transfer  
+- **C) Dataset is small and similar** – ✅ Best case  
+- **D) Labels are unavailable** – ❌ Fine-tuning needs labels  
+
+---
+
+### **33. LSTM differs from simple RNN because it:**  
+**Correct Answer: B**  
+- **A) Uses ReLU** – ❌ Activation choice independent  
+- **B) Has memory cell and gates** – ✅ Controls gradient flow  
+- **C) Is feedforward** – ❌ Recurrent  
+- **D) Removes recurrence** – ❌ Still recurrent  
+
+---
+
+### **34. Transformer models remove recurrence by using:**  
+**Correct Answer: C**  
+- **A) Pooling** – ❌ Downsampling only  
+- **B) Convolution** – ❌ CNN-based  
+- **C) Self-attention** – ✅ Parallel context modeling  
+- **D) Dropout** – ❌ Regularization  
+
+---
+
+### **35. Attention mechanism helps models to:**  
+**Correct Answer: B**  
+- **A) Reduce parameters** – ❌ Often increases  
+- **B) Focus on relevant input parts** – ✅ Context awareness  
+- **C) Remove embeddings** – ❌ Uses embeddings  
+- **D) Avoid training** – ❌ Still trained  
+
+---
+
+### **36. BERT is pretrained using:**  
+**Correct Answer: B**  
+- **A) Auto-regressive modeling** – ❌ GPT-style  
+- **B) Masked Language Modeling** – ✅ Core BERT objective  
+- **C) Image classification** – ❌ Vision task  
+- **D) Reinforcement learning** – ❌ Not pretraining  
+
+---
+
+### **37. Fine-tuning a transformer means:**  
+**Correct Answer: C**  
+- **A) Training from scratch** – ❌ Pretrained already  
+- **B) Freezing all layers** – ❌ Partial freezing possible  
+- **C) Updating pretrained weights for a task** – ✅ Fine-tuning  
+- **D) Changing model architecture** – ❌ Architecture remains  
+
+---
+
+### **38. Hallucination in LLMs refers to:**  
+**Correct Answer: B**  
+- **A) Overfitting** – ❌ Training issue  
+- **B) Generating fluent but incorrect outputs** – ✅ Hallucination  
+- **C) High bias** – ❌ Model assumption  
+- **D) Training instability** – ❌ Optimization issue  
+
+---
+
+### **39. Responsible AI primarily focuses on:**  
+**Correct Answer: C**  
+- **A) Model speed** – ❌ Performance metric  
+- **B) Model size** – ❌ Scaling concern  
+- **C) Fairness and safety** – ✅ Ethical deployment  
+- **D) Training accuracy** – ❌ Narrow goal  
+
+---
+
+### **40. Which is NOT a challenge in deploying LLMs?**  
+**Correct Answer: D**  
+- **A) High computational cost** – ❌ Major challenge  
+- **B) Latency** – ❌ Real-time issue  
+- **C) Bias mitigation** – ❌ Ongoing challenge  
+- **D) Lack of applications** – ✅ Many real-world uses  
+
+---
+

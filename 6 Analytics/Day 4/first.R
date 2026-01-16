@@ -190,7 +190,7 @@ hrs = 1:10
 
 
 ?cor
-cor(marks,hrs)
+cor(marks,hrs) # default person's
 cor(marks,hrs, method = "spearman")
 plot(marks,hrs)
 abline(lm(hrs~marks), col="red")

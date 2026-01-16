@@ -1,0 +1,690 @@
+# 📘 CDAC MOCK TEST – 2 (Complete Notes)
+## Machine Learning, Deep Learning & AI
+
+---
+
+## 📝 QUESTIONS
+
+### **1. Which of the following best explains the bias–variance tradeoff?**
+A) Increasing model complexity always improves performance  
+B) High bias models perform well on training data  
+C) High variance models generalize poorly to unseen data  
+D) Bias and variance are independent of model complexity  
+
+---
+
+### **2. Which learning framework assumes that the hypothesis space can be ordered by increasing complexity?**
+A) Empirical Risk Minimization  
+B) Structural Risk Minimization  
+C) PAC Learning  
+D) Cross Validation  
+
+---
+
+### **3. Occam’s Razor in machine learning suggests that:**
+A) The most complex model should always be chosen  
+B) Simpler hypotheses are preferred if performance is similar  
+C) Models with more parameters generalize better  
+D) Simplicity guarantees zero error  
+
+---
+
+### **4. Which of the following correctly defines VC Dimension?**
+A) Number of samples in training data  
+B) Maximum number of features a model can use  
+C) Capacity of a model to shatter data points  
+D) Number of iterations needed for convergence  
+
+---
+
+### **5. Which condition most strongly indicates overfitting?**
+A) Low training accuracy and low test accuracy  
+B) High training accuracy and low test accuracy  
+C) Low training accuracy and high test accuracy  
+D) Equal training and test accuracy  
+
+---
+
+### **6. Which distance measure is most appropriate when direction matters more than magnitude?**
+A) Euclidean distance  
+B) Manhattan distance  
+C) Cosine similarity  
+D) Hamming distance  
+
+---
+
+### **7. K-means clustering fails mainly when:**
+A) Data is numeric  
+B) Clusters are spherical  
+C) Clusters have different densities or sizes  
+D) Data is scaled  
+
+---
+
+### **8. Which technique helps reduce dimensionality while preserving pairwise distances approximately?**
+A) PCA  
+B) Kernel PCA  
+C) Random Projections  
+D) Feature Selection  
+
+---
+
+### **9. Which evaluation method is suitable only for hierarchical clustering?**
+A) Elbow method  
+B) Silhouette score  
+C) Dendrogram  
+D) Davies–Bouldin index  
+
+---
+
+### **10. PCA primarily maximizes:**
+A) Correlation between features  
+B) Variance along principal components  
+C) Classification accuracy  
+D) Distance between clusters  
+
+---
+
+### **11. Which metric penalizes confident but wrong predictions most heavily?**
+A) Accuracy  
+B) Precision  
+C) Log Loss  
+D) Recall  
+
+---
+
+### **12. Which metric can become negative in regression problems?**
+A) RMSE  
+B) MAE  
+C) R² score  
+D) Accuracy  
+
+---
+
+### **13. Which decision tree split criterion is based on probability of misclassification?**
+A) Entropy  
+B) Information Gain  
+C) Gini Index  
+D) Chi-square  
+
+---
+
+### **14. Which ensemble method focuses on correcting errors of previous models?**
+A) Bagging  
+B) Boosting  
+C) Random Forest  
+D) Stacking  
+
+---
+
+### **15. Which algorithm is most robust to overfitting by design?**
+A) Single Decision Tree  
+B) Random Forest  
+C) Linear Regression  
+D) KNN  
+
+---
+
+### **16. Which statement about XGBoost is TRUE?**
+A) Trees are built independently  
+B) It uses bagging technique  
+C) It applies regularization to control overfitting  
+D) It cannot handle missing values  
+
+---
+
+### **17. Naive Bayes performs surprisingly well in text classification because:**
+A) Text features are always independent  
+B) Large feature space reduces correlation impact  
+C) It uses kernel trick  
+D) It performs dimensionality reduction  
+
+---
+
+### **18. Which algorithm’s performance degrades most when features are highly correlated?**
+A) Naive Bayes  
+B) Decision Tree  
+C) Random Forest  
+D) KNN  
+
+---
+
+### **19. Increasing the value of K in KNN generally:**
+A) Decreases bias and variance  
+B) Decreases bias and increases variance  
+C) Increases bias and decreases variance  
+D) Increases both bias and variance  
+
+---
+
+### **20. Which assumption is required for Linear Discriminant Analysis (LDA)?**
+A) Features are independent  
+B) Equal covariance matrices across classes  
+C) Non-linear decision boundary  
+D) Sparse data  
+
+---
+
+### **21. Which regression model is most suitable when predictors are highly correlated?**
+A) Linear Regression  
+B) Lasso Regression  
+C) Ridge Regression  
+D) Polynomial Regression  
+
+---
+
+### **22. Elastic Net regression is a combination of:**
+A) Linear and Polynomial Regression  
+B) Ridge and Lasso  
+C) Logistic and Linear Regression  
+D) PCA and Regression  
+
+---
+
+### **23. Logistic regression outputs are constrained because it uses:**
+A) Linear function  
+B) Step function  
+C) Sigmoid function  
+D) Softmax function  
+
+---
+
+### **24. Which parameter in SVM controls the tradeoff between margin size and misclassification?**
+A) Kernel  
+B) Gamma  
+C) C  
+D) Degree  
+
+---
+
+### **25. Which kernel maps data into infinite-dimensional space?**
+A) Linear  
+B) Polynomial  
+C) Sigmoid  
+D) RBF  
+
+---
+
+### **26. Which time series model is suitable for data with trend but no seasonality?**
+A) Simple Moving Average  
+B) Holt’s Linear Trend Method  
+C) Holt–Winters  
+D) ARIMA  
+
+---
+
+### **27. PACF plot that cuts off after lag p indicates:**
+A) MA(p)  
+B) AR(p)  
+C) ARMA(p,q)  
+D) White noise  
+
+---
+
+### **28. Which recommendation approach suffers most from the cold start problem?**
+A) Content-based filtering  
+B) Collaborative filtering  
+C) Knowledge-based systems  
+D) Rule-based systems  
+
+---
+
+### **29. Which metric evaluates top-K recommendation relevance?**
+A) RMSE  
+B) Accuracy  
+C) MAP@K  
+D) Log Loss  
+
+---
+
+### **30. Which neural network issue occurs due to long dependency chains in sequences?**
+A) Overfitting  
+B) Exploding gradients  
+C) Vanishing gradients  
+D) Bias  
+
+---
+
+### **31. Which optimizer adapts learning rates for each parameter individually?**
+A) SGD  
+B) Momentum  
+C) RMSProp  
+D) Batch Gradient Descent  
+
+---
+
+### **32. Early stopping prevents overfitting by:**
+A) Reducing model capacity  
+B) Stopping training when validation error increases  
+C) Increasing training data  
+D) Randomly dropping neurons  
+
+---
+
+### **33. Which CNN property enables parameter sharing?**
+A) Pooling  
+B) Fully connected layers  
+C) Convolution  
+D) Activation functions  
+
+---
+
+### **34. Data augmentation mainly helps CNNs by:**
+A) Reducing image resolution  
+B) Increasing effective training data  
+C) Changing model architecture  
+D) Eliminating noise completely  
+
+---
+
+### **35. YOLO differs from traditional detectors because it:**
+A) Uses region proposals  
+B) Performs detection in multiple stages  
+C) Predicts bounding boxes in one pass  
+D) Requires handcrafted features  
+
+---
+
+### **36. Which RNN variant introduces reset and update gates?**
+A) Simple RNN  
+B) LSTM  
+C) GRU  
+D) BiRNN  
+
+---
+
+### **37. Transformers eliminate recurrence by using:**
+A) Convolution  
+B) Pooling  
+C) Attention mechanisms  
+D) Recurrent connections  
+
+---
+
+### **38. Self-attention allows transformers to:**
+A) Ignore word order  
+B) Model long-range dependencies efficiently  
+C) Reduce training data  
+D) Remove embeddings  
+
+---
+
+### **39. Which is a pre-training objective of BERT?**
+A) Next sentence prediction  
+B) Left-to-right language modeling only  
+C) Auto-regressive decoding  
+D) Image captioning  
+
+---
+
+### **40. A major limitation of Large Language Models is:**
+A) Inability to generate text  
+B) High interpretability  
+C) Bias and hallucinations  
+D) Lack of computational cost  
+
+---
+
+# 📘 CDAC MOCK TEST – 2 (Full Elimination Revision Sheet)
+
+---
+
+### **1. Which of the following best explains the bias–variance tradeoff?**  
+**Correct Answer: C**  
+- **A) Increasing model complexity always improves performance** – ❌ Leads to overfitting  
+- **B) High bias models perform well on training data** – ❌ High bias underfits  
+- **C) High variance models generalize poorly to unseen data** – ✅ Core idea of variance  
+- **D) Bias and variance are independent of model complexity** – ❌ They depend on complexity  
+
+---
+
+### **2. Which learning framework assumes that the hypothesis space can be ordered by increasing complexity?**  
+**Correct Answer: B**  
+- **A) Empirical Risk Minimization** – ❌ Considers training error only  
+- **B) Structural Risk Minimization** – ✅ Explicitly orders hypotheses by complexity  
+- **C) PAC Learning** – ❌ General learning framework  
+- **D) Cross Validation** – ❌ Model evaluation technique  
+
+---
+
+### **3. Occam’s Razor in machine learning suggests that:**  
+**Correct Answer: B**  
+- **A) The most complex model should always be chosen** – ❌ Opposite of Occam  
+- **B) Simpler hypotheses are preferred if performance is similar** – ✅ Core principle  
+- **C) Models with more parameters generalize better** – ❌ Overfitting risk  
+- **D) Simplicity guarantees zero error** – ❌ No such guarantee  
+
+---
+
+### **4. Which of the following correctly defines VC Dimension?**  
+**Correct Answer: C**  
+- **A) Number of samples in training data** – ❌ Dataset property  
+- **B) Maximum number of features a model can use** – ❌ Not feature-based  
+- **C) Capacity of a model to shatter data points** – ✅ Formal definition  
+- **D) Number of iterations needed for convergence** – ❌ Optimization concept  
+
+---
+
+### **5. Which condition most strongly indicates overfitting?**  
+**Correct Answer: B**  
+- **A) Low training accuracy and low test accuracy** – ❌ Underfitting  
+- **B) High training accuracy and low test accuracy** – ✅ Classic overfitting sign  
+- **C) Low training accuracy and high test accuracy** – ❌ Rare/inconsistent  
+- **D) Equal training and test accuracy** – ❌ Could be good fit  
+
+---
+
+### **6. Which distance measure is most appropriate when direction matters more than magnitude?**  
+**Correct Answer: C**  
+- **A) Euclidean distance** – ❌ Magnitude-sensitive  
+- **B) Manhattan distance** – ❌ Magnitude-sensitive  
+- **C) Cosine similarity** – ✅ Angle/direction-based  
+- **D) Hamming distance** – ❌ Binary only  
+
+---
+
+### **7. K-means clustering fails mainly when:**  
+**Correct Answer: C**  
+- **A) Data is numeric** – ❌ Required condition  
+- **B) Clusters are spherical** – ❌ Ideal case  
+- **C) Clusters have different densities or sizes** – ✅ Violates K-means assumptions  
+- **D) Data is scaled** – ❌ Scaling helps  
+
+---
+
+### **8. Which technique helps reduce dimensionality while preserving pairwise distances approximately?**  
+**Correct Answer: C**  
+- **A) PCA** – ❌ Preserves variance, not distances  
+- **B) Kernel PCA** – ❌ Non-linear variance  
+- **C) Random Projections** – ✅ Johnson–Lindenstrauss lemma  
+- **D) Feature Selection** – ❌ No distance guarantee  
+
+---
+
+### **9. Which evaluation method is suitable only for hierarchical clustering?**  
+**Correct Answer: C**  
+- **A) Elbow method** – ❌ K-means focused  
+- **B) Silhouette score** – ❌ Works for multiple clustering types  
+- **C) Dendrogram** – ✅ Hierarchical-only  
+- **D) Davies–Bouldin index** – ❌ General clustering metric  
+
+---
+
+### **10. PCA primarily maximizes:**  
+**Correct Answer: B**  
+- **A) Correlation between features** – ❌ Side effect only  
+- **B) Variance along principal components** – ✅ PCA objective  
+- **C) Classification accuracy** – ❌ Unsupervised method  
+- **D) Distance between clusters** – ❌ Not clustering  
+
+---
+
+### **11. Which metric penalizes confident but wrong predictions most heavily?**  
+**Correct Answer: C**  
+- **A) Accuracy** – ❌ Ignores confidence  
+- **B) Precision** – ❌ Partial penalty  
+- **C) Log Loss** – ✅ Heavy penalty for confident errors  
+- **D) Recall** – ❌ Focuses on FN only  
+
+---
+
+### **12. Which metric can become negative in regression problems?**  
+**Correct Answer: C**  
+- **A) RMSE** – ❌ Always non-negative  
+- **B) MAE** – ❌ Always non-negative  
+- **C) R² score** – ✅ Worse than baseline model  
+- **D) Accuracy** – ❌ Not regression metric  
+
+---
+
+### **13. Which decision tree split criterion is based on probability of misclassification?**  
+**Correct Answer: C**  
+- **A) Entropy** – ❌ Information-based  
+- **B) Information Gain** – ❌ Entropy reduction  
+- **C) Gini Index** – ✅ Misclassification probability  
+- **D) Chi-square** – ❌ Statistical test  
+
+---
+
+### **14. Which ensemble method focuses on correcting errors of previous models?**  
+**Correct Answer: B**  
+- **A) Bagging** – ❌ Parallel averaging  
+- **B) Boosting** – ✅ Sequential error correction  
+- **C) Random Forest** – ❌ Independent trees  
+- **D) Stacking** – ❌ Meta-learning  
+
+---
+
+### **15. Which algorithm is most robust to overfitting by design?**  
+**Correct Answer: B**  
+- **A) Single Decision Tree** – ❌ High variance  
+- **B) Random Forest** – ✅ Variance reduction via averaging  
+- **C) Linear Regression** – ❌ Sensitive to noise  
+- **D) KNN** – ❌ Overfits with low K  
+
+---
+
+### **16. Which statement about XGBoost is TRUE?**  
+**Correct Answer: C**  
+- **A) Trees are built independently** – ❌ Boosting is sequential  
+- **B) It uses bagging technique** – ❌ Boosting, not bagging  
+- **C) It applies regularization to control overfitting** – ✅ Key advantage  
+- **D) It cannot handle missing values** – ❌ Can handle missing data  
+
+---
+
+### **17. Naive Bayes performs surprisingly well in text classification because:**  
+**Correct Answer: B**  
+- **A) Text features are always independent** – ❌ They are not  
+- **B) Large feature space reduces correlation impact** – ✅ Practical effectiveness  
+- **C) It uses kernel trick** – ❌ SVM concept  
+- **D) It performs dimensionality reduction** – ❌ No reduction  
+
+---
+
+### **18. Which algorithm’s performance degrades most when features are highly correlated?**  
+**Correct Answer: A**  
+- **A) Naive Bayes** – ✅ Violates independence assumption  
+- **B) Decision Tree** – ❌ Handles correlation well  
+- **C) Random Forest** – ❌ Robust due to randomness  
+- **D) KNN** – ❌ Distance-based, not correlation-based  
+
+---
+
+### **19. Increasing the value of K in KNN generally:**  
+**Correct Answer: C**  
+- **A) Decreases bias and variance** – ❌ Tradeoff exists  
+- **B) Decreases bias and increases variance** – ❌ Opposite  
+- **C) Increases bias and decreases variance** – ✅ Smoother boundary  
+- **D) Increases both bias and variance** – ❌ Incorrect  
+
+---
+
+### **20. Which assumption is required for Linear Discriminant Analysis (LDA)?**  
+**Correct Answer: B**  
+- **A) Features are independent** – ❌ Naive Bayes  
+- **B) Equal covariance matrices across classes** – ✅ Core LDA assumption  
+- **C) Non-linear decision boundary** – ❌ LDA is linear  
+- **D) Sparse data** – ❌ Not required  
+
+---
+
+### **21. Which regression model is most suitable when predictors are highly correlated?**  
+**Correct Answer: C**  
+- **A) Linear Regression** – ❌ Coefficient instability  
+- **B) Lasso Regression** – ❌ Arbitrary feature selection  
+- **C) Ridge Regression** – ✅ Shrinks correlated coefficients  
+- **D) Polynomial Regression** – ❌ Increases multicollinearity  
+
+---
+
+### **22. Elastic Net regression is a combination of:**  
+**Correct Answer: B**  
+- **A) Linear and Polynomial Regression** – ❌ Incorrect  
+- **B) Ridge and Lasso** – ✅ L1 + L2 penalties  
+- **C) Logistic and Linear Regression** – ❌ Different tasks  
+- **D) PCA and Regression** – ❌ Dimensionality vs regression  
+
+---
+
+### **23. Logistic regression outputs are constrained because it uses:**  
+**Correct Answer: C**  
+- **A) Linear function** – ❌ Unbounded  
+- **B) Step function** – ❌ Discontinuous  
+- **C) Sigmoid function** – ✅ Output in (0,1)  
+- **D) Softmax function** – ❌ Multiclass extension  
+
+---
+
+### **24. Which parameter in SVM controls the tradeoff between margin size and misclassification?**  
+**Correct Answer: C**  
+- **A) Kernel** – ❌ Function choice  
+- **B) Gamma** – ❌ Kernel spread  
+- **C) C** – ✅ Regularization parameter  
+- **D) Degree** – ❌ Polynomial kernel only  
+
+---
+
+### **25. Which kernel maps data into infinite-dimensional space?**  
+**Correct Answer: D**  
+- **A) Linear** – ❌ Finite dimension  
+- **B) Polynomial** – ❌ Finite degree  
+- **C) Sigmoid** – ❌ Finite  
+- **D) RBF** – ✅ Infinite-dimensional  
+
+---
+
+### **26. Which time series model is suitable for data with trend but no seasonality?**  
+**Correct Answer: B**  
+- **A) Simple Moving Average** – ❌ No trend modeling  
+- **B) Holt’s Linear Trend Method** – ✅ Trend only  
+- **C) Holt–Winters** – ❌ Trend + seasonality  
+- **D) ARIMA** – ❌ Requires stationarity  
+
+---
+
+### **27. PACF plot that cuts off after lag p indicates:**  
+**Correct Answer: B**  
+- **A) MA(p)** – ❌ ACF identifies MA  
+- **B) AR(p)** – ✅ PACF cutoff property  
+- **C) ARMA(p,q)** – ❌ Mixed pattern  
+- **D) White noise** – ❌ No structure  
+
+---
+
+### **28. Which recommendation approach suffers most from the cold start problem?**  
+**Correct Answer: B**  
+- **A) Content-based filtering** – ❌ Uses item features  
+- **B) Collaborative filtering** – ✅ Needs interaction history  
+- **C) Knowledge-based systems** – ❌ Rule-driven  
+- **D) Rule-based systems** – ❌ Predefined logic  
+
+---
+
+### **29. Which metric evaluates top-K recommendation relevance?**  
+**Correct Answer: C**  
+- **A) RMSE** – ❌ Rating prediction  
+- **B) Accuracy** – ❌ Ignores ranking  
+- **C) MAP@K** – ✅ Ranking relevance  
+- **D) Log Loss** – ❌ Classification metric  
+
+---
+
+### **30. Which neural network issue occurs due to long dependency chains in sequences?**  
+**Correct Answer: C**  
+- **A) Overfitting** – ❌ Model complexity issue  
+- **B) Exploding gradients** – ❌ Large gradients  
+- **C) Vanishing gradients** – ✅ Gradients shrink over time  
+- **D) Bias** – ❌ Model assumption  
+
+---
+
+### **31. Which optimizer adapts learning rates for each parameter individually?**  
+**Correct Answer: C**  
+- **A) SGD** – ❌ Fixed learning rate  
+- **B) Momentum** – ❌ Same LR for all  
+- **C) RMSProp** – ✅ Adaptive per-parameter LR  
+- **D) Batch Gradient Descent** – ❌ Fixed LR  
+
+---
+
+### **32. Early stopping prevents overfitting by:**  
+**Correct Answer: B**  
+- **A) Reducing model capacity** – ❌ Architecture unchanged  
+- **B) Stopping training when validation error increases** – ✅ Core idea  
+- **C) Increasing training data** – ❌ Data unchanged  
+- **D) Randomly dropping neurons** – ❌ Dropout method  
+
+---
+
+### **33. Which CNN property enables parameter sharing?**  
+**Correct Answer: C**  
+- **A) Pooling** – ❌ Downsampling  
+- **B) Fully connected layers** – ❌ No sharing  
+- **C) Convolution** – ✅ Same filter reused  
+- **D) Activation functions** – ❌ Non-linearity  
+
+---
+
+### **34. Data augmentation mainly helps CNNs by:**  
+**Correct Answer: B**  
+- **A) Reducing image resolution** – ❌ May hurt performance  
+- **B) Increasing effective training data** – ✅ Improves generalization  
+- **C) Changing model architecture** – ❌ Architecture unchanged  
+- **D) Eliminating noise completely** – ❌ Noise may remain  
+
+---
+
+### **35. YOLO differs from traditional detectors because it:**  
+**Correct Answer: C**  
+- **A) Uses region proposals** – ❌ R-CNN family  
+- **B) Performs detection in multiple stages** – ❌ Single stage  
+- **C) Predicts bounding boxes in one pass** – ✅ YOLO key idea  
+- **D) Requires handcrafted features** – ❌ Deep learned features  
+
+---
+
+### **36. Which RNN variant introduces reset and update gates?**  
+**Correct Answer: C**  
+- **A) Simple RNN** – ❌ No gates  
+- **B) LSTM** – ❌ Uses input/forget/output gates  
+- **C) GRU** – ✅ Reset & update gates  
+- **D) BiRNN** – ❌ Directional wrapper  
+
+---
+
+### **37. Transformers eliminate recurrence by using:**  
+**Correct Answer: C**  
+- **A) Convolution** – ❌ CNN approach  
+- **B) Pooling** – ❌ Downsampling  
+- **C) Attention mechanisms** – ✅ Core transformer idea  
+- **D) Recurrent connections** – ❌ Removed  
+
+---
+
+### **38. Self-attention allows transformers to:**  
+**Correct Answer: B**  
+- **A) Ignore word order** – ❌ Positional encoding used  
+- **B) Model long-range dependencies efficiently** – ✅ Parallel global context  
+- **C) Reduce training data** – ❌ Data unchanged  
+- **D) Remove embeddings** – ❌ Embeddings required  
+
+---
+
+### **39. Which is a pre-training objective of BERT?**  
+**Correct Answer: A**  
+- **A) Next sentence prediction** – ✅ BERT objective  
+- **B) Left-to-right language modeling only** – ❌ GPT-style  
+- **C) Auto-regressive decoding** – ❌ Decoder-based  
+- **D) Image captioning** – ❌ Vision task  
+
+---
+
+### **40. A major limitation of Large Language Models is:**  
+**Correct Answer: C**  
+- **A) Inability to generate text** – ❌ Core strength  
+- **B) High interpretability** – ❌ Opposite  
+- **C) Bias and hallucinations** – ✅ Known limitation  
+- **D) Lack of computational cost** – ❌ They are expensive  
+
+---

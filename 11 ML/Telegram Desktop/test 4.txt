@@ -1,0 +1,691 @@
+# 📘 CDAC MOCK TEST – 4
+## Machine Learning, Deep Learning & AI
+
+---
+
+## 📝 QUESTIONS
+
+### **1. Which component of information theory is used to measure uncertainty in data?**
+A) Variance  
+B) Entropy  
+C) Mean  
+D) Standard deviation  
+
+---
+
+### **2. Probably Approximately Correct (PAC) learning provides guarantees about:**
+A) Zero training error  
+B) Exact hypothesis recovery  
+C) Performance with high probability  
+D) Infinite data availability  
+
+---
+
+### **3. Which learning paradigm learns by receiving rewards and penalties?**
+A) Supervised learning  
+B) Unsupervised learning  
+C) Reinforcement learning  
+D) Semi-supervised learning  
+
+---
+
+### **4. Which tradeoff describes conflict between model simplicity and accuracy?**
+A) Precision–Recall tradeoff  
+B) Bias–Variance tradeoff  
+C) Exploration–Exploitation tradeoff  
+D) Time–Space tradeoff  
+
+---
+
+### **5. Vapnik–Chervonenkis (VC) dimension measures:**
+A) Number of samples  
+B) Training time  
+C) Capacity of hypothesis space  
+D) Feature correlation  
+
+---
+
+### **6. Which concept states that simpler models should be preferred?**
+A) Occam’s Razor  
+B) PAC learning  
+C) Structural Risk Minimization  
+D) No Free Lunch theorem  
+
+---
+
+### **7. No Free Lunch theorem implies:**
+A) Deep learning always wins  
+B) One algorithm fits all problems  
+C) No algorithm is universally best  
+D) Simple models always generalize  
+
+---
+
+### **8. Which preprocessing step ensures all features contribute equally to distance?**
+A) Encoding  
+B) Scaling  
+C) Sampling  
+D) Imputation  
+
+---
+
+### **9. Which clustering algorithm requires the number of clusters beforehand?**
+A) K-Means  
+B) DBSCAN  
+C) Hierarchical clustering  
+D) Mean Shift  
+
+---
+
+### **10. Dendrogram is associated with which clustering method?**
+A) K-Means  
+B) DBSCAN  
+C) Hierarchical clustering  
+D) Spectral clustering  
+
+---
+
+### **11. PCA reduces dimensionality by:**
+A) Removing low-variance features  
+B) Projecting data onto principal components  
+C) Scaling features  
+D) Encoding categorical variables  
+
+---
+
+### **12. Kernel PCA is mainly useful when data is:**
+A) Small  
+B) Linearly separable  
+C) Non-linearly separable  
+D) Noisy  
+
+---
+
+### **13. Accuracy is a poor metric when:**
+A) Dataset is small  
+B) Classes are balanced  
+C) Classes are imbalanced  
+D) Model is linear  
+
+---
+
+### **14. Which metric combines precision and recall?**
+A) Accuracy  
+B) F1-score  
+C) ROC-AUC  
+D) Log Loss  
+
+---
+
+### **15. Which algorithm builds trees sequentially to reduce error?**
+A) Bagging  
+B) Random Forest  
+C) Boosting  
+D) Stacking  
+
+---
+
+### **16. Decision trees can handle which type of data without preprocessing?**
+A) Only numerical  
+B) Only categorical  
+C) Only continuous  
+D) Both numerical and categorical  
+
+---
+
+### **17. Which regression technique is used when output is binary?**
+A) Linear regression  
+B) Logistic regression  
+C) Ridge regression  
+D) Lasso regression  
+
+---
+
+### **18. L1 regularization encourages:**
+A) Large coefficients  
+B) Smooth weight decay  
+C) Sparse solutions  
+D) Faster convergence  
+
+---
+
+### **19. Increasing C in SVM leads to:**
+A) Wider margin  
+B) Narrower margin  
+C) Kernel change  
+D) Fewer support vectors  
+
+---
+
+### **20. Which time series component represents repeating patterns?**
+A) Trend  
+B) Noise  
+C) Seasonality  
+D) Irregularity  
+
+---
+
+### **21. ARIMA model consists of:**
+A) Auto-regression only  
+B) Moving average only  
+C) Integration only  
+D) AR + I + MA  
+
+---
+
+### **22. Collaborative filtering primarily uses:**
+A) Item metadata  
+B) User–item interactions  
+C) Expert rules  
+D) Domain ontology  
+
+---
+
+### **23. Which metric evaluates ranked recommendation lists?**
+A) RMSE  
+B) Accuracy  
+C) NDCG  
+D) MAE  
+
+---
+
+### **24. Vanishing gradient problem mainly affects:**
+A) CNNs  
+B) RNNs  
+C) Decision Trees  
+D) KNN  
+
+---
+
+### **25. Which activation function outputs values between 0 and 1?**
+A) Sigmoid  
+B) Tanh  
+C) ReLU  
+D) Softmax  
+
+---
+
+### **26. Dropout helps neural networks by:**
+A) Increasing bias  
+B) Preventing overfitting  
+C) Speeding training  
+D) Removing noise  
+
+---
+
+### **27. CNNs are effective for images mainly because they:**
+A) Ignore spatial structure  
+B) Use only fully connected layers  
+C) Exploit spatial locality  
+D) Avoid backpropagation  
+
+---
+
+### **28. Transfer learning reuses:**
+A) Training labels  
+B) Learned weights/features  
+C) Learning rate  
+D) Dataset distribution  
+
+---
+
+### **29. YOLO performs object detection by:**
+A) Sliding window  
+B) Region proposals  
+C) Single-stage detection  
+D) Pixel segmentation  
+
+---
+
+### **30. LSTM mitigates vanishing gradient using:**
+A) High learning rate  
+B) ReLU activation  
+C) Gating mechanisms  
+D) Dropout  
+
+---
+
+### **31. Which optimizer adapts learning rate per parameter?**
+A) SGD  
+B) Momentum  
+C) Adam  
+D) Batch Gradient Descent  
+
+---
+
+### **32. Transformers differ from RNNs because they:**
+A) Process data sequentially  
+B) Use self-attention  
+C) Require recurrence  
+D) Cannot handle long sequences  
+
+---
+
+### **33. Positional encoding is required because:**
+A) Attention lacks sequence order  
+B) Vocabulary is large  
+C) Data is sparse  
+D) Gradients vanish  
+
+---
+
+### **34. BERT is pretrained using:**
+A) Auto-regressive modeling  
+B) Image captioning  
+C) Masked Language Modeling  
+D) Reinforcement learning  
+
+---
+
+### **35. A major challenge of LLM deployment is:**
+A) Low accuracy  
+B) High computational cost  
+C) Lack of applications  
+D) No training data  
+
+---
+
+### **36. Which learning type uses both labeled and unlabeled data?**
+A) Supervised learning  
+B) Unsupervised learning  
+C) Semi-supervised learning  
+D) Reinforcement learning  
+
+---
+
+### **37. Feature extraction differs from feature selection because it:**
+A) Removes features  
+B) Creates new features  
+C) Scales data  
+D) Handles missing values  
+
+---
+
+### **38. Which evaluation metric penalizes confident wrong predictions?**
+A) Accuracy  
+B) Precision  
+C) Log Loss  
+D) Recall  
+
+---
+
+### **39. Which model is descriptive rather than predictive?**
+A) Linear regression  
+B) Clustering  
+C) Logistic regression  
+D) SVM  
+
+---
+
+### **40. Which deep learning issue arises due to very large gradients?**
+A) Vanishing gradient  
+B) Exploding gradient  
+C) Overfitting  
+D) Bias  
+
+---
+
+# 📘 CDAC MOCK TEST – 4 (Full Elimination Notes)
+## ✅ ANSWERS & FULL ELIMINATION
+
+---
+
+### **1. Which component of information theory is used to measure uncertainty in data?**  
+**Correct Answer: B**  
+- **A) Variance** – ❌ Measures dispersion, not information uncertainty  
+- **B) Entropy** – ✅ Quantifies uncertainty in information theory  
+- **C) Mean** – ❌ Central tendency only  
+- **D) Standard deviation** – ❌ Spread of data, not uncertainty  
+
+---
+
+### **2. Probably Approximately Correct (PAC) learning provides guarantees about:**  
+**Correct Answer: C**  
+- **A) Zero training error** – ❌ PAC allows approximation  
+- **B) Exact hypothesis recovery** – ❌ Exact learning not required  
+- **C) Performance with high probability** – ✅ Core PAC guarantee  
+- **D) Infinite data availability** – ❌ Finite samples assumed  
+
+---
+
+### **3. Which learning paradigm learns by receiving rewards and penalties?**  
+**Correct Answer: C**  
+- **A) Supervised learning** – ❌ Uses labeled data  
+- **B) Unsupervised learning** – ❌ No feedback  
+- **C) Reinforcement learning** – ✅ Reward–penalty based  
+- **D) Semi-supervised learning** – ❌ Label mix, not reward  
+
+---
+
+### **4. Which tradeoff describes conflict between model simplicity and accuracy?**  
+**Correct Answer: B**  
+- **A) Precision–Recall tradeoff** – ❌ Classification metric tradeoff  
+- **B) Bias–Variance tradeoff** – ✅ Simplicity vs complexity  
+- **C) Exploration–Exploitation tradeoff** – ❌ RL concept  
+- **D) Time–Space tradeoff** – ❌ Algorithm design  
+
+---
+
+### **5. Vapnik–Chervonenkis (VC) dimension measures:**  
+**Correct Answer: C**  
+- **A) Number of samples** – ❌ Dataset property  
+- **B) Training time** – ❌ Computational aspect  
+- **C) Capacity of hypothesis space** – ✅ Definition of VC dimension  
+- **D) Feature correlation** – ❌ Data property  
+
+---
+
+### **6. Which concept states that simpler models should be preferred?**  
+**Correct Answer: A**  
+- **A) Occam’s Razor** – ✅ Prefer simplest sufficient model  
+- **B) PAC learning** – ❌ Learning guarantee  
+- **C) Structural Risk Minimization** – ❌ Framework, not principle  
+- **D) No Free Lunch theorem** – ❌ No universal best  
+
+---
+
+### **7. No Free Lunch theorem implies:**  
+**Correct Answer: C**  
+- **A) Deep learning always wins** – ❌ False  
+- **B) One algorithm fits all problems** – ❌ Contradiction  
+- **C) No algorithm is universally best** – ✅ NFL meaning  
+- **D) Simple models always generalize** – ❌ Not guaranteed  
+
+---
+
+### **8. Which preprocessing step ensures all features contribute equally to distance?**  
+**Correct Answer: B**  
+- **A) Encoding** – ❌ Handles categorical data  
+- **B) Scaling** – ✅ Normalizes feature ranges  
+- **C) Sampling** – ❌ Changes dataset size  
+- **D) Imputation** – ❌ Handles missing values  
+
+---
+
+### **9. Which clustering algorithm requires the number of clusters beforehand?**  
+**Correct Answer: A**  
+- **A) K-Means** – ✅ Requires predefined K  
+- **B) DBSCAN** – ❌ Density-based  
+- **C) Hierarchical clustering** – ❌ No fixed K  
+- **D) Mean Shift** – ❌ Automatically finds clusters  
+
+---
+
+### **10. Dendrogram is associated with which clustering method?**  
+**Correct Answer: C**  
+- **A) K-Means** – ❌ Partition-based  
+- **B) DBSCAN** – ❌ Density-based  
+- **C) Hierarchical clustering** – ✅ Tree structure  
+- **D) Spectral clustering** – ❌ Graph-based  
+
+---
+
+### **11. PCA reduces dimensionality by:**  
+**Correct Answer: B**  
+- **A) Removing low-variance features** – ❌ Feature selection  
+- **B) Projecting data onto principal components** – ✅ Feature extraction  
+- **C) Scaling features** – ❌ No reduction  
+- **D) Encoding categorical variables** – ❌ Different task  
+
+---
+
+### **12. Kernel PCA is mainly useful when data is:**  
+**Correct Answer: C**  
+- **A) Small** – ❌ Size irrelevant  
+- **B) Linearly separable** – ❌ PCA sufficient  
+- **C) Non-linearly separable** – ✅ Kernel trick  
+- **D) Noisy** – ❌ Noise handling secondary  
+
+---
+
+### **13. Accuracy is a poor metric when:**  
+**Correct Answer: C**  
+- **A) Dataset is small** – ❌ Size not deciding  
+- **B) Classes are balanced** – ❌ Accuracy works well  
+- **C) Classes are imbalanced** – ✅ Misleading dominance  
+- **D) Model is linear** – ❌ Unrelated  
+
+---
+
+### **14. Which metric combines precision and recall?**  
+**Correct Answer: B**  
+- **A) Accuracy** – ❌ Ignores FP/FN balance  
+- **B) F1-score** – ✅ Harmonic mean  
+- **C) ROC-AUC** – ❌ Ranking metric  
+- **D) Log Loss** – ❌ Probabilistic penalty  
+
+---
+
+### **15. Which algorithm builds trees sequentially to reduce error?**  
+**Correct Answer: C**  
+- **A) Bagging** – ❌ Parallel trees  
+- **B) Random Forest** – ❌ Independent trees  
+- **C) Boosting** – ✅ Sequential error correction  
+- **D) Stacking** – ❌ Meta-model  
+
+---
+
+### **16. Decision trees can handle which type of data without preprocessing?**  
+**Correct Answer: D**  
+- **A) Only numerical** – ❌ Categorical supported  
+- **B) Only categorical** – ❌ Numerical supported  
+- **C) Only continuous** – ❌ Discrete supported  
+- **D) Both numerical and categorical** – ✅ Native handling  
+
+---
+
+### **17. Which regression technique is used when output is binary?**  
+**Correct Answer: B**  
+- **A) Linear regression** – ❌ Unbounded output  
+- **B) Logistic regression** – ✅ Binary classification  
+- **C) Ridge regression** – ❌ Linear regression variant  
+- **D) Lasso regression** – ❌ Linear regression variant  
+
+---
+
+### **18. L1 regularization encourages:**  
+**Correct Answer: C**  
+- **A) Large coefficients** – ❌ Penalized  
+- **B) Smooth weight decay** – ❌ L2 property  
+- **C) Sparse solutions** – ✅ Feature selection  
+- **D) Faster convergence** – ❌ Not guaranteed  
+
+---
+
+### **19. Increasing C in SVM leads to:**  
+**Correct Answer: B**  
+- **A) Wider margin** – ❌ Lower C gives wider margin  
+- **B) Narrower margin** – ✅ Misclassification penalized  
+- **C) Kernel change** – ❌ Independent  
+- **D) Fewer support vectors** – ❌ Not guaranteed  
+
+---
+
+### **20. Which time series component represents repeating patterns?**  
+**Correct Answer: C**  
+- **A) Trend** – ❌ Long-term movement  
+- **B) Noise** – ❌ Random variation  
+- **C) Seasonality** – ✅ Repeating cycles  
+- **D) Irregularity** – ❌ Random effect  
+
+---
+
+### **21. ARIMA model consists of:**  
+**Correct Answer: D**  
+- **A) Auto-regression only** – ❌ Incomplete  
+- **B) Moving average only** – ❌ Incomplete  
+- **C) Integration only** – ❌ Incomplete  
+- **D) AR + I + MA** – ✅ Full model  
+
+---
+
+### **22. Collaborative filtering primarily uses:**  
+**Correct Answer: B**  
+- **A) Item metadata** – ❌ Content-based  
+- **B) User–item interactions** – ✅ Core idea  
+- **C) Expert rules** – ❌ Rule-based  
+- **D) Domain ontology** – ❌ Knowledge-based  
+
+---
+
+### **23. Which metric evaluates ranked recommendation lists?**  
+**Correct Answer: C**  
+- **A) RMSE** – ❌ Rating error  
+- **B) Accuracy** – ❌ Ignores ranking  
+- **C) NDCG** – ✅ Ranking quality  
+- **D) MAE** – ❌ Regression metric  
+
+---
+
+### **24. Vanishing gradient problem mainly affects:**  
+**Correct Answer: B**  
+- **A) CNNs** – ❌ Less affected  
+- **B) RNNs** – ✅ Long dependencies  
+- **C) Decision Trees** – ❌ No gradients  
+- **D) KNN** – ❌ No gradients  
+
+---
+
+### **25. Which activation function outputs values between 0 and 1?**  
+**Correct Answer: A**  
+- **A) Sigmoid** – ✅ Probability output  
+- **B) Tanh** – ❌ Range [-1,1]  
+- **C) ReLU** – ❌ Range [0,∞)  
+- **D) Softmax** – ❌ Multi-class normalization  
+
+---
+
+### **26. Dropout helps neural networks by:**  
+**Correct Answer: B**  
+- **A) Increasing bias** – ❌ Side effect, not goal  
+- **B) Preventing overfitting** – ✅ Regularization  
+- **C) Speeding training** – ❌ Training slows  
+- **D) Removing noise** – ❌ Not denoising  
+
+---
+
+### **27. CNNs are effective for images mainly because they:**  
+**Correct Answer: C**  
+- **A) Ignore spatial structure** – ❌ Opposite  
+- **B) Use only fully connected layers** – ❌ Incorrect  
+- **C) Exploit spatial locality** – ✅ Local patterns  
+- **D) Avoid backpropagation** – ❌ Uses backprop  
+
+---
+
+### **28. Transfer learning reuses:**  
+**Correct Answer: B**  
+- **A) Training labels** – ❌ Task-specific  
+- **B) Learned weights/features** – ✅ Knowledge reuse  
+- **C) Learning rate** – ❌ Hyperparameter  
+- **D) Dataset distribution** – ❌ Data dependent  
+
+---
+
+### **29. YOLO performs object detection by:**  
+**Correct Answer: C**  
+- **A) Sliding window** – ❌ Slow  
+- **B) Region proposals** – ❌ Two-stage  
+- **C) Single-stage detection** – ✅ One forward pass  
+- **D) Pixel segmentation** – ❌ Different task  
+
+---
+
+### **30. LSTM mitigates vanishing gradient using:**  
+**Correct Answer: C**  
+- **A) High learning rate** – ❌ Not solution  
+- **B) ReLU activation** – ❌ Not sufficient  
+- **C) Gating mechanisms** – ✅ Memory control  
+- **D) Dropout** – ❌ Regularization  
+
+---
+
+### **31. Which optimizer adapts learning rate per parameter?**  
+**Correct Answer: C**  
+- **A) SGD** – ❌ Fixed LR  
+- **B) Momentum** – ❌ No adaptation  
+- **C) Adam** – ✅ Adaptive + momentum  
+- **D) Batch Gradient Descent** – ❌ Global LR  
+
+---
+
+### **32. Transformers differ from RNNs because they:**  
+**Correct Answer: B**  
+- **A) Process data sequentially** – ❌ RNN behavior  
+- **B) Use self-attention** – ✅ Parallel processing  
+- **C) Require recurrence** – ❌ Removed  
+- **D) Cannot handle long sequences** – ❌ Better at long range  
+
+---
+
+### **33. Positional encoding is required because:**  
+**Correct Answer: A**  
+- **A) Attention lacks sequence order** – ✅ Order injected  
+- **B) Vocabulary is large** – ❌ Unrelated  
+- **C) Data is sparse** – ❌ Unrelated  
+- **D) Gradients vanish** – ❌ Not related  
+
+---
+
+### **34. BERT is pretrained using:**  
+**Correct Answer: C**  
+- **A) Auto-regressive modeling** – ❌ GPT-style  
+- **B) Image captioning** – ❌ Vision task  
+- **C) Masked Language Modeling** – ✅ Core objective  
+- **D) Reinforcement learning** – ❌ Fine-tuning stage  
+
+---
+
+### **35. A major challenge of LLM deployment is:**  
+**Correct Answer: B**  
+- **A) Low accuracy** – ❌ Accuracy is high  
+- **B) High computational cost** – ✅ Infrastructure challenge  
+- **C) Lack of applications** – ❌ Many use cases  
+- **D) No training data** – ❌ Data abundant  
+
+---
+
+### **36. Which learning type uses both labeled and unlabeled data?**  
+**Correct Answer: C**  
+- **A) Supervised learning** – ❌ Only labeled  
+- **B) Unsupervised learning** – ❌ Only unlabeled  
+- **C) Semi-supervised learning** – ✅ Mixed data  
+- **D) Reinforcement learning** – ❌ Reward-based  
+
+---
+
+### **37. Feature extraction differs from feature selection because it:**  
+**Correct Answer: B**  
+- **A) Removes features** – ❌ Feature selection  
+- **B) Creates new features** – ✅ Transformation  
+- **C) Scales data** – ❌ Preprocessing  
+- **D) Handles missing values** – ❌ Imputation  
+
+---
+
+### **38. Which evaluation metric penalizes confident wrong predictions?**  
+**Correct Answer: C**  
+- **A) Accuracy** – ❌ Binary measure  
+- **B) Precision** – ❌ Partial penalty  
+- **C) Log Loss** – ✅ Heavy penalty  
+- **D) Recall** – ❌ FN focused  
+
+---
+
+### **39. Which model is descriptive rather than predictive?**  
+**Correct Answer: B**  
+- **A) Linear regression** – ❌ Predictive  
+- **B) Clustering** – ✅ Descriptive  
+- **C) Logistic regression** – ❌ Predictive  
+- **D) SVM** – ❌ Predictive  
+
+---
+
+### **40. Which deep learning issue arises due to very large gradients?**  
+**Correct Answer: B**  
+- **A) Vanishing gradient** – ❌ Very small gradients  
+- **B) Exploding gradient** – ✅ Very large gradients  
+- **C) Overfitting** – ❌ Model complexity  
+- **D) Bias** – ❌ Systematic error  
+
+---

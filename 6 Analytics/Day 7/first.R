@@ -54,7 +54,7 @@ z.test(data, mu=1000, sigma.x=15)
 
 # p-value = 0.0108
 # if p-value < 0.05 reject h0
-# here p-value is 0.0108 hence we are rejecting h0 and 
+# here p-value is 0.0108 hence we are not rejecting h0 and 
 # concluding that mean in not 1000
 
 # ***********************************************************

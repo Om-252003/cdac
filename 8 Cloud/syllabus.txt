@@ -1,0 +1,20 @@
+Introduction to Cloud Computing
+   3.1 Cloud Computing Basics
+   3.2 Understanding Cloud Vendors
+       3.2.1 AWS:EC2 instance
+       3.2.2 lambda
+       3.2.3 Azure: Azure virtual machines
+       3.2.4 Azure data factory
+   3.3 Definition
+   3.4 Characteristics
+   3.5 Components
+   3.6 Cloud provider
+   3.7 SAAS, PAAS, IAAS and other Organizational scenarios of clouds
+   3.8 benefits and limitations
+   3.9 Deploy application over cloud
+   3.10 Comparison among SAAS, PAAS, IAAS
+   3.11 Cloud Products and Solutions
+   3.12 Compute Products and Services
+   3.13 Elastic Cloud Compute
+   3.14 Dashboard
+   3.15 deploy AI and analytics workloads in Cloud environments with sample mini project

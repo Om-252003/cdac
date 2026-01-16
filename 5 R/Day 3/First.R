@@ -298,6 +298,7 @@ switch(color, "red" = "Stop here !",
 
 x = 15:25
 for (i in x){if(i>20){print(i)}}
+cat(which(x>20)) # returns indices
 
 #2 Print multiplication table of upto 7*24 but only even multiple
 

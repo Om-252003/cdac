@@ -1,0 +1,695 @@
+# 📘 CDAC MOCK TEST – 9
+## Machine Learning, Deep Learning & AI
+
+---
+
+## 📝 QUESTIONS (MCQs ONLY)
+
+### **1. Which phenomenon explains a model performing well on training data but poorly on unseen data?**
+A) High bias  
+B) Underfitting  
+C) Overfitting  
+D) Regularization  
+
+---
+
+### **2. In PAC learning, δ represents:**  
+A) Acceptable error  
+B) Confidence parameter  
+C) Hypothesis complexity  
+D) Training size  
+
+---
+
+### **3. Which principle supports choosing the simplest model that fits the data?**
+A) Structural Risk Minimization  
+B) Occam’s Razor  
+C) No Free Lunch  
+D) Cross Validation  
+
+---
+
+### **4. VC Dimension is best described as:**  
+A) Number of features  
+B) Training iterations  
+C) Model capacity to shatter points  
+D) Sample complexity  
+
+---
+
+### **5. Which situation indicates high bias?**
+A) High training error and high test error  
+B) Low training error and high test error  
+C) High variance model  
+D) Large hypothesis space  
+
+---
+
+### **6. Which distance metric is most suitable for sparse high-dimensional vectors?**
+A) Euclidean  
+B) Manhattan  
+C) Cosine similarity  
+D) Minkowski  
+
+---
+
+### **7. Which clustering algorithm can discover arbitrarily shaped clusters?**
+A) K-means  
+B) Hierarchical (complete linkage)  
+C) DBSCAN  
+D) Spectral clustering  
+
+---
+
+### **8. A major limitation of K-means is that it:**
+A) Cannot scale to large datasets  
+B) Requires distance computation  
+C) Assumes spherical clusters  
+D) Cannot handle numeric data  
+
+---
+
+### **9. Which method reduces dimensionality using linear combinations of features?**
+A) Feature selection  
+B) PCA  
+C) Random projections  
+D) Hashing trick  
+
+---
+
+### **10. Kernel PCA is preferred over PCA when data is:**  
+A) Linearly separable  
+B) Low dimensional  
+C) Non-linearly separable  
+D) Small in size  
+
+---
+
+### **11. Which metric is threshold-independent?**
+A) Accuracy  
+B) Precision  
+C) Recall  
+D) ROC-AUC  
+
+---
+
+### **12. Which regression metric penalizes large errors more heavily?**
+A) MAE  
+B) RMSE  
+C) R²  
+D) Accuracy  
+
+---
+
+### **13. Information Gain is based on:**  
+A) Gini impurity  
+B) Entropy  
+C) Variance reduction  
+D) Chi-square  
+
+---
+
+### **14. Which ensemble method primarily reduces bias?**
+A) Bagging  
+B) Random Forest  
+C) Boosting  
+D) Subsampling  
+
+---
+
+### **15. Random Forest improves performance mainly by:**  
+A) Increasing bias  
+B) Reducing variance  
+C) Sequential learning  
+D) Feature scaling  
+
+---
+
+### **16. Which feature makes XGBoost faster and more robust?**
+A) Uses single tree  
+B) Parallel tree construction  
+C) No regularization  
+D) Requires clean data  
+
+---
+
+### **17. Naive Bayes struggles when:**  
+A) Data is sparse  
+B) Features are conditionally independent  
+C) Features are highly correlated  
+D) Dataset is large  
+
+---
+
+### **18. Which algorithm’s prediction time increases with dataset size?**
+A) Logistic Regression  
+B) Decision Tree  
+C) KNN  
+D) Linear SVM  
+
+---
+
+### **19. Increasing K in KNN generally causes:**  
+A) Lower bias, higher variance  
+B) Higher bias, lower variance  
+C) Lower bias, lower variance  
+D) Higher bias, higher variance  
+
+---
+
+### **20. Which assumption is made by LDA but not by logistic regression?**
+A) Linear decision boundary  
+B) Equal class covariance matrices  
+C) Independent features  
+D) Binary target variable  
+
+---
+
+### **21. Which regularization method shrinks coefficients but does not set them exactly to zero?**
+A) Lasso  
+B) Ridge  
+C) Elastic Net  
+D) Dropout  
+
+---
+
+### **22. Elastic Net is particularly useful when:**  
+A) Features are uncorrelated  
+B) Only one feature is relevant  
+C) Features are highly correlated  
+D) Dataset is very small  
+
+---
+
+### **23. Logistic regression outputs probabilities because it uses:**  
+A) Linear regression  
+B) Sigmoid function  
+C) Softmax  
+D) Step function  
+
+---
+
+### **24. In SVM, increasing C leads to:**  
+A) Wider margin  
+B) More regularization  
+C) Narrower margin  
+D) Fewer support vectors always  
+
+---
+
+### **25. Which kernel is commonly used for non-linear SVM classification?**
+A) Linear  
+B) Polynomial  
+C) RBF  
+D) Sigmoid  
+
+---
+
+### **26. Which time-series component represents long-term movement?**
+A) Seasonality  
+B) Noise  
+C) Trend  
+D) Irregularity  
+
+---
+
+### **27. Which plot is used to identify AR order?**
+A) ACF  
+B) PACF  
+C) Histogram  
+D) Box plot  
+
+---
+
+### **28. Which recommendation system uses matrix factorization?**
+A) Content-based  
+B) Collaborative filtering  
+C) Knowledge-based  
+D) Rule-based  
+
+---
+
+### **29. Which metric accounts for position of relevant items in ranking?**
+A) Precision  
+B) Recall  
+C) NDCG  
+D) RMSE  
+
+---
+
+### **30. Vanishing gradient problem is severe in which networks?**
+A) CNNs  
+B) Feedforward networks  
+C) RNNs  
+D) Decision Trees  
+
+---
+
+### **31. Which optimizer adapts learning rates using moving averages of squared gradients?**
+A) SGD  
+B) Momentum  
+C) RMSProp  
+D) Batch Gradient Descent  
+
+---
+
+### **32. Early stopping helps neural networks by:**  
+A) Increasing training data  
+B) Reducing overfitting  
+C) Increasing learning rate  
+D) Changing architecture  
+
+---
+
+### **33. CNN filters are shared across:**  
+A) Channels  
+B) Feature maps  
+C) Spatial locations  
+D) Layers  
+
+---
+
+### **34. Data augmentation primarily improves:**  
+A) Model capacity  
+B) Training speed  
+C) Generalization  
+D) Memory usage  
+
+---
+
+### **35. YOLO is considered a single-stage detector because it:**  
+A) Uses region proposals  
+B) Predicts boxes and classes in one pass  
+C) Requires handcrafted features  
+D) Uses multiple networks  
+
+---
+
+### **36. Which RNN variant uses forget, input, and output gates?**
+A) Simple RNN  
+B) GRU  
+C) LSTM  
+D) BiRNN  
+
+---
+
+### **37. Transformers rely on which mechanism to model sequence relationships?**
+A) Recurrence  
+B) Convolution  
+C) Attention  
+D) Pooling  
+
+---
+
+### **38. Positional encoding is required because transformers:**  
+A) Cannot tokenize text  
+B) Lack inherent order modeling  
+C) Cannot handle long sequences  
+D) Remove embeddings  
+
+---
+
+### **39. Which is a common limitation of Large Language Models?**
+A) Poor fluency  
+B) Bias and hallucination  
+C) Inability to scale  
+D) Lack of data  
+
+---
+
+### **40. Responsible deployment of AI emphasizes:**  
+A) Speed only  
+B) Accuracy only  
+C) Fairness, safety, and transparency  
+D) Larger models  
+
+---
+
+# 📘 CDAC MOCK TEST – 9 (Full Elimination Notes)
+
+## ✅ ANSWERS & FULL ELIMINATION
+
+---
+
+### **1. Which phenomenon explains a model performing well on training data but poorly on unseen data?**  
+**Correct Answer: C**  
+- **A) High bias** – ❌ Underfitting  
+- **B) Underfitting** – ❌ Poor training performance  
+- **C) Overfitting** – ✅ Memorizes noise  
+- **D) Regularization** – ❌ Prevention method  
+
+---
+
+### **2. In PAC learning, δ represents:**  
+**Correct Answer: B**  
+- **A) Acceptable error** – ❌ That is ε  
+- **B) Confidence parameter** – ✅ Probability bound  
+- **C) Hypothesis complexity** – ❌ Capacity term  
+- **D) Training size** – ❌ Derived  
+
+---
+
+### **3. Which principle supports choosing the simplest model that fits the data?**  
+**Correct Answer: B**  
+- **A) Structural Risk Minimization** – ❌ Broader framework  
+- **B) Occam’s Razor** – ✅ Simplicity principle  
+- **C) No Free Lunch** – ❌ No universal best  
+- **D) Cross Validation** – ❌ Evaluation  
+
+---
+
+### **4. VC Dimension is best described as:**  
+**Correct Answer: C**  
+- **A) Number of features** – ❌ Not feature count  
+- **B) Training iterations** – ❌ Optimization  
+- **C) Model capacity to shatter points** – ✅ Formal definition  
+- **D) Sample complexity** – ❌ Derived from VC  
+
+---
+
+### **5. Which situation indicates high bias?**  
+**Correct Answer: A**  
+- **A) High training error and high test error** – ✅ Underfitting  
+- **B) Low training error and high test error** – ❌ High variance  
+- **C) High variance model** – ❌ Opposite  
+- **D) Large hypothesis space** – ❌ Capacity indicator  
+
+---
+
+### **6. Which distance metric is most suitable for sparse high-dimensional vectors?**  
+**Correct Answer: C**  
+- **A) Euclidean** – ❌ Magnitude sensitive  
+- **B) Manhattan** – ❌ Scale dependent  
+- **C) Cosine similarity** – ✅ Direction-based  
+- **D) Minkowski** – ❌ Generalization  
+
+---
+
+### **7. Which clustering algorithm can discover arbitrarily shaped clusters?**  
+**Correct Answer: C**  
+- **A) K-means** – ❌ Spherical only  
+- **B) Hierarchical (complete linkage)** – ❌ Shape limited  
+- **C) DBSCAN** – ✅ Density-based  
+- **D) Spectral clustering** – ❌ Graph-based, but not typical answer  
+
+---
+
+### **8. A major limitation of K-means is that it:**  
+**Correct Answer: C**  
+- **A) Cannot scale to large datasets** – ❌ Scales well  
+- **B) Requires distance computation** – ❌ All clustering does  
+- **C) Assumes spherical clusters** – ✅ Core limitation  
+- **D) Cannot handle numeric data** – ❌ Numeric only  
+
+---
+
+### **9. Which method reduces dimensionality using linear combinations of features?**  
+**Correct Answer: B**  
+- **A) Feature selection** – ❌ Subset selection  
+- **B) PCA** – ✅ Linear combinations  
+- **C) Random projections** – ❌ Random mapping  
+- **D) Hashing trick** – ❌ Feature hashing  
+
+---
+
+### **10. Kernel PCA is preferred over PCA when data is:**  
+**Correct Answer: C**  
+- **A) Linearly separable** – ❌ PCA enough  
+- **B) Low dimensional** – ❌ No benefit  
+- **C) Non-linearly separable** – ✅ Kernel trick  
+- **D) Small in size** – ❌ Size irrelevant  
+
+---
+
+---
+
+### **11. Which metric is threshold-independent?**  
+**Correct Answer: D**  
+- **A) Accuracy** – ❌ Depends on chosen threshold  
+- **B) Precision** – ❌ Threshold-dependent  
+- **C) Recall** – ❌ Threshold-dependent  
+- **D) ROC-AUC** – ✅ Evaluates ranking across all thresholds  
+
+---
+
+### **12. Which regression metric penalizes large errors more heavily?**  
+**Correct Answer: B**  
+- **A) MAE** – ❌ Linear penalty  
+- **B) RMSE** – ✅ Squared errors amplify large mistakes  
+- **C) R²** – ❌ Relative goodness-of-fit  
+- **D) Accuracy** – ❌ Not a regression metric  
+
+---
+
+### **13. Information Gain is based on:**  
+**Correct Answer: B**  
+- **A) Gini impurity** – ❌ CART criterion  
+- **B) Entropy** – ✅ IG = entropy reduction  
+- **C) Variance reduction** – ❌ Regression trees  
+- **D) Chi-square** – ❌ Statistical test  
+
+---
+
+### **14. Which ensemble method primarily reduces bias?**  
+**Correct Answer: C**  
+- **A) Bagging** – ❌ Reduces variance  
+- **B) Random Forest** – ❌ Variance-focused  
+- **C) Boosting** – ✅ Sequentially fixes bias  
+- **D) Subsampling** – ❌ Data reduction  
+
+---
+
+### **15. Random Forest improves performance mainly by:**  
+**Correct Answer: B**  
+- **A) Increasing bias** – ❌ Opposite effect  
+- **B) Reducing variance** – ✅ Averaging many trees  
+- **C) Sequential learning** – ❌ Boosting trait  
+- **D) Feature scaling** – ❌ Not required  
+
+---
+
+### **16. Which feature makes XGBoost faster and more robust?**  
+**Correct Answer: B**  
+- **A) Uses single tree** – ❌ Ensemble method  
+- **B) Parallel tree construction** – ✅ Speed + scalability  
+- **C) No regularization** – ❌ XGBoost *has* regularization  
+- **D) Requires clean data** – ❌ Handles missing values  
+
+---
+
+### **17. Naive Bayes struggles when:**  
+**Correct Answer: C**  
+- **A) Data is sparse** – ❌ Often performs well  
+- **B) Features are conditionally independent** – ❌ Ideal case  
+- **C) Features are highly correlated** – ✅ Violates assumption  
+- **D) Dataset is large** – ❌ Scales well  
+
+---
+
+### **18. Which algorithm’s prediction time increases with dataset size?**  
+**Correct Answer: C**  
+- **A) Logistic Regression** – ❌ Fixed-time inference  
+- **B) Decision Tree** – ❌ Depth-based  
+- **C) KNN** – ✅ Compares with all points  
+- **D) Linear SVM** – ❌ Depends on support vectors  
+
+---
+
+### **19. Increasing K in KNN generally causes:**  
+**Correct Answer: B**  
+- **A) Lower bias, higher variance** – ❌ Opposite  
+- **B) Higher bias, lower variance** – ✅ Smoother decision boundary  
+- **C) Lower bias, lower variance** – ❌ Tradeoff exists  
+- **D) Higher bias, higher variance** – ❌ Incorrect  
+
+---
+
+### **20. Which assumption is made by LDA but not by logistic regression?**  
+**Correct Answer: B**  
+- **A) Linear decision boundary** – ❌ Both assume this  
+- **B) Equal class covariance matrices** – ✅ LDA-specific  
+- **C) Independent features** – ❌ Naive Bayes  
+- **D) Binary target variable** – ❌ Logistic can be multiclass  
+
+---
+
+### **21. Which regularization method shrinks coefficients but does not set them exactly to zero?**  
+**Correct Answer: B**  
+- **A) Lasso** – ❌ Can zero-out coefficients  
+- **B) Ridge** – ✅ L2 shrinkage only  
+- **C) Elastic Net** – ❌ Can produce zeros  
+- **D) Dropout** – ❌ NN regularization  
+
+---
+
+### **22. Elastic Net is particularly useful when:**  
+**Correct Answer: C**  
+- **A) Features are uncorrelated** – ❌ Ridge unnecessary  
+- **B) Only one feature is relevant** – ❌ Lasso enough  
+- **C) Features are highly correlated** – ✅ Group selection  
+- **D) Dataset is very small** – ❌ Not specific  
+
+---
+
+### **23. Logistic regression outputs probabilities because it uses:**  
+**Correct Answer: B**  
+- **A) Linear regression** – ❌ Unbounded output  
+- **B) Sigmoid function** – ✅ Maps to (0,1)  
+- **C) Softmax** – ❌ Multiclass extension  
+- **D) Step function** – ❌ Discrete  
+
+---
+
+### **24. In SVM, increasing C leads to:**  
+**Correct Answer: C**  
+- **A) Wider margin** – ❌ Smaller C does this  
+- **B) More regularization** – ❌ Smaller C  
+- **C) Narrower margin** – ✅ Less tolerance for errors  
+- **D) Fewer support vectors always** – ❌ Not guaranteed  
+
+---
+
+### **25. Which kernel is commonly used for non-linear SVM classification?**  
+**Correct Answer: C**  
+- **A) Linear** – ❌ Linear boundary  
+- **B) Polynomial** – ❌ Degree-limited  
+- **C) RBF** – ✅ Flexible non-linear mapping  
+- **D) Sigmoid** – ❌ Unstable in practice  
+
+---
+
+### **26. Which time-series component represents long-term movement?**  
+**Correct Answer: C**  
+- **A) Seasonality** – ❌ Periodic  
+- **B) Noise** – ❌ Random  
+- **C) Trend** – ✅ Long-term direction  
+- **D) Irregularity** – ❌ Unstructured  
+
+---
+
+### **27. Which plot is used to identify AR order?**  
+**Correct Answer: B**  
+- **A) ACF** – ❌ Identifies MA  
+- **B) PACF** – ✅ AR order cutoff  
+- **C) Histogram** – ❌ Distribution only  
+- **D) Box plot** – ❌ Summary statistics  
+
+---
+
+### **28. Which recommendation system uses matrix factorization?**  
+**Correct Answer: B**  
+- **A) Content-based** – ❌ Uses item attributes  
+- **B) Collaborative filtering** – ✅ User–item matrix  
+- **C) Knowledge-based** – ❌ Rule-driven  
+- **D) Rule-based** – ❌ No learning  
+
+---
+
+### **29. Which metric accounts for position of relevant items in ranking?**  
+**Correct Answer: C**  
+- **A) Precision** – ❌ Ignores order  
+- **B) Recall** – ❌ Coverage only  
+- **C) NDCG** – ✅ Position-weighted relevance  
+- **D) RMSE** – ❌ Rating error  
+
+---
+
+### **30. Vanishing gradient problem is severe in which networks?**  
+**Correct Answer: C**  
+- **A) CNNs** – ❌ Less affected  
+- **B) Feedforward networks** – ❌ Fewer layers  
+- **C) RNNs** – ✅ Long dependency chains  
+- **D) Decision Trees** – ❌ No gradients  
+
+---
+
+### **31. Which optimizer adapts learning rates using moving averages of squared gradients?**  
+**Correct Answer: C**  
+- **A) SGD** – ❌ Fixed LR  
+- **B) Momentum** – ❌ Velocity-based  
+- **C) RMSProp** – ✅ Adaptive per-parameter LR  
+- **D) Batch Gradient Descent** – ❌ Fixed LR  
+
+---
+
+### **32. Early stopping helps neural networks by:**  
+**Correct Answer: B**  
+- **A) Increasing training data** – ❌ Data unchanged  
+- **B) Reducing overfitting** – ✅ Stops before memorization  
+- **C) Increasing learning rate** – ❌ Unrelated  
+- **D) Changing architecture** – ❌ Architecture unchanged  
+
+---
+
+### **33. CNN filters are shared across:**  
+**Correct Answer: C**  
+- **A) Channels** – ❌ Channels have separate weights  
+- **B) Feature maps** – ❌ Output of filters  
+- **C) Spatial locations** – ✅ Parameter sharing  
+- **D) Layers** – ❌ Each layer has its own filters  
+
+---
+
+### **34. Data augmentation primarily improves:**  
+**Correct Answer: C**  
+- **A) Model capacity** – ❌ Architecture unchanged  
+- **B) Training speed** – ❌ Often slower  
+- **C) Generalization** – ✅ Reduces overfitting  
+- **D) Memory usage** – ❌ Increases storage  
+
+---
+
+### **35. YOLO is considered a single-stage detector because it:**  
+**Correct Answer: B**  
+- **A) Uses region proposals** – ❌ Two-stage detectors  
+- **B) Predicts boxes and classes in one pass** – ✅ YOLO design  
+- **C) Requires handcrafted features** – ❌ Learned features  
+- **D) Uses multiple networks** – ❌ Unified network  
+
+---
+
+### **36. Which RNN variant uses forget, input, and output gates?**  
+**Correct Answer: C**  
+- **A) Simple RNN** – ❌ No gates  
+- **B) GRU** – ❌ Reset & update gates only  
+- **C) LSTM** – ✅ Three-gate mechanism  
+- **D) BiRNN** – ❌ Directional wrapper  
+
+---
+
+### **37. Transformers rely on which mechanism to model sequence relationships?**  
+**Correct Answer: C**  
+- **A) Recurrence** – ❌ Removed  
+- **B) Convolution** – ❌ CNN-based  
+- **C) Attention** – ✅ Core mechanism  
+- **D) Pooling** – ❌ Downsampling  
+
+---
+
+### **38. Positional encoding is required because transformers:**  
+**Correct Answer: B**  
+- **A) Cannot tokenize text** – ❌ Tokenizers exist  
+- **B) Lack inherent order modeling** – ✅ No recurrence  
+- **C) Cannot handle long sequences** – ❌ Can, with limits  
+- **D) Remove embeddings** – ❌ Use embeddings  
+
+---
+
+### **39. Which is a common limitation of Large Language Models?**  
+**Correct Answer: B**  
+- **A) Poor fluency** – ❌ Strong fluency  
+- **B) Bias and hallucination** – ✅ Known risk  
+- **C) Inability to scale** – ❌ Scale well  
+- **D) Lack of data** – ❌ Trained on massive data  
+
+---
+
+### **40. Responsible deployment of AI emphasizes:**  
+**Correct Answer: C**  
+- **A) Speed only** – ❌ Narrow goal  
+- **B) Accuracy only** – ❌ Insufficient  
+- **C) Fairness, safety, and transparency** – ✅ Responsible AI  
+- **D) Larger models** – ❌ Size ≠ responsibility  
+
+---
+

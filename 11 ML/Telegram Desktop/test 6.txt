@@ -1,0 +1,695 @@
+# 📘 CDAC MOCK TEST – 6
+## Machine Learning, Deep Learning & AI
+
+---
+
+## 📝 QUESTIONS (MCQs ONLY)
+
+### **1. Which concept explains why increasing model complexity can hurt generalization?**
+A) PAC learning  
+B) Bias–Variance tradeoff  
+C) Occam’s Razor  
+D) VC Dimension  
+
+---
+
+### **2. In PAC learning, δ represents:**  
+A) Error tolerance  
+B) Confidence level  
+C) Sample size  
+D) Model complexity  
+
+---
+
+### **3. Structural Risk Minimization differs from ERM because it considers:**  
+A) Training error only  
+B) Test error  
+C) Model complexity  
+D) Data imbalance  
+
+---
+
+### **4. VC dimension of a classifier indicates its:**  
+A) Accuracy  
+B) Training speed  
+C) Expressive power  
+D) Optimization method  
+
+---
+
+### **5. Which algorithm is most affected by the curse of dimensionality?**  
+A) Naive Bayes  
+B) Decision Tree  
+C) KNN  
+D) Linear Regression  
+
+---
+
+### **6. Which distance metric is scale invariant?**  
+A) Euclidean  
+B) Manhattan  
+C) Cosine similarity  
+D) Minkowski  
+
+---
+
+### **7. K-means clustering objective minimizes:**  
+A) Inter-cluster distance  
+B) Intra-cluster variance  
+C) Cluster density  
+D) Silhouette score  
+
+---
+
+### **8. Which clustering method can discover non-spherical clusters?**  
+A) K-means  
+B) Hierarchical (single linkage)  
+C) K-means++  
+D) Ward linkage  
+
+---
+
+### **9. PCA fails mainly when:**  
+A) Data is high dimensional  
+B) Features are correlated  
+C) Variance does not capture structure  
+D) Dataset is large  
+
+---
+
+### **10. Random projection is preferred because it:**  
+A) Maximizes variance  
+B) Is supervised  
+C) Is computationally efficient  
+D) Removes noise  
+
+---
+
+### **11. Which metric is threshold-independent?**  
+A) Accuracy  
+B) Precision  
+C) Recall  
+D) ROC-AUC  
+
+---
+
+### **12. Log Loss heavily penalizes:**  
+A) Small errors  
+B) Correct predictions  
+C) Confident wrong predictions  
+D) False negatives only  
+
+---
+
+### **13. Information Gain in decision trees is based on:**  
+A) Gini Index  
+B) Variance  
+C) Entropy  
+D) Accuracy  
+
+---
+
+### **14. Which tree-splitting metric is used in CART?**  
+A) Entropy  
+B) Information Gain  
+C) Gini Index  
+D) Chi-square  
+
+---
+
+### **15. Boosting reduces bias by:**  
+A) Averaging independent models  
+B) Training models in parallel  
+C) Focusing on misclassified samples  
+D) Random feature selection  
+
+---
+
+### **16. Which ensemble method is least prone to overfitting?**  
+A) Single decision tree  
+B) AdaBoost  
+C) Random Forest  
+D) KNN  
+
+---
+
+### **17. Naive Bayes performs poorly when:**  
+A) Features are sparse  
+B) Features are independent  
+C) Features are highly correlated  
+D) Dataset is large  
+
+---
+
+### **18. KNN prediction time is expensive because:**  
+A) Model retraining is required  
+B) Distance to all points is computed  
+C) Dimensionality reduction is applied  
+D) Data normalization is repeated  
+
+---
+
+### **19. LDA assumes:**  
+A) Independent features  
+B) Equal covariance matrices  
+C) Non-linear boundaries  
+D) Sparse data  
+
+---
+
+### **20. Logistic regression outputs:**  
+A) Class labels directly  
+B) Log-odds  
+C) Linear predictions  
+D) Distances  
+
+---
+
+### **21. Ridge regression primarily reduces:**  
+A) Bias  
+B) Variance  
+C) Dimensionality  
+D) Training error  
+
+---
+
+### **22. Which regularization encourages sparsity?**  
+A) Ridge  
+B) L2  
+C) L1  
+D) Dropout  
+
+---
+
+### **23. Which SVM kernel works best for high-dimensional sparse data?**  
+A) RBF  
+B) Polynomial  
+C) Linear  
+D) Sigmoid  
+
+---
+
+### **24. Soft margin in SVM allows:**  
+A) No misclassification  
+B) Hard constraints  
+C) Controlled misclassification  
+D) Kernel change  
+
+---
+
+### **25. Which time series component is removed by differencing?**  
+A) Seasonality  
+B) Trend  
+C) Noise  
+D) Cyclic pattern  
+
+---
+
+### **26. ACF plot that tails off slowly indicates:**  
+A) White noise  
+B) MA process  
+C) AR process  
+D) Non-stationarity  
+
+---
+
+### **27. Which recommender system uses matrix factorization?**  
+A) Content-based  
+B) Knowledge-based  
+C) Collaborative filtering  
+D) Rule-based  
+
+---
+
+### **28. Cold start problem occurs due to:**  
+A) Sparse data  
+B) New users or items  
+C) Large datasets  
+D) Continuous ratings  
+
+---
+
+### **29. Which metric focuses on top-ranked recommendations?**  
+A) RMSE  
+B) Accuracy  
+C) Precision@K  
+D) MAE  
+
+---
+
+### **30. Vanishing gradients mainly affect learning in:**  
+A) CNNs  
+B) Decision Trees  
+C) RNNs  
+D) Linear models  
+
+---
+
+### **31. Which activation function has zero gradient for negative inputs?**  
+A) Sigmoid  
+B) Tanh  
+C) ReLU  
+D) Softmax  
+
+---
+
+### **32. Batch gradient descent differs from SGD because it:**  
+A) Uses one sample  
+B) Uses entire dataset per update  
+C) Has higher variance  
+D) Is faster  
+
+---
+
+### **33. Convolution operation mainly enables:**  
+A) Dimensionality reduction  
+B) Parameter sharing  
+C) Classification  
+D) Pooling  
+
+---
+
+### **34. Data augmentation helps prevent:**  
+A) Underfitting  
+B) Overfitting  
+C) Vanishing gradients  
+D) Bias  
+
+---
+
+### **35. Transfer learning can cause negative transfer when:**  
+A) Dataset is small  
+B) Domains are dissimilar  
+C) Model is deep  
+D) Labels are few  
+
+---
+
+### **36. Which RNN unit is simpler than LSTM but still gated?**  
+A) Simple RNN  
+B) GRU  
+C) BiRNN  
+D) CNN  
+
+---
+
+### **37. Self-attention computes:**  
+A) Local context only  
+B) Global dependencies  
+C) Sequential dependencies  
+D) Class probabilities  
+
+---
+
+### **38. Encoder part of transformer is responsible for:**  
+A) Generating output tokens  
+B) Encoding input representations  
+C) Calculating loss  
+D) Decoding sequences  
+
+---
+
+### **39. Hallucination in LLMs refers to:**  
+A) Overfitting  
+B) Generating incorrect confident responses  
+C) Training instability  
+D) Vanishing gradients  
+
+---
+
+### **40. Alignment in LLMs aims to:**  
+A) Increase model size  
+B) Improve training speed  
+C) Match model behavior with human values  
+D) Reduce dataset size  
+
+---
+
+# 📘 CDAC MOCK TEST – 6 (Full Elimination Notes)
+
+## ✅ ANSWERS & FULL ELIMINATION
+
+---
+
+### **1. Which concept explains why increasing model complexity can hurt generalization?**  
+**Correct Answer: B**  
+- **A) PAC learning** – ❌ Learning guarantee framework  
+- **B) Bias–Variance tradeoff** – ✅ Higher complexity increases variance  
+- **C) Occam’s Razor** – ❌ Preference principle, not explanation  
+- **D) VC Dimension** – ❌ Capacity measure only  
+
+---
+
+### **2. In PAC learning, δ represents:**  
+**Correct Answer: B**  
+- **A) Error tolerance** – ❌ That is ε  
+- **B) Confidence level** – ✅ Probability bound  
+- **C) Sample size** – ❌ Indirect factor  
+- **D) Model complexity** – ❌ Not PAC parameter  
+
+---
+
+### **3. Structural Risk Minimization differs from ERM because it considers:**  
+**Correct Answer: C**  
+- **A) Training error only** – ❌ ERM does this  
+- **B) Test error** – ❌ Unseen during training  
+- **C) Model complexity** – ✅ Core SRM idea  
+- **D) Data imbalance** – ❌ Separate issue  
+
+---
+
+### **4. VC dimension of a classifier indicates its:**  
+**Correct Answer: C**  
+- **A) Accuracy** – ❌ Performance dependent  
+- **B) Training speed** – ❌ Computational  
+- **C) Expressive power** – ✅ Model capacity  
+- **D) Optimization method** – ❌ Algorithmic  
+
+---
+
+### **5. Which algorithm is most affected by the curse of dimensionality?**  
+**Correct Answer: C**  
+- **A) Naive Bayes** – ❌ Probabilistic  
+- **B) Decision Tree** – ❌ Feature-wise splits  
+- **C) KNN** – ✅ Distance loses meaning  
+- **D) Linear Regression** – ❌ Less sensitive  
+
+---
+
+### **6. Which distance metric is scale invariant?**  
+**Correct Answer: C**  
+- **A) Euclidean** – ❌ Scale sensitive  
+- **B) Manhattan** – ❌ Scale sensitive  
+- **C) Cosine similarity** – ✅ Uses angle only  
+- **D) Minkowski** – ❌ Generalized distance  
+
+---
+
+### **7. K-means clustering objective minimizes:**  
+**Correct Answer: B**  
+- **A) Inter-cluster distance** – ❌ Side effect  
+- **B) Intra-cluster variance** – ✅ Objective function  
+- **C) Cluster density** – ❌ DBSCAN concept  
+- **D) Silhouette score** – ❌ Evaluation metric  
+
+---
+
+### **8. Which clustering method can discover non-spherical clusters?**  
+**Correct Answer: B**  
+- **A) K-means** – ❌ Assumes spherical clusters  
+- **B) Hierarchical (single linkage)** – ✅ Arbitrary shapes  
+- **C) K-means++** – ❌ Initialization method  
+- **D) Ward linkage** – ❌ Spherical bias  
+
+---
+
+### **9. PCA fails mainly when:**  
+**Correct Answer: C**  
+- **A) Data is high dimensional** – ❌ PCA handles this  
+- **B) Features are correlated** – ❌ PCA decorrelates  
+- **C) Variance does not capture structure** – ✅ Key limitation  
+- **D) Dataset is large** – ❌ Computationally manageable  
+
+---
+
+### **10. Random projection is preferred because it:**  
+**Correct Answer: C**  
+- **A) Maximizes variance** – ❌ PCA does this  
+- **B) Is supervised** – ❌ Unsupervised  
+- **C) Is computationally efficient** – ✅ Fast dimensionality reduction  
+- **D) Removes noise** – ❌ Not guaranteed  
+
+---
+
+---
+
+### **11. Which metric is threshold-independent?**  
+**Correct Answer: D**  
+- **A) Accuracy** – ❌ Depends on chosen threshold  
+- **B) Precision** – ❌ Threshold-dependent  
+- **C) Recall** – ❌ Threshold-dependent  
+- **D) ROC-AUC** – ✅ Evaluates ranking across all thresholds  
+
+---
+
+### **12. Log Loss heavily penalizes:**  
+**Correct Answer: C**  
+- **A) Small errors** – ❌ Penalized mildly  
+- **B) Correct predictions** – ❌ Rewarded, not penalized  
+- **C) Confident wrong predictions** – ✅ Large penalty for high-confidence errors  
+- **D) False negatives only** – ❌ Penalizes both FP and FN  
+
+---
+
+### **13. Information Gain in decision trees is based on:**  
+**Correct Answer: C**  
+- **A) Gini Index** – ❌ Used in CART  
+- **B) Variance** – ❌ Used in regression trees  
+- **C) Entropy** – ✅ IG = reduction in entropy  
+- **D) Accuracy** – ❌ Not a split criterion  
+
+---
+
+### **14. Which tree-splitting metric is used in CART?**  
+**Correct Answer: C**  
+- **A) Entropy** – ❌ Used in ID3  
+- **B) Information Gain** – ❌ Entropy-based  
+- **C) Gini Index** – ✅ CART default  
+- **D) Chi-square** – ❌ Statistical test  
+
+---
+
+### **15. Boosting reduces bias by:**  
+**Correct Answer: C**  
+- **A) Averaging independent models** – ❌ Bagging behavior  
+- **B) Training models in parallel** – ❌ Parallel ensembles  
+- **C) Focusing on misclassified samples** – ✅ Sequential error correction  
+- **D) Random feature selection** – ❌ Random Forest technique  
+
+---
+
+### **16. Which ensemble method is least prone to overfitting?**  
+**Correct Answer: C**  
+- **A) Single decision tree** – ❌ High variance  
+- **B) AdaBoost** – ❌ Can overfit noisy data  
+- **C) Random Forest** – ✅ Variance reduction via averaging  
+- **D) KNN** – ❌ Distance-based overfitting  
+
+---
+
+### **17. Naive Bayes performs poorly when:**  
+**Correct Answer: C**  
+- **A) Features are sparse** – ❌ Works well for sparse data  
+- **B) Features are independent** – ❌ Ideal condition  
+- **C) Features are highly correlated** – ✅ Violates independence assumption  
+- **D) Dataset is large** – ❌ Large data helps NB  
+
+---
+
+### **18. KNN prediction time is expensive because:**  
+**Correct Answer: B**  
+- **A) Model retraining is required** – ❌ Lazy learner  
+- **B) Distance to all points is computed** – ✅ Costly at inference  
+- **C) Dimensionality reduction is applied** – ❌ Optional preprocessing  
+- **D) Data normalization is repeated** – ❌ One-time step  
+
+---
+
+### **19. LDA assumes:**  
+**Correct Answer: B**  
+- **A) Independent features** – ❌ Naive Bayes assumption  
+- **B) Equal covariance matrices** – ✅ Core LDA assumption  
+- **C) Non-linear boundaries** – ❌ LDA is linear  
+- **D) Sparse data** – ❌ Not required  
+
+---
+
+### **20. Logistic regression outputs:**  
+**Correct Answer: B**  
+- **A) Class labels directly** – ❌ Threshold needed  
+- **B) Log-odds** – ✅ Linear model on logit  
+- **C) Linear predictions** – ❌ Uses sigmoid  
+- **D) Distances** – ❌ KNN-like  
+
+---
+
+### **21. Ridge regression primarily reduces:**  
+**Correct Answer: B**  
+- **A) Bias** – ❌ Bias may slightly increase  
+- **B) Variance** – ✅ Stabilizes coefficients  
+- **C) Dimensionality** – ❌ No feature removal  
+- **D) Training error** – ❌ May increase training error  
+
+---
+
+### **22. Which regularization encourages sparsity?**  
+**Correct Answer: C**  
+- **A) Ridge** – ❌ Shrinks but not zero  
+- **B) L2** – ❌ Smooth decay  
+- **C) L1** – ✅ Forces coefficients to zero  
+- **D) Dropout** – ❌ Neural network regularization  
+
+---
+
+### **23. Which SVM kernel works best for high-dimensional sparse data?**  
+**Correct Answer: C**  
+- **A) RBF** – ❌ Computationally heavy  
+- **B) Polynomial** – ❌ Over-complex  
+- **C) Linear** – ✅ Common for text data  
+- **D) Sigmoid** – ❌ Rarely stable  
+
+---
+
+### **24. Soft margin in SVM allows:**  
+**Correct Answer: C**  
+- **A) No misclassification** – ❌ Hard margin  
+- **B) Hard constraints** – ❌ Opposite of soft margin  
+- **C) Controlled misclassification** – ✅ Tradeoff via C  
+- **D) Kernel change** – ❌ Independent  
+
+---
+
+### **25. Which time series component is removed by differencing?**  
+**Correct Answer: B**  
+- **A) Seasonality** – ❌ Seasonal differencing needed  
+- **B) Trend** – ✅ Makes series stationary  
+- **C) Noise** – ❌ Noise remains  
+- **D) Cyclic pattern** – ❌ Not removed  
+
+---
+
+### **26. ACF plot that tails off slowly indicates:**  
+**Correct Answer: D**  
+- **A) White noise** – ❌ No autocorrelation  
+- **B) MA process** – ❌ Sharp cutoff  
+- **C) AR process** – ❌ PACF cutoff  
+- **D) Non-stationarity** – ✅ Slow decay pattern  
+
+---
+
+### **27. Which recommender system uses matrix factorization?**  
+**Correct Answer: C**  
+- **A) Content-based** – ❌ Uses item features  
+- **B) Knowledge-based** – ❌ Rule driven  
+- **C) Collaborative filtering** – ✅ Latent factor models  
+- **D) Rule-based** – ❌ No factorization  
+
+---
+
+### **28. Cold start problem occurs due to:**  
+**Correct Answer: B**  
+- **A) Sparse data** – ❌ Related but not exact  
+- **B) New users or items** – ✅ No interaction history  
+- **C) Large datasets** – ❌ Opposite issue  
+- **D) Continuous ratings** – ❌ Rating type irrelevant  
+
+---
+
+### **29. Which metric focuses on top-ranked recommendations?**  
+**Correct Answer: C**  
+- **A) RMSE** – ❌ Rating accuracy  
+- **B) Accuracy** – ❌ Ignores ranking  
+- **C) Precision@K** – ✅ Top-K relevance  
+- **D) MAE** – ❌ Regression metric  
+
+---
+
+### **30. Vanishing gradients mainly affect learning in:**  
+**Correct Answer: C**  
+- **A) CNNs** – ❌ Less affected  
+- **B) Decision Trees** – ❌ Gradient-free  
+- **C) RNNs** – ✅ Long dependency chains  
+- **D) Linear models** – ❌ Single layer  
+
+---
+
+### **31. Which activation function has zero gradient for negative inputs?**  
+**Correct Answer: C**  
+- **A) Sigmoid** – ❌ Small but non-zero  
+- **B) Tanh** – ❌ Small but non-zero  
+- **C) ReLU** – ✅ Zero for x < 0  
+- **D) Softmax** – ❌ Output layer  
+
+---
+
+### **32. Batch gradient descent differs from SGD because it:**  
+**Correct Answer: B**  
+- **A) Uses one sample** – ❌ SGD behavior  
+- **B) Uses entire dataset per update** – ✅ Batch GD definition  
+- **C) Has higher variance** – ❌ Lower variance  
+- **D) Is faster** – ❌ Slower per update  
+
+---
+
+### **33. Convolution operation mainly enables:**  
+**Correct Answer: B**  
+- **A) Dimensionality reduction** – ❌ Pooling does this  
+- **B) Parameter sharing** – ✅ Same filter reused  
+- **C) Classification** – ❌ Later layers  
+- **D) Pooling** – ❌ Separate operation  
+
+---
+
+### **34. Data augmentation helps prevent:**  
+**Correct Answer: B**  
+- **A) Underfitting** – ❌ Opposite effect  
+- **B) Overfitting** – ✅ Increases effective data  
+- **C) Vanishing gradients** – ❌ Architectural issue  
+- **D) Bias** – ❌ Model assumption issue  
+
+---
+
+### **35. Transfer learning can cause negative transfer when:**  
+**Correct Answer: B**  
+- **A) Dataset is small** – ❌ Ideal case  
+- **B) Domains are dissimilar** – ✅ Learned features mislead  
+- **C) Model is deep** – ❌ Depth irrelevant  
+- **D) Labels are few** – ❌ Still beneficial  
+
+---
+
+### **36. Which RNN unit is simpler than LSTM but still gated?**  
+**Correct Answer: B**  
+- **A) Simple RNN** – ❌ No gates  
+- **B) GRU** – ✅ Reset & update gates  
+- **C) BiRNN** – ❌ Directional wrapper  
+- **D) CNN** – ❌ Not recurrent  
+
+---
+
+### **37. Self-attention computes:**  
+**Correct Answer: B**  
+- **A) Local context only** – ❌ Global view  
+- **B) Global dependencies** – ✅ All-to-all attention  
+- **C) Sequential dependencies** – ❌ Parallel processing  
+- **D) Class probabilities** – ❌ Output layer task  
+
+---
+
+### **38. Encoder part of transformer is responsible for:**  
+**Correct Answer: B**  
+- **A) Generating output tokens** – ❌ Decoder role  
+- **B) Encoding input representations** – ✅ Contextual embeddings  
+- **C) Calculating loss** – ❌ Training step  
+- **D) Decoding sequences** – ❌ Decoder task  
+
+---
+
+### **39. Hallucination in LLMs refers to:**  
+**Correct Answer: B**  
+- **A) Overfitting** – ❌ Training issue  
+- **B) Generating incorrect confident responses** – ✅ Hallucination definition  
+- **C) Training instability** – ❌ Optimization issue  
+- **D) Vanishing gradients** – ❌ DL training issue  
+
+---
+
+### **40. Alignment in LLMs aims to:**  
+**Correct Answer: C**  
+- **A) Increase model size** – ❌ Scaling issue  
+- **B) Improve training speed** – ❌ Optimization goal  
+- **C) Match model behavior with human values** – ✅ Alignment objective  
+- **D) Reduce dataset size** – ❌ Data issue  
+
+---
+
